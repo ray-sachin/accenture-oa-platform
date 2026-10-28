@@ -3,7 +3,7 @@
 Last Updated: October 28, 2026
 Target Drive: **Accenture Advanced Technology Engineer (ATE) Summer Internship Drive (2026-27 for 2027 Batch)**
 Stipend: **₹60,000 / Month** (₹1.2 Lakh total for 2 months) + **Direct PPO to ₹10–12.1 LPA FTE**
-Campus Reference: Official Internship Notification Form (NIT Uttarakhand, SVNIT Surat, IIT BHU, NIT Kurukshetra)
+Campus Reference: Official Internship Notification Forms (Pan-India Engineering Colleges, Tier-1/Tier-2 Premier Institutes)
 Author: Antigravity Assistant
 
 ---

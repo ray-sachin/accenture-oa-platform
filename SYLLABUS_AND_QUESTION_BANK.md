@@ -2,7 +2,7 @@
 ## Accenture Advanced Technology Engineer (ATE) / AEH Internship (₹60,000/Mo + PPO)
 
 **Target Batch:** 2027 Pass-out Batch  
-**Primary Institution:** National Institute of Technology, Uttarakhand (NIT UK) & Premier NITs/IITs  
+**Target Audience:** Pan-India Engineering & MCA Students (2027 Pass-out Batch) across Tier-1/Tier-2 Campuses & Premier Universities  
 **Official Pattern:** Cognitive + Technical (90 Qs / 90 Mins) + Tri-Domain / DSA Coding (45 Mins) + Behavioral SJT + Communication (Versant) + 4-Round Personal Interviews  
 
 ---
