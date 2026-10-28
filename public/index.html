@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Accenture Online Assessment (OA) Simulator</title>
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Font Awesome CDN for icons in rating / iPod challenges -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+
+  <!-- Top Navigation / Header -->
+  <header class="app-header">
+    <div class="header-left">
+      <div class="accenture-brand">
+        <span class="brand-arrow">&gt;</span>
+        <span class="brand-text">accenture</span>
+      </div>
+      <div class="assessment-meta">
+        <span class="assessment-title">Recruitment Assessment: Technical Coding</span>
+        <span class="badge category-badge" id="category-badge">Frontend Web</span>
+      </div>
+    </div>
+
+    <!-- Question Selector Pills -->
+    <div class="question-nav-container">
+      <div class="question-nav" id="question-nav">
+        <!-- Injected via JS -->
+      </div>
+    </div>
+
+    <!-- Header Right (Timers & Flags) -->
+    <div class="header-right">
+      <div class="candidate-pill" id="candidate-pill" title="Click to change candidate">
+        <span class="user-avatar">👤</span>
+        <span id="candidate-name-display">Candidate</span>
+      </div>
+
+      <button class="btn-admin-logs" id="btn-open-logs" title="View device and candidate logs">
+        📊 Device Logs
+      </button>
+
+      <label class="revisit-checkbox">
+        <input type="checkbox" id="revisit-checkbox">
+        <span class="checkbox-custom"></span>
+        <span class="checkbox-label">🔖 Revisit Later</span>
+      </label>
+
+      <div class="timer-box" id="oa-timer-box" title="20-minute Assessment Countdown">
+        <span class="timer-icon">⏱️</span>
+        <span class="timer-text" id="oa-timer-display">20:00</span>
+      </div>
+
+      <div class="proctor-pill" title="Simulated proctoring and anti-cheat active">
+        <span class="pulse-dot"></span>
+        <span>Proctored</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Split Layout -->
+  <main class="main-layout">
+
+    <!-- Left Pane: Problem Description & Solution -->
+    <section class="left-pane" id="left-pane">
+      <div class="pane-tabs">
+        <button class="pane-tab active" data-tab="problem">
+          <span class="tab-icon">📄</span> Question Details
+        </button>
+        <button class="pane-tab" data-tab="solution">
+          <span class="tab-icon" id="solution-tab-icon">🔒</span> Solution
+          <span class="solution-status-pill" id="solution-status-pill">Locked</span>
+        </button>
+      </div>
+
+      <!-- Problem Statement View -->
+      <div class="tab-content active" id="problem-view">
+        <div class="problem-scroll-container">
+          <div class="problem-header">
+            <div class="problem-title-row">
+              <h2 id="problem-title">Question 1: Title</h2>
+              <span class="badge difficulty-badge" id="difficulty-badge">Medium</span>
+            </div>
+            <div class="problem-meta-row">
+              <span id="problem-day">Day 1</span>
+              <span>•</span>
+              <span id="problem-time-limit">20 Mins</span>
+            </div>
+          </div>
+
+          <div class="section-block">
+            <h3 class="section-heading">How to Attempt?</h3>
+            <p id="problem-scenario" class="problem-text">Scenario description...</p>
+          </div>
+
+          <div class="section-block">
+            <h3 class="section-heading">Objectives</h3>
+            <ul id="problem-objectives" class="objectives-list">
+              <!-- Objectives injected dynamically -->
+            </ul>
+          </div>
+
+          <div class="section-block constraints-block">
+            <h3 class="section-heading">Constraints & Instructions</h3>
+            <ul id="problem-constraints" class="constraints-list">
+              <!-- Constraints injected dynamically -->
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Solution View (Locked 20m) -->
+      <div class="tab-content" id="solution-view">
+        <div class="solution-scroll-container">
+          
+          <!-- Locked State Container -->
+          <div class="solution-locked-card" id="solution-locked-card">
+            <div class="lock-icon-wrapper">
+              <span class="lock-graphic">🔒</span>
+            </div>
+            <h3>Solution is Currently Locked</h3>
+            <p class="lock-desc">
+              To simulate actual Accenture Online Assessment conditions and build authentic problem-solving skills, the full solution is locked for the first <strong>20 minutes</strong> of active practice.
+            </p>
+            <div class="unlock-countdown-box">
+              <div class="countdown-label">Solution Unlocks In:</div>
+              <div class="countdown-digits" id="solution-countdown">20:00</div>
+              <div class="countdown-progress-bar">
+                <div class="progress-fill" id="solution-progress-fill" style="width: 0%;"></div>
+              </div>
+            </div>
+            <div class="lock-tip">
+              💡 <strong>Accenture Assessment Tip:</strong> Use this time to read the constraints carefully, inspect the HTML structure, and test your logic with the <em>"Run Code"</em> and <em>"Submit & Run Tests"</em> buttons.
+            </div>
+            <button class="btn-emergency-unlock" id="btn-emergency-unlock">
+              Instructor / Emergency Unlock
+            </button>
+          </div>
+
+          <!-- Unlocked State Container -->
+          <div class="solution-unlocked-card" id="solution-unlocked-card" style="display: none;">
+            <div class="unlocked-header">
+              <div class="badge badge-unlocked">🔓 Solution Unlocked</div>
+              <button class="btn-load-solution" id="btn-load-solution">
+                Load Solution into Code Editor
+              </button>
+            </div>
+            <div id="solution-explanation" class="markdown-explanation"></div>
+            
+            <div class="solution-code-tabs">
+              <h4>Complete Verified Solution:</h4>
+              <div class="code-block-wrapper">
+                <span class="code-block-label">HTML</span>
+                <pre><code id="solution-code-html"></code></pre>
+              </div>
+              <div class="code-block-wrapper">
+                <span class="code-block-label">CSS</span>
+                <pre><code id="solution-code-css"></code></pre>
+              </div>
+              <div class="code-block-wrapper">
+                <span class="code-block-label">JavaScript</span>
+                <pre><code id="solution-code-js"></code></pre>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Resizer Divider -->
+    <div class="pane-resizer" id="pane-resizer"></div>
+
+    <!-- Right Pane: Code Editor, Preview & Test Console -->
+    <section class="right-pane" id="right-pane">
+      <div class="editor-header">
+        <div class="editor-tabs" id="editor-tabs">
+          <button class="editor-tab active" data-editor="html">
+            <span class="tab-lang-icon">&lt;/&gt;</span> HTML
+          </button>
+          <button class="editor-tab" data-editor="css">
+            <span class="tab-lang-icon">#</span> CSS
+          </button>
+          <button class="editor-tab" data-editor="js">
+            <span class="tab-lang-icon">{}</span> JS
+          </button>
+          <button class="editor-tab tab-preview" data-editor="preview">
+            <span class="tab-lang-icon">👁️</span> Live Preview
+          </button>
+          <button class="editor-tab tab-tests" data-editor="tests">
+            <span class="tab-lang-icon">🧪</span> Test Console
+            <span class="test-badge-pill" id="test-summary-pill">0/0</span>
+          </button>
+        </div>
+
+        <div class="editor-header-actions">
+          <button class="btn-header-action" id="btn-reset-code" title="Reset editor to starter boilerplate">
+            ↺ Reset
+          </button>
+        </div>
+      </div>
+
+      <!-- Editor Canvas & Workspaces -->
+      <div class="editor-body">
+        
+        <!-- Code Editor Workspace (HTML, CSS, JS) -->
+        <div class="editor-workspace active" id="workspace-code">
+          <div class="code-editor-container">
+            <div class="gutter" id="editor-gutter"></div>
+            <textarea class="code-textarea" id="code-textarea" spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off"></textarea>
+          </div>
+        </div>
+
+        <!-- Live Sandboxed Preview -->
+        <div class="editor-workspace" id="workspace-preview">
+          <div class="preview-toolbar">
+            <span class="preview-url-bar">Sandboxed Execution Environment (iframe)</span>
+            <button class="btn-refresh-preview" id="btn-refresh-preview" title="Refresh Preview">↻ Refresh</button>
+          </div>
+          <iframe id="preview-iframe" class="preview-iframe" sandbox="allow-scripts allow-same-origin"></iframe>
+        </div>
+
+        <!-- Automated Test Console -->
+        <div class="editor-workspace" id="workspace-tests">
+          <div class="test-console-container">
+            <div class="test-summary-card">
+              <div class="summary-stat">
+                <span class="stat-number" id="stat-total-tests">0</span>
+                <span class="stat-label">Total Tests</span>
+              </div>
+              <div class="summary-stat">
+                <span class="stat-number stat-pass" id="stat-passed-tests">0</span>
+                <span class="stat-label">Passed</span>
+              </div>
+              <div class="summary-stat">
+                <span class="stat-number stat-fail" id="stat-failed-tests">0</span>
+                <span class="stat-label">Failed</span>
+              </div>
+              <div class="summary-stat">
+                <span class="stat-number" id="stat-score-percent">0%</span>
+                <span class="stat-label">Score</span>
+              </div>
+            </div>
+
+            <div class="test-results-list" id="test-results-list">
+              <div class="empty-tests-msg">
+                Click <strong>"Submit & Run Tests"</strong> to run automated evaluation checks on your HTML, CSS, and JS code.
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bottom Action Bar -->
+      <footer class="editor-footer">
+        <div class="footer-left">
+          <span class="anti-cheat-status" id="anti-cheat-indicator">
+            🛡️ Anti-Cheat: Cut/Copy/Paste Disabled
+          </span>
+          <span class="violation-count" id="violation-count" style="display: none;">
+            ⚠️ 0 Violations
+          </span>
+        </div>
+
+        <div class="footer-right">
+          <button class="btn-action btn-secondary" id="btn-run-code">
+            ▶ Run Code
+          </button>
+          <button class="btn-action btn-primary" id="btn-submit-tests">
+            ✔ Submit & Run Tests
+          </button>
+          <div class="nav-btn-group">
+            <button class="btn-nav" id="btn-prev-question" title="Previous Question">◄ Prev</button>
+            <button class="btn-nav" id="btn-next-question" title="Next Question">Next ►</button>
+          </div>
+        </div>
+      </footer>
+
+    </section>
+  </main>
+
+  <!-- Candidate Verification / Login Modal -->
+  <div class="modal-backdrop" id="login-modal" style="display: none;">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="brand-badge">&gt; accenture</div>
+        <h3>Candidate Assessment Login</h3>
+        <p>Please enter your details to verify your device and begin the proctored assessment.</p>
+      </div>
+
+      <form id="login-form" class="modal-form">
+        <div class="form-group">
+          <label for="input-candidate-name">Full Name *</label>
+          <input type="text" id="input-candidate-name" placeholder="e.g. Aryan Sharma" required autocomplete="name">
+        </div>
+
+        <div class="form-group">
+          <label for="input-candidate-email">College Roll No / Email *</label>
+          <input type="text" id="input-candidate-email" placeholder="e.g. 21BCE1024 or name@college.edu" required autocomplete="email">
+        </div>
+
+        <div class="device-telemetry-preview">
+          <div class="telemetry-item">
+            <span class="telemetry-label">Device ID:</span>
+            <span class="telemetry-value" id="preview-device-id">Detecting...</span>
+          </div>
+          <div class="telemetry-item">
+            <span class="telemetry-label">System:</span>
+            <span class="telemetry-value" id="preview-os-browser">Detecting...</span>
+          </div>
+          <div class="telemetry-item">
+            <span class="telemetry-label">Hardware:</span>
+            <span class="telemetry-value" id="preview-hardware">Detecting...</span>
+          </div>
+          <div class="telemetry-item">
+            <span class="telemetry-label">Location / Time:</span>
+            <span class="telemetry-value" id="preview-timezone">Detecting...</span>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-start-assessment">
+          Verify & Start Assessment
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Admin Logs Modal -->
+  <div class="modal-backdrop" id="admin-modal" style="display: none;">
+    <div class="modal-card admin-modal-card">
+      <div class="admin-modal-top">
+        <div>
+          <h3>📊 Candidate & Device Logs</h3>
+          <p>Real-time device fingerprinting and candidate login records.</p>
+        </div>
+        <div class="admin-actions">
+          <a href="/api/logs/csv" class="btn-download-csv" download title="Open in Excel or Google Sheets">
+            📥 Download CSV (Excel)
+          </a>
+          <button class="btn-close-modal" id="btn-close-admin">&times;</button>
+        </div>
+      </div>
+
+      <div class="admin-table-container">
+        <table class="admin-logs-table">
+          <thead>
+            <tr>
+              <th>Time</th>
+              <th>Candidate Name</th>
+              <th>Email / Roll</th>
+              <th>Device ID</th>
+              <th>Device Type</th>
+              <th>OS & Browser</th>
+              <th>Screen</th>
+              <th>CPU / RAM</th>
+              <th>Touch</th>
+              <th>Timezone / Lang</th>
+              <th>IP Address</th>
+            </tr>
+          </thead>
+          <tbody id="admin-logs-tbody">
+            <!-- Injected via JS -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Anti-Cheat Warning Alert Toast -->
+  <div class="anti-cheat-toast" id="anti-cheat-toast">
+    <div class="toast-icon">⚠️</div>
+    <div class="toast-content">
+      <strong>Proctoring Notice: Action Prohibited</strong>
+      <p id="toast-message">Copy, Cut, Paste, and Right-Click are disabled in the Accenture Online Assessment.</p>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/runner.js"></script>
+  <script src="js/editor.js"></script>
+  <script src="js/app.js"></script>
+
+</body>
+</html>

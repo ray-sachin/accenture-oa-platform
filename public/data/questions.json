@@ -1,0 +1,439 @@
+{
+  "categories": [
+    {
+      "id": "web",
+      "name": "Frontend Web Development",
+      "icon": "🌐"
+    },
+    {
+      "id": "dsa",
+      "name": "Algorithms & Problem Solving",
+      "icon": "⚡"
+    },
+    {
+      "id": "sql",
+      "name": "Database & SQL Querying",
+      "icon": "🗄️"
+    }
+  ],
+  "questions": [
+    {
+      "id": "q1",
+      "number": 1,
+      "category": "web",
+      "day": "Day 1",
+      "title": "iPod Interactive Interface",
+      "timeLimit": 20,
+      "difficulty": "Medium",
+      "scenario": "You are developing an interactive iPod media player interface for a music streaming application. The project is partially complete, and you must implement the remaining structure, styling, and action click logic.",
+      "objectives": [
+        "HTML: In the control buttons area (#controls), add a 'Next' button with id='btn-next' and class='control-btn'. The text inside must be 'Next'.",
+        "CSS: In style.css, update the iPod body (.ipod-body) background color to 'pink' (or #ff69b4).",
+        "JavaScript: Ensure that clicking each button displays its corresponding action text on the screen (#display-text): Previous -> 'Previous Track', Play -> 'Playing Track', Pause -> 'Paused', Next -> 'Next Track'."
+      ],
+      "constraints": [
+        "Do not modify or remove any existing id or class attributes as they are used by automated evaluation scripts.",
+        "Ensure the action text matches exactly (case-sensitive and proper spacing).",
+        "Preserve existing styles while applying the requested color change."
+      ],
+      "starterCode": {
+        "html": "<div class=\"assessment-container\">\n  <div class=\"ipod-body\">\n    <div class=\"ipod-screen\">\n      <div class=\"status-bar\">\n        <span>Accenture Music</span>\n        <span>100%</span>\n      </div>\n      <div class=\"screen-content\">\n        <div class=\"album-art\">&#9835;</div>\n        <div id=\"display-text\">Ready</div>\n      </div>\n    </div>\n    \n    <div id=\"controls\" class=\"controls-area\">\n      <button id=\"btn-prev\" class=\"control-btn\">Previous</button>\n      <button id=\"btn-play\" class=\"control-btn\">Play</button>\n      <button id=\"btn-pause\" class=\"control-btn\">Pause</button>\n      \n      <!-- ======================================================== -->\n      <!-- TODO (Objective 1): Add the missing 'Next' button below   -->\n      <!-- Requirements:                                            -->\n      <!--   - id: 'btn-next'                                       -->\n      <!--   - class: 'control-btn'                                 -->\n      <!--   - text: 'Next'                                         -->\n      <!-- ======================================================== -->\n\n    </div>\n  </div>\n</div>",
+        "css": "body {\n  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;\n  background: #f0f2f5;\n  margin: 0;\n  padding: 20px;\n  display: flex;\n  justify-content: center;\n}\n\n/* ============================================================= */\n/* iPod Device Body                                              */\n/* TODO (Objective 2): Update the iPod's color to pink.          */\n/* Replace the background color below with 'pink' or '#ff69b4'.  */\n/* ============================================================= */\n.ipod-body {\n  width: 280px;\n  height: 460px;\n  background-color: #d1d5db; /* Change this to pink */\n  border-radius: 35px;\n  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);\n  padding: 24px;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: space-between;\n  box-sizing: border-box;\n}\n\n.ipod-screen {\n  width: 100%;\n  height: 180px;\n  background-color: #0f172a;\n  border-radius: 12px;\n  padding: 12px;\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  box-sizing: border-box;\n}\n\n.status-bar {\n  display: flex;\n  justify-content: space-between;\n  font-size: 11px;\n  color: #94a3b8;\n}\n\n.screen-content {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  flex-grow: 1;\n}\n\n.album-art {\n  font-size: 38px;\n  color: #38bdf8;\n  margin-bottom: 6px;\n}\n\n#display-text {\n  font-size: 15px;\n  font-weight: bold;\n  color: #f8fafc;\n  background: #1e293b;\n  padding: 6px 14px;\n  border-radius: 6px;\n  text-align: center;\n  min-width: 130px;\n}\n\n.controls-area {\n  display: grid;\n  grid-template-columns: repeat(2, 1fr);\n  gap: 10px;\n  width: 100%;\n}\n\n.control-btn {\n  background: #ffffff;\n  color: #1e293b;\n  border: 2px solid #cbd5e1;\n  border-radius: 10px;\n  padding: 12px 8px;\n  font-size: 13px;\n  font-weight: 600;\n  cursor: pointer;\n  transition: all 0.15s ease;\n}\n\n.control-btn:hover {\n  background: #f1f5f9;\n}",
+        "js": "// 1. Select DOM elements\nconst displayText = document.getElementById('display-text');\nconst btnPrev = document.getElementById('btn-prev');\nconst btnPlay = document.getElementById('btn-play');\nconst btnPause = document.getElementById('btn-pause');\n\n// TODO: Get reference to the new Next button: document.getElementById('btn-next');\nconst btnNext = document.getElementById('btn-next');\n\n// =======================================================================\n// TODO (Objective 3): Add event listeners to update displayText.textContent\n//   - btnPrev  -> 'Previous Track'\n//   - btnPlay  -> 'Playing Track'\n//   - btnPause -> 'Paused'\n//   - btnNext  -> 'Next Track'\n// =======================================================================\n\nif (btnPrev) {\n  btnPrev.addEventListener('click', function() {\n    displayText.textContent = \"Previous Track\";\n  });\n}\n\nif (btnPlay) {\n  btnPlay.addEventListener('click', function() {\n    // Write code for Play button below:\n    \n  });\n}\n\nif (btnPause) {\n  btnPause.addEventListener('click', function() {\n    // Write code for Pause button below:\n    \n  });\n}\n\n// Write code for btnNext click below:"
+      },
+      "solution": {
+        "explanation": "### Explanation\n1. **HTML:** Add `<button id=\"btn-next\" class=\"control-btn\">Next</button>` inside `#controls`.\n2. **CSS:** In `.ipod-body`, change `background-color` to `pink` or `#ff69b4`.\n3. **JS:** Wire up click event listeners using `document.getElementById` and set `displayText.textContent` for Play, Pause, and Next.",
+        "html": "<div class=\"assessment-container\">\n  <div class=\"ipod-body\">\n    <div class=\"ipod-screen\">\n      <div class=\"status-bar\">\n        <span>Accenture Music</span>\n        <span>100%</span>\n      </div>\n      <div class=\"screen-content\">\n        <div class=\"album-art\">&#9835;</div>\n        <div id=\"display-text\">Ready</div>\n      </div>\n    </div>\n    <div id=\"controls\" class=\"controls-area\">\n      <button id=\"btn-prev\" class=\"control-btn\">Previous</button>\n      <button id=\"btn-play\" class=\"control-btn\">Play</button>\n      <button id=\"btn-pause\" class=\"control-btn\">Pause</button>\n      <button id=\"btn-next\" class=\"control-btn\">Next</button>\n    </div>\n  </div>\n</div>",
+        "css": "body {\n  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;\n  background: #f0f2f5;\n  margin: 0;\n  padding: 20px;\n  display: flex;\n  justify-content: center;\n}\n\n.ipod-body {\n  width: 280px;\n  height: 460px;\n  background-color: pink;\n  border-radius: 35px;\n  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);\n  padding: 24px;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: space-between;\n  box-sizing: border-box;\n}\n\n.ipod-screen {\n  width: 100%;\n  height: 180px;\n  background-color: #0f172a;\n  border-radius: 12px;\n  padding: 12px;\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  box-sizing: border-box;\n}\n\n.status-bar {\n  display: flex;\n  justify-content: space-between;\n  font-size: 11px;\n  color: #94a3b8;\n}\n\n.screen-content {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  flex-grow: 1;\n}\n\n.album-art {\n  font-size: 38px;\n  color: #38bdf8;\n  margin-bottom: 6px;\n}\n\n#display-text {\n  font-size: 15px;\n  font-weight: bold;\n  color: #f8fafc;\n  background: #1e293b;\n  padding: 6px 14px;\n  border-radius: 6px;\n  text-align: center;\n  min-width: 130px;\n}\n\n.controls-area {\n  display: grid;\n  grid-template-columns: repeat(2, 1fr);\n  gap: 10px;\n  width: 100%;\n}\n\n.control-btn {\n  background: #ffffff;\n  color: #1e293b;\n  border: 2px solid #cbd5e1;\n  border-radius: 10px;\n  padding: 12px 8px;\n  font-size: 13px;\n  font-weight: 600;\n  cursor: pointer;\n  transition: all 0.15s ease;\n}\n\n.control-btn:hover {\n  background: #f1f5f9;\n}",
+        "js": "const displayText = document.getElementById('display-text');\nconst btnPrev = document.getElementById('btn-prev');\nconst btnPlay = document.getElementById('btn-play');\nconst btnPause = document.getElementById('btn-pause');\nconst btnNext = document.getElementById('btn-next');\n\nif (btnPrev) {\n  btnPrev.addEventListener('click', () => { displayText.textContent = \"Previous Track\"; });\n}\nif (btnPlay) {\n  btnPlay.addEventListener('click', () => { displayText.textContent = \"Playing Track\"; });\n}\nif (btnPause) {\n  btnPause.addEventListener('click', () => { displayText.textContent = \"Paused\"; });\n}\nif (btnNext) {\n  btnNext.addEventListener('click', () => { displayText.textContent = \"Next Track\"; });\n}"
+      },
+      "tests": [
+        {
+          "id": "t1_1",
+          "name": "HTML: Next Button Verification",
+          "description": "Checks if element with id='btn-next' and class='control-btn' exists with text 'Next'.",
+          "assert": "const btn = doc.getElementById('btn-next'); if(!btn) throw new Error(\"Missing element #btn-next.\"); if(!btn.classList.contains('control-btn')) throw new Error(\"#btn-next missing class 'control-btn'.\"); if(btn.textContent.trim().toLowerCase() !== 'next') throw new Error(\"Expected button text to be 'Next', got '\" + btn.textContent.trim() + \"'.\");"
+        },
+        {
+          "id": "t1_2",
+          "name": "CSS: iPod Body Pink Color",
+          "description": "Verifies that .ipod-body is styled with background color pink or #ff69b4.",
+          "assert": "const el = doc.querySelector('.ipod-body'); if(!el) throw new Error(\"Element .ipod-body missing.\"); const bg = win.getComputedStyle(el).backgroundColor; const isPink = bg.includes('255, 192, 203') || bg.includes('255, 105, 180') || bg.includes('255, 182, 193') || bg === 'pink'; if(!isPink) throw new Error(\"Expected background-color pink, got '\" + bg + \"'.\");"
+        },
+        {
+          "id": "t1_3",
+          "name": "JS: Existing Buttons (Play, Pause, Prev)",
+          "description": "Validates that clicking Play, Pause, and Prev updates #display-text.",
+          "assert": "const d = doc.getElementById('display-text'); const bPlay = doc.getElementById('btn-play'); const bPause = doc.getElementById('btn-pause'); const bPrev = doc.getElementById('btn-prev'); if(!d || !bPlay || !bPause || !bPrev) throw new Error(\"Required controls missing.\"); bPlay.click(); if(d.textContent.trim() !== 'Playing Track') throw new Error(\"Play clicked: expected 'Playing Track', got '\" + d.textContent.trim() + \"'.\"); bPause.click(); if(d.textContent.trim() !== 'Paused') throw new Error(\"Pause clicked: expected 'Paused', got '\" + d.textContent.trim() + \"'.\"); bPrev.click(); if(d.textContent.trim() !== 'Previous Track') throw new Error(\"Prev clicked: expected 'Previous Track', got '\" + d.textContent.trim() + \"'.\");"
+        },
+        {
+          "id": "t1_4",
+          "name": "JS: Next Button Action",
+          "description": "Verifies clicking #btn-next displays 'Next Track'.",
+          "assert": "const d = doc.getElementById('display-text'); const btn = doc.getElementById('btn-next'); if(!btn) throw new Error(\"#btn-next not found to test click.\"); d.textContent = 'reset'; btn.click(); if(d.textContent.trim() !== 'Next Track') throw new Error(\"Expected 'Next Track', got '\" + d.textContent.trim() + \"'.\");"
+        }
+      ]
+    },
+    {
+      "id": "q2",
+      "number": 2,
+      "category": "web",
+      "day": "Day 2",
+      "title": "Interactive Product Rating",
+      "timeLimit": 20,
+      "difficulty": "Medium",
+      "scenario": "Enhance an interactive product rating interface by enabling users to rate products with star icons. The basic structure is present, but three key functionalities must be implemented.",
+      "objectives": [
+        "HTML: Add five star icons with class 'star' inside the #rating-stars container using Font Awesome 'fa fa-star star' or star symbol.",
+        "CSS: Style the .filled class with a color of #ffd700 (gold).",
+        "JavaScript: Implement the setRating(rating) function so that clicking any star fills all stars up to that rating with .filled and updates the #rating-value text to 'Rating: X / 5'."
+      ],
+      "constraints": [
+        "Do not modify any existing class names or IDs.",
+        "Rating display must update immediately when stars are clicked.",
+        "Unselected stars must have the .filled class removed."
+      ],
+      "starterCode": {
+        "html": "<div class=\"rating-card\">\n  <h3>Noise-Cancelling Headphones</h3>\n  <p>Rate this product based on your experience:</p>\n  \n  <div class=\"rating-stars\" id=\"rating-stars\">\n    <!-- ========================================================================= -->\n    <!-- TODO (Objective 1): Add five star icons with class 'star' inside this div. -->\n    <!-- Use Font Awesome: <i class=\"fa fa-star star\"></i> or star symbol           -->\n    <!-- ========================================================================= -->\n\n  </div>\n  \n  <div class=\"rating-display\">\n    <span id=\"rating-value\">Rating: 0 / 5</span>\n  </div>\n</div>",
+        "css": "body {\n  font-family: Arial, sans-serif;\n  background: #f8fafc;\n  padding: 30px;\n  display: flex;\n  justify-content: center;\n}\n\n.rating-card {\n  background: #fff;\n  border: 1px solid #e2e8f0;\n  border-radius: 12px;\n  padding: 24px;\n  text-align: center;\n  width: 320px;\n  box-shadow: 0 4px 12px rgba(0,0,0,0.05);\n}\n\n.rating-stars {\n  display: flex;\n  justify-content: center;\n  gap: 10px;\n  font-size: 30px;\n  margin: 16px 0;\n}\n\n.star {\n  color: #cbd5e1; /* Unfilled gray state */\n  cursor: pointer;\n  transition: transform 0.15s ease, color 0.2s ease;\n}\n\n.star:hover {\n  transform: scale(1.15);\n}\n\n/* ========================================================================= */\n/* TODO (Objective 2): Style the .filled class with a color of #ffd700      */\n/* Write your CSS rule below:                                                */\n/* ========================================================================= */\n\n\n#rating-value {\n  font-weight: 600;\n  color: #334155;\n}",
+        "js": "const ratingDisplay = document.getElementById('rating-value');\n\n/**\n * Updates visual star ratings and text display.\n * @param {number} rating - An integer between 1 and 5\n */\nfunction setRating(rating) {\n  const stars = document.querySelectorAll('#rating-stars .star');\n  \n  // =======================================================================\n  // TODO (Objective 3): Implement star fill logic\n  // 1. Loop through each star with stars.forEach((star, index) => { ... })\n  //    - If index < rating: add class 'filled'\n  //    - Otherwise: remove class 'filled'\n  // 2. Update ratingDisplay text to: `Rating: ${rating} / 5`\n  // =======================================================================\n\n}\n\nfunction initializeStars() {\n  const stars = document.querySelectorAll('#rating-stars .star');\n  stars.forEach((star, index) => {\n    star.addEventListener('click', () => setRating(index + 1));\n  });\n}\n\ndocument.addEventListener('DOMContentLoaded', initializeStars);\ninitializeStars();"
+      },
+      "solution": {
+        "explanation": "### Explanation\n1. **HTML:** Insert 5 star elements inside `#rating-stars` (e.g. `<span class=\"star fa fa-star\">★</span>` or empty `<i>`).\n2. **CSS:** Add `.filled { color: #ffd700; }`.\n3. **JS:** Loop with `stars.forEach((star, index) => { if (index < rating) star.classList.add('filled'); else star.classList.remove('filled'); });` and update `ratingDisplay.textContent = 'Rating: ' + rating + ' / 5';`.",
+        "html": "<div class=\"rating-card\">\n  <h3>Noise-Cancelling Headphones</h3>\n  <p>Rate this product based on your experience:</p>\n  <div class=\"rating-stars\" id=\"rating-stars\">\n    <span class=\"star fa fa-star\">★</span>\n    <span class=\"star fa fa-star\">★</span>\n    <span class=\"star fa fa-star\">★</span>\n    <span class=\"star fa fa-star\">★</span>\n    <span class=\"star fa fa-star\">★</span>\n  </div>\n  <div class=\"rating-display\">\n    <span id=\"rating-value\">Rating: 0 / 5</span>\n  </div>\n</div>",
+        "css": "body {\n  font-family: Arial, sans-serif;\n  background: #f8fafc;\n  padding: 30px;\n  display: flex;\n  justify-content: center;\n}\n\n.rating-card {\n  background: #fff;\n  border: 1px solid #e2e8f0;\n  border-radius: 12px;\n  padding: 24px;\n  text-align: center;\n  width: 320px;\n  box-shadow: 0 4px 12px rgba(0,0,0,0.05);\n}\n\n.rating-stars {\n  display: flex;\n  justify-content: center;\n  gap: 10px;\n  font-size: 30px;\n  margin: 16px 0;\n}\n\n.star {\n  color: #cbd5e1;\n  cursor: pointer;\n  transition: transform 0.15s ease, color 0.2s ease;\n}\n\n.star:hover {\n  transform: scale(1.15);\n}\n\n.filled {\n  color: #ffd700;\n}\n\n#rating-value {\n  font-weight: 600;\n  color: #334155;\n}",
+        "js": "const ratingDisplay = document.getElementById('rating-value');\n\nfunction setRating(rating) {\n  const stars = document.querySelectorAll('#rating-stars .star');\n  stars.forEach((star, index) => {\n    if (index < rating) {\n      star.classList.add('filled');\n    } else {\n      star.classList.remove('filled');\n    }\n  });\n  if (ratingDisplay) {\n    ratingDisplay.textContent = `Rating: ${rating} / 5`;\n  }\n}\n\nfunction initializeStars() {\n  const stars = document.querySelectorAll('#rating-stars .star');\n  stars.forEach((star, index) => {\n    star.addEventListener('click', () => setRating(index + 1));\n  });\n}\ninitializeStars();"
+      },
+      "tests": [
+        {
+          "id": "t2_1",
+          "name": "HTML: Five Star Elements",
+          "description": "Verifies that exactly 5 elements with class 'star' exist inside #rating-stars.",
+          "assert": "const container = doc.getElementById('rating-stars'); if(!container) throw new Error('#rating-stars container missing.'); const stars = container.querySelectorAll('.star'); if(stars.length !== 5) throw new Error(\"Expected exactly 5 stars with class 'star', found \" + stars.length + \".\");"
+        },
+        {
+          "id": "t2_2",
+          "name": "CSS: .filled Class Gold Color (#ffd700)",
+          "description": "Checks if .filled has color #ffd700 (rgb(255, 215, 0)).",
+          "assert": "const dummy = doc.createElement('span'); dummy.className = 'star filled'; doc.body.appendChild(dummy); const color = win.getComputedStyle(dummy).color; doc.body.removeChild(dummy); const isGold = color === 'rgb(255, 215, 0)' || color.toLowerCase() === '#ffd700'; if(!isGold) throw new Error(\"Expected color #ffd700 (rgb(255, 215, 0)), got '\" + color + \"'.\");"
+        },
+        {
+          "id": "t2_3",
+          "name": "JS: setRating(3) Updates Classes & Text",
+          "description": "Calls setRating(3) and checks that first 3 stars are filled and text updates.",
+          "assert": "if(typeof win.setRating !== 'function') throw new Error('setRating() function not defined.'); win.setRating(3); const stars = doc.querySelectorAll('#rating-stars .star'); if(stars.length < 5) throw new Error('Add 5 stars first.'); if(!stars[0].classList.contains('filled') || !stars[1].classList.contains('filled') || !stars[2].classList.contains('filled')) throw new Error('First 3 stars must have class filled.'); if(stars[3].classList.contains('filled') || stars[4].classList.contains('filled')) throw new Error('4th and 5th stars must not have class filled.'); const d = doc.getElementById('rating-value'); if(!d || !d.textContent.includes('3')) throw new Error('Rating text must reflect 3.');"
+        },
+        {
+          "id": "t2_4",
+          "name": "JS: Interactive Click Handling",
+          "description": "Tests clicking 5th star then 1st star to verify active toggling.",
+          "assert": "const stars = doc.querySelectorAll('#rating-stars .star'); if(stars.length < 5) throw new Error('5 stars required.'); stars[4].click(); if(!stars[4].classList.contains('filled')) throw new Error('Clicking 5th star did not fill 5th star.'); stars[0].click(); if(stars[1].classList.contains('filled')) throw new Error('Clicking 1st star did not clear 2nd star.');"
+        }
+      ]
+    },
+    {
+      "id": "q3",
+      "number": 3,
+      "category": "web",
+      "day": "Day 3",
+      "title": "Product Search Filter",
+      "timeLimit": 20,
+      "difficulty": "Medium",
+      "scenario": "You are developing a search filter for an e-commerce website where users can filter a list of fruits or vegetables dynamically in real-time based on their search input.",
+      "objectives": [
+        "HTML: Inside <ul class=\"product\">, add 5 list items (<li>) with a data-name attribute containing their lowercase search tag (e.g., data-name=\"banana\"). Make sure at least one contains 'nana'.",
+        "CSS: Set the font size of the list items inside .product to 25px.",
+        "JavaScript: Set initial search value to 'nana', implement filterProducts() to toggle item.style.display between '' and 'none' based on str.includes(), run it on load, and listen to the 'input' event."
+      ],
+      "constraints": [
+        "Search matching must be case-insensitive.",
+        "Clearing the search box must restore visibility to all items.",
+        "Do not modify the input ID #search-input or list class .product."
+      ],
+      "starterCode": {
+        "html": "<div class=\"search-card\">\n  <label for=\"search-input\">Filter Products:</label>\n  <input type=\"text\" id=\"search-input\" placeholder=\"Search products...\" autocomplete=\"off\">\n  \n  <ul class=\"product\">\n    <!-- ========================================================================= -->\n    <!-- TODO (Objective 1): Add 5 list items with data-name attribute below.      -->\n    <!-- Example:                                                                  -->\n    <!--   <li data-name=\"banana\">Banana</li>                                      -->\n    <!-- Make sure at least one item contains 'nana' (e.g. Banana).                -->\n    <!-- ========================================================================= -->\n\n  </ul>\n</div>",
+        "css": "body {\n  font-family: Arial, sans-serif;\n  background: #f1f5f9;\n  padding: 30px;\n  display: flex;\n  justify-content: center;\n}\n\n.search-card {\n  background: #fff;\n  border: 1px solid #cbd5e1;\n  border-radius: 12px;\n  padding: 24px;\n  width: 380px;\n}\n\n#search-input {\n  width: 100%;\n  padding: 10px;\n  font-size: 16px;\n  border: 2px solid #94a3b8;\n  border-radius: 6px;\n  margin: 12px 0;\n  box-sizing: border-box;\n}\n\n.product {\n  list-style: none;\n  padding: 0;\n  margin: 0;\n}\n\n.product li {\n  padding: 8px 12px;\n  background: #f8fafc;\n  border: 1px solid #e2e8f0;\n  margin-bottom: 6px;\n  border-radius: 6px;\n  /* ========================================================================= */\n  /* TODO (Objective 2): Set the font size of the list items to 25px.          */\n  /* Write: font-size: 25px;                                                   */\n  /* ========================================================================= */\n\n}",
+        "js": "const searchInput = document.getElementById('search-input');\n\n// =========================================================================\n// TODO (Objective 3a): Set the initial search value input to 'nana'\n// Hint: searchInput.value = 'nana';\n// =========================================================================\n\n\nfunction filterProducts() {\n  const filterValue = searchInput.value.toLowerCase();\n  const items = document.querySelectorAll('.product li');\n  \n  // =======================================================================\n  // TODO (Objective 3b): Loop items and toggle visibility\n  // 1. Get each item's 'data-name' attribute in lowercase\n  // 2. If dataName.includes(filterValue):\n  //      item.style.display = \"\";\n  //    Else:\n  //      item.style.display = \"none\";\n  // =======================================================================\n\n}\n\n// =========================================================================\n// TODO (Objective 3c): Call filterProducts() once on load\n// TODO (Objective 3d): Attach 'input' event listener to searchInput\n// ========================================================================="
+      },
+      "solution": {
+        "explanation": "### Explanation\n1. **HTML:** Add 5 `<li>` tags with `data-name=\"banana\"`, `data-name=\"orange\"`, `data-name=\"pineapple\"`, etc.\n2. **CSS:** In `.product li`, add `font-size: 25px;`.\n3. **JS:** Set `searchInput.value = 'nana';`, filter in `filterProducts()` checking `item.getAttribute('data-name').toLowerCase().includes(filterValue)`, and attach `searchInput.addEventListener('input', filterProducts);`.",
+        "html": "<div class=\"search-card\">\n  <label for=\"search-input\">Filter Products:</label>\n  <input type=\"text\" id=\"search-input\" placeholder=\"Search products...\" autocomplete=\"off\">\n  <ul class=\"product\">\n    <li data-name=\"banana\">Banana</li>\n    <li data-name=\"orange\">Orange</li>\n    <li data-name=\"pineapple\">Pineapple</li>\n    <li data-name=\"pomegranate\">Pomegranate</li>\n    <li data-name=\"mango\">Mango</li>\n  </ul>\n</div>",
+        "css": "body {\n  font-family: Arial, sans-serif;\n  background: #f1f5f9;\n  padding: 30px;\n  display: flex;\n  justify-content: center;\n}\n\n.search-card {\n  background: #fff;\n  border: 1px solid #cbd5e1;\n  border-radius: 12px;\n  padding: 24px;\n  width: 380px;\n}\n\n#search-input {\n  width: 100%;\n  padding: 10px;\n  font-size: 16px;\n  border: 2px solid #94a3b8;\n  border-radius: 6px;\n  margin: 12px 0;\n  box-sizing: border-box;\n}\n\n.product {\n  list-style: none;\n  padding: 0;\n  margin: 0;\n}\n\n.product li {\n  padding: 8px 12px;\n  background: #f8fafc;\n  border: 1px solid #e2e8f0;\n  margin-bottom: 6px;\n  border-radius: 6px;\n  font-size: 25px;\n}",
+        "js": "const searchInput = document.getElementById('search-input');\nsearchInput.value = 'nana';\n\nfunction filterProducts() {\n  const filterValue = searchInput.value.toLowerCase();\n  const items = document.querySelectorAll('.product li');\n  items.forEach(item => {\n    const dataName = (item.getAttribute('data-name') || '').toLowerCase();\n    if (dataName.includes(filterValue)) {\n      item.style.display = '';\n    } else {\n      item.style.display = 'none';\n    }\n  });\n}\nfilterProducts();\nsearchInput.addEventListener('input', filterProducts);"
+      },
+      "tests": [
+        {
+          "id": "t3_1",
+          "name": "HTML: 5 List Items with data-name",
+          "description": "Checks for at least 5 list items with valid data-name attribute.",
+          "assert": "const items = doc.querySelectorAll('.product li'); if(items.length < 5) throw new Error(\"Expected at least 5 <li> elements, found \" + items.length + \".\"); const allHave = Array.from(items).every(li => li.hasAttribute('data-name') && li.getAttribute('data-name').trim().length > 0); if(!allHave) throw new Error(\"All <li> items must have a non-empty 'data-name' attribute.\");"
+        },
+        {
+          "id": "t3_2",
+          "name": "CSS: Font Size 25px",
+          "description": "Checks if .product li computed font-size is 25px.",
+          "assert": "const items = doc.querySelectorAll('.product li'); if(items.length === 0) throw new Error('Add <li> elements first.'); const fs = win.getComputedStyle(items[0]).fontSize; if(fs !== '25px') throw new Error(\"Expected font-size 25px, got '\" + fs + \"'.\");"
+        },
+        {
+          "id": "t3_3",
+          "name": "JS: Initial Value 'nana' & Initial Filter",
+          "description": "Verifies search input is initialized to 'nana' and matching elements are filtered on load.",
+          "assert": "const input = doc.getElementById('search-input'); const items = doc.querySelectorAll('.product li'); if(!input) throw new Error('#search-input missing.'); if(input.value.toLowerCase() !== 'nana') throw new Error(\"Expected searchInput.value to be 'nana', got '\" + input.value + \"'.\"); const nanaItems = Array.from(items).filter(li => li.getAttribute('data-name').toLowerCase().includes('nana')); const nonNana = Array.from(items).filter(li => !li.getAttribute('data-name').toLowerCase().includes('nana')); if(!nanaItems.every(li => li.style.display !== 'none')) throw new Error(\"Item with 'nana' must be visible initially.\"); if(!nonNana.every(li => li.style.display === 'none')) throw new Error(\"Non-matching items must be hidden initially with display: none.\");"
+        },
+        {
+          "id": "t3_4",
+          "name": "JS: Real-Time Typing Filter",
+          "description": "Simulates input events and verifies matching items show and non-matching hide.",
+          "assert": "const input = doc.getElementById('search-input'); const items = doc.querySelectorAll('.product li'); input.value = ''; input.dispatchEvent(new Event('input')); if(!Array.from(items).every(li => li.style.display !== 'none')) throw new Error(\"Empty input must show all items.\"); input.value = 'zzznothingmatches'; input.dispatchEvent(new Event('input')); if(!Array.from(items).every(li => li.style.display === 'none')) throw new Error(\"Unmatched search must hide all items.\"); input.value = 'nana'; input.dispatchEvent(new Event('input'));"
+        }
+      ]
+    },
+    {
+      "id": "q4",
+      "number": 4,
+      "category": "web",
+      "day": "Day 4",
+      "title": "Shopping Cart Application",
+      "timeLimit": 20,
+      "difficulty": "Medium",
+      "scenario": "You are developing an e-commerce shopping cart interface where users can view available items and add them to their shopping cart table, incrementing the quantity dynamically.",
+      "objectives": [
+        "HTML: Assign unique IDs to the Add to Cart buttons: 'add-to-cart-chips', 'add-to-cart-soda', 'add-to-cart-cookies'.",
+        "CSS: Give table, th, and td a solid border of 2px solid #00056B.",
+        "JavaScript: Implement addToCart(itemName) to find the row matching data-item=itemName, parse current quantity with parseInt(), and increment it by 1."
+      ],
+      "constraints": [
+        "Do not modify table structure or data-item values.",
+        "Border color must strictly match #00056B.",
+        "Each item quantity must increment independently without side effects."
+      ],
+      "starterCode": {
+        "html": "<div class=\"cart-app\">\n  <h3>Items Available</h3>\n  <table id=\"items-table\">\n    <thead>\n      <tr><th>Item</th><th>Price</th><th>Action</th></tr>\n    </thead>\n    <tbody>\n      <tr>\n        <td>Chips</td>\n        <td>$2.00</td>\n        <!-- ========================================================================= -->\n        <!-- TODO (Objective 1): Add unique ID 'add-to-cart-chips' to button below     -->\n        <!-- ========================================================================= -->\n        <td><button onclick=\"addToCart('Chips')\">Add to Cart</button></td>\n      </tr>\n      <tr>\n        <td>Soda</td>\n        <td>$1.50</td>\n        <!-- ========================================================================= -->\n        <!-- TODO (Objective 1): Add unique ID 'add-to-cart-soda' to button below      -->\n        <!-- ========================================================================= -->\n        <td><button onclick=\"addToCart('Soda')\">Add to Cart</button></td>\n      </tr>\n      <tr>\n        <td>Cookies</td>\n        <td>$3.00</td>\n        <!-- ========================================================================= -->\n        <!-- TODO (Objective 1): Add unique ID 'add-to-cart-cookies' to button below   -->\n        <!-- ========================================================================= -->\n        <td><button onclick=\"addToCart('Cookies')\">Add to Cart</button></td>\n      </tr>\n    </tbody>\n  </table>\n\n  <h3>Shopping Cart</h3>\n  <table id=\"cart-table\">\n    <thead>\n      <tr><th>Item</th><th>Quantity</th></tr>\n    </thead>\n    <tbody id=\"cart-body\">\n      <tr data-item=\"Chips\"><td>Chips</td><td class=\"cart-qty\">0</td></tr>\n      <tr data-item=\"Soda\"><td>Soda</td><td class=\"cart-qty\">0</td></tr>\n      <tr data-item=\"Cookies\"><td>Cookies</td><td class=\"cart-qty\">0</td></tr>\n    </tbody>\n  </table>\n</div>",
+        "css": "body {\n  font-family: Arial, sans-serif;\n  background: #f8f9fa;\n  padding: 20px;\n}\n\ntable {\n  width: 100%;\n  border-collapse: collapse;\n  margin-bottom: 24px;\n  background: #fff;\n}\n\n/* ========================================================================= */\n/* TODO (Objective 2): Give both tables, th, and td border: 2px solid #00056B */\n/* Add your CSS rule below:                                                  */\n/* ========================================================================= */\n\n\nth, td {\n  padding: 10px;\n  text-align: center;\n}\n\nth {\n  background: #e6e8fa;\n  color: #00056B;\n}\n\nbutton {\n  background: #00056B;\n  color: #fff;\n  border: none;\n  padding: 6px 12px;\n  border-radius: 4px;\n  cursor: pointer;\n}",
+        "js": "/**\n * Increments the quantity of the clicked item in the shopping cart.\n * @param {string} itemName - 'Chips' | 'Soda' | 'Cookies'\n */\nfunction addToCart(itemName) {\n  const cartRows = document.querySelectorAll('#cart-body tr');\n  \n  // =======================================================================\n  // TODO (Objective 3): Update shopping cart quantity\n  // 1. Loop through each row in cartRows\n  // 2. Check if row.getAttribute('data-item') === itemName\n  // 3. If matched, find .cart-qty cell\n  // 4. Parse current integer with parseInt(qtyCell.textContent, 10)\n  // 5. Update qtyCell.textContent to currentQty + 1\n  // =======================================================================\n\n}"
+      },
+      "solution": {
+        "explanation": "### Explanation\n1. **HTML:** Add `id=\"add-to-cart-chips\"`, `id=\"add-to-cart-soda\"`, `id=\"add-to-cart-cookies\"` to the buttons.\n2. **CSS:** Add `table, th, td { border: 2px solid #00056B; }`.\n3. **JS:** In `addToCart(itemName)`, loop through rows, find match, grab `.cart-qty`, parse `let qty = parseInt(cell.textContent, 10)`, and set `cell.textContent = qty + 1`.",
+        "html": "<div class=\"cart-app\">\n  <h3>Items Available</h3>\n  <table id=\"items-table\">\n    <thead>\n      <tr><th>Item</th><th>Price</th><th>Action</th></tr>\n    </thead>\n    <tbody>\n      <tr><td>Chips</td><td>$2.00</td><td><button id=\"add-to-cart-chips\" onclick=\"addToCart('Chips')\">Add to Cart</button></td></tr>\n      <tr><td>Soda</td><td>$1.50</td><td><button id=\"add-to-cart-soda\" onclick=\"addToCart('Soda')\">Add to Cart</button></td></tr>\n      <tr><td>Cookies</td><td>$3.00</td><td><button id=\"add-to-cart-cookies\" onclick=\"addToCart('Cookies')\">Add to Cart</button></td></tr>\n    </tbody>\n  </table>\n\n  <h3>Shopping Cart</h3>\n  <table id=\"cart-table\">\n    <thead>\n      <tr><th>Item</th><th>Quantity</th></tr>\n    </thead>\n    <tbody id=\"cart-body\">\n      <tr data-item=\"Chips\"><td>Chips</td><td class=\"cart-qty\">0</td></tr>\n      <tr data-item=\"Soda\"><td>Soda</td><td class=\"cart-qty\">0</td></tr>\n      <tr data-item=\"Cookies\"><td>Cookies</td><td class=\"cart-qty\">0</td></tr>\n    </tbody>\n  </table>\n</div>",
+        "css": "body {\n  font-family: Arial, sans-serif;\n  background: #f8f9fa;\n  padding: 20px;\n}\n\ntable {\n  width: 100%;\n  border-collapse: collapse;\n  margin-bottom: 24px;\n  background: #fff;\n}\n\ntable, th, td {\n  border: 2px solid #00056B;\n}\n\nth, td {\n  padding: 10px;\n  text-align: center;\n}\n\nth {\n  background: #e6e8fa;\n  color: #00056B;\n}\n\nbutton {\n  background: #00056B;\n  color: #fff;\n  border: none;\n  padding: 6px 12px;\n  border-radius: 4px;\n  cursor: pointer;\n}",
+        "js": "function addToCart(itemName) {\n  const cartRows = document.querySelectorAll('#cart-body tr');\n  cartRows.forEach(row => {\n    if (row.getAttribute('data-item') === itemName) {\n      const qtyCell = row.querySelector('.cart-qty');\n      const currentQty = parseInt(qtyCell.textContent, 10) || 0;\n      qtyCell.textContent = currentQty + 1;\n    }\n  });\n}"
+      },
+      "tests": [
+        {
+          "id": "t4_1",
+          "name": "HTML: Unique Button IDs",
+          "description": "Checks if add-to-cart-chips, add-to-cart-soda, and add-to-cart-cookies exist.",
+          "assert": "const b1 = doc.getElementById('add-to-cart-chips'); const b2 = doc.getElementById('add-to-cart-soda'); const b3 = doc.getElementById('add-to-cart-cookies'); if(!b1 || !b2 || !b3) throw new Error(\"All 3 button IDs must exist.\");"
+        },
+        {
+          "id": "t4_2",
+          "name": "CSS: Border 2px solid #00056B",
+          "description": "Validates border color on table, th, and td.",
+          "assert": "const td = doc.querySelector('td'); if(!td) throw new Error('td element missing.'); const col = win.getComputedStyle(td).borderColor || win.getComputedStyle(td).borderTopColor; const isNavy = col.includes('0, 5, 107') || col.toLowerCase() === '#00056b'; if(!isNavy) throw new Error(\"Expected border #00056B (rgb(0, 5, 107)), got '\" + col + \"'.\");"
+        },
+        {
+          "id": "t4_3",
+          "name": "JS: addToCart Single Item Increment",
+          "description": "Calls addToCart('Chips') and checks that quantity increments.",
+          "assert": "if(typeof win.addToCart !== 'function') throw new Error('addToCart function missing.'); const row = doc.querySelector('#cart-body tr[data-item=\"Chips\"]'); const cell = row.querySelector('.cart-qty'); const before = parseInt(cell.textContent, 10) || 0; win.addToCart('Chips'); const after = parseInt(cell.textContent, 10); if(after !== before + 1) throw new Error(\"Expected quantity to increment from \" + before + \" to \" + (before+1) + \", got \" + after + \".\");"
+        },
+        {
+          "id": "t4_4",
+          "name": "JS: Row Independence",
+          "description": "Verifies adding Soda does not alter Cookies quantity.",
+          "assert": "const sRow = doc.querySelector('#cart-body tr[data-item=\"Soda\"]'); const cRow = doc.querySelector('#cart-body tr[data-item=\"Cookies\"]'); const sCell = sRow.querySelector('.cart-qty'); const cCell = cRow.querySelector('.cart-qty'); const sBefore = parseInt(sCell.textContent, 10) || 0; const cBefore = parseInt(cCell.textContent, 10) || 0; win.addToCart('Soda'); if(parseInt(sCell.textContent, 10) !== sBefore + 1) throw new Error('Soda quantity failed to increment.'); if(parseInt(cCell.textContent, 10) !== cBefore) throw new Error('Soda click modified Cookies count.');"
+        }
+      ]
+    },
+    {
+      "id": "q5",
+      "number": 5,
+      "category": "web",
+      "day": "Day 5",
+      "title": "Interactive Chatbot Interface",
+      "timeLimit": 20,
+      "difficulty": "Medium",
+      "scenario": "You are tasked with developing a Chatbot for a customer portal website. The project is partially complete, and you must implement the remaining logic to fully activate its functionality.",
+      "objectives": [
+        "HTML: Convert the welcome message (#welcome-msg) into a bot-generated message by adding the 'bot-message' class to it.",
+        "CSS: Change the background color of user chat responses (.user-message) to #cfe2ff.",
+        "JavaScript: Implement sendMessage() to read input, append a user message bubble (.message.user-message), append a bot response bubble (.message.bot-message), clear the input, and scroll to the bottom."
+      ],
+      "constraints": [
+        "Do not modify the id or class attributes of existing elements.",
+        "The user bubble color must strictly be #cfe2ff.",
+        "Ensure the Chatbot responds with a bot message for every user input."
+      ],
+      "starterCode": {
+        "html": "<div class=\"chat-box\">\n  <div class=\"chat-header\">Assistant</div>\n  \n  <div class=\"chat-messages\" id=\"chat-messages\">\n    <!-- ========================================================================= -->\n    <!-- TODO (Objective 1): Add 'bot-message' class to the welcome message below.  -->\n    <!-- Currently: class=\"message\" -> change to: class=\"message bot-message\"       -->\n    <!-- ========================================================================= -->\n    <div id=\"welcome-msg\" class=\"message\">Hello! How can I help you today?</div>\n  </div>\n  \n  <div class=\"chat-input-area\">\n    <input type=\"text\" id=\"user-input\" placeholder=\"Type a message...\" autocomplete=\"off\">\n    <button id=\"btn-send\" onclick=\"sendMessage()\">Send</button>\n  </div>\n</div>",
+        "css": "body {\n  font-family: Arial, sans-serif;\n  background: #f1f5f9;\n  padding: 20px;\n  display: flex;\n  justify-content: center;\n}\n\n.chat-box {\n  width: 360px;\n  height: 480px;\n  background: #fff;\n  border-radius: 12px;\n  box-shadow: 0 4px 16px rgba(0,0,0,0.1);\n  display: flex;\n  flex-direction: column;\n  overflow: hidden;\n}\n\n.chat-header {\n  background: #0f172a;\n  color: #fff;\n  padding: 14px;\n  font-weight: bold;\n}\n\n.chat-messages {\n  flex-grow: 1;\n  padding: 14px;\n  overflow-y: auto;\n  display: flex;\n  flex-direction: column;\n  gap: 10px;\n  background: #f8fafc;\n}\n\n.message {\n  padding: 8px 12px;\n  border-radius: 12px;\n  max-width: 80%;\n  font-size: 14px;\n}\n\n.bot-message {\n  align-self: flex-start;\n  background: #e2e8f0;\n  color: #1e293b;\n}\n\n/* ========================================================================= */\n/* TODO (Objective 2): Change background-color of .user-message to #cfe2ff   */\n/* ========================================================================= */\n.user-message {\n  align-self: flex-end;\n  background: #e5e7eb; /* Change this to #cfe2ff */\n  color: #082f49;\n}\n\n.chat-input-area {\n  display: flex;\n  padding: 10px;\n  border-top: 1px solid #e2e8f0;\n  gap: 8px;\n}\n\n#user-input {\n  flex-grow: 1;\n  padding: 8px 12px;\n  border: 1px solid #cbd5e1;\n  border-radius: 6px;\n}\n\n#btn-send {\n  background: #2563eb;\n  color: #fff;\n  border: none;\n  padding: 8px 14px;\n  border-radius: 6px;\n  cursor: pointer;\n}",
+        "js": "const userInput = document.getElementById('user-input');\nconst chatMessages = document.getElementById('chat-messages');\n\nfunction sendMessage() {\n  const text = userInput.value.trim();\n  if (text === '') return;\n\n  // =======================================================================\n  // TODO (Objective 3): Handle sending message & bot reply\n  // 1. Create user div (document.createElement('div'))\n  //    - className = 'message user-message'\n  //    - textContent = text\n  //    - chatMessages.appendChild(userDiv)\n  //\n  // 2. Create bot div (document.createElement('div'))\n  //    - className = 'message bot-message'\n  //    - textContent = 'Thanks for your message! How can I help?'\n  //    - chatMessages.appendChild(botDiv)\n  //\n  // 3. Clear input: userInput.value = \"\"\n  // 4. Auto scroll: chatMessages.scrollTop = chatMessages.scrollHeight\n  // =======================================================================\n\n}"
+      },
+      "solution": {
+        "explanation": "### Explanation\n1. **HTML:** Change `<div id=\"welcome-msg\" class=\"message\">` to `<div id=\"welcome-msg\" class=\"message bot-message\">`.\n2. **CSS:** In `.user-message`, set `background-color: #cfe2ff;`.\n3. **JS:** In `sendMessage()`, create user div with `createElement('div')`, set class to `message user-message`, append. Then create bot div with class `message bot-message`, append. Clear input with `userInput.value = ''` and scroll with `chatMessages.scrollTop = chatMessages.scrollHeight`.",
+        "html": "<div class=\"chat-box\">\n  <div class=\"chat-header\">Assistant</div>\n  <div class=\"chat-messages\" id=\"chat-messages\">\n    <div id=\"welcome-msg\" class=\"message bot-message\">Hello! How can I help you today?</div>\n  </div>\n  <div class=\"chat-input-area\">\n    <input type=\"text\" id=\"user-input\" placeholder=\"Type a message...\" autocomplete=\"off\">\n    <button id=\"btn-send\" onclick=\"sendMessage()\">Send</button>\n  </div>\n</div>",
+        "css": "body {\n  font-family: Arial, sans-serif;\n  background: #f1f5f9;\n  padding: 20px;\n  display: flex;\n  justify-content: center;\n}\n\n.chat-box {\n  width: 360px;\n  height: 480px;\n  background: #fff;\n  border-radius: 12px;\n  box-shadow: 0 4px 16px rgba(0,0,0,0.1);\n  display: flex;\n  flex-direction: column;\n  overflow: hidden;\n}\n\n.chat-header {\n  background: #0f172a;\n  color: #fff;\n  padding: 14px;\n  font-weight: bold;\n}\n\n.chat-messages {\n  flex-grow: 1;\n  padding: 14px;\n  overflow-y: auto;\n  display: flex;\n  flex-direction: column;\n  gap: 10px;\n  background: #f8fafc;\n}\n\n.message {\n  padding: 8px 12px;\n  border-radius: 12px;\n  max-width: 80%;\n  font-size: 14px;\n}\n\n.bot-message {\n  align-self: flex-start;\n  background: #e2e8f0;\n  color: #1e293b;\n}\n\n.user-message {\n  align-self: flex-end;\n  background: #cfe2ff;\n  color: #082f49;\n}\n\n.chat-input-area {\n  display: flex;\n  padding: 10px;\n  border-top: 1px solid #e2e8f0;\n  gap: 8px;\n}\n\n#user-input {\n  flex-grow: 1;\n  padding: 8px 12px;\n  border: 1px solid #cbd5e1;\n  border-radius: 6px;\n}\n\n#btn-send {\n  background: #2563eb;\n  color: #fff;\n  border: none;\n  padding: 8px 14px;\n  border-radius: 6px;\n  cursor: pointer;\n}",
+        "js": "const userInput = document.getElementById('user-input');\nconst chatMessages = document.getElementById('chat-messages');\n\nfunction sendMessage() {\n  const text = userInput.value.trim();\n  if (text === '') return;\n\n  const uDiv = document.createElement('div');\n  uDiv.className = 'message user-message';\n  uDiv.textContent = text;\n  chatMessages.appendChild(uDiv);\n\n  const bDiv = document.createElement('div');\n  bDiv.className = 'message bot-message';\n  bDiv.textContent = 'Thank you for your message! How can I assist you further?';\n  chatMessages.appendChild(bDiv);\n\n  userInput.value = '';\n  chatMessages.scrollTop = chatMessages.scrollHeight;\n}"
+      },
+      "tests": [
+        {
+          "id": "t5_1",
+          "name": "HTML: Welcome Message Bot Class",
+          "description": "Verifies that #welcome-msg contains class 'bot-message'.",
+          "assert": "const msg = doc.getElementById('welcome-msg'); if(!msg) throw new Error('#welcome-msg element missing.'); if(!msg.classList.contains('bot-message')) throw new Error(\"#welcome-msg is missing class 'bot-message'.\");"
+        },
+        {
+          "id": "t5_2",
+          "name": "CSS: User Message Background #cfe2ff",
+          "description": "Checks if .user-message has background-color #cfe2ff (rgb(207, 226, 255)).",
+          "assert": "const dummy = doc.createElement('div'); dummy.className = 'message user-message'; doc.body.appendChild(dummy); const bg = win.getComputedStyle(dummy).backgroundColor; doc.body.removeChild(dummy); const isLightBlue = bg.includes('207, 226, 255') || bg.toLowerCase() === '#cfe2ff'; if(!isLightBlue) throw new Error(\"Expected background #cfe2ff (rgb(207, 226, 255)), got '\" + bg + \"'.\");"
+        },
+        {
+          "id": "t5_3",
+          "name": "JS: User Message Appended & Cleared",
+          "description": "Sends a message, checks that .user-message is created and input is cleared.",
+          "assert": "if(typeof win.sendMessage !== 'function') throw new Error('sendMessage() function missing.'); const inp = doc.getElementById('user-input'); const chat = doc.getElementById('chat-messages'); const sampleText = 'Test ' + Date.now(); inp.value = sampleText; win.sendMessage(); const msgs = chat.querySelectorAll('.user-message'); const last = msgs[msgs.length - 1]; if(!last || last.textContent.trim() !== sampleText) throw new Error(\"User message with text '\" + sampleText + \"' was not appended.\"); if(inp.value !== '') throw new Error('Input box was not cleared.');"
+        },
+        {
+          "id": "t5_4",
+          "name": "JS: Bot Response Created",
+          "description": "Verifies that a .bot-message is generated in response to user input.",
+          "assert": "const chat = doc.getElementById('chat-messages'); const inp = doc.getElementById('user-input'); const countBefore = chat.querySelectorAll('.bot-message').length; inp.value = 'Ping'; win.sendMessage(); const countAfter = chat.querySelectorAll('.bot-message').length; if(countAfter <= countBefore) throw new Error('No bot message was added in response.');"
+        }
+      ]
+    },
+    {
+      "id": "q6",
+      "number": 6,
+      "category": "web",
+      "day": "Day 6",
+      "title": "Interactive Carousel / Slider",
+      "timeLimit": 20,
+      "difficulty": "Medium",
+      "scenario": "You are developing an interactive image carousel / slider component for a web gallery. The basic slides are created, and you must finalize navigation controls, indicators, and circular looping logic.",
+      "objectives": [
+        "HTML: Inside #carousel-indicators, add 3 indicator button elements with class 'indicator' and data-index values 0, 1, and 2.",
+        "CSS: Style .slide.active with display: block and opacity: 1, and .indicator.active with background-color: #2563eb.",
+        "JavaScript: Implement showSlide(index) to wrap index circularly ((index + total) % total), toggle the 'active' class on slides and indicators, and wire up Prev and Next buttons."
+      ],
+      "constraints": [
+        "Index navigation must wrap around seamlessly (Next on last slide goes to first; Prev on first slide goes to last).",
+        "Only the currently active slide must be visible.",
+        "Do not modify the existing slide IDs."
+      ],
+      "starterCode": {
+        "html": "<div class=\"carousel-container\">\n  <div class=\"carousel-track\">\n    <div class=\"slide active\" data-slide=\"0\">\n      <div class=\"slide-content\">Slide 1: Architecture</div>\n    </div>\n    <div class=\"slide\" data-slide=\"1\">\n      <div class=\"slide-content\">Slide 2: Frontend Engineering</div>\n    </div>\n    <div class=\"slide\" data-slide=\"2\">\n      <div class=\"slide-content\">Slide 3: Cloud & AI</div>\n    </div>\n  </div>\n\n  <div class=\"carousel-controls\">\n    <button id=\"btn-prev\" class=\"nav-btn\">&lt; Prev</button>\n    <button id=\"btn-next\" class=\"nav-btn\">Next &gt;</button>\n  </div>\n\n  <!-- Carousel Indicators -->\n  <div id=\"carousel-indicators\" class=\"indicators\">\n    <!-- ========================================================================= -->\n    <!-- TODO (Objective 1): Add 3 indicator buttons below                         -->\n    <!-- Format:                                                                   -->\n    <!--   <button class=\"indicator active\" data-index=\"0\"></button>               -->\n    <!--   <button class=\"indicator\" data-index=\"1\"></button>                      -->\n    <!--   <button class=\"indicator\" data-index=\"2\"></button>                      -->\n    <!-- ========================================================================= -->\n\n  </div>\n</div>",
+        "css": "body {\n  font-family: Arial, sans-serif;\n  background: #0f172a;\n  color: #fff;\n  padding: 30px;\n  display: flex;\n  justify-content: center;\n}\n\n.carousel-container {\n  width: 400px;\n  background: #1e293b;\n  border-radius: 12px;\n  padding: 20px;\n  text-align: center;\n  box-shadow: 0 10px 25px rgba(0,0,0,0.3);\n}\n\n.slide {\n  height: 180px;\n  background: #334155;\n  border-radius: 8px;\n  display: none; /* Hidden by default */\n  align-items: center;\n  justify-content: center;\n  font-size: 18px;\n  font-weight: bold;\n  color: #38bdf8;\n  padding: 20px;\n  box-sizing: border-box;\n}\n\n/* ========================================================================= */\n/* TODO (Objective 2): Style .slide.active and .indicator.active             */\n/* 1. .slide.active must have display: flex;                                 */\n/* 2. .indicator.active must have background-color: #2563eb;                 */\n/* ========================================================================= */\n\n\n.carousel-controls {\n  display: flex;\n  justify-content: space-between;\n  margin: 16px 0;\n}\n\n.nav-btn {\n  background: #2563eb;\n  color: #fff;\n  border: none;\n  padding: 8px 16px;\n  border-radius: 6px;\n  cursor: pointer;\n  font-weight: 600;\n}\n\n.indicators {\n  display: flex;\n  justify-content: center;\n  gap: 8px;\n}\n\n.indicator {\n  width: 12px;\n  height: 12px;\n  border-radius: 50%;\n  border: 1px solid #94a3b8;\n  background: transparent;\n  cursor: pointer;\n}",
+        "js": "let currentSlide = 0;\n\n/**\n * Displays the slide at target index with circular modulo wrapping.\n * @param {number} index\n */\nfunction showSlide(index) {\n  const slides = document.querySelectorAll('.slide');\n  const indicators = document.querySelectorAll('.indicator');\n  \n  if (slides.length === 0) return;\n\n  // =======================================================================\n  // TODO (Objective 3): Implement circular carousel navigation\n  // 1. Calculate circular index: currentSlide = (index + slides.length) % slides.length;\n  // 2. Loop slides and toggle 'active' class (add if idx === currentSlide, else remove)\n  // 3. Loop indicators and toggle 'active' class (add if idx === currentSlide, else remove)\n  // =======================================================================\n\n}\n\n// TODO: Add click event listeners for #btn-prev and #btn-next\nconst btnPrev = document.getElementById('btn-prev');\nconst btnNext = document.getElementById('btn-next');\n\nif (btnPrev) {\n  btnPrev.addEventListener('click', () => showSlide(currentSlide - 1));\n}\nif (btnNext) {\n  btnNext.addEventListener('click', () => showSlide(currentSlide + 1));\n}"
+      },
+      "solution": {
+        "explanation": "### Explanation\n1. **HTML:** Add 3 indicator buttons `<button class=\"indicator active\" data-index=\"0\"></button>`, `<button class=\"indicator\" data-index=\"1\"></button>`, `<button class=\"indicator\" data-index=\"2\"></button>`.\n2. **CSS:** Add `.slide.active { display: flex; }` and `.indicator.active { background-color: #2563eb; }`.\n3. **JS:** Use circular math `currentSlide = (index + slides.length) % slides.length;`, loop over slides and indicators to toggle `.active`, and bind click events.",
+        "html": "<div class=\"carousel-container\">\n  <div class=\"carousel-track\">\n    <div class=\"slide active\" data-slide=\"0\">\n      <div class=\"slide-content\">Slide 1: Architecture</div>\n    </div>\n    <div class=\"slide\" data-slide=\"1\">\n      <div class=\"slide-content\">Slide 2: Frontend Engineering</div>\n    </div>\n    <div class=\"slide\" data-slide=\"2\">\n      <div class=\"slide-content\">Slide 3: Cloud & AI</div>\n    </div>\n  </div>\n\n  <div class=\"carousel-controls\">\n    <button id=\"btn-prev\" class=\"nav-btn\">&lt; Prev</button>\n    <button id=\"btn-next\" class=\"nav-btn\">Next &gt;</button>\n  </div>\n\n  <div id=\"carousel-indicators\" class=\"indicators\">\n    <button class=\"indicator active\" data-index=\"0\"></button>\n    <button class=\"indicator\" data-index=\"1\"></button>\n    <button class=\"indicator\" data-index=\"2\"></button>\n  </div>\n</div>",
+        "css": "body {\n  font-family: Arial, sans-serif;\n  background: #0f172a;\n  color: #fff;\n  padding: 30px;\n  display: flex;\n  justify-content: center;\n}\n\n.carousel-container {\n  width: 400px;\n  background: #1e293b;\n  border-radius: 12px;\n  padding: 20px;\n  text-align: center;\n  box-shadow: 0 10px 25px rgba(0,0,0,0.3);\n}\n\n.slide {\n  height: 180px;\n  background: #334155;\n  border-radius: 8px;\n  display: none;\n  align-items: center;\n  justify-content: center;\n  font-size: 18px;\n  font-weight: bold;\n  color: #38bdf8;\n  padding: 20px;\n  box-sizing: border-box;\n}\n\n.slide.active {\n  display: flex;\n}\n\n.carousel-controls {\n  display: flex;\n  justify-content: space-between;\n  margin: 16px 0;\n}\n\n.nav-btn {\n  background: #2563eb;\n  color: #fff;\n  border: none;\n  padding: 8px 16px;\n  border-radius: 6px;\n  cursor: pointer;\n  font-weight: 600;\n}\n\n.indicators {\n  display: flex;\n  justify-content: center;\n  gap: 8px;\n}\n\n.indicator {\n  width: 12px;\n  height: 12px;\n  border-radius: 50%;\n  border: 1px solid #94a3b8;\n  background: transparent;\n  cursor: pointer;\n}\n\n.indicator.active {\n  background-color: #2563eb;\n}",
+        "js": "let currentSlide = 0;\n\nfunction showSlide(index) {\n  const slides = document.querySelectorAll('.slide');\n  const indicators = document.querySelectorAll('.indicator');\n  if (slides.length === 0) return;\n\n  currentSlide = (index + slides.length) % slides.length;\n\n  slides.forEach((s, idx) => {\n    s.classList.toggle('active', idx === currentSlide);\n  });\n\n  indicators.forEach((ind, idx) => {\n    ind.classList.toggle('active', idx === currentSlide);\n  });\n}\n\nconst btnPrev = document.getElementById('btn-prev');\nconst btnNext = document.getElementById('btn-next');\nif (btnPrev) btnPrev.addEventListener('click', () => showSlide(currentSlide - 1));\nif (btnNext) btnNext.addEventListener('click', () => showSlide(currentSlide + 1));"
+      },
+      "tests": [
+        {
+          "id": "t6_1",
+          "name": "HTML: 3 Indicators",
+          "description": "Checks that 3 buttons with class 'indicator' exist inside #carousel-indicators.",
+          "assert": "const inds = doc.querySelectorAll('#carousel-indicators .indicator'); if(inds.length !== 3) throw new Error(\"Expected exactly 3 indicators, found \" + inds.length + \".\");"
+        },
+        {
+          "id": "t6_2",
+          "name": "CSS: .slide.active & .indicator.active Display",
+          "description": "Verifies .slide.active is visible (display flex/block) and .indicator.active is colored.",
+          "assert": "const slide = doc.querySelector('.slide.active'); if(!slide) throw new Error('No slide has class active.'); const d = win.getComputedStyle(slide).display; if(d === 'none') throw new Error('.slide.active must have display: flex or block, got none.');"
+        },
+        {
+          "id": "t6_3",
+          "name": "JS: Circular Modulo Navigation",
+          "description": "Tests clicking Next advances to slide 1, and clicking Prev on slide 0 wraps to slide 2.",
+          "assert": "const btnNext = doc.getElementById('btn-next'); const btnPrev = doc.getElementById('btn-prev'); const slides = doc.querySelectorAll('.slide'); if(!btnNext || !btnPrev || slides.length < 3) throw new Error('Controls or slides missing.'); btnNext.click(); if(!slides[1].classList.contains('active')) throw new Error('Clicking Next did not activate slide 1.'); btnPrev.click(); btnPrev.click(); if(!slides[2].classList.contains('active')) throw new Error('Clicking Prev on slide 0 did not wrap around to slide 2.');"
+        }
+      ]
+    },
+    {
+      "id": "q7",
+      "number": 7,
+      "category": "dsa",
+      "day": "Bonus DSA",
+      "title": "String Consecutive Character Compression",
+      "timeLimit": 20,
+      "difficulty": "Easy-Medium",
+      "scenario": "Given a randomized string input (e.g. aaaaabcccccd), write a function that replaces all consecutively repeating characters with a single hash (#), while leaving isolated, non-repeating characters untouched. Expected output for aaaaabcccccd is #b#d.",
+      "objectives": [
+        "Iterate through the string identifying runs of identical adjacent characters of length >= 2.",
+        "Replace each run of consecutively identical characters with a single '#'.",
+        "Preserve single isolated characters as they are."
+      ],
+      "constraints": [
+        "String length: 1 to 10^5.",
+        "Character set: lowercase English letters."
+      ],
+      "starterCode": {
+        "html": "<div style=\"padding:20px; font-family:sans-serif;\">\n  <h3>String Consecutive Character Compression</h3>\n  <p>Input: <code>aaaaabcccccd</code></p>\n  <p>Expected: <code>#b#d</code></p>\n  <div id=\"output\"></div>\n</div>",
+        "css": "#output { font-size: 20px; font-family: monospace; color: #2563eb; margin-top: 10px; }",
+        "js": "function compressConsecutive(str) {\n  // TODO: Replace consecutive repeating characters with '#'\n  return '';\n}\n\ndocument.getElementById('output').textContent = compressConsecutive('aaaaabcccccd');"
+      },
+      "solution": {
+        "explanation": "### Explanation\nUse a single pass loop. If `str[i] == str[i+1]`, advance until characters differ and append `'#'`. If isolated, append `str[i]`.",
+        "html": "<div style=\"padding:20px; font-family:sans-serif;\">\n  <h3>String Consecutive Character Compression</h3>\n  <p>Input: <code>aaaaabcccccd</code></p>\n  <p>Expected: <code>#b#d</code></p>\n  <div id=\"output\"></div>\n</div>",
+        "css": "#output { font-size: 20px; font-family: monospace; color: #2563eb; margin-top: 10px; }",
+        "js": "function compressConsecutive(str) {\n  let res = '';\n  let i = 0;\n  while (i < str.length) {\n    if (i + 1 < str.length && str[i] === str[i + 1]) {\n      res += '#';\n      const ch = str[i];\n      while (i < str.length && str[i] === ch) {\n        i++;\n      }\n    } else {\n      res += str[i];\n      i++;\n    }\n  }\n  return res;\n}\nwindow.compressConsecutive = compressConsecutive;\nconst outEl = document.getElementById('output');\nif (outEl) outEl.textContent = compressConsecutive('aaaaabcccccd');"
+      },
+      "tests": [
+        {
+          "id": "t7_1",
+          "name": "DSA: 'aaaaabcccccd' -> '#b#d'",
+          "description": "Tests replacing runs of repeating characters.",
+          "assert": "const fn = win.compressConsecutive || (typeof compressConsecutive === 'function' ? compressConsecutive : null); if(!fn) throw new Error('compressConsecutive not defined.'); const out = fn('aaaaabcccccd'); if(out !== '#b#d') throw new Error(\"Expected '#b#d', got '\" + out + \"'.\");"
+        },
+        {
+          "id": "t7_2",
+          "name": "DSA: Isolated Characters 'abcdef' -> 'abcdef'",
+          "description": "Ensures no hashes are inserted when no characters repeat.",
+          "assert": "const fn = win.compressConsecutive || (typeof compressConsecutive === 'function' ? compressConsecutive : null); if(!fn) throw new Error('compressConsecutive not defined.'); const out = fn('abcdef'); if(out !== 'abcdef') throw new Error(\"Expected 'abcdef', got '\" + out + \"'.\");"
+        }
+      ]
+    },
+    {
+      "id": "q8",
+      "number": 8,
+      "category": "sql",
+      "day": "Bonus SQL",
+      "title": "Player Sports Registration Query",
+      "timeLimit": 20,
+      "difficulty": "Medium",
+      "scenario": "Fetch first name, last name, and total number of registered sports for each player who has registered for at least 3 sports.",
+      "objectives": [
+        "JOIN the player table with sports_registration table on player_id.",
+        "COUNT number of sport_id per player.",
+        "Filter using HAVING count >= 3."
+      ],
+      "constraints": [
+        "Aliases must match: First Name, Last Name, Number of Sports Registered.",
+        "Filter only Paid registrations."
+      ],
+      "starterCode": {
+        "html": "<div style=\"padding:20px; font-family:sans-serif;\">\n  <h3>SQL Query Formulation</h3>\n  <p>Write standard SQL query below in the JavaScript string variable.</p>\n  <pre id=\"sql-output\"></pre>\n</div>",
+        "css": "pre { background:#0f172a; color:#38bdf8; padding:15px; border-radius:8px; font-size:14px; }",
+        "js": "const sqlQuery = `\n-- TODO: Write your SQL query here\nSELECT \nFROM player p\n`;\n\ndocument.getElementById('sql-output').textContent = sqlQuery;"
+      },
+      "solution": {
+        "explanation": "### Explanation\n```sql\nSELECT p.first_name AS \"First Name\", p.last_name AS \"Last Name\", COUNT(r.sport_id) AS \"Number of Sports Registered\"\nFROM player p\nJOIN registration r ON p.player_id = r.player_id\nWHERE r.payment_status = 'Paid'\nGROUP BY p.player_id, p.first_name, p.last_name\nHAVING COUNT(r.sport_id) >= 3;\n```",
+        "html": "<div style=\"padding:20px; font-family:sans-serif;\">\n  <h3>SQL Query Formulation</h3>\n  <pre id=\"sql-output\"></pre>\n</div>",
+        "css": "pre { background:#0f172a; color:#38bdf8; padding:15px; border-radius:8px; font-size:14px; }",
+        "js": "var sqlQuery = SELECT p.first_name AS \"First Name\", p.last_name AS \"Last Name\", COUNT(r.sport_id) AS \"Number of Sports Registered\" FROM player p JOIN registration r ON p.player_id = r.player_id WHERE r.payment_status = 'Paid' GROUP BY p.player_id, p.first_name, p.last_name HAVING COUNT(r.sport_id) >= 3;;\nwindow.sqlQuery = sqlQuery;\nconst outEl = document.getElementById('sql-output');\nif (outEl) outEl.textContent = sqlQuery;"
+      },
+      "tests": [
+        {
+          "id": "t8_1",
+          "name": "SQL: Keyword & Clause Validation",
+          "description": "Verifies query contains SELECT, JOIN, GROUP BY, and HAVING.",
+          "assert": "const raw = win.sqlQuery || (doc.getElementById('sql-output') ? doc.getElementById('sql-output').textContent : ''); const q = (raw || '').toUpperCase(); if(!q.includes('SELECT') || !q.includes('JOIN') || !q.includes('GROUP BY') || !q.includes('HAVING')) throw new Error('Query must include SELECT, JOIN, GROUP BY, and HAVING.');"
+        }
+      ]
+    }
+  ]
+}

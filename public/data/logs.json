@@ -1,0 +1,63 @@
+[
+  {
+    "timestamp": "28/10/2026, 12:00:13 am",
+    "name": "Aman Verma",
+    "email": "21BCSE054",
+    "deviceId": "acc-dev-verify-001",
+    "os": "Windows 11",
+    "browser": "Microsoft Edge",
+    "screen": "1920x1080 (1.25x)",
+    "hardware": "8 CPU cores, 16GB RAM",
+    "ip": "127.0.0.1 (Localhost)"
+  },
+  {
+    "timestamp": "28/10/2026, 12:01:22 am",
+    "name": "anurag",
+    "email": "bt24cse003",
+    "deviceId": "acc-7n8iy5y2-mvr0ud1g",
+    "os": "Windows 10/11",
+    "browser": "Chrome",
+    "screen": "1536x864 (1.25x)",
+    "hardware": "8 CPU cores, 8GB RAM",
+    "ip": "127.0.0.1 (Localhost)"
+  },
+  {
+    "timestamp": "28/10/2026, 12:02:18 am",
+    "name": "anurag",
+    "email": "bt24cse003",
+    "deviceId": "acc-7n8iy5y2-mvr0ud1g",
+    "os": "Windows 10/11",
+    "browser": "Chrome",
+    "screen": "1536x864 (1.25x)",
+    "hardware": "8 CPU cores, 8GB RAM",
+    "ip": "127.0.0.1 (Localhost)"
+  },
+  {
+    "timestamp": "28/10/2026, 12:02:28 am",
+    "name": "anurag",
+    "email": "bt24cse003",
+    "deviceId": "acc-7n8iy5y2-mvr0ud1g",
+    "os": "Windows 10/11",
+    "browser": "Chrome",
+    "screen": "1536x864 (1.25x)",
+    "hardware": "8 CPU cores, 8GB RAM",
+    "ip": "127.0.0.1 (Localhost)"
+  },
+  {
+    "timestamp": "28/10/2026, 12:03:16 am",
+    "name": "Rohan Sharma",
+    "email": "21BCSE088",
+    "deviceId": "acc-dev-verify-002",
+    "deviceType": "Desktop / Laptop",
+    "os": "Windows 10/11",
+    "browser": "Chrome",
+    "screen": "1920x1080 (1.25x)",
+    "cores": "12 Cores",
+    "memory": "16 GB",
+    "touchPoints": 0,
+    "timezone": "Asia/Kolkata",
+    "language": "en-IN",
+    "ip": "127.0.0.1 (Localhost)",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)..."
+  }
+]

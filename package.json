@@ -1,0 +1,12 @@
+{
+  "name": "accenture-oa-simulator",
+  "version": "1.0.0",
+  "description": "Lightweight local Accenture Online Assessment (OA) simulator web platform",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": ["accenture", "oa", "assessment", "simulator"],
+  "author": "Antigravity",
+  "license": "MIT"
+}
