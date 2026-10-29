@@ -1,0 +1,231 @@
+[Page 1]
+ ACCENTURE PLACEMENT PAPER ON 9th SEPTEMBER AT CHANDIGARH 
+Time-60 Minutes
+No Of questions-55
+No of Sections-3 
+Section 1 - Verbal Ability
+1._________ great writer is convinced that whatever he says is not an echo or imitation of what others 
+have said.
+A) An
+C)A
+B) The
+D) No article required
+2. ________ Reserve Bank of India directed banks to closely watch _______spending through 
+International Debit Cards.
+A)A,the B) The, the C) The, a . D) .-\n, the
+3.The officer received _____ official letter from _____ Ministry of IT in _____ Central Government.
+A) A, the, an
+C) An, the, the
+B) A, an, the
+D) An, an, the
+4.You CANNOT send out ______uneducated man into ______ world of technology and expect him to 
+perform.
+A) An, an B) A, an C ) An, the D) The, an
+Directions for Questions 11-15:
+Read the passage and answer the questions that follow on the basis of the information provided in the 
+passage.
+Dynamic Link Libraries
+Windows provides several files called dynamic link libraries (DLLs) that contain collections of 
+software code that perform common functions such as opening or saving a file. When Windows 
+application wants to use one of those functions or routines, the app sends a message to Windows with 
+the names of the DLL file and the function. This procedure is known as calling a function. One of the 
+most frequently used DLLs is Windows COMMDLG.DLL, which includes among others, the functions 
+to display File Open, File Save, Search, and Print dialog boxes. The application also sends any 
+information the DLL function will need to complete the operation. For example, a program calling the 
+Open File function in COMMDLG.DLL would pass along a file spec, such as *. * or *.DOC, to be 
+displayed in the dialog box's Filename text box. The application also passes along a specification for 
+the type of information it expects the DLL to return to the application when the DLL's work is done. 
+The application, for example, may expect return information in the form of integers, true/false values, 
+
+[Page 2]
+or text. Windows passes the responsibility for program execution to the DLL, along with the 
+parameters and the return information the DLL will need. The specific DLL is loaded into memory, and 
+then executed by the processor. At this point the DLL, rather than the application, runs things. The DLL 
+performs all the operations necessary to communicate with Windows and, through Windows, with the 
+PC's hardware. After the DLL function is complete, the DLL puts the return information intomemory, 
+where it can be found by the application, and instructs Windows to remove the DLL routine from 
+memory. The application inspects the return information, which usually tells whether the DLL function 
+was able to execute correctly. If the operation was a success, the application continues from where it 
+left off before issuing the function call. If the operation failed, the application displays an error 
+message.
+5) By using DLLs, Windows:
+A) Saves processing time
+B) Multitasks
+C) Shares program code
+D) Communicates with PCs hardware
+6) To use any routine of a DLL, Windows:
+A) Searches and copies it in the application code and executes it
+B) Loads the DLL file and searches and executes the routine
+C) Loads just the required routine in memory and executes it
+D) Searches the location of the routine and instructs the application to execute it
+7) Which information does an application need to passto Windows to use a DLL routine?
+A) Just the name of the routine
+B) Just the name of the DLL, which finds in turn the routine to be executed in return
+C) Both the name of the routine as well as DLL and any parameters
+D) Name of the DLL, routine, any parameters and type of information to be returned
+8) According to the passage, while the DLL routine is executing, the calling application:
+A) Waits for the routine to execute
+B) Continues with other tasks
+C) Helps the DLL routine perform by communicating with Windows and through Windows with the 
+PC's hardware
+D) Passes all responsibility of program execution to the DLL and is removed from memory
+9) The DLL function after execution returns:
+A) The parameters and information into memory, where it can be inspected by the calling application
+B) Information into memory, where it can be inspected by the calling application
+C) To the calling application the information required by it so that it can inspect it
+D) The information required into memory so that DLL can inspect whether the function operation was 
+a success 
+
+[Page 3]
+Directions for Questions 10-14
+Readthe passage and answer the questions that follow on the basis of the information provided in the 
+passage.
+Microprocessor is an electronic computer Central Processing Unit (CPU) made from miniaturized 
+transistors and other circuit elements on a single semiconductor Integrated Circuit (IC). Before the 
+advent of microprocessors, electronic CPUs were made from individual small-scale Integrated 
+Circuitscontaining the equivalent of only a few transistors. By integrating the processor onto one or a 
+very few large-scale Integrated Circuit packages (containing the equivalent of thousands or millions of 
+discrete transistors), the cost of processor power was greatly reduced. The evolution of microprocessors 
+has been known to follow Moore's Law when it comes to steadily increasing performance over the 
+years. This law suggests that the complexity of an Integrated Circuit with respect to minimum 
+component cost will double in about 18 months. From humble beginnings as the drivers for calculators, 
+the continued increase in power has led to the dominance of microprocessors over every other form of 
+computer; every system from the largest mainframes to the smallest handheld computers now uses a 
+microprocessor at their core. .As with many advances in technology, the microprocessor was an idea 
+wbose time had come. Three projects arguably delivered a complete microprocessor at about the same 
+time: Intel's 4004, Texas Instruments' TMS1000, and Garrett AiResearch's Central Air Data 
+Computer. .A computer-on-a-chip is a variation of a microprocessor, which combines the 
+microprocessor core (CPU), some memory, and I/O (input/output) lines, all on one chip. The proper 
+meaning of microcomputer is a computer using a (number of) microprocessor(s) as its CPU(s), while 
+the concept of the patent is somewhat more similar to a micro controller.
+10) Which of the following descriptions would NOT fit a microprocessor?
+A) Electronic computer
+B) Central Processing Unit
+C) Memory disk
+D) A single integrated chip circuit.
+11) Select the TRUE statement from the following.
+A) 11icroprocessors and computers on a chip are variations of each other.
+B) Integration of processing power on chips has made processing power cheaper.
+C) Before microprocessors, CPUs were not made from individual small scale ICs.
+D) A microprocessor circuit only has transistors in it.
+12) Which of the following was NOT the first to develop a microprocessor?
+A) Microsoft
+B) Intel
+C) Texas Instruments
+D) Garret
+13) According to the passage, which of these is NOT a use of microprocessors?
+A) Drivers for calculators
+B) Core for large mainframes
+C) Advanced mobile phones
+
+[Page 4]
+D) Used for small handheld computers
+14) "A number of microprocessors at its CPU" is an apt description of a:
+A) 11icro-controller
+B) Micro-computer
+C) Micro-processor
+D) Micro-transistor 
+Section 2 -Analytical Ability 
+No. of Questions: 20
+Duration in Minutes: 20 
+15) At an international conference, 100 delegates spoke English, 40 spoke French, and 20 spoke both 
+English and French. How many delegates could speak at least one of these two languages?
+A) 110 B) 100 C) 140 D) 120
+16) In a row of 60, if Ram is standing at 17th from the first what is his position from the last? 
+Directions for Questions 17-20:
+In a certain code, the symbol for 0 (zero) is. * and that for 1 is $. The numb.:rs greater than 1 are to be 
+written only by using the two symbols given above. The value of the symbol for 1 doubles itself every 
+time it shifts one place to the left.
+(For example, 4 is written as $**; and; 3 is written as $$)
+18) 260 can be represented as:
+A) $****$**
+B) $$*$$$$$
+C) $$*$$$$**
+D) $*****$**
+19) 60 / 17 can also be represented as:
+A) $$$*$*** / $$**$$
+B) $$$***** / $$**$$
+C) $*$$*$** / $$**$$
+D) $$*$*$** / $$**$$
+20) $***$ can be represented as:
+A) $$$ / $*
+B) $*$**- $$
+C) $*$*$- $$
+D) $$$***$ - $$
+21) binary 3 - 011 & 4 - 100 & 5 - 001 so convert it into binary n solve it. 
+Section 3 - 
+
+[Page 5]
+No. of Questions: 15
+Duration in Minutes: 15
+Your answer for each question below would be:
+A., if ALL THREE items given in the question are exactly ALIKE.
+B, if only the FIRST and SECOND items are exactly ALIKE.
+C, if only the FIRST and THIRD items are exactly ALIKE.
+D, if only the SECOND and THIRD items are exactly ALIKE.
+E, if ALL THREE items are DIFFERENT.
+22 - 45 que just matching of pattern
+22)LLMLLLKLMPUU, LLMLLLKLMPUU, LLMLLLKLMPUU
+A) A B)B C)C D)D E)E
+23) 0452-9858762, 0452-9858762, 0452-9858762
+A) A B)B C)C D)D E)E
+24. If* stands for /, / stands for -,+ stands for * and -stands for +, then 9/15*9+2-9=?
+A) 14.7
+B) 15.3
+C) 14.1
+D) 16.2
+25. If * stands for -,/ stands for +, + stands for / and -stands for *, then which of the following is 
+TRUE?
+A) 16/8*6+90-12 =23.2
+B) 8*12/6+90-12 =7.2
+C) 16*6/8+16-12 =-4.1
+D) 12*16/6+90-12 =8
+26. See the options given below which one is correct
+A) 6 S 7 A 2 M 3 W 0 D 7
+B) 6 A 7 S 2 M 3 W 0 A 7
+C) 6 S 7 M 2 S 3 W 0 M 7
+D) 6 M 7 S 2 A 3 X 0 D 7
+Directions for Questions 27-30: 
+For the post of a m'anager of a leading call centre -Arkade Inc. - situated in Ludhiana, the following are 
+the criteria the
+candidate must satisfy:
+-The candidate should have a Management Degree.
+-The candidate should have at least 4 years of similar experience at-another call center.
+
+[Page 6]
+- The candidate should be more than 30 years of age as on the 1st of July 2003.
+- The candidate should have 6 months of international exposure, i.e. should have been posted in a 
+foreign country.
+. If a candidate does not satisfy the 1st condition but has more than 2 years of international experience, 
+then the VP
+operations, will interview him.
+. If a candidate does not satisfy the 4th condition, then the HR manager will interview him.
+27) Shakuntala was selected for a managerial position in an international call center after she passed 
+out from AIM Management Institute. After working for 3 years in the call center, she took a sabbatical. 
+She is 29 years of age as on the date of application. She will be:
+A) Interviewed only by the HR
+B) Inte1'\;ewed only by the VP
+C) Rejected
+D) Data insufficient
+28) Rajiv has been working as a Manager in Zephyr Inc. for 4 years now. He is an Engineering 
+graduate from a premier engineering institute. His certificate lists his date of birth as 17/12/1974. He 
+has worked in the hotel industry at the executive level. He is:
+A) Give an aptitude test
+B) Interviewed by the VP
+C) Data insufficient
+D) Not considered
+29) Soma has 2 years of experience in Welsh Inc. and 2 years of experience in Franc Inc., both leading 
+call centers, as a manager. She has a management degree from a premier management organization. 
+She turned 30 this December (2002). She is a B.Com Graduate from St. Xavier's, Calcutta. If she 
+applies for the post, she will:
+A) Be interviewed directly by the VP Operations
+B) Not be considered
+C) Be interviewed by the HR
+D) Have to give an aptitude test
+30) Salina has over 4 years of experience in Care Touch, a leading call center, as a manager. She 
+completed her MBA
+from Ranchi and worked in Singapore for UNO for 2 years before joining Care Touch. She will be:
+A) Recruited
+B) Rejected
+C) Interviewed by dIe VP Operations
+D) Data insufficient

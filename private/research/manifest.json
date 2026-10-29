@@ -1,0 +1,359 @@
+[
+  {
+    "name": "ACCENTURE/5_6055506645834793155.pdf",
+    "bytes": 79398,
+    "sha256": "0b87686f7c76e9f4680362f81ff367a5654e859ba0fbf0a4011a7bfad162bdbf",
+    "pages": 12,
+    "characters": 17450,
+    "textFile": "0b87686f7c76.txt",
+    "needsVisualReview": false
+  },
+  {
+    "name": "ACCENTURE/5_6226494280345583909.pdf",
+    "bytes": 79398,
+    "sha256": "0b87686f7c76e9f4680362f81ff367a5654e859ba0fbf0a4011a7bfad162bdbf",
+    "duplicateOf": "ACCENTURE/5_6055506645834793155.pdf"
+  },
+  {
+    "name": "ACCENTURE/Accenture IDC.pdf",
+    "bytes": 79398,
+    "sha256": "0b87686f7c76e9f4680362f81ff367a5654e859ba0fbf0a4011a7bfad162bdbf",
+    "duplicateOf": "ACCENTURE/5_6055506645834793155.pdf"
+  },
+  {
+    "name": "ACCENTURE/Accenture paperr.pdf",
+    "bytes": 76271,
+    "sha256": "63dc176f02b3bf8ab976007e49543a48497dd9fa1136d6ed37ac9062b6f356d4",
+    "pages": 6,
+    "characters": 10197,
+    "textFile": "63dc176f02b3.txt",
+    "needsVisualReview": false
+  },
+  {
+    "name": "ACCENTURE/5_6055159642542047333.pdf",
+    "bytes": 76271,
+    "sha256": "63dc176f02b3bf8ab976007e49543a48497dd9fa1136d6ed37ac9062b6f356d4",
+    "duplicateOf": "ACCENTURE/Accenture paperr.pdf"
+  },
+  {
+    "name": "ACCENTURE/5_6055506645834793156.docx",
+    "bytes": 14259,
+    "sha256": "6ee457e352579bebc2fa9f7b29601f518f2c5bdb2b5a19e9cfe498019f0f5cb2",
+    "pages": 0,
+    "characters": 5663,
+    "textFile": "6ee457e35257.txt",
+    "needsVisualReview": false
+  },
+  {
+    "name": "ACCENTURE/5_6055159642542047334.pdf",
+    "bytes": 81581,
+    "sha256": "b2e6853e6a6389f1c225ad4fab00862b8fc0f5a28b14d5f59d28f6e08bd13feb",
+    "pages": 10,
+    "characters": 18363,
+    "textFile": "b2e6853e6a63.txt",
+    "needsVisualReview": false
+  },
+  {
+    "name": "ACCENTURE/5_6226494280345583911.pdf",
+    "bytes": 76271,
+    "sha256": "63dc176f02b3bf8ab976007e49543a48497dd9fa1136d6ed37ac9062b6f356d4",
+    "duplicateOf": "ACCENTURE/Accenture paperr.pdf"
+  },
+  {
+    "name": "ACCENTURE/Accenture paper.pdf",
+    "bytes": 83002,
+    "sha256": "4d1c7eb5d3ffbcd0d0c033620cb1794418289f294743d2b5456dbec5a0f68539",
+    "pages": 8,
+    "characters": 17939,
+    "textFile": "4d1c7eb5d3ff.txt",
+    "needsVisualReview": false
+  },
+  {
+    "name": "ACCENTURE/5_6055506645834793158.pdf",
+    "bytes": 83002,
+    "sha256": "4d1c7eb5d3ffbcd0d0c033620cb1794418289f294743d2b5456dbec5a0f68539",
+    "duplicateOf": "ACCENTURE/Accenture paper.pdf"
+  },
+  {
+    "name": "ACCENTURE/5_6055506645834793154.docx",
+    "bytes": 21017,
+    "sha256": "619cc30a88f2adf41969b011f15de63b49d11410ce0678fc72089cb9f85fe47e",
+    "pages": 0,
+    "characters": 17063,
+    "textFile": "619cc30a88f2.txt",
+    "needsVisualReview": false
+  },
+  {
+    "name": "ACCENTURE/Accwnture paper.pdf",
+    "bytes": 81581,
+    "sha256": "b2e6853e6a6389f1c225ad4fab00862b8fc0f5a28b14d5f59d28f6e08bd13feb",
+    "duplicateOf": "ACCENTURE/5_6055159642542047334.pdf"
+  },
+  {
+    "name": "ACCENTURE/Accenture questions with answers .pdf",
+    "bytes": 97508,
+    "sha256": "3b99800d4f15968c75ab526f5b51f99f107b44355f3db8bd5edf4e36ebd3bd82",
+    "pages": 9,
+    "characters": 11124,
+    "textFile": "3b99800d4f15.txt",
+    "needsVisualReview": false
+  },
+  {
+    "name": "ACCENTURE/Accenture-Logical-Reasoning-Questions-and-Answers.pdf",
+    "bytes": 97508,
+    "sha256": "3b99800d4f15968c75ab526f5b51f99f107b44355f3db8bd5edf4e36ebd3bd82",
+    "duplicateOf": "ACCENTURE/Accenture questions with answers .pdf"
+  },
+  {
+    "name": "ACCENTURE/5_6226494280345583910.pdf",
+    "bytes": 73874,
+    "sha256": "a62b9c9fe05c5f183d1780eb4b029a6c97f0d514ea43ba5d2298931de47f8fbf",
+    "pages": 6,
+    "characters": 11792,
+    "textFile": "a62b9c9fe05c.txt",
+    "needsVisualReview": false
+  },
+  {
+    "name": "ACCENTURE/Accenture premium materials/5_6077880573588668773.pdf",
+    "bytes": 209675,
+    "sha256": "7ccd4f260ae5842af01f6dae8a88434dab185a9d480857408b8f8a9bbbb211d9",
+    "pages": 15,
+    "characters": 21869,
+    "textFile": "7ccd4f260ae5.txt",
+    "needsVisualReview": false
+  },
+  {
+    "name": "ACCENTURE/Accenture premium materials/5_6077880573588668776.pdf",
+    "bytes": 179964,
+    "sha256": "d129e3ca574934961b6dbbe51ec6f0f522e4f12098e212122feb15810289fa5d",
+    "pages": 9,
+    "characters": 10700,
+    "textFile": "d129e3ca5749.txt",
+    "needsVisualReview": false
+  },
+  {
+    "name": "ACCENTURE/Accenture premium materials/5_6077880573588668779.pdf",
+    "bytes": 231879,
+    "sha256": "0d3b1c28bf389a14daec80dd72358f5b13757fdb14dfa123956b662e184729ea",
+    "pages": 8,
+    "characters": 19682,
+    "textFile": "0d3b1c28bf38.txt",
+    "needsVisualReview": false
+  },
+  {
+    "name": "ACCENTURE/Accenture premium materials/5_6077880573588668778.pdf",
+    "bytes": 197932,
+    "sha256": "7e996ac964356bc7ddcd305ba9f4cbec439b1f0ee7dc364f520b629d8b0b8fb8",
+    "pages": 4,
+    "characters": 3070,
+    "textFile": "7e996ac96435.txt",
+    "needsVisualReview": false
+  },
+  {
+    "name": "ACCENTURE/Accenture premium materials/5_6080003232325697659.pdf",
+    "bytes": 199989,
+    "sha256": "56f59fbc882fbf904e2737cea55954cac44bfaa0a11b34463019b4fd1373a807",
+    "pages": 5,
+    "characters": 7366,
+    "textFile": "56f59fbc882f.txt",
+    "needsVisualReview": false
+  },
+  {
+    "name": "ACCENTURE/Accenture premium materials/5_6077880573588668780.pdf",
+    "bytes": 314237,
+    "sha256": "48ab14a55063a6a0a53b7c78a1766aa1c77fdc20a117a51da4b599d7d4816bc1",
+    "pages": 16,
+    "characters": 13515,
+    "textFile": "48ab14a55063.txt",
+    "needsVisualReview": false
+  },
+  {
+    "name": "ACCENTURE/Accenture premium materials/5_6077880573588668775.pdf",
+    "bytes": 183849,
+    "sha256": "19d7e140567299c1477662d25ccd09ac653c960338e51ddacf0e59996d33176e",
+    "pages": 10,
+    "characters": 14311,
+    "textFile": "19d7e1405672.txt",
+    "needsVisualReview": false
+  },
+  {
+    "name": "ACCENTURE/Accenture premium materials/5_6077880573588668781.pdf",
+    "bytes": 218438,
+    "sha256": "ea2e2d4b7da7d5182c4f1759a1fde683dd584e21ec65b448c8e3b177bae20ee4",
+    "pages": 5,
+    "characters": 4940,
+    "textFile": "ea2e2d4b7da7.txt",
+    "needsVisualReview": false
+  },
+  {
+    "name": "ACCENTURE/5_6055506645834793147.pdf",
+    "bytes": 364572,
+    "sha256": "22b3459d6f47188090cdae938f875a565b6a6adf46a550ceeb3c8c2e59cd63f2",
+    "pages": 5,
+    "characters": 2951,
+    "textFile": "22b3459d6f47.txt",
+    "needsVisualReview": false
+  },
+  {
+    "name": "ACCENTURE/Accenture premium materials/5_6080003232325697658.pdf",
+    "bytes": 198463,
+    "sha256": "564bb18e5adefaef765b73b318e42d11dc4d79e51734264e3e60f9dc35243391",
+    "pages": 14,
+    "characters": 20581,
+    "textFile": "564bb18e5ade.txt",
+    "needsVisualReview": false
+  },
+  {
+    "name": "ACCENTURE/Accenture premium materials/5_6077880573588668783.pdf",
+    "bytes": 458251,
+    "sha256": "7ed5debf6e4615b55cc138cf88040b4a2b9e6ff55d4f50c653479b23cc1ead6b",
+    "pages": 15,
+    "characters": 17768,
+    "textFile": "7ed5debf6e46.txt",
+    "needsVisualReview": false
+  },
+  {
+    "name": "ACCENTURE/Accenture.pdf",
+    "bytes": 826133,
+    "sha256": "d5b8688931e6abe6379b131f5efdc23c12eea3798499c9ca6b9c54b4e92fdd45",
+    "pages": 13,
+    "characters": 14644,
+    "textFile": "d5b8688931e6.txt",
+    "needsVisualReview": false
+  },
+  {
+    "name": "ACCENTURE/Accenture questions with answers 2.pdf",
+    "bytes": 127868,
+    "sha256": "351054c4960bd4e4c8636a40096d506f469c0627eb01ae95b237321bf2c40bb1",
+    "pages": 10,
+    "characters": 11791,
+    "textFile": "351054c4960b.txt",
+    "needsVisualReview": false
+  },
+  {
+    "name": "ACCENTURE/5_6055506645834793153.pdf",
+    "bytes": 110514,
+    "sha256": "60d8661016c9448460a2bdc963970613bd74e1a6d61966b4b73c84c16146df00",
+    "pages": 4,
+    "characters": 5207,
+    "textFile": "60d8661016c9.txt",
+    "needsVisualReview": false
+  },
+  {
+    "name": "ACCENTURE/5_6055506645834793151.pdf",
+    "bytes": 127868,
+    "sha256": "351054c4960bd4e4c8636a40096d506f469c0627eb01ae95b237321bf2c40bb1",
+    "duplicateOf": "ACCENTURE/Accenture questions with answers 2.pdf"
+  },
+  {
+    "name": "ACCENTURE/Accenture-Aptitude-Questions-and-Answers.pdf",
+    "bytes": 127868,
+    "sha256": "351054c4960bd4e4c8636a40096d506f469c0627eb01ae95b237321bf2c40bb1",
+    "duplicateOf": "ACCENTURE/Accenture questions with answers 2.pdf"
+  },
+  {
+    "name": "ACCENTURE/Accenture premium materials/5_6080003232325697657.pdf",
+    "bytes": 239284,
+    "sha256": "5c5271f63d6fdf05016420934d844ec6b50a46adc9c15fa74d296847417b3c94",
+    "pages": 8,
+    "characters": 8115,
+    "textFile": "5c5271f63d6f.txt",
+    "needsVisualReview": false
+  },
+  {
+    "name": "ACCENTURE/5_6226494280345583908.pdf",
+    "bytes": 631280,
+    "sha256": "8a4f7bfbf23726b6c0075b0fba015111724f5b167cd0186914499f0860645d30",
+    "pages": 5,
+    "characters": 6571,
+    "textFile": "8a4f7bfbf237.txt",
+    "needsVisualReview": false
+  },
+  {
+    "name": "ACCENTURE/5_6055506645834793152.docx",
+    "bytes": 11669,
+    "sha256": "4504126d354e0d236fefee21f2e9961dad2cbacc15705f4d7bbddf8d66fcf012",
+    "pages": 0,
+    "characters": 1702,
+    "textFile": "4504126d354e.txt",
+    "needsVisualReview": false
+  },
+  {
+    "name": "ACCENTURE/5_6055506645834793157.docx",
+    "bytes": 11588,
+    "sha256": "f6df7fcb202acb1a2e12b56a06abdbc36608f43f16d5b1f776a7a2d91971fbc7",
+    "pages": 0,
+    "characters": 2463,
+    "textFile": "f6df7fcb202a.txt",
+    "needsVisualReview": false
+  },
+  {
+    "name": "ACCENTURE/Accenture.docx",
+    "bytes": 48868,
+    "sha256": "e45e7e90e4c1a4a8c9edbbe7f9e447769bdc4c8682b79b7921e5823cc369981f",
+    "pages": 0,
+    "characters": 13741,
+    "textFile": "e45e7e90e4c1.txt",
+    "needsVisualReview": false
+  },
+  {
+    "name": "ACCENTURE/5_6055159642542047335.docx",
+    "bytes": 11588,
+    "sha256": "f6df7fcb202acb1a2e12b56a06abdbc36608f43f16d5b1f776a7a2d91971fbc7",
+    "duplicateOf": "ACCENTURE/5_6055506645834793157.docx"
+  },
+  {
+    "name": "ACCENTURE/5_6055506645834793146.pdf",
+    "bytes": 356555,
+    "sha256": "146d98f6760f05e1674cab2324249a1d8d0015eef9a164a2876a61bbee41b27f",
+    "pages": 6,
+    "characters": 2283,
+    "textFile": "146d98f6760f.txt",
+    "needsVisualReview": false
+  },
+  {
+    "name": "ACCENTURE/Accenture premium materials/5_6077880573588668782.pdf",
+    "bytes": 176691,
+    "sha256": "5052bbd7736ebcd5e9641efcbba4df97a41a435e5b41e551e38080fea1686a37",
+    "pages": 4,
+    "characters": 3767,
+    "textFile": "5052bbd7736e.txt",
+    "needsVisualReview": false
+  },
+  {
+    "name": "ACCENTURE/Accenture premium materials/5_6077880573588668774.pdf",
+    "bytes": 200444,
+    "sha256": "6d6a79d03358738af42c8d7f0bd33577a16ac9b40b7d74e5323a3dc43ac13de4",
+    "pages": 12,
+    "characters": 20104,
+    "textFile": "6d6a79d03358.txt",
+    "needsVisualReview": false
+  },
+  {
+    "name": "ACCENTURE/Accenture premium materials/5_6077880573588668777.pdf",
+    "bytes": 296853,
+    "sha256": "afd7c9b1a35e9da49349a4492348f0cc49002eb031a676f1a4e80e44e85a16c4",
+    "pages": 14,
+    "characters": 24274,
+    "textFile": "afd7c9b1a35e.txt",
+    "needsVisualReview": false
+  },
+  {
+    "name": "ACCENTURE/5_6226494280345583907.pdf",
+    "bytes": 2355890,
+    "sha256": "5a5e9f034606af734d7ae4bf48d0eddf109e7c8140f4ad1e5e8ebb33148bfc89",
+    "pages": 20,
+    "characters": 10911,
+    "textFile": "5a5e9f034606.txt",
+    "needsVisualReview": false
+  },
+  {
+    "name": "ACCENTURE/5_6055506645834793150.pdf",
+    "bytes": 695654,
+    "sha256": "80a6ef1e14373362d1a13997d87580f6c7e572daa9e35426c8becf00ee2c2edc",
+    "pages": 20,
+    "characters": 21684,
+    "textFile": "80a6ef1e1437.txt",
+    "needsVisualReview": false
+  }
+]

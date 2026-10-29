@@ -1,0 +1,494 @@
+[Page 1]
+Accenture: 
+Accenture exam is conducted by Aspiring minds(AMCAT). 
+Exam pattern: 
+ 
+Verbal -  25Q    30minutes. 
+Quant -  25Q     30minutes. 
+Logical -   24Q   30minutes. 
+There is no sectional cut-off and no negative markings. 
+Quantitative Aptitude section consists of maths questions from the topics like 
+probability, permutation and combination algebra, time & work, time, speed & 
+distance, trains, Averages, arithmetic, percentages, profit & loss, geometry, 
+numbers,  logarithms , SI and CI, mensuration, Geometry Mixtures and alligation, chain rule, 
+Divisibility, HCF and LCM,  Numbers, decimal fractions and power etc. This section is of 
+moderate level. 
+    Logical Ability section consists series, blood relation, puzzles, calendars, clock, dice, 
+direction sense,    Logical Word Sequence, Coding pattern and Number series pattern recognition, 
+Analogy and Classification, Data sufficiency, coded inequality, syllogism, etc. 
+     English section consists of basic questions from English language like synonyms, 
+antonyms, sentence completion and correction etc. 
+ 
+ 
+1. No. of zeroes in 100! 
+2. No. of zeroes in 120! 
+3. No. of zeroes in 100! 
+4. What is highest power of 7 in 200! 
+5. What is highest power of 6 in 200! 
+6. What is highest power of 15 in 200! 
+1. Which of the following statements is not correct? 
+A.  log10 10 = 1 
+B.  log (2 + 3) = log (2 x 3) 
+C.  log10 1 = 0 
+D.  log (1 + 2 + 3) = log 1 + log 2 + log 3 
+2. If log10 5 + log10 (5x + 1) = log10 (x + 5) + 1, then x is equal to: 
+A.  1 
+B.  3 
+C.  5 
+
+[Page 2]
+D.  10 
+3.  The value of   1 /log360 +  1/log460  +  1 /log560 is: 
+A.  0 
+B.  1 
+C.  5 
+D.  60  
+4. If log(k2 - 4k + 5) = 0, then the value of k is 
+5. If log4 log2 log3 (2x - 1) =  1 
+2 
+ 
+, find x 
+6 
+If logab =  1 
+2 
+ 
+, logbc = 1 
+3 
+ 
+ and logca = k 
+5 
+ 
+, the value of k is 
+7. What is the value of log(ab2) - log(ac) + log(abc4) - 3log(bc)? 
+8. The value of log327   
+9.  
+The value of  1 
+logxyxyz 
+ 
++ 1 
+logyzxyz 
+ 
++ 1 
+logzxxyz 
+ 
+ is 
+10. The value of log23 x log 32 x log34 x log43 is ? 
+11. The equation logax + loga (1+x)=0 can be written as ? 
+ 
+A. x2 + x - 1 = 0  
+B. x2 + x + 1 = 0  
+C. x2 + x - e = 0  
+D. x2 + x + e = 0  
+ 
+ 
+12. If log5 (x2 + x) - log 5 (x + 1) = 2, then the value of x is 
+A. 30 B. 25 
+C. 10 D. 5 
+ 
+13. If log9 x + log 3 x = 9, then the value of x is 
+A. 27 B. 81 
+C. 243 D. 729 
+  
+ 
+ 
+
+[Page 3]
+7. A cricketer played 80 innings and scored an average of 99 runs. His score in the last 
+inning was zero run. To have an average of 100 at the end, his score in the last innings 
+should have been 
+ 
+    60 runs 
+    80 runs 
+    10 runs 
+    1 run 
+ 
+8. A man spends an average of Rs. 1,694.70 per month for the first 7 months and 
+Rs.1,810.50 per month for the next 5 months. His monthly salary if he saves Rs. 3,084.60 
+during the whole year is 
+ 
+    Rs. 1000 
+    Rs. 2000 
+    Rs. 2400 
+    Rs. 3000 
+ 
+9. A and B undertake to do a piece of work for Rs. 2,200. A alone can do it in 8 days, while 
+B can do it in 6 days. With the help of C, they complete it in 3 days. Find C's share. 
+ 
+    Rs. 150 
+    Rs. 275 
+    Rs. 245 
+    Rs. 175 
+ 
+10. By selling an article at 80% of its marked price, a trader makes a loss of 10%. What will 
+be the profit percentage if he sells it at 95% of its marked price? 
+ 
+    5.9 
+    12.5 
+    6.9 
+    5 
+ 
+
+[Page 4]
+11. By selling an umbrella for Rs. 30, a shopkeeper gains 20%. During a clearance sale, the 
+shopkeeper allows a discount of 10% of the marked price. His gain during the sale 
+season is 
+ 
+    8 
+    9 
+    7 
+    7.5 
+ 
+12. The Arithmetic mean of 5, 10, 12, 18, 20 is: 
+ 
+    5 
+    65 
+    13 
+    12 
+ 
+13. The number of sequence in which 7 players can throw a ball so that 
+the youngest player may not be the last one. 
+6(6!) 
+14.  
+ 
+15. From each of two given numbers, half the smaller number is subtracted. After such 
+subtraction, the larger number is 4 times as large as the smaller number. What is the 
+ratio of the numbers? 
+ 
+    4 : 1 
+    4 : 5 
+    5 : 2 
+    1 : 4 
+ 
+16. What is the largest number which divides 150, 180 and 144 leaving the same remainder 
+in each case? 
+ 
+    12 
+
+[Page 5]
+    3 
+    6 
+    8 
+ 
+17. In an examination, 52% of the candidates failed in English and 43% failed in 
+Mathematics. If 17% failed in both the subjects, then the percentage of candidates, who 
+passed in both the subjects, was 
+ 
+    25 
+    22 
+    23 
+    21 
+18. Inspite scoring very high in the exam, Arun failed to secure admission in the 
+college of his choice.  
+• since  
+• despite 
+• but 
+• even 
+• No correction required.  
+ 
+DIRECTIONS for the question 2-3:  Read the sentence to find out whether there is any 
+grammatical error or idiomatic error in it. The error, if any, will be in one part of the 
+sentence. The number of that part is the answer. if there is 'No Error" the answer is (5). 
+(Ignore errors of punctuation if any.)  
+•  A good employee (1)/ is one which (2)/ is always willing (3)/ to go the extra mile. (4)/ No 
+Error(5) 
+• 1 
+• 2 
+• 3 
+• 4 
+• 5 
+ 
+•  Through her efforts (1)/ she manage to (2)/ open several institutions to (3)/ help the 
+downtrodden. (4)/ No Error (5)  
+• 1 
+• 2 
+• 3 
+• 4 
+• 5 
+
+[Page 6]
+ 
+DIRECTIONS for the question 4-5:  Fill in the blank with the right options provided.  
+•  I______ a friend named Raj who ______ a horse ranch in the city.  
+• has, buys  
+• need, holds  
+• possess, runs  
+• have, owns  
+• got, sells 
+•  As night _________in the heights of the mountains, Ramesh could not ________ anything.  
+• fell, see 
+• darkened, view 
+• rose, admire  
+• dive, perceive 
+• became, get 
+ 
+DIRECTIONS for the question 6-10:  Passage  
+Inspired by the 'Vision-2020', we are conscious that we are a continent sized economy. When 
+we begin to hum, the world will hear our song. Rightly, the policy makers have also worked 
+out what they call a "strategic vision" for India. This includes global acceptance of India as a 
+nuclear weapons power and getting a permanent seat in the UN Security Council. We need to 
+project ourselves in the region. A global role has to be built on a regional foundation. No 
+doubt, the road ahead is arduous. Endowed with massive man-power, abundant natural 
+resources, a rich and riveting heritage, our prowess is not confined to any one field. A new 
+study has ranked India second in the world, next only to the US, in terms of distribution of 
+certified professionals in nine major categories, including computer software, finance and 
+health care. 
+•  What is the vision of India?  
+• Global role  
+• Global acceptance as a N-power. 
+• Permanent place in the UN Security Council. 
+• All these 
+ 
+•  What has been the restraining factor for India?  
+• Our neighbours  
+• Politicians 
+• Right way of projection in the region. 
+• Distribution of programmes 
+ 
+•  What is the objective of Indian policy makers?  
+
+[Page 7]
+• Acceptance of India as a Nuclear Weapons power. 
+• Get a permanent place in the UN Security Council. 
+• To build India as an economic power. 
+• All these 
+ 
+•  What aspects enable us to play a strategic global role?  
+• Large economy 
+• Rich heritage 
+• Professional manpower 
+• All these 
+•  What is the difficulty in front of our policy makers?  
+• Size of our economy 
+• Global Acceptance 
+• UN Security Council 
+• None of these 
+DIRECTIONS for the question 9-10:  Given an input line ; the machine arranges the words and 
+numbers in steps in a systematic manner as illustrated afterwards : Study the pattern and answer 
+the question that follows. 
+When a word and number arrangement machine is given an input line of words and numbers, it 
+arranges them following a particular rule. The following is an illustration of input and 
+rearrangement: (All the numbers are two digit numbers) 
+Input : 40 made butter 23 37 cookies salt extra 52 86 92 fell now 19 
+Step I : butter 19 40 made 23 37 cookies salt extra 52 86 92 fell now 
+Step II : cookies 23 butter19 40 made 37 salt extra 52 86 92 fell now 
+Step III : extra 37 cookies 23 butter 19 40 made salt 52 86 92 fell now 
+Step IV : fell 40 extra 37 cookies 23 butter 19 made salt 52 86 92 now 
+Step V : made 52 fell 40 extra 37 cookies 23 butter 19 salt 86 92 now 
+Step VI : now 86 made 52 fell 40 extra 37 cookies 23 butter 19 salt 92 
+Step VII : salt 92 now 86 made 52 fell 40 extra 37 cookies 23 butter 19 
+Step VII is the last step of the above arrangement as the intended arrangement is obtained. 
+As per the rules followed in the given steps, find out the appropriate steps for the given input. 
+Input : 32 proud girl beautiful 48 55 97 rich family 61 72 17 nice life 
+How many steps will be required to complete the given input? 
+ 
+    five 
+    six 
+    seven 
+
+[Page 8]
+    eight 
+ 
+ 
+Which of the following is the third element from the left end of step VI? 
+ 
+    beautiful 
+    Life 
+    61 
+    Nice 
+Six persons P, Q, R, S, T and U are sitting around a circular table facing towards the centre of 
+the table in a restaurant. They have ordered for different items i.e. samosha, cutlet, French 
+fries, omelette, sandwich and milk-cake. They are wearing T-shirts of different colours, i.e. 
+white, black, green, red, yellow and blue but not necessarily in the same order. 
+• The person who have ordered for samosha, French fries and Sandwich are neither in 
+white nor in black T- shirt. 
+• The person who are in green and yellow T-shirts have neither ordered for samosha nor 
+for French fries 
+• P is neither in white T-shirt nor on the immediate left of the person who has ordered 
+for omelette. 
+• The only person who is seated between T and U eats cutlet. The person who is on the 
+left side of the person in white T-shirt does not eat Milk-cake. 
+• S has ordered for omelette and the colour of his T-shirt is green. He is facing the 
+person who has ordered for Cutlet. 
+• One who has ordered for samosha is seated opposite to the person wearing blue T-
+shirt, while the person whose T-shirt is of green colour is on the left of the person who 
+has ordered for sandwich. 
+• One who has ordered for milk-cake is on the immediate right of the person in white T-
+shirt but on the immediate left of the person who has ordered for French fries 
+• R has not ordered for french-fries while U has not ordered for samosha 
+Explanation 
+ 
+
+
+[Page 9]
+1. Who among the following is in white T-shirt? 
+a) P 
+b) T 
+c) U 
+d) R 
+e) None of these 
+Answer 
+Answer – d) R 
+2. The only person between T and S is wearing T –shirt of which colour? 
+a) red 
+b) black 
+c) yellow 
+d) green 
+e) None of these 
+Answer  
+Answer – c) yellow 
+3. Who among the following has ordered for sandwich? 
+a) R 
+b) S 
+c) P 
+d) T 
+e) None of these 
+Answer  
+Answer – c) P 
+4. Which of the following is correctly matched? 
+a) R-WHITE-MILKCAKE 
+b) U-BLACK-SAMOSHA 
+c) T-RED-SAMOSHA 
+d) P-WHITE-OMELETE 
+e) None of these 
+Answer  
+Answer – c) T-RED-SAMOSHA 
+5. The colour of the T-shirt of the person, who has ordered for milk-cake, is- 
+a) green 
+b) yellow 
+c) blue 
+d) red 
+e) None of these 
+Answer  
+
+[Page 10]
+Answer – e) None of these  
+Direction(6-10): Study the following information carefully to answer the given questions 
+There are six boys P, Q, R, S, T and U. They want to go out with six girls A, B, C, D, E and 
+F, not necessarily in the same order. The pairs went to different cities Delhi, Mumbai, 
+Kolkata, Chennai and two of them went to Jaipur. They like different bikes viz KTM, Bullet, 
+Pulsar and Apache. But KTM and Bullet are preferred by two pairs. Further information is as 
+follows: 
+• P and S visit Jaipur but do not like either KTM or Apache 
+• U does not go out with E. Both of them do not like Pulsar. 
+• D and C wants to go to Delhi and Kolkata respectively. The persons visiting Mumbai 
+like the same bike as Q does. 
+• R goes out with F to Mumbai but does not like either Bullet or Apache. 
+• Q goes to Delhi and likes KTM. 
+• T does not go out either with A or B; he does not go to Kolkata; he likes neither 
+Pulsar nor Bullet. 
+Answer & Explanation 
+  
+6. Which bike does C like? 
+a) KTM 
+b) Bullet 
+c) Apache 
+d) Pulsar 
+e) None of these 
+Answer  
+Answer – b) Bullet 
+7. If P goes out with A, who among the following likes Pulsar ? 
+a) Q 
+b) R 
+c) T 
+d) P 
+e) can’t be determine 
+Answer  
+Answer – e) can’t be determine 
+8. Who went to Chennai? 
+a) RF 
+b) UC 
+
+
+[Page 11]
+c) QD 
+d) TE 
+e) None of these 
+Answer  
+Answer – d) TE 
+9. Which bike does C like? 
+a) Apache 
+b) Pulsar 
+c) Bullet 
+d) KTM 
+e) None of these 
+Answer  
+Answer – c) Bullet 
+10. Who among the following visits Kolkata? 
+a) C 
+b) Q 
+c) P 
+d) U 
+e) Both a and d 
+Ans e 
+Eight friends P, Q, R, S, T, V, W and Z, out of whom one is a Pilot, Professor, 
+Businessman, Doctor, Lawyer, Banker, Cricketer or an Architect (but not 
+necessarily in the same order), are sitting among a circular table, facing the 
+centre.  
+• S who is a banker sits third to right of Z  
+• The professor and the architect are immediate neighbors of each other, neither 
+the professor the architect is an immediate neighbor of either Z or S.  
+• Cricketer and the pilot are immediate neighbors of each other. Neither Z nor 
+W is a pilot.  
+• The one who is a professor sits second to the right of T who is a lawyer. V 
+who is a cricketer is not an immediate neighbor of the banker.  
+• Only R sits between the professor and the doctor. P sits third to the right of the 
+pilot  
+Questions:  
+1. Which of the following pairs represents the immediate neighbours of the 
+doctor ?  
+
+[Page 12]
+1) Professor-businessman  
+2) Pilot - professor  
+3) Cricketer - businessman  
+4) Lawyer - architect  
+5) None of these  
+2. What is the position of the businessman with respect to the pilot?  
+1) Third to the left  
+2) Second to the left  
+3) Immediately to the right  
+4) Fourth to the right  
+5) Second to the right  
+3. Who sits third to the right of the professor ?  
+1) The banker  
+2) Q  
+3) The cricketer  
+4) The lawyer  
+5) None of these  
+4. Which of the following is true regarding R ?  
+1) He is a doctor  
+2) He is an immediate neighbour of the pilot  
+3) R sits between Q and T  
+4) He is an immediate neighbour of the professor  
+5) None is true  
+5. How many people sit between the ‘banker’ and ‘W’ when counted in 
+anticlockwise direction from the banker? 
+1) None  
+2) One  
+3) Two  
+4) Three  
+5) Four  
+6. Who amongst the following is a pilot ?  
+1) P  
+2) Q  
+3) R  
+4) Z  
+5) None of these  
+7. What is the profession of Z ?  
+1) Businessman  
+2) Architect  
+3) Professor  
+4) Doctor  
+5) None of these  
+8. Who amongst the following sits exactly between T and Q ?  
+1) Cricketer  
+
+[Page 13]
+2) Architect  
+3) Professor  
+4) Doctor  
+5) Banker 
+ 
+ 
+ 
+ 

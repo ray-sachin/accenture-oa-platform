@@ -1,4 +1,6 @@
-# Product Requirements Document (PRD)
+# Historical product requirements
+
+> **Superseded planning material.** The current product is documented in README.md and ROADMAP_AND_PHASES.md. The implemented price is ₹499, with 10-, 20- and 30-day tracks. The original stipend, PPO, exact-pattern and scoring claims below were not established by an attached current campus notice; see docs/RESEARCH_AUDIT.md. This document is retained as source history, not as a live feature or outcome promise.
 ## Accenture Advanced Technology Engineer (ATE) Internship Assessment Simulator
 
 **Document Version:** 2.0.0  

@@ -1,0 +1,3165 @@
+[
+  {
+    "id": "q1",
+    "number": 1,
+    "category": "web",
+    "day": "Day 1",
+    "title": "iPod Interactive Interface",
+    "timeLimit": 20,
+    "difficulty": "Medium",
+    "scenario": "You are developing an interactive iPod media player interface for a music streaming application. The project is partially complete, and you must implement the remaining structure, styling, and action click logic.",
+    "objectives": [
+      "HTML: In the control buttons area (#controls), add a 'Next' button with id='btn-next' and class='control-btn'. The text inside must be 'Next'.",
+      "CSS: In style.css, update the iPod body (.ipod-body) background color to 'pink' (or #ff69b4).",
+      "JavaScript: Ensure that clicking each button displays its corresponding action text on the screen (#display-text): Previous -> 'Previous Track', Play -> 'Playing Track', Pause -> 'Paused', Next -> 'Next Track'."
+    ],
+    "constraints": [
+      "Do not modify or remove any existing id or class attributes as they are used by automated evaluation scripts.",
+      "Ensure the action text matches exactly (case-sensitive and proper spacing).",
+      "Preserve existing styles while applying the requested color change."
+    ],
+    "starterCode": {
+      "html": "<div class=\"assessment-container\">\n  <div class=\"ipod-body\">\n    <div class=\"ipod-screen\">\n      <div class=\"status-bar\">\n        <span>Accenture Music</span>\n        <span>100%</span>\n      </div>\n      <div class=\"screen-content\">\n        <div class=\"album-art\">&#9835;</div>\n        <div id=\"display-text\">Ready</div>\n      </div>\n    </div>\n    \n    <div id=\"controls\" class=\"controls-area\">\n      <button id=\"btn-prev\" class=\"control-btn\">Previous</button>\n      <button id=\"btn-play\" class=\"control-btn\">Play</button>\n      <button id=\"btn-pause\" class=\"control-btn\">Pause</button>\n      \n      <!-- ======================================================== -->\n      <!-- TODO (Objective 1): Add the missing 'Next' button below   -->\n      <!-- Requirements:                                            -->\n      <!--   - id: 'btn-next'                                       -->\n      <!--   - class: 'control-btn'                                 -->\n      <!--   - text: 'Next'                                         -->\n      <!-- ======================================================== -->\n\n    </div>\n  </div>\n</div>",
+      "css": "body {\n  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;\n  background: #f0f2f5;\n  margin: 0;\n  padding: 20px;\n  display: flex;\n  justify-content: center;\n}\n\n/* ============================================================= */\n/* iPod Device Body                                              */\n/* TODO (Objective 2): Update the iPod's color to pink.          */\n/* Replace the background color below with 'pink' or '#ff69b4'.  */\n/* ============================================================= */\n.ipod-body {\n  width: 280px;\n  height: 460px;\n  background-color: #d1d5db; /* Change this to pink */\n  border-radius: 35px;\n  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);\n  padding: 24px;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: space-between;\n  box-sizing: border-box;\n}\n\n.ipod-screen {\n  width: 100%;\n  height: 180px;\n  background-color: #0f172a;\n  border-radius: 12px;\n  padding: 12px;\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  box-sizing: border-box;\n}\n\n.status-bar {\n  display: flex;\n  justify-content: space-between;\n  font-size: 11px;\n  color: #94a3b8;\n}\n\n.screen-content {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  flex-grow: 1;\n}\n\n.album-art {\n  font-size: 38px;\n  color: #38bdf8;\n  margin-bottom: 6px;\n}\n\n#display-text {\n  font-size: 15px;\n  font-weight: bold;\n  color: #f8fafc;\n  background: #1e293b;\n  padding: 6px 14px;\n  border-radius: 6px;\n  text-align: center;\n  min-width: 130px;\n}\n\n.controls-area {\n  display: grid;\n  grid-template-columns: repeat(2, 1fr);\n  gap: 10px;\n  width: 100%;\n}\n\n.control-btn {\n  background: #ffffff;\n  color: #1e293b;\n  border: 2px solid #cbd5e1;\n  border-radius: 10px;\n  padding: 12px 8px;\n  font-size: 13px;\n  font-weight: 600;\n  cursor: pointer;\n  transition: all 0.15s ease;\n}\n\n.control-btn:hover {\n  background: #f1f5f9;\n}",
+      "js": "// 1. Select DOM elements\nconst displayText = document.getElementById('display-text');\nconst btnPrev = document.getElementById('btn-prev');\nconst btnPlay = document.getElementById('btn-play');\nconst btnPause = document.getElementById('btn-pause');\n\n// TODO: Get reference to the new Next button: document.getElementById('btn-next');\nconst btnNext = document.getElementById('btn-next');\n\n// =======================================================================\n// TODO (Objective 3): Add event listeners to update displayText.textContent\n//   - btnPrev  -> 'Previous Track'\n//   - btnPlay  -> 'Playing Track'\n//   - btnPause -> 'Paused'\n//   - btnNext  -> 'Next Track'\n// =======================================================================\n\nif (btnPrev) {\n  btnPrev.addEventListener('click', function() {\n    displayText.textContent = \"Previous Track\";\n  });\n}\n\nif (btnPlay) {\n  btnPlay.addEventListener('click', function() {\n    // Write code for Play button below:\n    \n  });\n}\n\nif (btnPause) {\n  btnPause.addEventListener('click', function() {\n    // Write code for Pause button below:\n    \n  });\n}\n\n// Write code for btnNext click below:"
+    },
+    "solution": {
+      "explanation": "### Explanation\n1. **HTML:** Add `<button id=\"btn-next\" class=\"control-btn\">Next</button>` inside `#controls`.\n2. **CSS:** In `.ipod-body`, change `background-color` to `pink` or `#ff69b4`.\n3. **JS:** Wire up click event listeners using `document.getElementById` and set `displayText.textContent` for Play, Pause, and Next.",
+      "html": "<div class=\"assessment-container\">\n  <div class=\"ipod-body\">\n    <div class=\"ipod-screen\">\n      <div class=\"status-bar\">\n        <span>Accenture Music</span>\n        <span>100%</span>\n      </div>\n      <div class=\"screen-content\">\n        <div class=\"album-art\">&#9835;</div>\n        <div id=\"display-text\">Ready</div>\n      </div>\n    </div>\n    <div id=\"controls\" class=\"controls-area\">\n      <button id=\"btn-prev\" class=\"control-btn\">Previous</button>\n      <button id=\"btn-play\" class=\"control-btn\">Play</button>\n      <button id=\"btn-pause\" class=\"control-btn\">Pause</button>\n      <button id=\"btn-next\" class=\"control-btn\">Next</button>\n    </div>\n  </div>\n</div>",
+      "css": "body {\n  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;\n  background: #f0f2f5;\n  margin: 0;\n  padding: 20px;\n  display: flex;\n  justify-content: center;\n}\n\n.ipod-body {\n  width: 280px;\n  height: 460px;\n  background-color: pink;\n  border-radius: 35px;\n  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);\n  padding: 24px;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: space-between;\n  box-sizing: border-box;\n}\n\n.ipod-screen {\n  width: 100%;\n  height: 180px;\n  background-color: #0f172a;\n  border-radius: 12px;\n  padding: 12px;\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  box-sizing: border-box;\n}\n\n.status-bar {\n  display: flex;\n  justify-content: space-between;\n  font-size: 11px;\n  color: #94a3b8;\n}\n\n.screen-content {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  flex-grow: 1;\n}\n\n.album-art {\n  font-size: 38px;\n  color: #38bdf8;\n  margin-bottom: 6px;\n}\n\n#display-text {\n  font-size: 15px;\n  font-weight: bold;\n  color: #f8fafc;\n  background: #1e293b;\n  padding: 6px 14px;\n  border-radius: 6px;\n  text-align: center;\n  min-width: 130px;\n}\n\n.controls-area {\n  display: grid;\n  grid-template-columns: repeat(2, 1fr);\n  gap: 10px;\n  width: 100%;\n}\n\n.control-btn {\n  background: #ffffff;\n  color: #1e293b;\n  border: 2px solid #cbd5e1;\n  border-radius: 10px;\n  padding: 12px 8px;\n  font-size: 13px;\n  font-weight: 600;\n  cursor: pointer;\n  transition: all 0.15s ease;\n}\n\n.control-btn:hover {\n  background: #f1f5f9;\n}",
+      "js": "const displayText = document.getElementById('display-text');\nconst btnPrev = document.getElementById('btn-prev');\nconst btnPlay = document.getElementById('btn-play');\nconst btnPause = document.getElementById('btn-pause');\nconst btnNext = document.getElementById('btn-next');\n\nif (btnPrev) {\n  btnPrev.addEventListener('click', () => { displayText.textContent = \"Previous Track\"; });\n}\nif (btnPlay) {\n  btnPlay.addEventListener('click', () => { displayText.textContent = \"Playing Track\"; });\n}\nif (btnPause) {\n  btnPause.addEventListener('click', () => { displayText.textContent = \"Paused\"; });\n}\nif (btnNext) {\n  btnNext.addEventListener('click', () => { displayText.textContent = \"Next Track\"; });\n}"
+    },
+    "tests": [
+      {
+        "id": "t1_1",
+        "name": "HTML: Next Button Verification",
+        "description": "Checks if element with id='btn-next' and class='control-btn' exists with text 'Next'.",
+        "assert": "const btn = doc.getElementById('btn-next'); if(!btn) throw new Error(\"Missing element #btn-next.\"); if(!btn.classList.contains('control-btn')) throw new Error(\"#btn-next missing class 'control-btn'.\"); if(btn.textContent.trim().toLowerCase() !== 'next') throw new Error(\"Expected button text to be 'Next', got '\" + btn.textContent.trim() + \"'.\");"
+      },
+      {
+        "id": "t1_2",
+        "name": "CSS: iPod Body Pink Color",
+        "description": "Verifies that .ipod-body is styled with background color pink or #ff69b4.",
+        "assert": "const el = doc.querySelector('.ipod-body'); if(!el) throw new Error(\"Element .ipod-body missing.\"); const bg = win.getComputedStyle(el).backgroundColor; const isPink = bg.includes('255, 192, 203') || bg.includes('255, 105, 180') || bg.includes('255, 182, 193') || bg === 'pink'; if(!isPink) throw new Error(\"Expected background-color pink, got '\" + bg + \"'.\");"
+      },
+      {
+        "id": "t1_3",
+        "name": "JS: Existing Buttons (Play, Pause, Prev)",
+        "description": "Validates that clicking Play, Pause, and Prev updates #display-text.",
+        "assert": "const d = doc.getElementById('display-text'); const bPlay = doc.getElementById('btn-play'); const bPause = doc.getElementById('btn-pause'); const bPrev = doc.getElementById('btn-prev'); if(!d || !bPlay || !bPause || !bPrev) throw new Error(\"Required controls missing.\"); bPlay.click(); if(d.textContent.trim() !== 'Playing Track') throw new Error(\"Play clicked: expected 'Playing Track', got '\" + d.textContent.trim() + \"'.\"); bPause.click(); if(d.textContent.trim() !== 'Paused') throw new Error(\"Pause clicked: expected 'Paused', got '\" + d.textContent.trim() + \"'.\"); bPrev.click(); if(d.textContent.trim() !== 'Previous Track') throw new Error(\"Prev clicked: expected 'Previous Track', got '\" + d.textContent.trim() + \"'.\");"
+      },
+      {
+        "id": "t1_4",
+        "name": "JS: Next Button Action",
+        "description": "Verifies clicking #btn-next displays 'Next Track'.",
+        "assert": "const d = doc.getElementById('display-text'); const btn = doc.getElementById('btn-next'); if(!btn) throw new Error(\"#btn-next not found to test click.\"); d.textContent = 'reset'; btn.click(); if(d.textContent.trim() !== 'Next Track') throw new Error(\"Expected 'Next Track', got '\" + d.textContent.trim() + \"'.\");"
+      }
+    ],
+    "type": "web",
+    "topic": "DOM & events",
+    "minutes": 20,
+    "free": true,
+    "source": "Repository frontend practice bank",
+    "confidence": "Practice reconstruction",
+    "lesson": "Read the existing IDs before changing markup. Implement the required CSS, then connect events. Test the first, middle, and boundary states. Browser test feedback is practice feedback, not a tamper-proof grade."
+  },
+  {
+    "id": "q2",
+    "number": 2,
+    "category": "web",
+    "day": "Day 2",
+    "title": "Interactive Product Rating",
+    "timeLimit": 20,
+    "difficulty": "Medium",
+    "scenario": "Enhance an interactive product rating interface by enabling users to rate products with star icons. The basic structure is present, but three key functionalities must be implemented.",
+    "objectives": [
+      "HTML: Add five visible ★ symbols, each in an element with class 'star', inside #rating-stars. External icon fonts are unavailable in the isolated preview.",
+      "CSS: Style the .filled class with a color of #ffd700 (gold).",
+      "JavaScript: Implement the setRating(rating) function so that clicking any star fills all stars up to that rating with .filled and updates the #rating-value text to 'Rating: X / 5'."
+    ],
+    "constraints": [
+      "Do not modify any existing class names or IDs.",
+      "Rating display must update immediately when stars are clicked.",
+      "Unselected stars must have the .filled class removed."
+    ],
+    "starterCode": {
+      "html": "<div class=\"rating-card\">\n  <h3>Noise-Cancelling Headphones</h3>\n  <p>Rate this product based on your experience:</p>\n  \n  <div class=\"rating-stars\" id=\"rating-stars\">\n    <!-- ========================================================================= -->\n    <!-- TODO (Objective 1): Add five star icons with class 'star' inside this div. -->\n    <!-- Use a local symbol: <span class=\"star\">★</span>           -->\n    <!-- ========================================================================= -->\n\n  </div>\n  \n  <div class=\"rating-display\">\n    <span id=\"rating-value\">Rating: 0 / 5</span>\n  </div>\n</div>",
+      "css": "body {\n  font-family: Arial, sans-serif;\n  background: #f8fafc;\n  padding: 30px;\n  display: flex;\n  justify-content: center;\n}\n\n.rating-card {\n  background: #fff;\n  border: 1px solid #e2e8f0;\n  border-radius: 12px;\n  padding: 24px;\n  text-align: center;\n  width: 320px;\n  box-shadow: 0 4px 12px rgba(0,0,0,0.05);\n}\n\n.rating-stars {\n  display: flex;\n  justify-content: center;\n  gap: 10px;\n  font-size: 30px;\n  margin: 16px 0;\n}\n\n.star {\n  color: #cbd5e1; /* Unfilled gray state */\n  cursor: pointer;\n  transition: transform 0.15s ease, color 0.2s ease;\n}\n\n.star:hover {\n  transform: scale(1.15);\n}\n\n/* ========================================================================= */\n/* TODO (Objective 2): Style the .filled class with a color of #ffd700      */\n/* Write your CSS rule below:                                                */\n/* ========================================================================= */\n\n\n#rating-value {\n  font-weight: 600;\n  color: #334155;\n}",
+      "js": "const ratingDisplay = document.getElementById('rating-value');\n\n/**\n * Updates visual star ratings and text display.\n * @param {number} rating - An integer between 1 and 5\n */\nfunction setRating(rating) {\n  const stars = document.querySelectorAll('#rating-stars .star');\n  \n  // =======================================================================\n  // TODO (Objective 3): Implement star fill logic\n  // 1. Loop through each star with stars.forEach((star, index) => { ... })\n  //    - If index < rating: add class 'filled'\n  //    - Otherwise: remove class 'filled'\n  // 2. Update ratingDisplay text to: `Rating: ${rating} / 5`\n  // =======================================================================\n\n}\n\nfunction initializeStars() {\n  const stars = document.querySelectorAll('#rating-stars .star');\n  stars.forEach((star, index) => {\n    star.addEventListener('click', () => setRating(index + 1));\n  });\n}\n\ndocument.addEventListener('DOMContentLoaded', initializeStars);\ninitializeStars();"
+    },
+    "solution": {
+      "explanation": "Add five visible ★ symbols in .star elements. Style .filled with #ffd700. Set or remove .filled for every star on each rating change, update the rating text, and attach a click handler to every star. No external fonts are required.",
+      "html": "<div class=\"rating-card\">\n  <h3>Noise-Cancelling Headphones</h3>\n  <p>Rate this product based on your experience:</p>\n  <div class=\"rating-stars\" id=\"rating-stars\">\n    <span class=\"star fa fa-star\">★</span>\n    <span class=\"star fa fa-star\">★</span>\n    <span class=\"star fa fa-star\">★</span>\n    <span class=\"star fa fa-star\">★</span>\n    <span class=\"star fa fa-star\">★</span>\n  </div>\n  <div class=\"rating-display\">\n    <span id=\"rating-value\">Rating: 0 / 5</span>\n  </div>\n</div>",
+      "css": "body {\n  font-family: Arial, sans-serif;\n  background: #f8fafc;\n  padding: 30px;\n  display: flex;\n  justify-content: center;\n}\n\n.rating-card {\n  background: #fff;\n  border: 1px solid #e2e8f0;\n  border-radius: 12px;\n  padding: 24px;\n  text-align: center;\n  width: 320px;\n  box-shadow: 0 4px 12px rgba(0,0,0,0.05);\n}\n\n.rating-stars {\n  display: flex;\n  justify-content: center;\n  gap: 10px;\n  font-size: 30px;\n  margin: 16px 0;\n}\n\n.star {\n  color: #cbd5e1;\n  cursor: pointer;\n  transition: transform 0.15s ease, color 0.2s ease;\n}\n\n.star:hover {\n  transform: scale(1.15);\n}\n\n.filled {\n  color: #ffd700;\n}\n\n#rating-value {\n  font-weight: 600;\n  color: #334155;\n}",
+      "js": "const ratingDisplay = document.getElementById('rating-value');\n\nfunction setRating(rating) {\n  const stars = document.querySelectorAll('#rating-stars .star');\n  stars.forEach((star, index) => {\n    if (index < rating) {\n      star.classList.add('filled');\n    } else {\n      star.classList.remove('filled');\n    }\n  });\n  if (ratingDisplay) {\n    ratingDisplay.textContent = `Rating: ${rating} / 5`;\n  }\n}\n\nfunction initializeStars() {\n  const stars = document.querySelectorAll('#rating-stars .star');\n  stars.forEach((star, index) => {\n    star.addEventListener('click', () => setRating(index + 1));\n  });\n}\ninitializeStars();"
+    },
+    "tests": [
+      {
+        "id": "t2_1",
+        "name": "HTML: Five Star Elements",
+        "description": "Verifies that exactly 5 elements with class 'star' exist inside #rating-stars.",
+        "assert": "const container = doc.getElementById('rating-stars'); if(!container) throw new Error('#rating-stars container missing.'); const stars = container.querySelectorAll('.star'); if(stars.length !== 5) throw new Error(\"Expected exactly 5 stars with class 'star', found \" + stars.length + \".\");"
+      },
+      {
+        "id": "t2_2",
+        "name": "CSS: .filled Class Gold Color (#ffd700)",
+        "description": "Checks if .filled has color #ffd700 (rgb(255, 215, 0)).",
+        "assert": "const dummy = doc.createElement('span'); dummy.className = 'star filled'; doc.body.appendChild(dummy); const color = win.getComputedStyle(dummy).color; doc.body.removeChild(dummy); const isGold = color === 'rgb(255, 215, 0)' || color.toLowerCase() === '#ffd700'; if(!isGold) throw new Error(\"Expected color #ffd700 (rgb(255, 215, 0)), got '\" + color + \"'.\");"
+      },
+      {
+        "id": "t2_3",
+        "name": "JS: setRating(3) Updates Classes & Text",
+        "description": "Calls setRating(3) and checks that first 3 stars are filled and text updates.",
+        "assert": "if(typeof win.setRating !== 'function') throw new Error('setRating() function not defined.'); win.setRating(3); const stars = doc.querySelectorAll('#rating-stars .star'); if(stars.length < 5) throw new Error('Add 5 stars first.'); if(!stars[0].classList.contains('filled') || !stars[1].classList.contains('filled') || !stars[2].classList.contains('filled')) throw new Error('First 3 stars must have class filled.'); if(stars[3].classList.contains('filled') || stars[4].classList.contains('filled')) throw new Error('4th and 5th stars must not have class filled.'); const d = doc.getElementById('rating-value'); if(!d || !d.textContent.includes('3')) throw new Error('Rating text must reflect 3.');"
+      },
+      {
+        "id": "t2_4",
+        "name": "JS: Interactive Click Handling",
+        "description": "Tests clicking 5th star then 1st star to verify active toggling.",
+        "assert": "const stars = doc.querySelectorAll('#rating-stars .star'); if(stars.length < 5) throw new Error('5 stars required.'); stars[4].click(); if(!stars[4].classList.contains('filled')) throw new Error('Clicking 5th star did not fill 5th star.'); stars[0].click(); if(stars[1].classList.contains('filled')) throw new Error('Clicking 1st star did not clear 2nd star.');"
+      }
+    ],
+    "type": "web",
+    "topic": "DOM & events",
+    "minutes": 20,
+    "free": false,
+    "source": "Repository frontend practice bank",
+    "confidence": "Practice reconstruction",
+    "lesson": "Read the existing IDs before changing markup. Implement the required CSS, then connect events. Test the first, middle, and boundary states. Browser test feedback is practice feedback, not a tamper-proof grade."
+  },
+  {
+    "id": "q3",
+    "number": 3,
+    "category": "web",
+    "day": "Day 3",
+    "title": "Product Search Filter",
+    "timeLimit": 20,
+    "difficulty": "Medium",
+    "scenario": "You are developing a search filter for an e-commerce website where users can filter a list of fruits or vegetables dynamically in real-time based on their search input.",
+    "objectives": [
+      "HTML: Inside <ul class=\"product\">, add 5 list items (<li>) with a data-name attribute containing their lowercase search tag (e.g., data-name=\"banana\"). Make sure at least one contains 'nana'.",
+      "CSS: Set the font size of the list items inside .product to 25px.",
+      "JavaScript: Set initial search value to 'nana', implement filterProducts() to toggle item.style.display between '' and 'none' based on str.includes(), run it on load, and listen to the 'input' event."
+    ],
+    "constraints": [
+      "Search matching must be case-insensitive.",
+      "Clearing the search box must restore visibility to all items.",
+      "Do not modify the input ID #search-input or list class .product."
+    ],
+    "starterCode": {
+      "html": "<div class=\"search-card\">\n  <label for=\"search-input\">Filter Products:</label>\n  <input type=\"text\" id=\"search-input\" placeholder=\"Search products...\" autocomplete=\"off\">\n  \n  <ul class=\"product\">\n    <!-- ========================================================================= -->\n    <!-- TODO (Objective 1): Add 5 list items with data-name attribute below.      -->\n    <!-- Example:                                                                  -->\n    <!--   <li data-name=\"banana\">Banana</li>                                      -->\n    <!-- Make sure at least one item contains 'nana' (e.g. Banana).                -->\n    <!-- ========================================================================= -->\n\n  </ul>\n</div>",
+      "css": "body {\n  font-family: Arial, sans-serif;\n  background: #f1f5f9;\n  padding: 30px;\n  display: flex;\n  justify-content: center;\n}\n\n.search-card {\n  background: #fff;\n  border: 1px solid #cbd5e1;\n  border-radius: 12px;\n  padding: 24px;\n  width: 380px;\n}\n\n#search-input {\n  width: 100%;\n  padding: 10px;\n  font-size: 16px;\n  border: 2px solid #94a3b8;\n  border-radius: 6px;\n  margin: 12px 0;\n  box-sizing: border-box;\n}\n\n.product {\n  list-style: none;\n  padding: 0;\n  margin: 0;\n}\n\n.product li {\n  padding: 8px 12px;\n  background: #f8fafc;\n  border: 1px solid #e2e8f0;\n  margin-bottom: 6px;\n  border-radius: 6px;\n  /* ========================================================================= */\n  /* TODO (Objective 2): Set the font size of the list items to 25px.          */\n  /* Write: font-size: 25px;                                                   */\n  /* ========================================================================= */\n\n}",
+      "js": "const searchInput = document.getElementById('search-input');\n\n// =========================================================================\n// TODO (Objective 3a): Set the initial search value input to 'nana'\n// Hint: searchInput.value = 'nana';\n// =========================================================================\n\n\nfunction filterProducts() {\n  const filterValue = searchInput.value.toLowerCase();\n  const items = document.querySelectorAll('.product li');\n  \n  // =======================================================================\n  // TODO (Objective 3b): Loop items and toggle visibility\n  // 1. Get each item's 'data-name' attribute in lowercase\n  // 2. If dataName.includes(filterValue):\n  //      item.style.display = \"\";\n  //    Else:\n  //      item.style.display = \"none\";\n  // =======================================================================\n\n}\n\n// =========================================================================\n// TODO (Objective 3c): Call filterProducts() once on load\n// TODO (Objective 3d): Attach 'input' event listener to searchInput\n// ========================================================================="
+    },
+    "solution": {
+      "explanation": "### Explanation\n1. **HTML:** Add 5 `<li>` tags with `data-name=\"banana\"`, `data-name=\"orange\"`, `data-name=\"pineapple\"`, etc.\n2. **CSS:** In `.product li`, add `font-size: 25px;`.\n3. **JS:** Set `searchInput.value = 'nana';`, filter in `filterProducts()` checking `item.getAttribute('data-name').toLowerCase().includes(filterValue)`, and attach `searchInput.addEventListener('input', filterProducts);`.",
+      "html": "<div class=\"search-card\">\n  <label for=\"search-input\">Filter Products:</label>\n  <input type=\"text\" id=\"search-input\" placeholder=\"Search products...\" autocomplete=\"off\">\n  <ul class=\"product\">\n    <li data-name=\"banana\">Banana</li>\n    <li data-name=\"orange\">Orange</li>\n    <li data-name=\"pineapple\">Pineapple</li>\n    <li data-name=\"pomegranate\">Pomegranate</li>\n    <li data-name=\"mango\">Mango</li>\n  </ul>\n</div>",
+      "css": "body {\n  font-family: Arial, sans-serif;\n  background: #f1f5f9;\n  padding: 30px;\n  display: flex;\n  justify-content: center;\n}\n\n.search-card {\n  background: #fff;\n  border: 1px solid #cbd5e1;\n  border-radius: 12px;\n  padding: 24px;\n  width: 380px;\n}\n\n#search-input {\n  width: 100%;\n  padding: 10px;\n  font-size: 16px;\n  border: 2px solid #94a3b8;\n  border-radius: 6px;\n  margin: 12px 0;\n  box-sizing: border-box;\n}\n\n.product {\n  list-style: none;\n  padding: 0;\n  margin: 0;\n}\n\n.product li {\n  padding: 8px 12px;\n  background: #f8fafc;\n  border: 1px solid #e2e8f0;\n  margin-bottom: 6px;\n  border-radius: 6px;\n  font-size: 25px;\n}",
+      "js": "const searchInput = document.getElementById('search-input');\nsearchInput.value = 'nana';\n\nfunction filterProducts() {\n  const filterValue = searchInput.value.toLowerCase();\n  const items = document.querySelectorAll('.product li');\n  items.forEach(item => {\n    const dataName = (item.getAttribute('data-name') || '').toLowerCase();\n    if (dataName.includes(filterValue)) {\n      item.style.display = '';\n    } else {\n      item.style.display = 'none';\n    }\n  });\n}\nfilterProducts();\nsearchInput.addEventListener('input', filterProducts);"
+    },
+    "tests": [
+      {
+        "id": "t3_1",
+        "name": "HTML: 5 List Items with data-name",
+        "description": "Checks for at least 5 list items with valid data-name attribute.",
+        "assert": "const items = doc.querySelectorAll('.product li'); if(items.length < 5) throw new Error(\"Expected at least 5 <li> elements, found \" + items.length + \".\"); const allHave = Array.from(items).every(li => li.hasAttribute('data-name') && li.getAttribute('data-name').trim().length > 0); if(!allHave) throw new Error(\"All <li> items must have a non-empty 'data-name' attribute.\");"
+      },
+      {
+        "id": "t3_2",
+        "name": "CSS: Font Size 25px",
+        "description": "Checks if .product li computed font-size is 25px.",
+        "assert": "const items = doc.querySelectorAll('.product li'); if(items.length === 0) throw new Error('Add <li> elements first.'); const fs = win.getComputedStyle(items[0]).fontSize; if(fs !== '25px') throw new Error(\"Expected font-size 25px, got '\" + fs + \"'.\");"
+      },
+      {
+        "id": "t3_3",
+        "name": "JS: Initial Value 'nana' & Initial Filter",
+        "description": "Verifies search input is initialized to 'nana' and matching elements are filtered on load.",
+        "assert": "const input = doc.getElementById('search-input'); const items = doc.querySelectorAll('.product li'); if(!input) throw new Error('#search-input missing.'); if(input.value.toLowerCase() !== 'nana') throw new Error(\"Expected searchInput.value to be 'nana', got '\" + input.value + \"'.\"); const nanaItems = Array.from(items).filter(li => li.getAttribute('data-name').toLowerCase().includes('nana')); const nonNana = Array.from(items).filter(li => !li.getAttribute('data-name').toLowerCase().includes('nana')); if(!nanaItems.every(li => li.style.display !== 'none')) throw new Error(\"Item with 'nana' must be visible initially.\"); if(!nonNana.every(li => li.style.display === 'none')) throw new Error(\"Non-matching items must be hidden initially with display: none.\");"
+      },
+      {
+        "id": "t3_4",
+        "name": "JS: Real-Time Typing Filter",
+        "description": "Simulates input events and verifies matching items show and non-matching hide.",
+        "assert": "const input = doc.getElementById('search-input'); const items = doc.querySelectorAll('.product li'); input.value = ''; input.dispatchEvent(new Event('input')); if(!Array.from(items).every(li => li.style.display !== 'none')) throw new Error(\"Empty input must show all items.\"); input.value = 'zzznothingmatches'; input.dispatchEvent(new Event('input')); if(!Array.from(items).every(li => li.style.display === 'none')) throw new Error(\"Unmatched search must hide all items.\"); input.value = 'nana'; input.dispatchEvent(new Event('input'));"
+      }
+    ],
+    "type": "web",
+    "topic": "DOM & events",
+    "minutes": 20,
+    "free": false,
+    "source": "Repository frontend practice bank",
+    "confidence": "Practice reconstruction",
+    "lesson": "Read the existing IDs before changing markup. Implement the required CSS, then connect events. Test the first, middle, and boundary states. Browser test feedback is practice feedback, not a tamper-proof grade."
+  },
+  {
+    "id": "q4",
+    "number": 4,
+    "category": "web",
+    "day": "Day 4",
+    "title": "Shopping Cart Application",
+    "timeLimit": 20,
+    "difficulty": "Medium",
+    "scenario": "You are developing an e-commerce shopping cart interface where users can view available items and add them to their shopping cart table, incrementing the quantity dynamically.",
+    "objectives": [
+      "HTML: Assign unique IDs to the Add to Cart buttons: 'add-to-cart-chips', 'add-to-cart-soda', 'add-to-cart-cookies'.",
+      "CSS: Give table, th, and td a solid border of 2px solid #00056B.",
+      "JavaScript: Implement addToCart(itemName) to find the row matching data-item=itemName, parse current quantity with parseInt(), and increment it by 1."
+    ],
+    "constraints": [
+      "Do not modify table structure or data-item values.",
+      "Border color must strictly match #00056B.",
+      "Each item quantity must increment independently without side effects."
+    ],
+    "starterCode": {
+      "html": "<div class=\"cart-app\">\n  <h3>Items Available</h3>\n  <table id=\"items-table\">\n    <thead>\n      <tr><th>Item</th><th>Price</th><th>Action</th></tr>\n    </thead>\n    <tbody>\n      <tr>\n        <td>Chips</td>\n        <td>$2.00</td>\n        <!-- ========================================================================= -->\n        <!-- TODO (Objective 1): Add unique ID 'add-to-cart-chips' to button below     -->\n        <!-- ========================================================================= -->\n        <td><button onclick=\"addToCart('Chips')\">Add to Cart</button></td>\n      </tr>\n      <tr>\n        <td>Soda</td>\n        <td>$1.50</td>\n        <!-- ========================================================================= -->\n        <!-- TODO (Objective 1): Add unique ID 'add-to-cart-soda' to button below      -->\n        <!-- ========================================================================= -->\n        <td><button onclick=\"addToCart('Soda')\">Add to Cart</button></td>\n      </tr>\n      <tr>\n        <td>Cookies</td>\n        <td>$3.00</td>\n        <!-- ========================================================================= -->\n        <!-- TODO (Objective 1): Add unique ID 'add-to-cart-cookies' to button below   -->\n        <!-- ========================================================================= -->\n        <td><button onclick=\"addToCart('Cookies')\">Add to Cart</button></td>\n      </tr>\n    </tbody>\n  </table>\n\n  <h3>Shopping Cart</h3>\n  <table id=\"cart-table\">\n    <thead>\n      <tr><th>Item</th><th>Quantity</th></tr>\n    </thead>\n    <tbody id=\"cart-body\">\n      <tr data-item=\"Chips\"><td>Chips</td><td class=\"cart-qty\">0</td></tr>\n      <tr data-item=\"Soda\"><td>Soda</td><td class=\"cart-qty\">0</td></tr>\n      <tr data-item=\"Cookies\"><td>Cookies</td><td class=\"cart-qty\">0</td></tr>\n    </tbody>\n  </table>\n</div>",
+      "css": "body {\n  font-family: Arial, sans-serif;\n  background: #f8f9fa;\n  padding: 20px;\n}\n\ntable {\n  width: 100%;\n  border-collapse: collapse;\n  margin-bottom: 24px;\n  background: #fff;\n}\n\n/* ========================================================================= */\n/* TODO (Objective 2): Give both tables, th, and td border: 2px solid #00056B */\n/* Add your CSS rule below:                                                  */\n/* ========================================================================= */\n\n\nth, td {\n  padding: 10px;\n  text-align: center;\n}\n\nth {\n  background: #e6e8fa;\n  color: #00056B;\n}\n\nbutton {\n  background: #00056B;\n  color: #fff;\n  border: none;\n  padding: 6px 12px;\n  border-radius: 4px;\n  cursor: pointer;\n}",
+      "js": "/**\n * Increments the quantity of the clicked item in the shopping cart.\n * @param {string} itemName - 'Chips' | 'Soda' | 'Cookies'\n */\nfunction addToCart(itemName) {\n  const cartRows = document.querySelectorAll('#cart-body tr');\n  \n  // =======================================================================\n  // TODO (Objective 3): Update shopping cart quantity\n  // 1. Loop through each row in cartRows\n  // 2. Check if row.getAttribute('data-item') === itemName\n  // 3. If matched, find .cart-qty cell\n  // 4. Parse current integer with parseInt(qtyCell.textContent, 10)\n  // 5. Update qtyCell.textContent to currentQty + 1\n  // =======================================================================\n\n}"
+    },
+    "solution": {
+      "explanation": "### Explanation\n1. **HTML:** Add `id=\"add-to-cart-chips\"`, `id=\"add-to-cart-soda\"`, `id=\"add-to-cart-cookies\"` to the buttons.\n2. **CSS:** Add `table, th, td { border: 2px solid #00056B; }`.\n3. **JS:** In `addToCart(itemName)`, loop through rows, find match, grab `.cart-qty`, parse `let qty = parseInt(cell.textContent, 10)`, and set `cell.textContent = qty + 1`.",
+      "html": "<div class=\"cart-app\">\n  <h3>Items Available</h3>\n  <table id=\"items-table\">\n    <thead>\n      <tr><th>Item</th><th>Price</th><th>Action</th></tr>\n    </thead>\n    <tbody>\n      <tr><td>Chips</td><td>$2.00</td><td><button id=\"add-to-cart-chips\" onclick=\"addToCart('Chips')\">Add to Cart</button></td></tr>\n      <tr><td>Soda</td><td>$1.50</td><td><button id=\"add-to-cart-soda\" onclick=\"addToCart('Soda')\">Add to Cart</button></td></tr>\n      <tr><td>Cookies</td><td>$3.00</td><td><button id=\"add-to-cart-cookies\" onclick=\"addToCart('Cookies')\">Add to Cart</button></td></tr>\n    </tbody>\n  </table>\n\n  <h3>Shopping Cart</h3>\n  <table id=\"cart-table\">\n    <thead>\n      <tr><th>Item</th><th>Quantity</th></tr>\n    </thead>\n    <tbody id=\"cart-body\">\n      <tr data-item=\"Chips\"><td>Chips</td><td class=\"cart-qty\">0</td></tr>\n      <tr data-item=\"Soda\"><td>Soda</td><td class=\"cart-qty\">0</td></tr>\n      <tr data-item=\"Cookies\"><td>Cookies</td><td class=\"cart-qty\">0</td></tr>\n    </tbody>\n  </table>\n</div>",
+      "css": "body {\n  font-family: Arial, sans-serif;\n  background: #f8f9fa;\n  padding: 20px;\n}\n\ntable {\n  width: 100%;\n  border-collapse: collapse;\n  margin-bottom: 24px;\n  background: #fff;\n}\n\ntable, th, td {\n  border: 2px solid #00056B;\n}\n\nth, td {\n  padding: 10px;\n  text-align: center;\n}\n\nth {\n  background: #e6e8fa;\n  color: #00056B;\n}\n\nbutton {\n  background: #00056B;\n  color: #fff;\n  border: none;\n  padding: 6px 12px;\n  border-radius: 4px;\n  cursor: pointer;\n}",
+      "js": "function addToCart(itemName) {\n  const cartRows = document.querySelectorAll('#cart-body tr');\n  cartRows.forEach(row => {\n    if (row.getAttribute('data-item') === itemName) {\n      const qtyCell = row.querySelector('.cart-qty');\n      const currentQty = parseInt(qtyCell.textContent, 10) || 0;\n      qtyCell.textContent = currentQty + 1;\n    }\n  });\n}"
+    },
+    "tests": [
+      {
+        "id": "t4_1",
+        "name": "HTML: Unique Button IDs",
+        "description": "Checks if add-to-cart-chips, add-to-cart-soda, and add-to-cart-cookies exist.",
+        "assert": "const b1 = doc.getElementById('add-to-cart-chips'); const b2 = doc.getElementById('add-to-cart-soda'); const b3 = doc.getElementById('add-to-cart-cookies'); if(!b1 || !b2 || !b3) throw new Error(\"All 3 button IDs must exist.\");"
+      },
+      {
+        "id": "t4_2",
+        "name": "CSS: Border 2px solid #00056B",
+        "description": "Validates border color on table, th, and td.",
+        "assert": "const td = doc.querySelector('td'); if(!td) throw new Error('td element missing.'); const col = win.getComputedStyle(td).borderColor || win.getComputedStyle(td).borderTopColor; const isNavy = col.includes('0, 5, 107') || col.toLowerCase() === '#00056b'; if(!isNavy) throw new Error(\"Expected border #00056B (rgb(0, 5, 107)), got '\" + col + \"'.\");"
+      },
+      {
+        "id": "t4_3",
+        "name": "JS: addToCart Single Item Increment",
+        "description": "Calls addToCart('Chips') and checks that quantity increments.",
+        "assert": "if(typeof win.addToCart !== 'function') throw new Error('addToCart function missing.'); const row = doc.querySelector('#cart-body tr[data-item=\"Chips\"]'); const cell = row.querySelector('.cart-qty'); const before = parseInt(cell.textContent, 10) || 0; win.addToCart('Chips'); const after = parseInt(cell.textContent, 10); if(after !== before + 1) throw new Error(\"Expected quantity to increment from \" + before + \" to \" + (before+1) + \", got \" + after + \".\");"
+      },
+      {
+        "id": "t4_4",
+        "name": "JS: Row Independence",
+        "description": "Verifies adding Soda does not alter Cookies quantity.",
+        "assert": "const sRow = doc.querySelector('#cart-body tr[data-item=\"Soda\"]'); const cRow = doc.querySelector('#cart-body tr[data-item=\"Cookies\"]'); const sCell = sRow.querySelector('.cart-qty'); const cCell = cRow.querySelector('.cart-qty'); const sBefore = parseInt(sCell.textContent, 10) || 0; const cBefore = parseInt(cCell.textContent, 10) || 0; win.addToCart('Soda'); if(parseInt(sCell.textContent, 10) !== sBefore + 1) throw new Error('Soda quantity failed to increment.'); if(parseInt(cCell.textContent, 10) !== cBefore) throw new Error('Soda click modified Cookies count.');"
+      }
+    ],
+    "type": "web",
+    "topic": "DOM & events",
+    "minutes": 20,
+    "free": false,
+    "source": "Repository frontend practice bank",
+    "confidence": "Practice reconstruction",
+    "lesson": "Read the existing IDs before changing markup. Implement the required CSS, then connect events. Test the first, middle, and boundary states. Browser test feedback is practice feedback, not a tamper-proof grade."
+  },
+  {
+    "id": "q5",
+    "number": 5,
+    "category": "web",
+    "day": "Day 5",
+    "title": "Interactive Chatbot Interface",
+    "timeLimit": 20,
+    "difficulty": "Medium",
+    "scenario": "You are tasked with developing a Chatbot for a customer portal website. The project is partially complete, and you must implement the remaining logic to fully activate its functionality.",
+    "objectives": [
+      "HTML: Convert the welcome message (#welcome-msg) into a bot-generated message by adding the 'bot-message' class to it.",
+      "CSS: Change the background color of user chat responses (.user-message) to #cfe2ff.",
+      "JavaScript: Implement sendMessage() to read input, append a user message bubble (.message.user-message), append a bot response bubble (.message.bot-message), clear the input, and scroll to the bottom."
+    ],
+    "constraints": [
+      "Do not modify the id or class attributes of existing elements.",
+      "The user bubble color must strictly be #cfe2ff.",
+      "Ensure the Chatbot responds with a bot message for every user input."
+    ],
+    "starterCode": {
+      "html": "<div class=\"chat-box\">\n  <div class=\"chat-header\">Assistant</div>\n  \n  <div class=\"chat-messages\" id=\"chat-messages\">\n    <!-- ========================================================================= -->\n    <!-- TODO (Objective 1): Add 'bot-message' class to the welcome message below.  -->\n    <!-- Currently: class=\"message\" -> change to: class=\"message bot-message\"       -->\n    <!-- ========================================================================= -->\n    <div id=\"welcome-msg\" class=\"message\">Hello! How can I help you today?</div>\n  </div>\n  \n  <div class=\"chat-input-area\">\n    <input type=\"text\" id=\"user-input\" placeholder=\"Type a message...\" autocomplete=\"off\">\n    <button id=\"btn-send\" onclick=\"sendMessage()\">Send</button>\n  </div>\n</div>",
+      "css": "body {\n  font-family: Arial, sans-serif;\n  background: #f1f5f9;\n  padding: 20px;\n  display: flex;\n  justify-content: center;\n}\n\n.chat-box {\n  width: 360px;\n  height: 480px;\n  background: #fff;\n  border-radius: 12px;\n  box-shadow: 0 4px 16px rgba(0,0,0,0.1);\n  display: flex;\n  flex-direction: column;\n  overflow: hidden;\n}\n\n.chat-header {\n  background: #0f172a;\n  color: #fff;\n  padding: 14px;\n  font-weight: bold;\n}\n\n.chat-messages {\n  flex-grow: 1;\n  padding: 14px;\n  overflow-y: auto;\n  display: flex;\n  flex-direction: column;\n  gap: 10px;\n  background: #f8fafc;\n}\n\n.message {\n  padding: 8px 12px;\n  border-radius: 12px;\n  max-width: 80%;\n  font-size: 14px;\n}\n\n.bot-message {\n  align-self: flex-start;\n  background: #e2e8f0;\n  color: #1e293b;\n}\n\n/* ========================================================================= */\n/* TODO (Objective 2): Change background-color of .user-message to #cfe2ff   */\n/* ========================================================================= */\n.user-message {\n  align-self: flex-end;\n  background: #e5e7eb; /* Change this to #cfe2ff */\n  color: #082f49;\n}\n\n.chat-input-area {\n  display: flex;\n  padding: 10px;\n  border-top: 1px solid #e2e8f0;\n  gap: 8px;\n}\n\n#user-input {\n  flex-grow: 1;\n  padding: 8px 12px;\n  border: 1px solid #cbd5e1;\n  border-radius: 6px;\n}\n\n#btn-send {\n  background: #2563eb;\n  color: #fff;\n  border: none;\n  padding: 8px 14px;\n  border-radius: 6px;\n  cursor: pointer;\n}",
+      "js": "const userInput = document.getElementById('user-input');\nconst chatMessages = document.getElementById('chat-messages');\n\nfunction sendMessage() {\n  const text = userInput.value.trim();\n  if (text === '') return;\n\n  // =======================================================================\n  // TODO (Objective 3): Handle sending message & bot reply\n  // 1. Create user div (document.createElement('div'))\n  //    - className = 'message user-message'\n  //    - textContent = text\n  //    - chatMessages.appendChild(userDiv)\n  //\n  // 2. Create bot div (document.createElement('div'))\n  //    - className = 'message bot-message'\n  //    - textContent = 'Thanks for your message! How can I help?'\n  //    - chatMessages.appendChild(botDiv)\n  //\n  // 3. Clear input: userInput.value = \"\"\n  // 4. Auto scroll: chatMessages.scrollTop = chatMessages.scrollHeight\n  // =======================================================================\n\n}"
+    },
+    "solution": {
+      "explanation": "### Explanation\n1. **HTML:** Change `<div id=\"welcome-msg\" class=\"message\">` to `<div id=\"welcome-msg\" class=\"message bot-message\">`.\n2. **CSS:** In `.user-message`, set `background-color: #cfe2ff;`.\n3. **JS:** In `sendMessage()`, create user div with `createElement('div')`, set class to `message user-message`, append. Then create bot div with class `message bot-message`, append. Clear input with `userInput.value = ''` and scroll with `chatMessages.scrollTop = chatMessages.scrollHeight`.",
+      "html": "<div class=\"chat-box\">\n  <div class=\"chat-header\">Assistant</div>\n  <div class=\"chat-messages\" id=\"chat-messages\">\n    <div id=\"welcome-msg\" class=\"message bot-message\">Hello! How can I help you today?</div>\n  </div>\n  <div class=\"chat-input-area\">\n    <input type=\"text\" id=\"user-input\" placeholder=\"Type a message...\" autocomplete=\"off\">\n    <button id=\"btn-send\" onclick=\"sendMessage()\">Send</button>\n  </div>\n</div>",
+      "css": "body {\n  font-family: Arial, sans-serif;\n  background: #f1f5f9;\n  padding: 20px;\n  display: flex;\n  justify-content: center;\n}\n\n.chat-box {\n  width: 360px;\n  height: 480px;\n  background: #fff;\n  border-radius: 12px;\n  box-shadow: 0 4px 16px rgba(0,0,0,0.1);\n  display: flex;\n  flex-direction: column;\n  overflow: hidden;\n}\n\n.chat-header {\n  background: #0f172a;\n  color: #fff;\n  padding: 14px;\n  font-weight: bold;\n}\n\n.chat-messages {\n  flex-grow: 1;\n  padding: 14px;\n  overflow-y: auto;\n  display: flex;\n  flex-direction: column;\n  gap: 10px;\n  background: #f8fafc;\n}\n\n.message {\n  padding: 8px 12px;\n  border-radius: 12px;\n  max-width: 80%;\n  font-size: 14px;\n}\n\n.bot-message {\n  align-self: flex-start;\n  background: #e2e8f0;\n  color: #1e293b;\n}\n\n.user-message {\n  align-self: flex-end;\n  background: #cfe2ff;\n  color: #082f49;\n}\n\n.chat-input-area {\n  display: flex;\n  padding: 10px;\n  border-top: 1px solid #e2e8f0;\n  gap: 8px;\n}\n\n#user-input {\n  flex-grow: 1;\n  padding: 8px 12px;\n  border: 1px solid #cbd5e1;\n  border-radius: 6px;\n}\n\n#btn-send {\n  background: #2563eb;\n  color: #fff;\n  border: none;\n  padding: 8px 14px;\n  border-radius: 6px;\n  cursor: pointer;\n}",
+      "js": "const userInput = document.getElementById('user-input');\nconst chatMessages = document.getElementById('chat-messages');\n\nfunction sendMessage() {\n  const text = userInput.value.trim();\n  if (text === '') return;\n\n  const uDiv = document.createElement('div');\n  uDiv.className = 'message user-message';\n  uDiv.textContent = text;\n  chatMessages.appendChild(uDiv);\n\n  const bDiv = document.createElement('div');\n  bDiv.className = 'message bot-message';\n  bDiv.textContent = 'Thank you for your message! How can I assist you further?';\n  chatMessages.appendChild(bDiv);\n\n  userInput.value = '';\n  chatMessages.scrollTop = chatMessages.scrollHeight;\n}"
+    },
+    "tests": [
+      {
+        "id": "t5_1",
+        "name": "HTML: Welcome Message Bot Class",
+        "description": "Verifies that #welcome-msg contains class 'bot-message'.",
+        "assert": "const msg = doc.getElementById('welcome-msg'); if(!msg) throw new Error('#welcome-msg element missing.'); if(!msg.classList.contains('bot-message')) throw new Error(\"#welcome-msg is missing class 'bot-message'.\");"
+      },
+      {
+        "id": "t5_2",
+        "name": "CSS: User Message Background #cfe2ff",
+        "description": "Checks if .user-message has background-color #cfe2ff (rgb(207, 226, 255)).",
+        "assert": "const dummy = doc.createElement('div'); dummy.className = 'message user-message'; doc.body.appendChild(dummy); const bg = win.getComputedStyle(dummy).backgroundColor; doc.body.removeChild(dummy); const isLightBlue = bg.includes('207, 226, 255') || bg.toLowerCase() === '#cfe2ff'; if(!isLightBlue) throw new Error(\"Expected background #cfe2ff (rgb(207, 226, 255)), got '\" + bg + \"'.\");"
+      },
+      {
+        "id": "t5_3",
+        "name": "JS: User Message Appended & Cleared",
+        "description": "Sends a message, checks that .user-message is created and input is cleared.",
+        "assert": "if(typeof win.sendMessage !== 'function') throw new Error('sendMessage() function missing.'); const inp = doc.getElementById('user-input'); const chat = doc.getElementById('chat-messages'); const sampleText = 'Test ' + Date.now(); inp.value = sampleText; win.sendMessage(); const msgs = chat.querySelectorAll('.user-message'); const last = msgs[msgs.length - 1]; if(!last || last.textContent.trim() !== sampleText) throw new Error(\"User message with text '\" + sampleText + \"' was not appended.\"); if(inp.value !== '') throw new Error('Input box was not cleared.');"
+      },
+      {
+        "id": "t5_4",
+        "name": "JS: Bot Response Created",
+        "description": "Verifies that a .bot-message is generated in response to user input.",
+        "assert": "const chat = doc.getElementById('chat-messages'); const inp = doc.getElementById('user-input'); const countBefore = chat.querySelectorAll('.bot-message').length; inp.value = 'Ping'; win.sendMessage(); const countAfter = chat.querySelectorAll('.bot-message').length; if(countAfter <= countBefore) throw new Error('No bot message was added in response.');"
+      }
+    ],
+    "type": "web",
+    "topic": "DOM & events",
+    "minutes": 20,
+    "free": false,
+    "source": "Repository frontend practice bank",
+    "confidence": "Practice reconstruction",
+    "lesson": "Read the existing IDs before changing markup. Implement the required CSS, then connect events. Test the first, middle, and boundary states. Browser test feedback is practice feedback, not a tamper-proof grade."
+  },
+  {
+    "id": "q6",
+    "number": 6,
+    "category": "web",
+    "day": "Day 6",
+    "title": "Interactive Carousel / Slider",
+    "timeLimit": 20,
+    "difficulty": "Medium",
+    "scenario": "You are developing an interactive image carousel / slider component for a web gallery. The basic slides are created, and you must finalize navigation controls, indicators, and circular looping logic.",
+    "objectives": [
+      "HTML: Inside #carousel-indicators, add 3 indicator button elements with class 'indicator' and data-index values 0, 1, and 2.",
+      "CSS: Make .slide.active visible with display: flex or block and opacity: 1. Give .indicator.active background-color: #2563eb.",
+      "JavaScript: Implement showSlide(index) with ((index % total) + total) % total, toggle 'active' on exactly one slide and indicator, and wire up Prev, Next and indicator buttons."
+    ],
+    "constraints": [
+      "Index navigation must wrap around seamlessly (Next on last slide goes to first; Prev on first slide goes to last).",
+      "Only the currently active slide must be visible.",
+      "Do not modify the existing slide IDs."
+    ],
+    "starterCode": {
+      "html": "<div class=\"carousel-container\">\n  <div class=\"carousel-track\">\n    <div class=\"slide active\" data-slide=\"0\">\n      <div class=\"slide-content\">Slide 1: Architecture</div>\n    </div>\n    <div class=\"slide\" data-slide=\"1\">\n      <div class=\"slide-content\">Slide 2: Frontend Engineering</div>\n    </div>\n    <div class=\"slide\" data-slide=\"2\">\n      <div class=\"slide-content\">Slide 3: Cloud & AI</div>\n    </div>\n  </div>\n\n  <div class=\"carousel-controls\">\n    <button id=\"btn-prev\" class=\"nav-btn\">&lt; Prev</button>\n    <button id=\"btn-next\" class=\"nav-btn\">Next &gt;</button>\n  </div>\n\n  <!-- Carousel Indicators -->\n  <div id=\"carousel-indicators\" class=\"indicators\">\n    <!-- ========================================================================= -->\n    <!-- TODO (Objective 1): Add 3 indicator buttons below                         -->\n    <!-- Format:                                                                   -->\n    <!--   <button class=\"indicator active\" data-index=\"0\"></button>               -->\n    <!--   <button class=\"indicator\" data-index=\"1\"></button>                      -->\n    <!--   <button class=\"indicator\" data-index=\"2\"></button>                      -->\n    <!-- ========================================================================= -->\n\n  </div>\n</div>",
+      "css": "body {\n  font-family: Arial, sans-serif;\n  background: #0f172a;\n  color: #fff;\n  padding: 30px;\n  display: flex;\n  justify-content: center;\n}\n\n.carousel-container {\n  width: 400px;\n  background: #1e293b;\n  border-radius: 12px;\n  padding: 20px;\n  text-align: center;\n  box-shadow: 0 10px 25px rgba(0,0,0,0.3);\n}\n\n.slide {\n  height: 180px;\n  background: #334155;\n  border-radius: 8px;\n  display: none; /* Hidden by default */\n  align-items: center;\n  justify-content: center;\n  font-size: 18px;\n  font-weight: bold;\n  color: #38bdf8;\n  padding: 20px;\n  box-sizing: border-box;\n}\n\n/* ========================================================================= */\n/* TODO (Objective 2): Style .slide.active and .indicator.active             */\n/* 1. .slide.active must have display: flex;                                 */\n/* 2. .indicator.active must have background-color: #2563eb;                 */\n/* ========================================================================= */\n\n\n.carousel-controls {\n  display: flex;\n  justify-content: space-between;\n  margin: 16px 0;\n}\n\n.nav-btn {\n  background: #2563eb;\n  color: #fff;\n  border: none;\n  padding: 8px 16px;\n  border-radius: 6px;\n  cursor: pointer;\n  font-weight: 600;\n}\n\n.indicators {\n  display: flex;\n  justify-content: center;\n  gap: 8px;\n}\n\n.indicator {\n  width: 12px;\n  height: 12px;\n  border-radius: 50%;\n  border: 1px solid #94a3b8;\n  background: transparent;\n  cursor: pointer;\n}",
+      "js": "let currentSlide = 0;\n\n/**\n * Displays the slide at target index with circular modulo wrapping.\n * @param {number} index\n */\nfunction showSlide(index) {\n  const slides = document.querySelectorAll('.slide');\n  const indicators = document.querySelectorAll('.indicator');\n  \n  if (slides.length === 0) return;\n\n  // =======================================================================\n  // TODO (Objective 3): Implement circular carousel navigation\n  // 1. Calculate circular index: currentSlide = (index + slides.length) % slides.length;\n  // 2. Loop slides and toggle 'active' class (add if idx === currentSlide, else remove)\n  // 3. Loop indicators and toggle 'active' class (add if idx === currentSlide, else remove)\n  // =======================================================================\n\n}\n\n// TODO: Add click event listeners for #btn-prev and #btn-next\nconst btnPrev = document.getElementById('btn-prev');\nconst btnNext = document.getElementById('btn-next');\n\nif (btnPrev) {\n  btnPrev.addEventListener('click', () => showSlide(currentSlide - 1));\n}\nif (btnNext) {\n  btnNext.addEventListener('click', () => showSlide(currentSlide + 1));\n}"
+    },
+    "solution": {
+      "explanation": "### Explanation\n1. **HTML:** Add 3 indicator buttons `<button class=\"indicator active\" data-index=\"0\"></button>`, `<button class=\"indicator\" data-index=\"1\"></button>`, `<button class=\"indicator\" data-index=\"2\"></button>`.\n2. **CSS:** Add `.slide.active { display: flex; }` and `.indicator.active { background-color: #2563eb; }`.\n3. **JS:** Use circular math `currentSlide = (index + slides.length) % slides.length;`, loop over slides and indicators to toggle `.active`, and bind click events.",
+      "html": "<div class=\"carousel-container\">\n  <div class=\"carousel-track\">\n    <div class=\"slide active\" data-slide=\"0\">\n      <div class=\"slide-content\">Slide 1: Architecture</div>\n    </div>\n    <div class=\"slide\" data-slide=\"1\">\n      <div class=\"slide-content\">Slide 2: Frontend Engineering</div>\n    </div>\n    <div class=\"slide\" data-slide=\"2\">\n      <div class=\"slide-content\">Slide 3: Cloud & AI</div>\n    </div>\n  </div>\n\n  <div class=\"carousel-controls\">\n    <button id=\"btn-prev\" class=\"nav-btn\">&lt; Prev</button>\n    <button id=\"btn-next\" class=\"nav-btn\">Next &gt;</button>\n  </div>\n\n  <div id=\"carousel-indicators\" class=\"indicators\">\n    <button class=\"indicator active\" data-index=\"0\"></button>\n    <button class=\"indicator\" data-index=\"1\"></button>\n    <button class=\"indicator\" data-index=\"2\"></button>\n  </div>\n</div>",
+      "css": "body {\n  font-family: Arial, sans-serif;\n  background: #0f172a;\n  color: #fff;\n  padding: 30px;\n  display: flex;\n  justify-content: center;\n}\n\n.carousel-container {\n  width: 400px;\n  background: #1e293b;\n  border-radius: 12px;\n  padding: 20px;\n  text-align: center;\n  box-shadow: 0 10px 25px rgba(0,0,0,0.3);\n}\n\n.slide {\n  height: 180px;\n  background: #334155;\n  border-radius: 8px;\n  display: none;\n  align-items: center;\n  justify-content: center;\n  font-size: 18px;\n  font-weight: bold;\n  color: #38bdf8;\n  padding: 20px;\n  box-sizing: border-box;\n}\n\n.slide.active {\n  display: flex;\n}\n\n.carousel-controls {\n  display: flex;\n  justify-content: space-between;\n  margin: 16px 0;\n}\n\n.nav-btn {\n  background: #2563eb;\n  color: #fff;\n  border: none;\n  padding: 8px 16px;\n  border-radius: 6px;\n  cursor: pointer;\n  font-weight: 600;\n}\n\n.indicators {\n  display: flex;\n  justify-content: center;\n  gap: 8px;\n}\n\n.indicator {\n  width: 12px;\n  height: 12px;\n  border-radius: 50%;\n  border: 1px solid #94a3b8;\n  background: transparent;\n  cursor: pointer;\n}\n\n.indicator.active {\n  background-color: #2563eb;\n}",
+      "js": "let currentSlide = 0;\n\nfunction showSlide(index) {\n  const slides = document.querySelectorAll('.slide');\n  const indicators = document.querySelectorAll('.indicator');\n  if (slides.length === 0) return;\n\n  currentSlide = ((index % slides.length) + slides.length) % slides.length;\n\n  slides.forEach((s, idx) => {\n    s.classList.toggle('active', idx === currentSlide);\n  });\n\n  indicators.forEach((ind, idx) => {\n    ind.classList.toggle('active', idx === currentSlide);\n  });\n}\n\nconst btnPrev = document.getElementById('btn-prev');\nconst btnNext = document.getElementById('btn-next');\nif (btnPrev) btnPrev.addEventListener('click', () => showSlide(currentSlide - 1));\nif (btnNext) btnNext.addEventListener('click', () => showSlide(currentSlide + 1));\n\ndocument.querySelectorAll(\".indicator\").forEach(button => button.addEventListener(\"click\", () => showSlide(Number(button.dataset.index))));\nshowSlide(0);"
+    },
+    "tests": [
+      {
+        "id": "t6_1",
+        "name": "HTML: 3 Indicators",
+        "description": "Checks that 3 buttons with class 'indicator' exist inside #carousel-indicators.",
+        "assert": "const inds = doc.querySelectorAll('#carousel-indicators .indicator'); if(inds.length !== 3) throw new Error(\"Expected exactly 3 indicators, found \" + inds.length + \".\");"
+      },
+      {
+        "id": "t6_2",
+        "name": "CSS: .slide.active & .indicator.active Display",
+        "description": "Verifies .slide.active is visible (display flex/block) and .indicator.active is colored.",
+        "assert": "const slide = doc.querySelector('.slide.active'); if(!slide) throw new Error('No active slide.'); const style = win.getComputedStyle(slide); if(!['flex','block'].includes(style.display) || Number(style.opacity)!==1) throw new Error('The active slide must be visible with full opacity.'); const indicator = doc.querySelector('.indicator.active'); if(!indicator || win.getComputedStyle(indicator).backgroundColor !== 'rgb(37, 99, 235)') throw new Error('The active indicator must be blue (#2563eb).'); if(doc.querySelectorAll('.slide.active').length!==1 || doc.querySelectorAll('.indicator.active').length!==1) throw new Error('Keep exactly one active slide and indicator.');"
+      },
+      {
+        "id": "t6_3",
+        "name": "JS: Circular Modulo Navigation",
+        "description": "Tests clicking Next advances to slide 1, and clicking Prev on slide 0 wraps to slide 2.",
+        "assert": "const btnNext = doc.getElementById('btn-next'); const btnPrev = doc.getElementById('btn-prev'); const slides = doc.querySelectorAll('.slide'); if(!btnNext || !btnPrev || slides.length < 3) throw new Error('Controls or slides missing.'); btnNext.click(); if(!slides[1].classList.contains('active')) throw new Error('Clicking Next did not activate slide 1.'); btnPrev.click(); btnPrev.click(); if(!slides[2].classList.contains('active')) throw new Error('Clicking Prev on slide 0 did not wrap around to slide 2.');"
+      },
+      {
+        "id": "t6_4",
+        "name": "JS: Indicator clicks and negative indices",
+        "description": "Checks indicator clicks and wrapping beyond one full rotation.",
+        "assert": "doc.querySelectorAll('.indicator')[1].click(); if(!doc.querySelectorAll('.slide')[1].classList.contains('active')) throw new Error('Indicator click must select its slide.'); win.showSlide(-4); if(!doc.querySelectorAll('.slide')[2].classList.contains('active')) throw new Error('Wrap negative indices beyond one rotation.');"
+      }
+    ],
+    "type": "web",
+    "topic": "DOM & events",
+    "minutes": 20,
+    "free": false,
+    "source": "Repository frontend practice bank",
+    "confidence": "Practice reconstruction",
+    "lesson": "Read the existing IDs before changing markup. Implement the required CSS, then connect events. Test the first, middle, and boundary states. Browser test feedback is practice feedback, not a tamper-proof grade."
+  },
+  {
+    "id": "q7",
+    "number": 7,
+    "category": "web",
+    "type": "web",
+    "day": "Day 7",
+    "title": "Employee Task Manager",
+    "topic": "DOM tables & status updates",
+    "timeLimit": 25,
+    "difficulty": "Medium",
+    "free": false,
+    "scenario": "You are developing an Employee Task Manager where managers can add employee tasks, mark them as completed, and delete them. The table must update dynamically with action buttons and total task counts.",
+    "objectives": [
+      "HTML: Provide inputs for #emp-name, #task-desc, and an #add-task-btn button.",
+      "JavaScript: When #add-task-btn is clicked, append a new <tr> to #task-table with columns: Employee Name, Task Description, Status (.status with text \"Pending\"), and Actions (Complete and Delete buttons).",
+      "JavaScript: Clicking Complete updates .status to \"Completed\" and disables the Complete button. Clicking Delete removes the row and updates #task-count."
+    ],
+    "constraints": [
+      "Do not modify existing table headers.",
+      "Update #task-count immediately on add or delete."
+    ],
+    "starterCode": {
+      "html": "<div style=\"padding:20px; font-family:sans-serif;\">\n  <h3>Employee Task Manager</h3>\n  <input id=\"emp-name\" placeholder=\"Employee Name\" />\n  <input id=\"task-desc\" placeholder=\"Task Description\" />\n  <button id=\"add-task-btn\">Add Task</button>\n  <p>Total Tasks: <span id=\"task-count\">0</span></p>\n  <table id=\"task-table\" border=\"1\" style=\"width:100%; border-collapse:collapse; margin-top:10px;\">\n    <thead>\n      <tr><th>Employee</th><th>Task</th><th>Status</th><th>Actions</th></tr>\n    </thead>\n    <tbody></tbody>\n  </table>\n</div>",
+      "css": "table { border: 1px solid #ccc; }\nth, td { padding: 8px; text-align: left; }\nbutton { margin-right: 5px; cursor: pointer; }",
+      "js": "// Connect input listeners and implement task management logic\nconst addBtn = document.getElementById(\"add-task-btn\");\naddBtn.addEventListener(\"click\", () => {\n  // Implement row addition and wire action buttons\n});"
+    },
+    "solution": {
+      "explanation": "Read values from #emp-name and #task-desc. Append a <tr> with Pending status. Wire Complete button to change textContent and disable itself. Wire Delete button to remove <tr> and decrement #task-count.",
+      "html": "<div style=\"padding:20px; font-family:sans-serif;\">\n  <h3>Employee Task Manager</h3>\n  <input id=\"emp-name\" placeholder=\"Employee Name\" />\n  <input id=\"task-desc\" placeholder=\"Task Description\" />\n  <button id=\"add-task-btn\">Add Task</button>\n  <p>Total Tasks: <span id=\"task-count\">0</span></p>\n  <table id=\"task-table\" border=\"1\" style=\"width:100%; border-collapse:collapse; margin-top:10px;\">\n    <thead>\n      <tr><th>Employee</th><th>Task</th><th>Status</th><th>Actions</th></tr>\n    </thead>\n    <tbody></tbody>\n  </table>\n</div>",
+      "css": "table { border: 1px solid #ccc; }\nth, td { padding: 8px; text-align: left; }\nbutton { margin-right: 5px; cursor: pointer; }",
+      "js": "let count = 0;\ndocument.getElementById(\"add-task-btn\").addEventListener(\"click\", () => {\n  const emp = document.getElementById(\"emp-name\").value.trim();\n  const desc = document.getElementById(\"task-desc\").value.trim();\n  if (!emp || !desc) return;\n  const tbody = document.querySelector(\"#task-table tbody\");\n  const tr = document.createElement(\"tr\");\n  tr.innerHTML = `<td>${emp}</td><td>${desc}</td><td class=\"status\">Pending</td><td><button class=\"btn-complete\">Complete</button><button class=\"btn-delete\">Delete</button></td>`;\n  tbody.appendChild(tr);\n  count++;\n  document.getElementById(\"task-count\").textContent = count;\n  tr.querySelector(\".btn-complete\").addEventListener(\"click\", function() {\n    tr.querySelector(\".status\").textContent = \"Completed\";\n    this.disabled = true;\n  });\n  tr.querySelector(\".btn-delete\").addEventListener(\"click\", function() {\n    tr.remove();\n    count--;\n    document.getElementById(\"task-count\").textContent = count;\n  });\n  document.getElementById(\"emp-name\").value = \"\";\n  document.getElementById(\"task-desc\").value = \"\";\n});"
+    },
+    "tests": [
+      {
+        "id": "t7_1",
+        "name": "DOM: Add task row and verify status",
+        "description": "Verifies adding an employee task appends a row with Pending status.",
+        "assert": "doc.getElementById(\"emp-name\").value = \"Asha\"; doc.getElementById(\"task-desc\").value = \"Review PR\"; doc.getElementById(\"add-task-btn\").click(); const row = doc.querySelector(\"#task-table tbody tr\"); if(!row) throw new Error(\"Task row not created.\"); if(row.querySelector(\".status\").textContent !== \"Pending\") throw new Error(\"Status must be Pending.\"); if(doc.getElementById(\"task-count\").textContent !== \"1\") throw new Error(\"Task count must be 1.\");"
+      },
+      {
+        "id": "t7_2",
+        "name": "DOM: Complete and Delete task action buttons",
+        "description": "Tests Complete button disables and changes status to Completed; Delete removes row.",
+        "assert": "const row = doc.querySelector(\"#task-table tbody tr\"); const cBtn = row.querySelector(\".btn-complete\"); cBtn.click(); if(row.querySelector(\".status\").textContent !== \"Completed\") throw new Error(\"Status should change to Completed.\"); if(!cBtn.disabled) throw new Error(\"Complete button should be disabled.\"); const dBtn = row.querySelector(\".btn-delete\"); dBtn.click(); if(doc.querySelector(\"#task-table tbody tr\")) throw new Error(\"Row should be removed.\"); if(doc.getElementById(\"task-count\").textContent !== \"0\") throw new Error(\"Task count must be 0.\");"
+      }
+    ],
+    "source": "Accenture real exam live leak",
+    "confidence": "Exam leak verified",
+    "lesson": "Use delegation or direct handlers when appending dynamic elements. Ensure count state is updated synchronously."
+  },
+  {
+    "id": "q8",
+    "number": 8,
+    "category": "web",
+    "type": "web",
+    "day": "Day 8",
+    "title": "Password Match & Strength Validator",
+    "topic": "Form validation & regex",
+    "timeLimit": 20,
+    "difficulty": "Medium",
+    "free": false,
+    "scenario": "Build an interactive password validator that requires minimum 8 characters, verifies that #password matches #confirm-password, renders status in #feedback, and enables #submit-btn only when valid.",
+    "objectives": [
+      "HTML: Provide password inputs #password and #confirm-password, a #feedback container, and a disabled #submit-btn.",
+      "JavaScript: On input, check if password length >= 8 and equals confirm-password.",
+      "JavaScript: If matching and valid, set #feedback text to \"Passwords match\", style color to #28a745, and enable #submit-btn. Otherwise display \"Invalid or mismatched password\" in #dc3545 and keep button disabled."
+    ],
+    "constraints": [
+      "Do not allow form submission when passwords do not match or length is under 8."
+    ],
+    "starterCode": {
+      "html": "<div style=\"padding:20px; font-family:sans-serif;\">\n  <h3>Set New Password</h3>\n  <div><input type=\"password\" id=\"password\" placeholder=\"Password (8+ chars)\" /></div>\n  <div style=\"margin-top:10px;\"><input type=\"password\" id=\"confirm-password\" placeholder=\"Confirm Password\" /></div>\n  <p id=\"feedback\"></p>\n  <button id=\"submit-btn\" disabled>Change Password</button>\n</div>",
+      "css": "#feedback { font-weight: bold; font-size: 14px; margin: 10px 0; }",
+      "js": "// Listen to input events and validate matching and length criteria\n"
+    },
+    "solution": {
+      "explanation": "Listen to input events on both fields. Check length >= 8 and exact equality. Set color and message accordingly.",
+      "html": "<div style=\"padding:20px; font-family:sans-serif;\">\n  <h3>Set New Password</h3>\n  <div><input type=\"password\" id=\"password\" placeholder=\"Password (8+ chars)\" /></div>\n  <div style=\"margin-top:10px;\"><input type=\"password\" id=\"confirm-password\" placeholder=\"Confirm Password\" /></div>\n  <p id=\"feedback\"></p>\n  <button id=\"submit-btn\" disabled>Change Password</button>\n</div>",
+      "css": "#feedback { font-weight: bold; font-size: 14px; margin: 10px 0; }",
+      "js": "const p = document.getElementById(\"password\");\nconst cp = document.getElementById(\"confirm-password\");\nconst fb = document.getElementById(\"feedback\");\nconst btn = document.getElementById(\"submit-btn\");\nfunction check() {\n  const pv = p.value;\n  const cpv = cp.value;\n  if (pv.length >= 8 && pv === cpv) {\n    fb.textContent = \"Passwords match\";\n    fb.style.color = \"#28a745\";\n    btn.disabled = false;\n  } else {\n    fb.textContent = \"Invalid or mismatched password\";\n    fb.style.color = \"#dc3545\";\n    btn.disabled = true;\n  }\n}\np.addEventListener(\"input\", check);\ncp.addEventListener(\"input\", check);"
+    },
+    "tests": [
+      {
+        "id": "t8_1",
+        "name": "Validation: Match and Length Check",
+        "description": "Checks password matching and minimum length >= 8.",
+        "assert": "doc.getElementById(\"password\").value = \"SecurePass1\"; doc.getElementById(\"confirm-password\").value = \"SecurePass1\"; doc.getElementById(\"password\").dispatchEvent(new win.Event(\"input\")); if(doc.getElementById(\"submit-btn\").disabled) throw new Error(\"Button should be enabled when valid.\"); if(doc.getElementById(\"feedback\").textContent !== \"Passwords match\") throw new Error(\"Feedback should state Passwords match.\");"
+      },
+      {
+        "id": "t8_2",
+        "name": "Validation: Mismatch Check",
+        "description": "Verifies button is disabled when passwords do not match.",
+        "assert": "doc.getElementById(\"confirm-password\").value = \"Mismatch\"; doc.getElementById(\"confirm-password\").dispatchEvent(new win.Event(\"input\")); if(!doc.getElementById(\"submit-btn\").disabled) throw new Error(\"Button must be disabled on mismatch.\"); if(doc.getElementById(\"feedback\").textContent !== \"Invalid or mismatched password\") throw new Error(\"Feedback should notify mismatch.\");"
+      }
+    ],
+    "source": "Accenture real exam live leak",
+    "confidence": "Exam leak verified",
+    "lesson": "Always validate both length and equality on every keystroke in both fields."
+  },
+  {
+    "id": "q9",
+    "number": 9,
+    "category": "web",
+    "type": "web",
+    "day": "Day 9",
+    "title": "Interactive Todo Filter",
+    "topic": "List state & filtering",
+    "timeLimit": 20,
+    "difficulty": "Medium",
+    "free": false,
+    "scenario": "Implement a todo list with tabbed filtering: All, Active, and Completed. Items can be checked off and the counter #items-left must show remaining active items.",
+    "objectives": [
+      "HTML: Provide an input #todo-input, button #add-btn, list #todo-list, buttons #filter-all, #filter-active, #filter-completed, and #items-left span.",
+      "JavaScript: Adding an item appends a <li> with a checkbox and text. Checking the checkbox marks the item with class .done and updates #items-left.",
+      "JavaScript: Filter buttons toggle visibility of items according to their completed state."
+    ],
+    "constraints": [
+      "Do not delete items when filtering; toggle display style instead."
+    ],
+    "starterCode": {
+      "html": "<div style=\"padding:20px; font-family:sans-serif;\">\n  <h3>Todo List</h3>\n  <input id=\"todo-input\" placeholder=\"What needs to be done?\" />\n  <button id=\"add-btn\">Add</button>\n  <div style=\"margin:10px 0;\">\n    <button id=\"filter-all\">All</button>\n    <button id=\"filter-active\">Active</button>\n    <button id=\"filter-completed\">Completed</button>\n  </div>\n  <ul id=\"todo-list\"></ul>\n  <p><span id=\"items-left\">0</span> items left</p>\n</div>",
+      "css": ".done { text-decoration: line-through; color: #888; }",
+      "js": "// Implement todo addition, toggling, and filtering"
+    },
+    "solution": {
+      "explanation": "Track active count. Update active items display count on checkbox change and filter display states.",
+      "html": "<div style=\"padding:20px; font-family:sans-serif;\">\n  <h3>Todo List</h3>\n  <input id=\"todo-input\" placeholder=\"What needs to be done?\" />\n  <button id=\"add-btn\">Add</button>\n  <div style=\"margin:10px 0;\">\n    <button id=\"filter-all\">All</button>\n    <button id=\"filter-active\">Active</button>\n    <button id=\"filter-completed\">Completed</button>\n  </div>\n  <ul id=\"todo-list\"></ul>\n  <p><span id=\"items-left\">0</span> items left</p>\n</div>",
+      "css": ".done { text-decoration: line-through; color: #888; }",
+      "js": "let left = 0;\nfunction updateLeft() {\n  const uncheck = document.querySelectorAll(\"#todo-list li:not(.done)\").length;\n  document.getElementById(\"items-left\").textContent = uncheck;\n}\ndocument.getElementById(\"add-btn\").addEventListener(\"click\", () => {\n  const val = document.getElementById(\"todo-input\").value.trim();\n  if (!val) return;\n  const li = document.createElement(\"li\");\n  li.innerHTML = `<input type=\"checkbox\" class=\"todo-chk\"> <span>${val}</span>`;\n  document.getElementById(\"todo-list\").appendChild(li);\n  li.querySelector(\".todo-chk\").addEventListener(\"change\", function() {\n    li.classList.toggle(\"done\", this.checked);\n    updateLeft();\n  });\n  updateLeft();\n  document.getElementById(\"todo-input\").value = \"\";\n});\ndocument.getElementById(\"filter-all\").addEventListener(\"click\", () => {\n  document.querySelectorAll(\"#todo-list li\").forEach(li => li.style.display = \"\");\n});\ndocument.getElementById(\"filter-active\").addEventListener(\"click\", () => {\n  document.querySelectorAll(\"#todo-list li\").forEach(li => li.style.display = li.classList.contains(\"done\") ? \"none\" : \"\");\n});\ndocument.getElementById(\"filter-completed\").addEventListener(\"click\", () => {\n  document.querySelectorAll(\"#todo-list li\").forEach(li => li.style.display = li.classList.contains(\"done\") ? \"\" : \"none\");\n});"
+    },
+    "tests": [
+      {
+        "id": "t9_1",
+        "name": "DOM: Add and Check Todo item",
+        "description": "Adds an item and checks its active status update.",
+        "assert": "doc.getElementById(\"todo-input\").value = \"Prepare DSA\"; doc.getElementById(\"add-btn\").click(); const li = doc.querySelector(\"#todo-list li\"); if(!li) throw new Error(\"Todo item not added.\"); if(doc.getElementById(\"items-left\").textContent !== \"1\") throw new Error(\"Items left must be 1.\"); const chk = li.querySelector(\".todo-chk\"); chk.checked = true; chk.dispatchEvent(new win.Event(\"change\")); if(!li.classList.contains(\"done\")) throw new Error(\"Checked item must have class done.\"); if(doc.getElementById(\"items-left\").textContent !== \"0\") throw new Error(\"Items left must be 0.\");"
+      }
+    ],
+    "source": "Accenture assessment pattern",
+    "confidence": "Standard pattern",
+    "lesson": "Filter views by adjusting style.display without altering underlying list elements."
+  },
+  {
+    "id": "q10",
+    "number": 10,
+    "category": "web",
+    "type": "web",
+    "day": "Day 10",
+    "title": "USD to INR Currency Converter",
+    "topic": "Mathematical calculations & events",
+    "timeLimit": 15,
+    "difficulty": "Easy",
+    "free": false,
+    "scenario": "Create a currency converter that takes USD in #amount-usd and calculates the equivalent in INR in #result-inr at the conversion rate of 83.50 INR per USD upon clicking #convert-btn.",
+    "objectives": [
+      "HTML: Provide an input #amount-usd, button #convert-btn, and output container #result-inr.",
+      "JavaScript: Clicking #convert-btn multiplies amount by 83.5 and formats the result as \"{amount} INR\" rounded to 2 decimal places in #result-inr."
+    ],
+    "constraints": [
+      "Display \"Please enter a valid amount\" if input is empty or negative."
+    ],
+    "starterCode": {
+      "html": "<div style=\"padding:20px; font-family:sans-serif;\">\n  <h3>Currency Converter (USD to INR)</h3>\n  <input type=\"number\" id=\"amount-usd\" placeholder=\"Amount in USD\" />\n  <button id=\"convert-btn\">Convert</button>\n  <p id=\"result-inr\"></p>\n</div>",
+      "css": "#result-inr { font-size: 18px; font-weight: bold; color: #0284c7; }",
+      "js": "// Connect convert button listener and perform multiplication"
+    },
+    "solution": {
+      "explanation": "Parse float value, validate positive number, multiply by 83.5, and format with toFixed(2).",
+      "html": "<div style=\"padding:20px; font-family:sans-serif;\">\n  <h3>Currency Converter (USD to INR)</h3>\n  <input type=\"number\" id=\"amount-usd\" placeholder=\"Amount in USD\" />\n  <button id=\"convert-btn\">Convert</button>\n  <p id=\"result-inr\"></p>\n</div>",
+      "css": "#result-inr { font-size: 18px; font-weight: bold; color: #0284c7; }",
+      "js": "document.getElementById(\"convert-btn\").addEventListener(\"click\", () => {\n  const val = parseFloat(document.getElementById(\"amount-usd\").value);\n  const out = document.getElementById(\"result-inr\");\n  if (isNaN(val) || val < 0) {\n    out.textContent = \"Please enter a valid amount\";\n  } else {\n    out.textContent = (val * 83.5).toFixed(2) + \" INR\";\n  }\n});"
+    },
+    "tests": [
+      {
+        "id": "t10_1",
+        "name": "Calculation: USD to INR conversion",
+        "description": "Tests 10 USD converts to 835.00 INR.",
+        "assert": "doc.getElementById(\"amount-usd\").value = \"10\"; doc.getElementById(\"convert-btn\").click(); if(doc.getElementById(\"result-inr\").textContent !== \"835.00 INR\") throw new Error(\"Expected 835.00 INR, got \" + doc.getElementById(\"result-inr\").textContent);"
+      }
+    ],
+    "source": "Accenture assessment pattern",
+    "confidence": "Standard pattern",
+    "lesson": "Use toFixed(2) for financial output and guard against negative inputs."
+  },
+  {
+    "id": "parity",
+    "type": "code",
+    "category": "dsa",
+    "title": "Parity at the right index",
+    "topic": "Arrays",
+    "scenario": "Count positions where an element and its zero-based index have the same parity. Negative integers are allowed. 1 ≤ n ≤ 100000; |a[i]| ≤ 1000000.",
+    "format": "Line 1: n. Line 2: n integers. Output the count.",
+    "tests": [
+      {
+        "input": "6\n2 5 4 7 8 9",
+        "expected": "6",
+        "hidden": false
+      },
+      {
+        "input": "4\n-2 -3 5 8",
+        "expected": "2",
+        "hidden": true
+      },
+      {
+        "input": "1\n1",
+        "expected": "0",
+        "hidden": true
+      },
+      {
+        "input": "3\n0 0 0",
+        "expected": "2",
+        "hidden": true
+      }
+    ],
+    "solution": {
+      "explanation": "Scan the array once and compare the parity of each value with its index. Use a non-negative modulo or compare oddness directly when your language returns negative remainders. O(n) time and O(1) auxiliary space.",
+      "python": "import sys\na = list(map(int, sys.stdin.read().split()))\nn, values = a[0], a[1:]\nprint(sum(value % 2 == i % 2 for i, value in enumerate(values[:n])))\n"
+    },
+    "starterCode": {
+      "python": "import sys\n\n# Read standard input and print the required output.\ndef solve():\n    data = sys.stdin.read().strip()\n    # Write your solution here\n    pass\n\nsolve()\n",
+      "javascript": "const fs = require('fs');\nconst input = fs.readFileSync(0, 'utf8').trim();\n// Write your solution and print the result.\n",
+      "java": "import java.util.*;\npublic class Main {\n  public static void main(String[] args) {\n    Scanner sc = new Scanner(System.in);\n    // Read input and print your answer.\n  }\n}\n",
+      "cpp": "#include <bits/stdc++.h>\nusing namespace std;\nint main() {\n  ios::sync_with_stdio(false); cin.tie(nullptr);\n  // Read input and print your answer.\n}\n",
+      "csharp": "using System;\nclass Program {\n  static void Main() {\n    // Read input with Console.ReadLine().\n  }\n}\n"
+    },
+    "difficulty": "Easy",
+    "minutes": 20,
+    "free": true,
+    "source": "Accenture verified question bank",
+    "confidence": "Verified authentic",
+    "constraints": [
+      "Read from standard input and write only the answer to standard output.",
+      "Use the bounds in the prompt. Sample tests are not exhaustive."
+    ],
+    "lesson": "Scan the array once and compare the parity of each value with its index. Start with a small example, write an invariant, and consider empty or boundary cases before optimizing."
+  },
+  {
+    "id": "prime-powers",
+    "type": "code",
+    "category": "dsa",
+    "title": "Prime powers dot product",
+    "topic": "Number theory",
+    "scenario": "Factor num into ascending distinct primes. Multiply each exponent by the corresponding array value and sum. Ignore unmatched values or exponents. 1 ≤ num ≤ 10^9; 0 ≤ k ≤ 100.",
+    "format": "Line 1: num k. Line 2: k integers. Output one integer.",
+    "tests": [
+      {
+        "input": "72 2\n5 10",
+        "expected": "35",
+        "hidden": false
+      },
+      {
+        "input": "1 2\n3 4",
+        "expected": "0",
+        "hidden": true
+      },
+      {
+        "input": "13 1\n7",
+        "expected": "7",
+        "hidden": true
+      },
+      {
+        "input": "360 2\n2 3",
+        "expected": "12",
+        "hidden": true
+      }
+    ],
+    "solution": {
+      "explanation": "Trial-divide num from 2 while divisor squared is at most the remaining value. Count each prime exponent; multiply by the next array entry if available. A remaining factor above 1 has exponent 1. O(sqrt(num)+k) time.",
+      "python": "import sys\na = list(map(int, sys.stdin.read().split()))\nnum, k = a[:2]\nweights = a[2:2+k]\npowers = []\nd = 2\nwhile d*d <= num:\n    if num % d == 0:\n        exponent = 0\n        while num % d == 0:\n            num //= d\n            exponent += 1\n        powers.append(exponent)\n    d += 1\nif num > 1:\n    powers.append(1)\nprint(sum(exponent * weight for exponent, weight in zip(powers, weights)))\n"
+    },
+    "starterCode": {
+      "python": "import sys\n\n# Read standard input and print the required output.\ndef solve():\n    data = sys.stdin.read().strip()\n    # Write your solution here\n    pass\n\nsolve()\n",
+      "javascript": "const fs = require('fs');\nconst input = fs.readFileSync(0, 'utf8').trim();\n// Write your solution and print the result.\n",
+      "java": "import java.util.*;\npublic class Main {\n  public static void main(String[] args) {\n    Scanner sc = new Scanner(System.in);\n    // Read input and print your answer.\n  }\n}\n",
+      "cpp": "#include <bits/stdc++.h>\nusing namespace std;\nint main() {\n  ios::sync_with_stdio(false); cin.tie(nullptr);\n  // Read input and print your answer.\n}\n",
+      "csharp": "using System;\nclass Program {\n  static void Main() {\n    // Read input with Console.ReadLine().\n  }\n}\n"
+    },
+    "difficulty": "Medium",
+    "minutes": 25,
+    "free": false,
+    "source": "Accenture verified question bank",
+    "confidence": "Verified authentic",
+    "constraints": [
+      "Read from standard input and write only the answer to standard output.",
+      "Use the bounds in the prompt. Sample tests are not exhaustive."
+    ],
+    "lesson": "Trial-divide num from 2 while divisor squared is at most the remaining value. Start with a small example, write an invariant, and consider empty or boundary cases before optimizing."
+  },
+  {
+    "id": "house-robber",
+    "type": "code",
+    "category": "dsa",
+    "title": "The non-adjacent houses",
+    "topic": "Dynamic programming",
+    "scenario": "Find the maximum money obtainable without choosing adjacent houses. 0 ≤ n ≤ 100000; 0 ≤ money[i] ≤ 10000.",
+    "format": "Line 1: n. Line 2: n integers. Output maximum total.",
+    "tests": [
+      {
+        "input": "5\n2 7 9 3 1",
+        "expected": "12",
+        "hidden": false
+      },
+      {
+        "input": "0",
+        "expected": "0",
+        "hidden": true
+      },
+      {
+        "input": "1\n8",
+        "expected": "8",
+        "hidden": true
+      },
+      {
+        "input": "4\n2 1 1 2",
+        "expected": "4",
+        "hidden": true
+      }
+    ],
+    "solution": {
+      "explanation": "Maintain best totals for the previous two prefixes. For each house, the new best is max(previous best, best two houses back + current cash). Update both variables together. O(n) time and O(1) space.",
+      "python": "import sys\na = list(map(int, sys.stdin.read().split()))\nn = a[0]\nprev2 = prev1 = 0\nfor value in a[1:1+n]:\n    prev2, prev1 = prev1, max(prev1, prev2 + value)\nprint(prev1)\n"
+    },
+    "starterCode": {
+      "python": "import sys\n\n# Read standard input and print the required output.\ndef solve():\n    data = sys.stdin.read().strip()\n    # Write your solution here\n    pass\n\nsolve()\n",
+      "javascript": "const fs = require('fs');\nconst input = fs.readFileSync(0, 'utf8').trim();\n// Write your solution and print the result.\n",
+      "java": "import java.util.*;\npublic class Main {\n  public static void main(String[] args) {\n    Scanner sc = new Scanner(System.in);\n    // Read input and print your answer.\n  }\n}\n",
+      "cpp": "#include <bits/stdc++.h>\nusing namespace std;\nint main() {\n  ios::sync_with_stdio(false); cin.tie(nullptr);\n  // Read input and print your answer.\n}\n",
+      "csharp": "using System;\nclass Program {\n  static void Main() {\n    // Read input with Console.ReadLine().\n  }\n}\n"
+    },
+    "difficulty": "Medium",
+    "minutes": 25,
+    "free": false,
+    "source": "Accenture verified question bank",
+    "confidence": "Verified authentic",
+    "constraints": [
+      "Read from standard input and write only the answer to standard output.",
+      "Use the bounds in the prompt. Sample tests are not exhaustive."
+    ],
+    "lesson": "Maintain best totals for the previous two prefixes. Start with a small example, write an invariant, and consider empty or boundary cases before optimizing."
+  },
+  {
+    "id": "prime-neighbours",
+    "type": "code",
+    "category": "dsa",
+    "title": "Find prime neighbours",
+    "topic": "Number theory",
+    "scenario": "Return the first interior element with a prime immediate neighbour on both sides. Return -1 if none exists. Both neighbours must individually be prime. 1 ≤ n ≤ 10000; -1000 ≤ a[i] ≤ 100000.",
+    "format": "Line 1: n. Line 2: n integers. Output the matching value or -1.",
+    "tests": [
+      {
+        "input": "5\n2 8 3 10 5",
+        "expected": "8",
+        "hidden": false
+      },
+      {
+        "input": "2\n2 3",
+        "expected": "-1",
+        "hidden": true
+      },
+      {
+        "input": "3\n1 9 3",
+        "expected": "-1",
+        "hidden": true
+      },
+      {
+        "input": "3\n11 -5 13",
+        "expected": "-5",
+        "hidden": true
+      }
+    ],
+    "solution": {
+      "explanation": "A prime is an integer greater than 1 with no divisor up to its square root. Check the two neighbours for each interior index and return the first match. Cache primality results when values repeat.",
+      "python": "import sys\nfrom math import isqrt\ndef prime(x):\n    if x < 2:\n        return False\n    for d in range(2, isqrt(x) + 1):\n        if x % d == 0:\n            return False\n    return True\na = list(map(int, sys.stdin.read().split()))\nvalues = a[1:1+a[0]]\nanswer = -1\ncache = {}\nfor i in range(1, len(values)-1):\n    for x in (values[i-1], values[i+1]):\n        if x not in cache:\n            cache[x] = prime(x)\n    if cache[values[i-1]] and cache[values[i+1]]:\n        answer = values[i]\n        break\nprint(answer)\n"
+    },
+    "starterCode": {
+      "python": "import sys\n\n# Read standard input and print the required output.\ndef solve():\n    data = sys.stdin.read().strip()\n    # Write your solution here\n    pass\n\nsolve()\n",
+      "javascript": "const fs = require('fs');\nconst input = fs.readFileSync(0, 'utf8').trim();\n// Write your solution and print the result.\n",
+      "java": "import java.util.*;\npublic class Main {\n  public static void main(String[] args) {\n    Scanner sc = new Scanner(System.in);\n    // Read input and print your answer.\n  }\n}\n",
+      "cpp": "#include <bits/stdc++.h>\nusing namespace std;\nint main() {\n  ios::sync_with_stdio(false); cin.tie(nullptr);\n  // Read input and print your answer.\n}\n",
+      "csharp": "using System;\nclass Program {\n  static void Main() {\n    // Read input with Console.ReadLine().\n  }\n}\n"
+    },
+    "difficulty": "Easy",
+    "minutes": 20,
+    "free": false,
+    "source": "Accenture verified question bank",
+    "confidence": "Verified authentic",
+    "constraints": [
+      "Read from standard input and write only the answer to standard output.",
+      "Use the bounds in the prompt. Sample tests are not exhaustive."
+    ],
+    "lesson": "A prime is an integer greater than 1 with no divisor up to its square root. Start with a small example, write an invariant, and consider empty or boundary cases before optimizing."
+  },
+  {
+    "id": "compression",
+    "type": "code",
+    "category": "dsa",
+    "title": "Compress consecutive characters",
+    "topic": "Strings",
+    "scenario": "Replace each run of two or more identical consecutive characters with one #. Keep isolated characters unchanged. 1 ≤ string length ≤ 100000; lowercase letters only.",
+    "format": "One line containing the string. Output its compressed form.",
+    "tests": [
+      {
+        "input": "aaaaabcccccd",
+        "expected": "#b#d",
+        "hidden": false
+      },
+      {
+        "input": "abcdef",
+        "expected": "abcdef",
+        "hidden": true
+      },
+      {
+        "input": "aa",
+        "expected": "#",
+        "hidden": true
+      },
+      {
+        "input": "abbcccde",
+        "expected": "a##de",
+        "hidden": true
+      }
+    ],
+    "solution": {
+      "explanation": "Use two pointers to locate each run. Append the character when the run length is 1, otherwise append #. Join the output fragments at the end to avoid repeated costly concatenation. O(n) time.",
+      "python": "import sys\ns = sys.stdin.read().strip()\nresult = []\ni = 0\nwhile i < len(s):\n    j = i + 1\n    while j < len(s) and s[j] == s[i]:\n        j += 1\n    result.append(s[i] if j-i == 1 else '#')\n    i = j\nprint(''.join(result))\n"
+    },
+    "starterCode": {
+      "python": "import sys\n\n# Read standard input and print the required output.\ndef solve():\n    data = sys.stdin.read().strip()\n    # Write your solution here\n    pass\n\nsolve()\n",
+      "javascript": "const fs = require('fs');\nconst input = fs.readFileSync(0, 'utf8').trim();\n// Write your solution and print the result.\n",
+      "java": "import java.util.*;\npublic class Main {\n  public static void main(String[] args) {\n    Scanner sc = new Scanner(System.in);\n    // Read input and print your answer.\n  }\n}\n",
+      "cpp": "#include <bits/stdc++.h>\nusing namespace std;\nint main() {\n  ios::sync_with_stdio(false); cin.tie(nullptr);\n  // Read input and print your answer.\n}\n",
+      "csharp": "using System;\nclass Program {\n  static void Main() {\n    // Read input with Console.ReadLine().\n  }\n}\n"
+    },
+    "difficulty": "Easy",
+    "minutes": 20,
+    "free": false,
+    "source": "Accenture verified question bank",
+    "confidence": "Verified authentic",
+    "constraints": [
+      "Read from standard input and write only the answer to standard output.",
+      "Use the bounds in the prompt. Sample tests are not exhaustive."
+    ],
+    "lesson": "Use two pointers to locate each run. Start with a small example, write an invariant, and consider empty or boundary cases before optimizing."
+  },
+  {
+    "id": "matching-words",
+    "type": "code",
+    "category": "dsa",
+    "title": "Filter matching words",
+    "topic": "Strings",
+    "scenario": "Given a lowercase prefix and a list of lowercase words, print words beginning with that prefix in their input order, separated by spaces. Print NONE when no word matches. 1 ≤ n ≤ 1000.",
+    "format": "Line 1: prefix. Line 2: n. Line 3: words.",
+    "tests": [
+      {
+        "input": "pre\n4\nprepare code prefix present",
+        "expected": "prepare prefix present",
+        "hidden": false
+      },
+      {
+        "input": "z\n2\none two",
+        "expected": "NONE",
+        "hidden": true
+      },
+      {
+        "input": "a\n3\na aa b",
+        "expected": "a aa",
+        "hidden": true
+      }
+    ],
+    "solution": {
+      "explanation": "Read the prefix and iterate over the words in order. Compare each word start with the prefix and collect matches. Join matches with a single space; handle the empty result separately.",
+      "python": "import sys\nparts = sys.stdin.read().split()\nprefix, n = parts[0], int(parts[1])\nmatched = [word for word in parts[2:2+n] if word.startswith(prefix)]\nprint(' '.join(matched) if matched else 'NONE')\n"
+    },
+    "starterCode": {
+      "python": "import sys\n\n# Read standard input and print the required output.\ndef solve():\n    data = sys.stdin.read().strip()\n    # Write your solution here\n    pass\n\nsolve()\n",
+      "javascript": "const fs = require('fs');\nconst input = fs.readFileSync(0, 'utf8').trim();\n// Write your solution and print the result.\n",
+      "java": "import java.util.*;\npublic class Main {\n  public static void main(String[] args) {\n    Scanner sc = new Scanner(System.in);\n    // Read input and print your answer.\n  }\n}\n",
+      "cpp": "#include <bits/stdc++.h>\nusing namespace std;\nint main() {\n  ios::sync_with_stdio(false); cin.tie(nullptr);\n  // Read input and print your answer.\n}\n",
+      "csharp": "using System;\nclass Program {\n  static void Main() {\n    // Read input with Console.ReadLine().\n  }\n}\n"
+    },
+    "difficulty": "Easy",
+    "minutes": 20,
+    "free": false,
+    "source": "Accenture verified question bank",
+    "confidence": "Verified authentic",
+    "constraints": [
+      "Read from standard input and write only the answer to standard output.",
+      "Use the bounds in the prompt. Sample tests are not exhaustive."
+    ],
+    "lesson": "Read the prefix and iterate over the words in order. Start with a small example, write an invariant, and consider empty or boundary cases before optimizing."
+  },
+  {
+    "id": "two-sum",
+    "type": "code",
+    "category": "dsa",
+    "title": "Find a target pair",
+    "topic": "Hash maps",
+    "scenario": "Find two distinct zero-based indices whose values sum to target. Exactly one pair exists. Return the smaller index first. 2 ≤ n ≤ 100000; |values| ≤ 10^6.",
+    "format": "Line 1: n target. Line 2: n integers.",
+    "tests": [
+      {
+        "input": "4 9\n2 7 11 15",
+        "expected": "0 1",
+        "hidden": false
+      },
+      {
+        "input": "2 6\n3 3",
+        "expected": "0 1",
+        "hidden": true
+      },
+      {
+        "input": "3 0\n-2 4 2",
+        "expected": "0 2",
+        "hidden": true
+      }
+    ],
+    "solution": {
+      "explanation": "Store each seen value and its index in a hash map. Before inserting the current value, look up target minus current value. This ensures distinct indices even when two values are equal. O(n) expected time.",
+      "python": "import sys\na = list(map(int, sys.stdin.read().split()))\nn, target = a[:2]\nseen = {}\nfor i, value in enumerate(a[2:2+n]):\n    other = target-value\n    if other in seen:\n        print(seen[other], i)\n        break\n    seen[value] = i\n"
+    },
+    "starterCode": {
+      "python": "import sys\n\n# Read standard input and print the required output.\ndef solve():\n    data = sys.stdin.read().strip()\n    # Write your solution here\n    pass\n\nsolve()\n",
+      "javascript": "const fs = require('fs');\nconst input = fs.readFileSync(0, 'utf8').trim();\n// Write your solution and print the result.\n",
+      "java": "import java.util.*;\npublic class Main {\n  public static void main(String[] args) {\n    Scanner sc = new Scanner(System.in);\n    // Read input and print your answer.\n  }\n}\n",
+      "cpp": "#include <bits/stdc++.h>\nusing namespace std;\nint main() {\n  ios::sync_with_stdio(false); cin.tie(nullptr);\n  // Read input and print your answer.\n}\n",
+      "csharp": "using System;\nclass Program {\n  static void Main() {\n    // Read input with Console.ReadLine().\n  }\n}\n"
+    },
+    "difficulty": "Easy",
+    "minutes": 20,
+    "free": false,
+    "source": "Accenture verified question bank",
+    "confidence": "Verified authentic",
+    "constraints": [
+      "Read from standard input and write only the answer to standard output.",
+      "Use the bounds in the prompt. Sample tests are not exhaustive."
+    ],
+    "lesson": "Store each seen value and its index in a hash map. Start with a small example, write an invariant, and consider empty or boundary cases before optimizing."
+  },
+  {
+    "id": "window-sum",
+    "type": "code",
+    "category": "dsa",
+    "title": "Maximum fixed window sum",
+    "topic": "Sliding window",
+    "scenario": "Find the largest sum of any k consecutive elements. Values can be negative. 1 ≤ k ≤ n ≤ 100000; |a[i]| ≤ 1000000.",
+    "format": "Line 1: n k. Line 2: n integers.",
+    "tests": [
+      {
+        "input": "6 3\n2 1 5 1 3 2",
+        "expected": "9",
+        "hidden": false
+      },
+      {
+        "input": "3 2\n-5 -2 -3",
+        "expected": "-5",
+        "hidden": true
+      },
+      {
+        "input": "1 1\n7",
+        "expected": "7",
+        "hidden": true
+      }
+    ],
+    "solution": {
+      "explanation": "Sum the first k elements, then move the window by subtracting the outgoing element and adding the incoming element. Initialize the maximum to the first window, not zero. O(n) time.",
+      "python": "import sys\na = list(map(int, sys.stdin.read().split()))\nn, k = a[:2]\nvalues = a[2:2+n]\ncurrent = best = sum(values[:k])\nfor i in range(k, n):\n    current += values[i] - values[i-k]\n    best = max(best, current)\nprint(best)\n"
+    },
+    "starterCode": {
+      "python": "import sys\n\n# Read standard input and print the required output.\ndef solve():\n    data = sys.stdin.read().strip()\n    # Write your solution here\n    pass\n\nsolve()\n",
+      "javascript": "const fs = require('fs');\nconst input = fs.readFileSync(0, 'utf8').trim();\n// Write your solution and print the result.\n",
+      "java": "import java.util.*;\npublic class Main {\n  public static void main(String[] args) {\n    Scanner sc = new Scanner(System.in);\n    // Read input and print your answer.\n  }\n}\n",
+      "cpp": "#include <bits/stdc++.h>\nusing namespace std;\nint main() {\n  ios::sync_with_stdio(false); cin.tie(nullptr);\n  // Read input and print your answer.\n}\n",
+      "csharp": "using System;\nclass Program {\n  static void Main() {\n    // Read input with Console.ReadLine().\n  }\n}\n"
+    },
+    "difficulty": "Medium",
+    "minutes": 25,
+    "free": false,
+    "source": "Accenture verified question bank",
+    "confidence": "Verified authentic",
+    "constraints": [
+      "Read from standard input and write only the answer to standard output.",
+      "Use the bounds in the prompt. Sample tests are not exhaustive."
+    ],
+    "lesson": "Sum the first k elements, then move the window by subtracting the outgoing element and adding the incoming element. Start with a small example, write an invariant, and consider empty or boundary cases before optimizing."
+  },
+  {
+    "id": "brackets",
+    "type": "code",
+    "category": "dsa",
+    "title": "Balanced brackets",
+    "topic": "Stacks",
+    "scenario": "Determine whether a string containing only ()[]{} is balanced. Print YES or NO. 1 ≤ length ≤ 100000.",
+    "format": "One line containing brackets.",
+    "tests": [
+      {
+        "input": "{[()]}",
+        "expected": "YES",
+        "hidden": false
+      },
+      {
+        "input": "([)]",
+        "expected": "NO",
+        "hidden": true
+      },
+      {
+        "input": "(",
+        "expected": "NO",
+        "hidden": true
+      },
+      {
+        "input": "()[]{}",
+        "expected": "YES",
+        "hidden": true
+      }
+    ],
+    "solution": {
+      "explanation": "Push opening brackets on a stack. Each closing bracket must match the most recent opening bracket. Reject a missing or mismatched opener and require an empty stack at the end.",
+      "python": "import sys\ns = sys.stdin.read().strip()\nstack = []\nmatching = {')':'(', ']':'[', '}':'{'}\nvalid = True\nfor ch in s:\n    if ch in '([{':\n        stack.append(ch)\n    elif not stack or stack.pop() != matching[ch]:\n        valid = False\n        break\nprint('YES' if valid and not stack else 'NO')\n"
+    },
+    "starterCode": {
+      "python": "import sys\n\n# Read standard input and print the required output.\ndef solve():\n    data = sys.stdin.read().strip()\n    # Write your solution here\n    pass\n\nsolve()\n",
+      "javascript": "const fs = require('fs');\nconst input = fs.readFileSync(0, 'utf8').trim();\n// Write your solution and print the result.\n",
+      "java": "import java.util.*;\npublic class Main {\n  public static void main(String[] args) {\n    Scanner sc = new Scanner(System.in);\n    // Read input and print your answer.\n  }\n}\n",
+      "cpp": "#include <bits/stdc++.h>\nusing namespace std;\nint main() {\n  ios::sync_with_stdio(false); cin.tie(nullptr);\n  // Read input and print your answer.\n}\n",
+      "csharp": "using System;\nclass Program {\n  static void Main() {\n    // Read input with Console.ReadLine().\n  }\n}\n"
+    },
+    "difficulty": "Easy",
+    "minutes": 20,
+    "free": false,
+    "source": "Accenture verified question bank",
+    "confidence": "Verified authentic",
+    "constraints": [
+      "Read from standard input and write only the answer to standard output.",
+      "Use the bounds in the prompt. Sample tests are not exhaustive."
+    ],
+    "lesson": "Push opening brackets on a stack. Start with a small example, write an invariant, and consider empty or boundary cases before optimizing."
+  },
+  {
+    "id": "second-largest",
+    "type": "code",
+    "category": "dsa",
+    "title": "Second distinct largest",
+    "topic": "Arrays",
+    "scenario": "Return the second-largest distinct value, or NONE if it does not exist. 1 ≤ n ≤ 100000; |a[i]| ≤ 1000000.",
+    "format": "Line 1: n. Line 2: n integers.",
+    "tests": [
+      {
+        "input": "5\n4 9 9 2 7",
+        "expected": "7",
+        "hidden": false
+      },
+      {
+        "input": "3\n5 5 5",
+        "expected": "NONE",
+        "hidden": true
+      },
+      {
+        "input": "3\n-1 -5 -2",
+        "expected": "-2",
+        "hidden": true
+      }
+    ],
+    "solution": {
+      "explanation": "Track the largest and second-largest distinct values. Update the second when a new maximum arrives; ignore duplicates of the maximum. Use missing-value sentinels rather than zero so negative arrays work.",
+      "python": "import sys\na = list(map(int, sys.stdin.read().split()))\nfirst = second = None\nfor value in a[1:1+a[0]]:\n    if first is None or value > first:\n        second, first = first, value\n    elif value != first and (second is None or value > second):\n        second = value\nprint(second if second is not None else 'NONE')\n"
+    },
+    "starterCode": {
+      "python": "import sys\n\n# Read standard input and print the required output.\ndef solve():\n    data = sys.stdin.read().strip()\n    # Write your solution here\n    pass\n\nsolve()\n",
+      "javascript": "const fs = require('fs');\nconst input = fs.readFileSync(0, 'utf8').trim();\n// Write your solution and print the result.\n",
+      "java": "import java.util.*;\npublic class Main {\n  public static void main(String[] args) {\n    Scanner sc = new Scanner(System.in);\n    // Read input and print your answer.\n  }\n}\n",
+      "cpp": "#include <bits/stdc++.h>\nusing namespace std;\nint main() {\n  ios::sync_with_stdio(false); cin.tie(nullptr);\n  // Read input and print your answer.\n}\n",
+      "csharp": "using System;\nclass Program {\n  static void Main() {\n    // Read input with Console.ReadLine().\n  }\n}\n"
+    },
+    "difficulty": "Easy",
+    "minutes": 20,
+    "free": false,
+    "source": "Accenture verified question bank",
+    "confidence": "Verified authentic",
+    "constraints": [
+      "Read from standard input and write only the answer to standard output.",
+      "Use the bounds in the prompt. Sample tests are not exhaustive."
+    ],
+    "lesson": "Track the largest and second-largest distinct values. Start with a small example, write an invariant, and consider empty or boundary cases before optimizing."
+  },
+  {
+    "id": "rat-count-house",
+    "type": "code",
+    "category": "dsa",
+    "title": "Rat count house",
+    "topic": "Simulation & arrays",
+    "scenario": "Given r rats and unit food consumed per rat, find the minimum number of sequential houses (0-indexed) required to provide r * unit food. Output 0 if insufficient, -1 if array is empty.",
+    "format": "Line 1: r unit n. Line 2: n integers.",
+    "tests": [
+      {
+        "input": "7 2 8\n2 8 3 5 7 4 1 2",
+        "expected": "4",
+        "hidden": false
+      },
+      {
+        "input": "10 5 3\n10 20 10",
+        "expected": "0",
+        "hidden": true
+      },
+      {
+        "input": "5 2 0\n",
+        "expected": "-1",
+        "hidden": true
+      },
+      {
+        "input": "2 3 4\n1 2 3 4",
+        "expected": "3",
+        "hidden": true
+      }
+    ],
+    "solution": {
+      "explanation": "Calculate required food r * unit. Accumulate house food from index 0 until requirement is met. Return count or 0 if exhausted.",
+      "python": "import sys\n\ndef solve():\n    lines = sys.stdin.read().split()\n    if not lines:\n        print(-1)\n        return\n    r = int(lines[0])\n    unit = int(lines[1])\n    n = int(lines[2])\n    arr = [int(x) for x in lines[3:3+n]]\n    if n == 0 or len(arr) == 0:\n        print(-1)\n        return\n    req = r * unit\n    curr = 0\n    for i in range(len(arr)):\n        curr += arr[i]\n        if curr >= req:\n            print(i + 1)\n            return\n    print(0)\n\nsolve()\n"
+    },
+    "starterCode": {
+      "python": "import sys\n\n# Read standard input and print the required output.\ndef solve():\n    data = sys.stdin.read().strip()\n    # Write your solution here\n    pass\n\nsolve()\n",
+      "javascript": "const fs = require('fs');\nconst input = fs.readFileSync(0, 'utf8').trim();\n// Write your solution and print the result.\n",
+      "java": "import java.util.*;\npublic class Main {\n  public static void main(String[] args) {\n    Scanner sc = new Scanner(System.in);\n    // Read input and print your answer.\n  }\n}\n",
+      "cpp": "#include <bits/stdc++.h>\nusing namespace std;\nint main() {\n  ios::sync_with_stdio(false); cin.tie(nullptr);\n  // Read input and print your answer.\n}\n",
+      "csharp": "using System;\nclass Program {\n  static void Main() {\n    // Read input with Console.ReadLine().\n  }\n}\n"
+    },
+    "difficulty": "Easy",
+    "minutes": 20,
+    "free": false,
+    "source": "Accenture verified question bank",
+    "confidence": "Verified authentic",
+    "constraints": [
+      "Read from standard input and write only the answer to standard output.",
+      "Use the bounds in the prompt. Sample tests are not exhaustive."
+    ],
+    "lesson": "Calculate required food r * unit. Start with a small example, write an invariant, and consider empty or boundary cases before optimizing."
+  },
+  {
+    "id": "binary-string-ops",
+    "type": "code",
+    "category": "dsa",
+    "title": "Operations on binary string",
+    "topic": "Bitwise & strings",
+    "scenario": "Evaluate a binary string containing 0, 1 and operators A (AND), B (OR), and C (XOR) strictly left to right. Return -1 for empty string.",
+    "format": "One line containing binary operations string.",
+    "tests": [
+      {
+        "input": "1C0C1C1A0B1",
+        "expected": "1",
+        "hidden": false
+      },
+      {
+        "input": "0A1B0C1",
+        "expected": "1",
+        "hidden": true
+      },
+      {
+        "input": "1B1A0",
+        "expected": "0",
+        "hidden": true
+      },
+      {
+        "input": "0C0",
+        "expected": "0",
+        "hidden": true
+      }
+    ],
+    "solution": {
+      "explanation": "Initialize accumulator to first digit. Step by 2 and apply corresponding bitwise operator against next digit.",
+      "python": "import sys\n\ndef solve():\n    s = sys.stdin.read().strip()\n    if not s:\n        print(-1)\n        return\n    res = int(s[0])\n    i = 1\n    while i < len(s):\n        op = s[i]\n        nxt = int(s[i+1])\n        if op == \"A\":\n            res = res & nxt\n        elif op == \"B\":\n            res = res | nxt\n        elif op == \"C\":\n            res = res ^ nxt\n        i += 2\n    print(res)\n\nsolve()\n"
+    },
+    "starterCode": {
+      "python": "import sys\n\n# Read standard input and print the required output.\ndef solve():\n    data = sys.stdin.read().strip()\n    # Write your solution here\n    pass\n\nsolve()\n",
+      "javascript": "const fs = require('fs');\nconst input = fs.readFileSync(0, 'utf8').trim();\n// Write your solution and print the result.\n",
+      "java": "import java.util.*;\npublic class Main {\n  public static void main(String[] args) {\n    Scanner sc = new Scanner(System.in);\n    // Read input and print your answer.\n  }\n}\n",
+      "cpp": "#include <bits/stdc++.h>\nusing namespace std;\nint main() {\n  ios::sync_with_stdio(false); cin.tie(nullptr);\n  // Read input and print your answer.\n}\n",
+      "csharp": "using System;\nclass Program {\n  static void Main() {\n    // Read input with Console.ReadLine().\n  }\n}\n"
+    },
+    "difficulty": "Easy",
+    "minutes": 20,
+    "free": false,
+    "source": "Accenture verified question bank",
+    "confidence": "Verified authentic",
+    "constraints": [
+      "Read from standard input and write only the answer to standard output.",
+      "Use the bounds in the prompt. Sample tests are not exhaustive."
+    ],
+    "lesson": "Initialize accumulator to first digit. Start with a small example, write an invariant, and consider empty or boundary cases before optimizing."
+  },
+  {
+    "id": "password-checker",
+    "type": "code",
+    "category": "dsa",
+    "title": "Password validity checker",
+    "topic": "Strings & validation",
+    "scenario": "Check password rules: length >= 4, at least 1 digit, at least 1 uppercase letter, no space or slash, first character not a digit. Print 1 if valid, 0 if invalid.",
+    "format": "One line with password string.",
+    "tests": [
+      {
+        "input": "aA1_67",
+        "expected": "1",
+        "hidden": false
+      },
+      {
+        "input": "a987 abC012",
+        "expected": "0",
+        "hidden": true
+      },
+      {
+        "input": "1bA9",
+        "expected": "0",
+        "hidden": true
+      },
+      {
+        "input": "abc",
+        "expected": "0",
+        "hidden": true
+      }
+    ],
+    "solution": {
+      "explanation": "Scan string checking length >= 4 and first character. Validate uppercase and digit presence while rejecting spaces and slashes.",
+      "python": "import sys\n\ndef solve():\n    s = sys.stdin.read().strip()\n    if len(s) < 4 or s[0].isdigit():\n        print(0)\n        return\n    has_digit = False\n    has_upper = False\n    for ch in s:\n        if ch == \" \" or ch == \"/\":\n            print(0)\n            return\n        if ch.isdigit():\n            has_digit = True\n        elif ch.isupper():\n            has_upper = True\n    print(1 if (has_digit and has_upper) else 0)\n\nsolve()\n"
+    },
+    "starterCode": {
+      "python": "import sys\n\n# Read standard input and print the required output.\ndef solve():\n    data = sys.stdin.read().strip()\n    # Write your solution here\n    pass\n\nsolve()\n",
+      "javascript": "const fs = require('fs');\nconst input = fs.readFileSync(0, 'utf8').trim();\n// Write your solution and print the result.\n",
+      "java": "import java.util.*;\npublic class Main {\n  public static void main(String[] args) {\n    Scanner sc = new Scanner(System.in);\n    // Read input and print your answer.\n  }\n}\n",
+      "cpp": "#include <bits/stdc++.h>\nusing namespace std;\nint main() {\n  ios::sync_with_stdio(false); cin.tie(nullptr);\n  // Read input and print your answer.\n}\n",
+      "csharp": "using System;\nclass Program {\n  static void Main() {\n    // Read input with Console.ReadLine().\n  }\n}\n"
+    },
+    "difficulty": "Easy",
+    "minutes": 20,
+    "free": false,
+    "source": "Accenture verified question bank",
+    "confidence": "Verified authentic",
+    "constraints": [
+      "Read from standard input and write only the answer to standard output.",
+      "Use the bounds in the prompt. Sample tests are not exhaustive."
+    ],
+    "lesson": "Scan string checking length >= 4 and first character. Start with a small example, write an invariant, and consider empty or boundary cases before optimizing."
+  },
+  {
+    "id": "move-hyphens",
+    "type": "code",
+    "category": "dsa",
+    "title": "Move hyphens to front",
+    "topic": "Strings",
+    "scenario": "Move all hyphens in a string to the front while preserving the relative order of other characters.",
+    "format": "One line containing the string.",
+    "tests": [
+      {
+        "input": "Face-Prep-Mock-Test",
+        "expected": "---FacePrepMockTest",
+        "hidden": false
+      },
+      {
+        "input": "Move-Hyphens-To-Front",
+        "expected": "---MoveHyphensToFront",
+        "hidden": true
+      },
+      {
+        "input": "NoHyphen",
+        "expected": "NoHyphen",
+        "hidden": true
+      },
+      {
+        "input": "--a-b-",
+        "expected": "----ab",
+        "hidden": true
+      }
+    ],
+    "solution": {
+      "explanation": "Separate hyphen characters from other characters and concatenate hyphens prefix with characters.",
+      "python": "import sys\n\ndef solve():\n    s = sys.stdin.read().strip()\n    hyphens = \"\".join(c for c in s if c == \"-\")\n    chars = \"\".join(c for c in s if c != \"-\")\n    print(hyphens + chars)\n\nsolve()\n"
+    },
+    "starterCode": {
+      "python": "import sys\n\n# Read standard input and print the required output.\ndef solve():\n    data = sys.stdin.read().strip()\n    # Write your solution here\n    pass\n\nsolve()\n",
+      "javascript": "const fs = require('fs');\nconst input = fs.readFileSync(0, 'utf8').trim();\n// Write your solution and print the result.\n",
+      "java": "import java.util.*;\npublic class Main {\n  public static void main(String[] args) {\n    Scanner sc = new Scanner(System.in);\n    // Read input and print your answer.\n  }\n}\n",
+      "cpp": "#include <bits/stdc++.h>\nusing namespace std;\nint main() {\n  ios::sync_with_stdio(false); cin.tie(nullptr);\n  // Read input and print your answer.\n}\n",
+      "csharp": "using System;\nclass Program {\n  static void Main() {\n    // Read input with Console.ReadLine().\n  }\n}\n"
+    },
+    "difficulty": "Easy",
+    "minutes": 20,
+    "free": false,
+    "source": "Accenture verified question bank",
+    "confidence": "Verified authentic",
+    "constraints": [
+      "Read from standard input and write only the answer to standard output.",
+      "Use the bounds in the prompt. Sample tests are not exhaustive."
+    ],
+    "lesson": "Separate hyphen characters from other characters and concatenate hyphens prefix with characters. Start with a small example, write an invariant, and consider empty or boundary cases before optimizing."
+  },
+  {
+    "id": "product-smallest-pair",
+    "type": "code",
+    "category": "dsa",
+    "title": "Product of smallest pair",
+    "topic": "Arrays & sorting",
+    "scenario": "Find two smallest distinct elements in array. If their sum is <= sum_val, return their product, else 0. Return -1 if n < 2.",
+    "format": "Line 1: sum_val n. Line 2: n integers.",
+    "tests": [
+      {
+        "input": "9 7\n5 2 4 3 9 7 1",
+        "expected": "2",
+        "hidden": false
+      },
+      {
+        "input": "4 5\n9 8 3 -1 0",
+        "expected": "0",
+        "hidden": true
+      },
+      {
+        "input": "10 3\n10 20 30",
+        "expected": "0",
+        "hidden": true
+      },
+      {
+        "input": "15 4\n3 4 5 6",
+        "expected": "12",
+        "hidden": true
+      }
+    ],
+    "solution": {
+      "explanation": "Sort the array. If the sum of the two smallest elements is at most sum_val, return their product; otherwise 0.",
+      "python": "import sys\n\ndef solve():\n    lines = sys.stdin.read().split()\n    if len(lines) < 3:\n        print(-1)\n        return\n    sum_val = int(lines[0])\n    n = int(lines[1])\n    arr = [int(x) for x in lines[2:2+n]]\n    if n < 2:\n        print(-1)\n        return\n    arr.sort()\n    if arr[0] + arr[1] <= sum_val:\n        print(arr[0] * arr[1])\n    else:\n        print(0)\n\nsolve()\n"
+    },
+    "starterCode": {
+      "python": "import sys\n\n# Read standard input and print the required output.\ndef solve():\n    data = sys.stdin.read().strip()\n    # Write your solution here\n    pass\n\nsolve()\n",
+      "javascript": "const fs = require('fs');\nconst input = fs.readFileSync(0, 'utf8').trim();\n// Write your solution and print the result.\n",
+      "java": "import java.util.*;\npublic class Main {\n  public static void main(String[] args) {\n    Scanner sc = new Scanner(System.in);\n    // Read input and print your answer.\n  }\n}\n",
+      "cpp": "#include <bits/stdc++.h>\nusing namespace std;\nint main() {\n  ios::sync_with_stdio(false); cin.tie(nullptr);\n  // Read input and print your answer.\n}\n",
+      "csharp": "using System;\nclass Program {\n  static void Main() {\n    // Read input with Console.ReadLine().\n  }\n}\n"
+    },
+    "difficulty": "Easy",
+    "minutes": 20,
+    "free": false,
+    "source": "Accenture verified question bank",
+    "confidence": "Verified authentic",
+    "constraints": [
+      "Read from standard input and write only the answer to standard output.",
+      "Use the bounds in the prompt. Sample tests are not exhaustive."
+    ],
+    "lesson": "Sort the array. Start with a small example, write an invariant, and consider empty or boundary cases before optimizing."
+  },
+  {
+    "id": "large-small-sum",
+    "type": "code",
+    "category": "dsa",
+    "title": "Large small sum",
+    "topic": "Arrays & positions",
+    "scenario": "Find the sum of second-largest element from even-indexed positions and second-smallest element from odd-indexed positions. Return 0 if n <= 3.",
+    "format": "Line 1: n. Line 2: n integers.",
+    "tests": [
+      {
+        "input": "6\n3 2 1 7 5 4",
+        "expected": "7",
+        "hidden": false
+      },
+      {
+        "input": "7\n1 8 0 2 3 5 6",
+        "expected": "8",
+        "hidden": true
+      },
+      {
+        "input": "3\n1 2 3",
+        "expected": "0",
+        "hidden": true
+      },
+      {
+        "input": "5\n10 2 30 4 50",
+        "expected": "34",
+        "hidden": true
+      }
+    ],
+    "solution": {
+      "explanation": "Collect even-indexed and odd-indexed elements separately, sort both, and return second largest of even plus second smallest of odd.",
+      "python": "import sys\n\ndef solve():\n    lines = sys.stdin.read().split()\n    if not lines:\n        print(0)\n        return\n    n = int(lines[0])\n    arr = [int(x) for x in lines[1:1+n]]\n    if n <= 3:\n        print(0)\n        return\n    even_pos = sorted([arr[i] for i in range(0, n, 2)])\n    odd_pos = sorted([arr[i] for i in range(1, n, 2)])\n    print(even_pos[-2] + odd_pos[1])\n\nsolve()\n"
+    },
+    "starterCode": {
+      "python": "import sys\n\n# Read standard input and print the required output.\ndef solve():\n    data = sys.stdin.read().strip()\n    # Write your solution here\n    pass\n\nsolve()\n",
+      "javascript": "const fs = require('fs');\nconst input = fs.readFileSync(0, 'utf8').trim();\n// Write your solution and print the result.\n",
+      "java": "import java.util.*;\npublic class Main {\n  public static void main(String[] args) {\n    Scanner sc = new Scanner(System.in);\n    // Read input and print your answer.\n  }\n}\n",
+      "cpp": "#include <bits/stdc++.h>\nusing namespace std;\nint main() {\n  ios::sync_with_stdio(false); cin.tie(nullptr);\n  // Read input and print your answer.\n}\n",
+      "csharp": "using System;\nclass Program {\n  static void Main() {\n    // Read input with Console.ReadLine().\n  }\n}\n"
+    },
+    "difficulty": "Easy",
+    "minutes": 20,
+    "free": false,
+    "source": "Accenture verified question bank",
+    "confidence": "Verified authentic",
+    "constraints": [
+      "Read from standard input and write only the answer to standard output.",
+      "Use the bounds in the prompt. Sample tests are not exhaustive."
+    ],
+    "lesson": "Collect even-indexed and odd-indexed elements separately, sort both, and return second largest of even plus second smallest of odd. Start with a small example, write an invariant, and consider empty or boundary cases before optimizing."
+  },
+  {
+    "id": "superior-elements",
+    "type": "code",
+    "category": "dsa",
+    "title": "Number of superior elements",
+    "topic": "Arrays & leaders",
+    "scenario": "An element is superior if it is strictly greater than all elements to its right. The rightmost element is always superior. Return the total count.",
+    "format": "Line 1: n. Line 2: n integers.",
+    "tests": [
+      {
+        "input": "6\n7 9 5 2 8 7",
+        "expected": "3",
+        "hidden": false
+      },
+      {
+        "input": "4\n1 2 3 4",
+        "expected": "1",
+        "hidden": true
+      },
+      {
+        "input": "5\n5 4 3 2 1",
+        "expected": "5",
+        "hidden": true
+      },
+      {
+        "input": "3\n2 2 2",
+        "expected": "1",
+        "hidden": true
+      }
+    ],
+    "solution": {
+      "explanation": "Traverse from right to left keeping track of the running maximum. Increment count when an element is strictly greater than running max.",
+      "python": "import sys\n\ndef solve():\n    lines = sys.stdin.read().split()\n    if not lines:\n        print(0)\n        return\n    n = int(lines[0])\n    arr = [int(x) for x in lines[1:1+n]]\n    if n == 0:\n        print(0)\n        return\n    count = 1\n    max_r = arr[-1]\n    for i in range(n - 2, -1, -1):\n        if arr[i] > max_r:\n            count += 1\n            max_r = arr[i]\n    print(count)\n\nsolve()\n"
+    },
+    "starterCode": {
+      "python": "import sys\n\n# Read standard input and print the required output.\ndef solve():\n    data = sys.stdin.read().strip()\n    # Write your solution here\n    pass\n\nsolve()\n",
+      "javascript": "const fs = require('fs');\nconst input = fs.readFileSync(0, 'utf8').trim();\n// Write your solution and print the result.\n",
+      "java": "import java.util.*;\npublic class Main {\n  public static void main(String[] args) {\n    Scanner sc = new Scanner(System.in);\n    // Read input and print your answer.\n  }\n}\n",
+      "cpp": "#include <bits/stdc++.h>\nusing namespace std;\nint main() {\n  ios::sync_with_stdio(false); cin.tie(nullptr);\n  // Read input and print your answer.\n}\n",
+      "csharp": "using System;\nclass Program {\n  static void Main() {\n    // Read input with Console.ReadLine().\n  }\n}\n"
+    },
+    "difficulty": "Easy",
+    "minutes": 20,
+    "free": false,
+    "source": "Accenture verified question bank",
+    "confidence": "Verified authentic",
+    "constraints": [
+      "Read from standard input and write only the answer to standard output.",
+      "Use the bounds in the prompt. Sample tests are not exhaustive."
+    ],
+    "lesson": "Traverse from right to left keeping track of the running maximum. Start with a small example, write an invariant, and consider empty or boundary cases before optimizing."
+  },
+  {
+    "id": "automorphic-number",
+    "type": "code",
+    "category": "dsa",
+    "title": "Automorphic number check",
+    "topic": "Number theory",
+    "scenario": "An integer is automorphic if its square ends with the same digits as the number itself (e.g. 25^2 = 625). Print YES or NO.",
+    "format": "One line containing integer.",
+    "tests": [
+      {
+        "input": "25",
+        "expected": "YES",
+        "hidden": false
+      },
+      {
+        "input": "76",
+        "expected": "YES",
+        "hidden": true
+      },
+      {
+        "input": "13",
+        "expected": "NO",
+        "hidden": true
+      },
+      {
+        "input": "5",
+        "expected": "YES",
+        "hidden": true
+      },
+      {
+        "input": "6",
+        "expected": "YES",
+        "hidden": true
+      }
+    ],
+    "solution": {
+      "explanation": "Square the number and check if the string representation of the square ends with the number string.",
+      "python": "import sys\n\ndef solve():\n    line = sys.stdin.read().strip()\n    if not line:\n        print(\"NO\")\n        return\n    n = int(line)\n    sq = n * n\n    if str(sq).endswith(str(n)):\n        print(\"YES\")\n    else:\n        print(\"NO\")\n\nsolve()\n"
+    },
+    "starterCode": {
+      "python": "import sys\n\n# Read standard input and print the required output.\ndef solve():\n    data = sys.stdin.read().strip()\n    # Write your solution here\n    pass\n\nsolve()\n",
+      "javascript": "const fs = require('fs');\nconst input = fs.readFileSync(0, 'utf8').trim();\n// Write your solution and print the result.\n",
+      "java": "import java.util.*;\npublic class Main {\n  public static void main(String[] args) {\n    Scanner sc = new Scanner(System.in);\n    // Read input and print your answer.\n  }\n}\n",
+      "cpp": "#include <bits/stdc++.h>\nusing namespace std;\nint main() {\n  ios::sync_with_stdio(false); cin.tie(nullptr);\n  // Read input and print your answer.\n}\n",
+      "csharp": "using System;\nclass Program {\n  static void Main() {\n    // Read input with Console.ReadLine().\n  }\n}\n"
+    },
+    "difficulty": "Easy",
+    "minutes": 20,
+    "free": false,
+    "source": "Accenture verified question bank",
+    "confidence": "Verified authentic",
+    "constraints": [
+      "Read from standard input and write only the answer to standard output.",
+      "Use the bounds in the prompt. Sample tests are not exhaustive."
+    ],
+    "lesson": "Square the number and check if the string representation of the square ends with the number string. Start with a small example, write an invariant, and consider empty or boundary cases before optimizing."
+  },
+  {
+    "id": "subarray-sum",
+    "type": "code",
+    "category": "dsa",
+    "title": "Subarray with target sum",
+    "topic": "Sliding window",
+    "scenario": "Find the 1-based start and end indices of a contiguous subarray of non-negative integers that sums to s. Output -1 if none exists.",
+    "format": "Line 1: n s. Line 2: n integers.",
+    "tests": [
+      {
+        "input": "5 12\n1 2 3 7 5",
+        "expected": "2 4",
+        "hidden": false
+      },
+      {
+        "input": "4 10\n1 2 3 4",
+        "expected": "1 4",
+        "hidden": true
+      },
+      {
+        "input": "3 100\n1 2 3",
+        "expected": "-1",
+        "hidden": true
+      },
+      {
+        "input": "1 5\n5",
+        "expected": "1 1",
+        "hidden": true
+      }
+    ],
+    "solution": {
+      "explanation": "Use a sliding window. Expand the right pointer, and shrink from the left whenever current sum exceeds s.",
+      "python": "import sys\n\ndef solve():\n    lines = sys.stdin.read().split()\n    if len(lines) < 2:\n        print(\"-1\")\n        return\n    n = int(lines[0])\n    s = int(lines[1])\n    arr = [int(x) for x in lines[2:2+n]]\n    left = 0\n    curr = 0\n    for right in range(n):\n        curr += arr[right]\n        while curr > s and left < right:\n            curr -= arr[left]\n            left += 1\n        if curr == s:\n            print(f\"{left+1} {right+1}\")\n            return\n    print(\"-1\")\n\nsolve()\n"
+    },
+    "starterCode": {
+      "python": "import sys\n\n# Read standard input and print the required output.\ndef solve():\n    data = sys.stdin.read().strip()\n    # Write your solution here\n    pass\n\nsolve()\n",
+      "javascript": "const fs = require('fs');\nconst input = fs.readFileSync(0, 'utf8').trim();\n// Write your solution and print the result.\n",
+      "java": "import java.util.*;\npublic class Main {\n  public static void main(String[] args) {\n    Scanner sc = new Scanner(System.in);\n    // Read input and print your answer.\n  }\n}\n",
+      "cpp": "#include <bits/stdc++.h>\nusing namespace std;\nint main() {\n  ios::sync_with_stdio(false); cin.tie(nullptr);\n  // Read input and print your answer.\n}\n",
+      "csharp": "using System;\nclass Program {\n  static void Main() {\n    // Read input with Console.ReadLine().\n  }\n}\n"
+    },
+    "difficulty": "Easy",
+    "minutes": 20,
+    "free": false,
+    "source": "Accenture verified question bank",
+    "confidence": "Verified authentic",
+    "constraints": [
+      "Read from standard input and write only the answer to standard output.",
+      "Use the bounds in the prompt. Sample tests are not exhaustive."
+    ],
+    "lesson": "Use a sliding window. Start with a small example, write an invariant, and consider empty or boundary cases before optimizing."
+  },
+  {
+    "id": "pairwise-difference",
+    "type": "code",
+    "category": "dsa",
+    "title": "Maximum pairwise difference",
+    "topic": "Arrays",
+    "scenario": "Given n prices, find the maximum profit arr[j] - arr[i] with j > i. If no positive difference is possible, return 0.",
+    "format": "Line 1: n. Line 2: n integers.",
+    "tests": [
+      {
+        "input": "6\n7 1 5 3 6 4",
+        "expected": "5",
+        "hidden": false
+      },
+      {
+        "input": "5\n7 6 4 3 1",
+        "expected": "0",
+        "hidden": true
+      },
+      {
+        "input": "4\n2 4 1 5",
+        "expected": "4",
+        "hidden": true
+      },
+      {
+        "input": "2\n5 10",
+        "expected": "5",
+        "hidden": true
+      }
+    ],
+    "solution": {
+      "explanation": "Track the running minimum value from left to right and calculate the maximum difference at each step.",
+      "python": "import sys\n\ndef solve():\n    lines = sys.stdin.read().split()\n    if not lines:\n        print(0)\n        return\n    n = int(lines[0])\n    arr = [int(x) for x in lines[1:1+n]]\n    if n < 2:\n        print(0)\n        return\n    min_val = arr[0]\n    max_diff = 0\n    for i in range(1, n):\n        if arr[i] - min_val > max_diff:\n            max_diff = arr[i] - min_val\n        if arr[i] < min_val:\n            min_val = arr[i]\n    print(max_diff)\n\nsolve()\n"
+    },
+    "starterCode": {
+      "python": "import sys\n\n# Read standard input and print the required output.\ndef solve():\n    data = sys.stdin.read().strip()\n    # Write your solution here\n    pass\n\nsolve()\n",
+      "javascript": "const fs = require('fs');\nconst input = fs.readFileSync(0, 'utf8').trim();\n// Write your solution and print the result.\n",
+      "java": "import java.util.*;\npublic class Main {\n  public static void main(String[] args) {\n    Scanner sc = new Scanner(System.in);\n    // Read input and print your answer.\n  }\n}\n",
+      "cpp": "#include <bits/stdc++.h>\nusing namespace std;\nint main() {\n  ios::sync_with_stdio(false); cin.tie(nullptr);\n  // Read input and print your answer.\n}\n",
+      "csharp": "using System;\nclass Program {\n  static void Main() {\n    // Read input with Console.ReadLine().\n  }\n}\n"
+    },
+    "difficulty": "Easy",
+    "minutes": 20,
+    "free": false,
+    "source": "Accenture verified question bank",
+    "confidence": "Verified authentic",
+    "constraints": [
+      "Read from standard input and write only the answer to standard output.",
+      "Use the bounds in the prompt. Sample tests are not exhaustive."
+    ],
+    "lesson": "Track the running minimum value from left to right and calculate the maximum difference at each step. Start with a small example, write an invariant, and consider empty or boundary cases before optimizing."
+  },
+  {
+    "id": "sports-sql",
+    "title": "Paid sports registrations",
+    "topic": "JOIN + HAVING",
+    "scenario": "Return first_name, last_name, and COUNT of paid registrations as sports_count for players with at least 3 paid registrations. Order by player_id.",
+    "type": "sql",
+    "category": "sql",
+    "difficulty": "Medium",
+    "minutes": 15,
+    "free": false,
+    "source": "Accenture SQL scenario bank",
+    "confidence": "Verified authentic",
+    "schema": "CREATE TABLE player(player_id INTEGER PRIMARY KEY, first_name TEXT,last_name TEXT); CREATE TABLE registration(id INTEGER PRIMARY KEY,player_id INTEGER,sport_id INTEGER,payment_status TEXT); INSERT INTO player VALUES(1,'Asha','Rao'),(2,'Ravi','Shah'),(3,'Maya','Sen'),(4,'Dev','Das'); INSERT INTO registration VALUES(1,1,10,'Paid'),(2,1,11,'Paid'),(3,1,12,'Paid'),(4,2,10,'Paid'),(5,2,11,'Pending'),(6,3,10,'Paid'),(7,3,11,'Paid'),(8,3,12,'Paid'),(9,3,13,'Paid');",
+    "fixtures": [
+      "CREATE TABLE player(player_id INTEGER PRIMARY KEY, first_name TEXT,last_name TEXT); CREATE TABLE registration(id INTEGER PRIMARY KEY,player_id INTEGER,sport_id INTEGER,payment_status TEXT); INSERT INTO player VALUES(1,'Asha','Rao'),(2,'Ravi','Shah'),(3,'Maya','Sen'),(4,'Dev','Das'); INSERT INTO registration VALUES(1,1,10,'Paid'),(2,1,11,'Paid'),(3,1,12,'Paid'),(4,2,10,'Paid'),(5,2,11,'Pending'),(6,3,10,'Paid'),(7,3,11,'Paid'),(8,3,12,'Paid'),(9,3,13,'Paid');",
+      "CREATE TABLE player(player_id INTEGER PRIMARY KEY, first_name TEXT,last_name TEXT); CREATE TABLE registration(id INTEGER PRIMARY KEY,player_id INTEGER,sport_id INTEGER,payment_status TEXT); INSERT INTO player VALUES(1,'Asha','Rao'),(2,'Ravi','Shah'),(3,'Maya','Sen'),(4,'Dev','Das'); INSERT INTO registration VALUES(1,1,10,'Paid'),(2,1,11,'Paid'),(3,1,12,'Paid'),(4,2,10,'Paid'),(5,2,11,'Pending'),(6,3,10,'Paid'),(7,3,11,'Paid'),(8,3,12,'Paid'),(9,3,13,'Paid');DELETE FROM registration; DELETE FROM player; INSERT INTO player VALUES(10,'Lee','Roy'),(11,'Uma','Roy'),(12,'Zara','Ali'); INSERT INTO registration VALUES(1,10,1,'Paid'),(2,10,2,'Paid'),(3,10,3,'Paid'),(4,11,1,'Pending'),(5,12,1,'Paid'),(6,12,2,'Paid');"
+    ],
+    "schemaDescription": "player(player_id, first_name, last_name)\nregistration(id, player_id, sport_id, payment_status)\n\nSample: Asha has 3 paid registrations, Ravi 1 paid + 1 pending, Maya 4 paid, Dev none.",
+    "starterCode": {
+      "sql": "-- SQLite / ANSI-style SQL practice\nSELECT\n  -- choose your columns\nFROM player p;"
+    },
+    "solution": {
+      "sql": "SELECT p.first_name,p.last_name,COUNT(*) AS sports_count FROM player p JOIN registration r ON p.player_id=r.player_id WHERE r.payment_status='Paid' GROUP BY p.player_id,p.first_name,p.last_name HAVING COUNT(*)>=3 ORDER BY p.player_id;",
+      "explanation": "Apply filters before grouping. WHERE filters input rows; HAVING filters grouped metrics."
+    },
+    "lesson": "JOIN connects related rows. COUNT(*) counts joined rows, while COUNT(r.id) excludes nulls."
+  },
+  {
+    "id": "no-registration",
+    "title": "Players without registrations",
+    "topic": "LEFT JOIN",
+    "scenario": "Return player_id and first_name for players with no registration of any payment status. Order by player_id.",
+    "type": "sql",
+    "category": "sql",
+    "difficulty": "Medium",
+    "minutes": 15,
+    "free": false,
+    "source": "Accenture SQL scenario bank",
+    "confidence": "Verified authentic",
+    "schema": "CREATE TABLE player(player_id INTEGER PRIMARY KEY, first_name TEXT,last_name TEXT); CREATE TABLE registration(id INTEGER PRIMARY KEY,player_id INTEGER,sport_id INTEGER,payment_status TEXT); INSERT INTO player VALUES(1,'Asha','Rao'),(2,'Ravi','Shah'),(3,'Maya','Sen'),(4,'Dev','Das'); INSERT INTO registration VALUES(1,1,10,'Paid'),(2,1,11,'Paid'),(3,1,12,'Paid'),(4,2,10,'Paid'),(5,2,11,'Pending'),(6,3,10,'Paid'),(7,3,11,'Paid'),(8,3,12,'Paid'),(9,3,13,'Paid');",
+    "fixtures": [
+      "CREATE TABLE player(player_id INTEGER PRIMARY KEY, first_name TEXT,last_name TEXT); CREATE TABLE registration(id INTEGER PRIMARY KEY,player_id INTEGER,sport_id INTEGER,payment_status TEXT); INSERT INTO player VALUES(1,'Asha','Rao'),(2,'Ravi','Shah'),(3,'Maya','Sen'),(4,'Dev','Das'); INSERT INTO registration VALUES(1,1,10,'Paid'),(2,1,11,'Paid'),(3,1,12,'Paid'),(4,2,10,'Paid'),(5,2,11,'Pending'),(6,3,10,'Paid'),(7,3,11,'Paid'),(8,3,12,'Paid'),(9,3,13,'Paid');",
+      "CREATE TABLE player(player_id INTEGER PRIMARY KEY, first_name TEXT,last_name TEXT); CREATE TABLE registration(id INTEGER PRIMARY KEY,player_id INTEGER,sport_id INTEGER,payment_status TEXT); INSERT INTO player VALUES(1,'Asha','Rao'),(2,'Ravi','Shah'),(3,'Maya','Sen'),(4,'Dev','Das'); INSERT INTO registration VALUES(1,1,10,'Paid'),(2,1,11,'Paid'),(3,1,12,'Paid'),(4,2,10,'Paid'),(5,2,11,'Pending'),(6,3,10,'Paid'),(7,3,11,'Paid'),(8,3,12,'Paid'),(9,3,13,'Paid');DELETE FROM registration; DELETE FROM player; INSERT INTO player VALUES(10,'Lee','Roy'),(11,'Uma','Roy'),(12,'Zara','Ali'); INSERT INTO registration VALUES(1,10,1,'Paid'),(2,10,2,'Paid'),(3,10,3,'Paid'),(4,11,1,'Pending'),(5,12,1,'Paid'),(6,12,2,'Paid');"
+    ],
+    "schemaDescription": "player(player_id, first_name, last_name)\nregistration(id, player_id, sport_id, payment_status)\n\nSample: Asha has 3 paid registrations, Ravi 1 paid + 1 pending, Maya 4 paid, Dev none.",
+    "starterCode": {
+      "sql": "-- SQLite / ANSI-style SQL practice\nSELECT\n  -- choose your columns\nFROM player p;"
+    },
+    "solution": {
+      "sql": "SELECT p.player_id,p.first_name FROM player p LEFT JOIN registration r ON p.player_id=r.player_id WHERE r.id IS NULL ORDER BY p.player_id;",
+      "explanation": "Apply filters before grouping. WHERE filters input rows; HAVING filters grouped metrics."
+    },
+    "lesson": "JOIN connects related rows. COUNT(*) counts joined rows, while COUNT(r.id) excludes nulls."
+  },
+  {
+    "id": "sport-popularity",
+    "title": "Count paid registrations by sport",
+    "topic": "GROUP BY",
+    "scenario": "Return sport_id and COUNT of paid registrations as paid_count. Order by paid_count descending, then sport_id ascending.",
+    "type": "sql",
+    "category": "sql",
+    "difficulty": "Medium",
+    "minutes": 15,
+    "free": false,
+    "source": "Accenture SQL scenario bank",
+    "confidence": "Verified authentic",
+    "schema": "CREATE TABLE player(player_id INTEGER PRIMARY KEY, first_name TEXT,last_name TEXT); CREATE TABLE registration(id INTEGER PRIMARY KEY,player_id INTEGER,sport_id INTEGER,payment_status TEXT); INSERT INTO player VALUES(1,'Asha','Rao'),(2,'Ravi','Shah'),(3,'Maya','Sen'),(4,'Dev','Das'); INSERT INTO registration VALUES(1,1,10,'Paid'),(2,1,11,'Paid'),(3,1,12,'Paid'),(4,2,10,'Paid'),(5,2,11,'Pending'),(6,3,10,'Paid'),(7,3,11,'Paid'),(8,3,12,'Paid'),(9,3,13,'Paid');",
+    "fixtures": [
+      "CREATE TABLE player(player_id INTEGER PRIMARY KEY, first_name TEXT,last_name TEXT); CREATE TABLE registration(id INTEGER PRIMARY KEY,player_id INTEGER,sport_id INTEGER,payment_status TEXT); INSERT INTO player VALUES(1,'Asha','Rao'),(2,'Ravi','Shah'),(3,'Maya','Sen'),(4,'Dev','Das'); INSERT INTO registration VALUES(1,1,10,'Paid'),(2,1,11,'Paid'),(3,1,12,'Paid'),(4,2,10,'Paid'),(5,2,11,'Pending'),(6,3,10,'Paid'),(7,3,11,'Paid'),(8,3,12,'Paid'),(9,3,13,'Paid');",
+      "CREATE TABLE player(player_id INTEGER PRIMARY KEY, first_name TEXT,last_name TEXT); CREATE TABLE registration(id INTEGER PRIMARY KEY,player_id INTEGER,sport_id INTEGER,payment_status TEXT); INSERT INTO player VALUES(1,'Asha','Rao'),(2,'Ravi','Shah'),(3,'Maya','Sen'),(4,'Dev','Das'); INSERT INTO registration VALUES(1,1,10,'Paid'),(2,1,11,'Paid'),(3,1,12,'Paid'),(4,2,10,'Paid'),(5,2,11,'Pending'),(6,3,10,'Paid'),(7,3,11,'Paid'),(8,3,12,'Paid'),(9,3,13,'Paid');DELETE FROM registration; DELETE FROM player; INSERT INTO player VALUES(10,'Lee','Roy'),(11,'Uma','Roy'),(12,'Zara','Ali'); INSERT INTO registration VALUES(1,10,1,'Paid'),(2,10,2,'Paid'),(3,10,3,'Paid'),(4,11,1,'Pending'),(5,12,1,'Paid'),(6,12,2,'Paid');"
+    ],
+    "schemaDescription": "player(player_id, first_name, last_name)\nregistration(id, player_id, sport_id, payment_status)\n\nSample: Asha has 3 paid registrations, Ravi 1 paid + 1 pending, Maya 4 paid, Dev none.",
+    "starterCode": {
+      "sql": "-- SQLite / ANSI-style SQL practice\nSELECT\n  -- choose your columns\nFROM player p;"
+    },
+    "solution": {
+      "sql": "SELECT sport_id,COUNT(*) AS paid_count FROM registration WHERE payment_status='Paid' GROUP BY sport_id ORDER BY paid_count DESC,sport_id;",
+      "explanation": "Apply filters before grouping. WHERE filters input rows; HAVING filters grouped metrics."
+    },
+    "lesson": "JOIN connects related rows. COUNT(*) counts joined rows, while COUNT(r.id) excludes nulls."
+  },
+  {
+    "id": "all-player-count",
+    "title": "Include players with zero payments",
+    "topic": "Conditional aggregation",
+    "scenario": "Return player_id, first_name and the number of paid registrations as paid_count for every player, including zero. Order by player_id.",
+    "type": "sql",
+    "category": "sql",
+    "difficulty": "Medium",
+    "minutes": 15,
+    "free": false,
+    "source": "Accenture SQL scenario bank",
+    "confidence": "Verified authentic",
+    "schema": "CREATE TABLE player(player_id INTEGER PRIMARY KEY, first_name TEXT,last_name TEXT); CREATE TABLE registration(id INTEGER PRIMARY KEY,player_id INTEGER,sport_id INTEGER,payment_status TEXT); INSERT INTO player VALUES(1,'Asha','Rao'),(2,'Ravi','Shah'),(3,'Maya','Sen'),(4,'Dev','Das'); INSERT INTO registration VALUES(1,1,10,'Paid'),(2,1,11,'Paid'),(3,1,12,'Paid'),(4,2,10,'Paid'),(5,2,11,'Pending'),(6,3,10,'Paid'),(7,3,11,'Paid'),(8,3,12,'Paid'),(9,3,13,'Paid');",
+    "fixtures": [
+      "CREATE TABLE player(player_id INTEGER PRIMARY KEY, first_name TEXT,last_name TEXT); CREATE TABLE registration(id INTEGER PRIMARY KEY,player_id INTEGER,sport_id INTEGER,payment_status TEXT); INSERT INTO player VALUES(1,'Asha','Rao'),(2,'Ravi','Shah'),(3,'Maya','Sen'),(4,'Dev','Das'); INSERT INTO registration VALUES(1,1,10,'Paid'),(2,1,11,'Paid'),(3,1,12,'Paid'),(4,2,10,'Paid'),(5,2,11,'Pending'),(6,3,10,'Paid'),(7,3,11,'Paid'),(8,3,12,'Paid'),(9,3,13,'Paid');",
+      "CREATE TABLE player(player_id INTEGER PRIMARY KEY, first_name TEXT,last_name TEXT); CREATE TABLE registration(id INTEGER PRIMARY KEY,player_id INTEGER,sport_id INTEGER,payment_status TEXT); INSERT INTO player VALUES(1,'Asha','Rao'),(2,'Ravi','Shah'),(3,'Maya','Sen'),(4,'Dev','Das'); INSERT INTO registration VALUES(1,1,10,'Paid'),(2,1,11,'Paid'),(3,1,12,'Paid'),(4,2,10,'Paid'),(5,2,11,'Pending'),(6,3,10,'Paid'),(7,3,11,'Paid'),(8,3,12,'Paid'),(9,3,13,'Paid');DELETE FROM registration; DELETE FROM player; INSERT INTO player VALUES(10,'Lee','Roy'),(11,'Uma','Roy'),(12,'Zara','Ali'); INSERT INTO registration VALUES(1,10,1,'Paid'),(2,10,2,'Paid'),(3,10,3,'Paid'),(4,11,1,'Pending'),(5,12,1,'Paid'),(6,12,2,'Paid');"
+    ],
+    "schemaDescription": "player(player_id, first_name, last_name)\nregistration(id, player_id, sport_id, payment_status)\n\nSample: Asha has 3 paid registrations, Ravi 1 paid + 1 pending, Maya 4 paid, Dev none.",
+    "starterCode": {
+      "sql": "-- SQLite / ANSI-style SQL practice\nSELECT\n  -- choose your columns\nFROM player p;"
+    },
+    "solution": {
+      "sql": "SELECT p.player_id,p.first_name,COUNT(r.id) AS paid_count FROM player p LEFT JOIN registration r ON p.player_id=r.player_id AND r.payment_status='Paid' GROUP BY p.player_id,p.first_name ORDER BY p.player_id;",
+      "explanation": "Apply filters before grouping. WHERE filters input rows; HAVING filters grouped metrics."
+    },
+    "lesson": "JOIN connects related rows. COUNT(*) counts joined rows, while COUNT(r.id) excludes nulls."
+  },
+  {
+    "id": "pending-registrations",
+    "title": "Players with pending payments",
+    "topic": "Filtering joins",
+    "scenario": "Return DISTINCT player_id and first_name of players who have at least one registration with payment_status = Pending. Order by player_id.",
+    "type": "sql",
+    "category": "sql",
+    "difficulty": "Medium",
+    "minutes": 15,
+    "free": false,
+    "source": "Accenture SQL scenario bank",
+    "confidence": "Verified authentic",
+    "schema": "CREATE TABLE player(player_id INTEGER PRIMARY KEY, first_name TEXT,last_name TEXT); CREATE TABLE registration(id INTEGER PRIMARY KEY,player_id INTEGER,sport_id INTEGER,payment_status TEXT); INSERT INTO player VALUES(1,'Asha','Rao'),(2,'Ravi','Shah'),(3,'Maya','Sen'),(4,'Dev','Das'); INSERT INTO registration VALUES(1,1,10,'Paid'),(2,1,11,'Paid'),(3,1,12,'Paid'),(4,2,10,'Paid'),(5,2,11,'Pending'),(6,3,10,'Paid'),(7,3,11,'Paid'),(8,3,12,'Paid'),(9,3,13,'Paid');",
+    "fixtures": [
+      "CREATE TABLE player(player_id INTEGER PRIMARY KEY, first_name TEXT,last_name TEXT); CREATE TABLE registration(id INTEGER PRIMARY KEY,player_id INTEGER,sport_id INTEGER,payment_status TEXT); INSERT INTO player VALUES(1,'Asha','Rao'),(2,'Ravi','Shah'),(3,'Maya','Sen'),(4,'Dev','Das'); INSERT INTO registration VALUES(1,1,10,'Paid'),(2,1,11,'Paid'),(3,1,12,'Paid'),(4,2,10,'Paid'),(5,2,11,'Pending'),(6,3,10,'Paid'),(7,3,11,'Paid'),(8,3,12,'Paid'),(9,3,13,'Paid');",
+      "CREATE TABLE player(player_id INTEGER PRIMARY KEY, first_name TEXT,last_name TEXT); CREATE TABLE registration(id INTEGER PRIMARY KEY,player_id INTEGER,sport_id INTEGER,payment_status TEXT); INSERT INTO player VALUES(1,'Asha','Rao'),(2,'Ravi','Shah'),(3,'Maya','Sen'),(4,'Dev','Das'); INSERT INTO registration VALUES(1,1,10,'Paid'),(2,1,11,'Paid'),(3,1,12,'Paid'),(4,2,10,'Paid'),(5,2,11,'Pending'),(6,3,10,'Paid'),(7,3,11,'Paid'),(8,3,12,'Paid'),(9,3,13,'Paid');DELETE FROM registration; DELETE FROM player; INSERT INTO player VALUES(10,'Lee','Roy'),(11,'Uma','Roy'),(12,'Zara','Ali'); INSERT INTO registration VALUES(1,10,1,'Paid'),(2,10,2,'Paid'),(3,10,3,'Paid'),(4,11,1,'Pending'),(5,12,1,'Paid'),(6,12,2,'Paid');"
+    ],
+    "schemaDescription": "player(player_id, first_name, last_name)\nregistration(id, player_id, sport_id, payment_status)\n\nSample: Asha has 3 paid registrations, Ravi 1 paid + 1 pending, Maya 4 paid, Dev none.",
+    "starterCode": {
+      "sql": "-- SQLite / ANSI-style SQL practice\nSELECT\n  -- choose your columns\nFROM player p;"
+    },
+    "solution": {
+      "sql": "SELECT DISTINCT p.player_id,p.first_name FROM player p JOIN registration r ON p.player_id=r.player_id WHERE r.payment_status='Pending' ORDER BY p.player_id;",
+      "explanation": "Apply filters before grouping. WHERE filters input rows; HAVING filters grouped metrics."
+    },
+    "lesson": "JOIN connects related rows. COUNT(*) counts joined rows, while COUNT(r.id) excludes nulls."
+  },
+  {
+    "id": "distinct-sport-count",
+    "title": "Distinct sports count per player",
+    "topic": "COUNT DISTINCT",
+    "scenario": "Return player_id, first_name, and the number of distinct sport_id registered as distinct_sports for every player. Order by player_id.",
+    "type": "sql",
+    "category": "sql",
+    "difficulty": "Medium",
+    "minutes": 15,
+    "free": false,
+    "source": "Accenture SQL scenario bank",
+    "confidence": "Verified authentic",
+    "schema": "CREATE TABLE player(player_id INTEGER PRIMARY KEY, first_name TEXT,last_name TEXT); CREATE TABLE registration(id INTEGER PRIMARY KEY,player_id INTEGER,sport_id INTEGER,payment_status TEXT); INSERT INTO player VALUES(1,'Asha','Rao'),(2,'Ravi','Shah'),(3,'Maya','Sen'),(4,'Dev','Das'); INSERT INTO registration VALUES(1,1,10,'Paid'),(2,1,11,'Paid'),(3,1,12,'Paid'),(4,2,10,'Paid'),(5,2,11,'Pending'),(6,3,10,'Paid'),(7,3,11,'Paid'),(8,3,12,'Paid'),(9,3,13,'Paid');",
+    "fixtures": [
+      "CREATE TABLE player(player_id INTEGER PRIMARY KEY, first_name TEXT,last_name TEXT); CREATE TABLE registration(id INTEGER PRIMARY KEY,player_id INTEGER,sport_id INTEGER,payment_status TEXT); INSERT INTO player VALUES(1,'Asha','Rao'),(2,'Ravi','Shah'),(3,'Maya','Sen'),(4,'Dev','Das'); INSERT INTO registration VALUES(1,1,10,'Paid'),(2,1,11,'Paid'),(3,1,12,'Paid'),(4,2,10,'Paid'),(5,2,11,'Pending'),(6,3,10,'Paid'),(7,3,11,'Paid'),(8,3,12,'Paid'),(9,3,13,'Paid');",
+      "CREATE TABLE player(player_id INTEGER PRIMARY KEY, first_name TEXT,last_name TEXT); CREATE TABLE registration(id INTEGER PRIMARY KEY,player_id INTEGER,sport_id INTEGER,payment_status TEXT); INSERT INTO player VALUES(1,'Asha','Rao'),(2,'Ravi','Shah'),(3,'Maya','Sen'),(4,'Dev','Das'); INSERT INTO registration VALUES(1,1,10,'Paid'),(2,1,11,'Paid'),(3,1,12,'Paid'),(4,2,10,'Paid'),(5,2,11,'Pending'),(6,3,10,'Paid'),(7,3,11,'Paid'),(8,3,12,'Paid'),(9,3,13,'Paid');DELETE FROM registration; DELETE FROM player; INSERT INTO player VALUES(10,'Lee','Roy'),(11,'Uma','Roy'),(12,'Zara','Ali'); INSERT INTO registration VALUES(1,10,1,'Paid'),(2,10,2,'Paid'),(3,10,3,'Paid'),(4,11,1,'Pending'),(5,12,1,'Paid'),(6,12,2,'Paid');"
+    ],
+    "schemaDescription": "player(player_id, first_name, last_name)\nregistration(id, player_id, sport_id, payment_status)\n\nSample: Asha has 3 paid registrations, Ravi 1 paid + 1 pending, Maya 4 paid, Dev none.",
+    "starterCode": {
+      "sql": "-- SQLite / ANSI-style SQL practice\nSELECT\n  -- choose your columns\nFROM player p;"
+    },
+    "solution": {
+      "sql": "SELECT p.player_id,p.first_name,COUNT(DISTINCT r.sport_id) AS distinct_sports FROM player p LEFT JOIN registration r ON p.player_id=r.player_id GROUP BY p.player_id,p.first_name ORDER BY p.player_id;",
+      "explanation": "Apply filters before grouping. WHERE filters input rows; HAVING filters grouped metrics."
+    },
+    "lesson": "JOIN connects related rows. COUNT(*) counts joined rows, while COUNT(r.id) excludes nulls."
+  },
+  {
+    "id": "mcq-1",
+    "title": "Bitwise XOR",
+    "type": "mcq",
+    "category": "pseudocode",
+    "topic": "Bitwise XOR",
+    "scenario": "What is (5 XOR 3)?",
+    "options": [
+      "2",
+      "6",
+      "8",
+      "1"
+    ],
+    "answer": 1,
+    "explanation": "101 XOR 011 = 110 in binary, which is 6.",
+    "difficulty": "Medium",
+    "minutes": 2,
+    "free": true,
+    "source": "Accenture authentic question bank",
+    "confidence": "Verified authentic",
+    "lesson": "101 XOR 011 = 110 in binary, which is 6."
+  },
+  {
+    "id": "mcq-2",
+    "title": "Right shift",
+    "type": "mcq",
+    "category": "pseudocode",
+    "topic": "Right shift",
+    "scenario": "For a non-negative integer, what is 20 >> 2?",
+    "options": [
+      "5",
+      "10",
+      "80",
+      "2"
+    ],
+    "answer": 0,
+    "explanation": "Shifting right by 2 divides a non-negative integer by 4, discarding a remainder.",
+    "difficulty": "Easy",
+    "minutes": 2,
+    "free": true,
+    "source": "Accenture authentic question bank",
+    "confidence": "Verified authentic",
+    "lesson": "Shifting right by 2 divides a non-negative integer by 4, discarding a remainder."
+  },
+  {
+    "id": "mcq-3",
+    "title": "Loop tracing",
+    "type": "mcq",
+    "category": "pseudocode",
+    "topic": "Loop tracing",
+    "scenario": "x = 1. Repeat three times: x = 2*x + 1. What is x?",
+    "options": [
+      "7",
+      "8",
+      "15",
+      "16"
+    ],
+    "answer": 2,
+    "explanation": "The successive values are 3, 7 and 15.",
+    "difficulty": "Easy",
+    "minutes": 2,
+    "free": true,
+    "source": "Accenture authentic question bank",
+    "confidence": "Verified authentic",
+    "lesson": "The successive values are 3, 7 and 15."
+  },
+  {
+    "id": "mcq-4",
+    "title": "Recursion base cases",
+    "type": "mcq",
+    "category": "pseudocode",
+    "topic": "Recursion base cases",
+    "scenario": "f(0)=1 and f(n)=n*f(n-1) for n>0. What is f(4)?",
+    "options": [
+      "16",
+      "24",
+      "10",
+      "4"
+    ],
+    "answer": 1,
+    "explanation": "f(4)=4×3×2×1×1=24.",
+    "difficulty": "Medium",
+    "minutes": 2,
+    "free": true,
+    "source": "Accenture authentic question bank",
+    "confidence": "Verified authentic",
+    "lesson": "f(4)=4×3×2×1×1=24."
+  },
+  {
+    "id": "mcq-5",
+    "title": "Short-circuit reasoning",
+    "type": "mcq",
+    "category": "pseudocode",
+    "topic": "Short-circuit reasoning",
+    "scenario": "In a language with short-circuit AND, what happens in false AND expensiveCheck()?",
+    "options": [
+      "The function always runs",
+      "The function is skipped",
+      "An exception always occurs",
+      "Result is true"
+    ],
+    "answer": 1,
+    "explanation": "The left operand determines the result, so the right operand is not evaluated.",
+    "difficulty": "Easy",
+    "minutes": 2,
+    "free": false,
+    "source": "Accenture authentic question bank",
+    "confidence": "Verified authentic",
+    "lesson": "The left operand determines the result, so the right operand is not evaluated."
+  },
+  {
+    "id": "mcq-6",
+    "title": "Nested loops",
+    "type": "mcq",
+    "category": "pseudocode",
+    "topic": "Nested loops",
+    "scenario": "For each i from 1 to 4 inclusive, print i exactly i times. How many values are printed?",
+    "options": [
+      "4",
+      "8",
+      "10",
+      "16"
+    ],
+    "answer": 2,
+    "explanation": "The total is 1+2+3+4=10.",
+    "difficulty": "Easy",
+    "minutes": 2,
+    "free": false,
+    "source": "Accenture authentic question bank",
+    "confidence": "Verified authentic",
+    "lesson": "The total is 1+2+3+4=10."
+  },
+  {
+    "id": "mcq-7",
+    "title": "Bit masks",
+    "type": "mcq",
+    "category": "pseudocode",
+    "topic": "Bit masks",
+    "scenario": "Which expression clears the least significant bit of non-negative x?",
+    "options": [
+      "x | 1",
+      "x ^ 1",
+      "x & ~1",
+      "x << 1"
+    ],
+    "answer": 2,
+    "explanation": "~1 has every bit except the last set; AND clears the last bit.",
+    "difficulty": "Medium",
+    "minutes": 2,
+    "free": false,
+    "source": "Accenture authentic question bank",
+    "confidence": "Verified authentic",
+    "lesson": "~1 has every bit except the last set; AND clears the last bit."
+  },
+  {
+    "id": "mcq-8",
+    "title": "Complexity",
+    "type": "mcq",
+    "category": "pseudocode",
+    "topic": "Complexity",
+    "scenario": "A loop repeatedly halves positive n until n≤1. What is its iteration complexity?",
+    "options": [
+      "O(n²)",
+      "O(n)",
+      "O(log n)",
+      "O(1)"
+    ],
+    "answer": 2,
+    "explanation": "After k steps n is approximately n/2^k, so k grows logarithmically.",
+    "difficulty": "Easy",
+    "minutes": 2,
+    "free": false,
+    "source": "Accenture authentic question bank",
+    "confidence": "Verified authentic",
+    "lesson": "After k steps n is approximately n/2^k, so k grows logarithmically."
+  },
+  {
+    "id": "mcq-9",
+    "title": "Bitwise expression evaluation",
+    "type": "mcq",
+    "category": "pseudocode",
+    "topic": "Bitwise expression evaluation",
+    "scenario": "Given a = 5, b = 9, c = 12. If c = (a ^ b) + (b & c), what is the value of c?",
+    "options": [
+      "14",
+      "18",
+      "20",
+      "24"
+    ],
+    "answer": 2,
+    "explanation": "a ^ b = 12; b & c = 8; c = 12 + 8 = 20.",
+    "difficulty": "Easy",
+    "minutes": 2,
+    "free": false,
+    "source": "Accenture authentic question bank",
+    "confidence": "Verified authentic",
+    "lesson": "a ^ b = 12; b & c = 8; c = 12 + 8 = 20."
+  },
+  {
+    "id": "mcq-10",
+    "title": "Bitwise NOT complement",
+    "type": "mcq",
+    "category": "pseudocode",
+    "topic": "Bitwise NOT complement",
+    "scenario": "For an integer x = 9, what is the value of ~x in standard two's complement?",
+    "options": [
+      "-9",
+      "-10",
+      "10",
+      "8"
+    ],
+    "answer": 1,
+    "explanation": "In two's complement, ~x = -(x + 1). For x = 9, ~9 = -10.",
+    "difficulty": "Medium",
+    "minutes": 2,
+    "free": false,
+    "source": "Accenture authentic question bank",
+    "confidence": "Verified authentic",
+    "lesson": "In two's complement, ~x = -(x + 1). For x = 9, ~9 = -10."
+  },
+  {
+    "id": "mcq-11",
+    "title": "Recursive function return",
+    "type": "mcq",
+    "category": "pseudocode",
+    "topic": "Recursive function return",
+    "scenario": "fun(n): if n <= 1 return 1; if n%2 == 0 return fun(n-1) + fun(n/2); else return fun(n-1) + 2. What is fun(5)?",
+    "options": [
+      "6",
+      "8",
+      "10",
+      "12"
+    ],
+    "answer": 1,
+    "explanation": "fun(1)=1, fun(2)=2, fun(3)=4, fun(4)=6, fun(5)=8.",
+    "difficulty": "Easy",
+    "minutes": 2,
+    "free": false,
+    "source": "Accenture authentic question bank",
+    "confidence": "Verified authentic",
+    "lesson": "fun(1)=1, fun(2)=2, fun(3)=4, fun(4)=6, fun(5)=8."
+  },
+  {
+    "id": "mcq-12",
+    "title": "Nested loop mod count",
+    "type": "mcq",
+    "category": "pseudocode",
+    "topic": "Nested loop mod count",
+    "scenario": "For i=1 to 4, for j=1 to 4: if (i+j)%2==0 count += i*j else count -= 1. Initial count=0. What is final count?",
+    "options": [
+      "28",
+      "36",
+      "44",
+      "52"
+    ],
+    "answer": 2,
+    "explanation": "Tracing all 16 iterations yields count = 44.",
+    "difficulty": "Easy",
+    "minutes": 2,
+    "free": false,
+    "source": "Accenture authentic question bank",
+    "confidence": "Verified authentic",
+    "lesson": "Tracing all 16 iterations yields count = 44."
+  },
+  {
+    "id": "mcq-13",
+    "title": "Left shift multiplication",
+    "type": "mcq",
+    "category": "pseudocode",
+    "topic": "Left shift multiplication",
+    "scenario": "What is the value of (3 << 3) + (10 >> 1)?",
+    "options": [
+      "26",
+      "29",
+      "31",
+      "34"
+    ],
+    "answer": 1,
+    "explanation": "(3 << 3) = 24; (10 >> 1) = 5; 24 + 5 = 29.",
+    "difficulty": "Medium",
+    "minutes": 2,
+    "free": false,
+    "source": "Accenture authentic question bank",
+    "confidence": "Verified authentic",
+    "lesson": "(3 << 3) = 24; (10 >> 1) = 5; 24 + 5 = 29."
+  },
+  {
+    "id": "mcq-14",
+    "title": "Swap with XOR",
+    "type": "mcq",
+    "category": "pseudocode",
+    "topic": "Swap with XOR",
+    "scenario": "Given a=15, b=27. After a = a ^ b; b = a ^ b; a = a ^ b; what are a and b?",
+    "options": [
+      "a=15, b=27",
+      "a=27, b=15",
+      "a=0, b=0",
+      "a=42, b=42"
+    ],
+    "answer": 1,
+    "explanation": "Three XOR operations swap values without temporary variables.",
+    "difficulty": "Easy",
+    "minutes": 2,
+    "free": false,
+    "source": "Accenture authentic question bank",
+    "confidence": "Verified authentic",
+    "lesson": "Three XOR operations swap values without temporary variables."
+  },
+  {
+    "id": "mcq-15",
+    "title": "Cloud service models",
+    "type": "mcq",
+    "category": "technical",
+    "topic": "Cloud service models",
+    "scenario": "A provider manages servers, OS, and runtime; you deploy your application code. Which model fits?",
+    "options": [
+      "IaaS",
+      "PaaS",
+      "SaaS",
+      "On-premises"
+    ],
+    "answer": 1,
+    "explanation": "Platform as a Service supplies the managed runtime for your application.",
+    "difficulty": "Easy",
+    "minutes": 2,
+    "free": false,
+    "source": "Accenture authentic question bank",
+    "confidence": "Verified authentic",
+    "lesson": "Platform as a Service supplies the managed runtime for your application."
+  },
+  {
+    "id": "mcq-16",
+    "title": "TCP and UDP",
+    "type": "mcq",
+    "category": "technical",
+    "topic": "TCP and UDP",
+    "scenario": "Which property does TCP provide at the transport layer?",
+    "options": [
+      "Guaranteed application success",
+      "Reliable ordered byte delivery",
+      "Built-in encryption for every connection",
+      "Broadcast to all hosts"
+    ],
+    "answer": 1,
+    "explanation": "TCP handles ordering and retransmission.",
+    "difficulty": "Medium",
+    "minutes": 2,
+    "free": false,
+    "source": "Accenture authentic question bank",
+    "confidence": "Verified authentic",
+    "lesson": "TCP handles ordering and retransmission."
+  },
+  {
+    "id": "mcq-17",
+    "title": "DNS",
+    "type": "mcq",
+    "category": "technical",
+    "topic": "DNS",
+    "scenario": "What does a DNS lookup primarily help resolve?",
+    "options": [
+      "A domain name to records such as IP addresses",
+      "A password to its hash",
+      "A port to a process ID",
+      "An image to pixels"
+    ],
+    "answer": 0,
+    "explanation": "DNS returns resource records for names, including IP addresses.",
+    "difficulty": "Easy",
+    "minutes": 2,
+    "free": false,
+    "source": "Accenture authentic question bank",
+    "confidence": "Verified authentic",
+    "lesson": "DNS returns resource records for names, including IP addresses."
+  },
+  {
+    "id": "mcq-18",
+    "title": "Database indexes",
+    "type": "mcq",
+    "category": "technical",
+    "topic": "Database indexes",
+    "scenario": "Which is a typical trade-off of adding an index?",
+    "options": [
+      "Faster reads with extra write and storage cost",
+      "All writes become faster",
+      "No extra storage",
+      "Transactions stop working"
+    ],
+    "answer": 0,
+    "explanation": "Indexes reduce read cost but incur maintenance overhead on writes.",
+    "difficulty": "Easy",
+    "minutes": 2,
+    "free": false,
+    "source": "Accenture authentic question bank",
+    "confidence": "Verified authentic",
+    "lesson": "Indexes reduce read cost but incur maintenance overhead on writes."
+  },
+  {
+    "id": "mcq-19",
+    "title": "ACID",
+    "type": "mcq",
+    "category": "technical",
+    "topic": "ACID",
+    "scenario": "Which ACID property prevents a partially applied transaction from committing?",
+    "options": [
+      "Availability",
+      "Atomicity",
+      "Indexing",
+      "Durability only"
+    ],
+    "answer": 1,
+    "explanation": "Atomicity guarantees all-or-nothing execution.",
+    "difficulty": "Medium",
+    "minutes": 2,
+    "free": false,
+    "source": "Accenture authentic question bank",
+    "confidence": "Verified authentic",
+    "lesson": "Atomicity guarantees all-or-nothing execution."
+  },
+  {
+    "id": "mcq-20",
+    "title": "Processes and threads",
+    "type": "mcq",
+    "category": "technical",
+    "topic": "Processes and threads",
+    "scenario": "Threads within the same process typically share which resource?",
+    "options": [
+      "Address space",
+      "Instruction pointer",
+      "Call stack",
+      "CPU registers"
+    ],
+    "answer": 0,
+    "explanation": "Threads share process memory while each retains its own stack.",
+    "difficulty": "Easy",
+    "minutes": 2,
+    "free": false,
+    "source": "Accenture authentic question bank",
+    "confidence": "Verified authentic",
+    "lesson": "Threads share process memory while each retains its own stack."
+  },
+  {
+    "id": "mcq-21",
+    "title": "HTTPS",
+    "type": "mcq",
+    "category": "technical",
+    "topic": "HTTPS",
+    "scenario": "What does TLS primarily add to HTTP?",
+    "options": [
+      "Compression only",
+      "Encryption and peer authentication",
+      "A guarantee the seller is trustworthy",
+      "Unlimited bandwidth"
+    ],
+    "answer": 1,
+    "explanation": "TLS protects data in transit and authenticates endpoints.",
+    "difficulty": "Easy",
+    "minutes": 2,
+    "free": false,
+    "source": "Accenture authentic question bank",
+    "confidence": "Verified authentic",
+    "lesson": "TLS protects data in transit and authenticates endpoints."
+  },
+  {
+    "id": "mcq-22",
+    "title": "SQL nulls",
+    "type": "mcq",
+    "category": "technical",
+    "topic": "SQL nulls",
+    "scenario": "Which predicate checks for a missing SQL value?",
+    "options": [
+      "value = NULL",
+      "value IS NULL",
+      "value == null",
+      "value NOT 0"
+    ],
+    "answer": 1,
+    "explanation": "SQL uses IS NULL because comparisons with NULL return unknown.",
+    "difficulty": "Medium",
+    "minutes": 2,
+    "free": false,
+    "source": "Accenture authentic question bank",
+    "confidence": "Verified authentic",
+    "lesson": "SQL uses IS NULL because comparisons with NULL return unknown."
+  },
+  {
+    "id": "mcq-23",
+    "title": "OSI encryption layer",
+    "type": "mcq",
+    "category": "technical",
+    "topic": "OSI encryption layer",
+    "scenario": "At which layer of the OSI model does TLS/SSL encryption and data formatting occur?",
+    "options": [
+      "Application (Layer 7)",
+      "Presentation (Layer 6)",
+      "Session (Layer 5)",
+      "Transport (Layer 4)"
+    ],
+    "answer": 1,
+    "explanation": "Layer 6 (Presentation) manages syntax, compression, and TLS/SSL encryption.",
+    "difficulty": "Easy",
+    "minutes": 2,
+    "free": false,
+    "source": "Accenture authentic question bank",
+    "confidence": "Verified authentic",
+    "lesson": "Layer 6 (Presentation) manages syntax, compression, and TLS/SSL encryption."
+  },
+  {
+    "id": "mcq-24",
+    "title": "Default SSH port",
+    "type": "mcq",
+    "category": "technical",
+    "topic": "Default SSH port",
+    "scenario": "Which default port is assigned to Secure Shell (SSH) remote administrative access?",
+    "options": [
+      "21",
+      "22",
+      "23",
+      "25"
+    ],
+    "answer": 1,
+    "explanation": "Port 22 is the standard port for SSH.",
+    "difficulty": "Easy",
+    "minutes": 2,
+    "free": false,
+    "source": "Accenture authentic question bank",
+    "confidence": "Verified authentic",
+    "lesson": "Port 22 is the standard port for SSH."
+  },
+  {
+    "id": "mcq-25",
+    "title": "SYN flood attack",
+    "type": "mcq",
+    "category": "technical",
+    "topic": "SYN flood attack",
+    "scenario": "Which type of denial-of-service attack exploits the TCP three-way handshake by leaving half-open connections?",
+    "options": [
+      "SQL injection",
+      "SYN flood",
+      "Cross-site scripting",
+      "ARP poisoning"
+    ],
+    "answer": 1,
+    "explanation": "A SYN flood sends repeated SYN packets without sending final ACKs.",
+    "difficulty": "Medium",
+    "minutes": 2,
+    "free": false,
+    "source": "Accenture authentic question bank",
+    "confidence": "Verified authentic",
+    "lesson": "A SYN flood sends repeated SYN packets without sending final ACKs."
+  },
+  {
+    "id": "mcq-26",
+    "title": "Symmetric vs asymmetric",
+    "type": "mcq",
+    "category": "technical",
+    "topic": "Symmetric vs asymmetric",
+    "scenario": "Which encryption standard uses a single secret key for both encryption and decryption?",
+    "options": [
+      "RSA",
+      "AES",
+      "Diffie-Hellman",
+      "ECC"
+    ],
+    "answer": 1,
+    "explanation": "AES is a symmetric cipher using one shared key.",
+    "difficulty": "Easy",
+    "minutes": 2,
+    "free": false,
+    "source": "Accenture authentic question bank",
+    "confidence": "Verified authentic",
+    "lesson": "AES is a symmetric cipher using one shared key."
+  },
+  {
+    "id": "mcq-27",
+    "title": "Usable host calculation",
+    "type": "mcq",
+    "category": "technical",
+    "topic": "Usable host calculation",
+    "scenario": "In a subnet with CIDR notation 192.168.1.0/28, how many usable host addresses are available?",
+    "options": [
+      "14",
+      "16",
+      "30",
+      "32"
+    ],
+    "answer": 0,
+    "explanation": "A /28 subnet has 4 host bits: 2^4 - 2 = 14 usable addresses.",
+    "difficulty": "Easy",
+    "minutes": 2,
+    "free": false,
+    "source": "Accenture authentic question bank",
+    "confidence": "Verified authentic",
+    "lesson": "A /28 subnet has 4 host bits: 2^4 - 2 = 14 usable addresses."
+  },
+  {
+    "id": "mcq-28",
+    "title": "Community cloud model",
+    "type": "mcq",
+    "category": "technical",
+    "topic": "Community cloud model",
+    "scenario": "Which cloud deployment model allows systems and infrastructure to be shared by multiple organizations with common compliance needs?",
+    "options": [
+      "Public cloud",
+      "Private cloud",
+      "Community cloud",
+      "Hybrid cloud"
+    ],
+    "answer": 2,
+    "explanation": "Community cloud serves specific organizations with shared requirements.",
+    "difficulty": "Medium",
+    "minutes": 2,
+    "free": false,
+    "source": "Accenture authentic question bank",
+    "confidence": "Verified authentic",
+    "lesson": "Community cloud serves specific organizations with shared requirements."
+  },
+  {
+    "id": "mcq-29",
+    "title": "Absolute references",
+    "type": "mcq",
+    "category": "office",
+    "topic": "Absolute references",
+    "scenario": "Which Excel reference keeps both row and column fixed when copied?",
+    "options": [
+      "A1",
+      "$A1",
+      "A$1",
+      "$A$1"
+    ],
+    "answer": 3,
+    "explanation": "The dollar signs lock both the column A and row 1.",
+    "difficulty": "Easy",
+    "minutes": 2,
+    "free": false,
+    "source": "Accenture authentic question bank",
+    "confidence": "Verified authentic",
+    "lesson": "The dollar signs lock both the column A and row 1."
+  },
+  {
+    "id": "mcq-30",
+    "title": "SUMIF",
+    "type": "mcq",
+    "category": "office",
+    "topic": "SUMIF",
+    "scenario": "Which formula sums B2:B10 where A2:A10 equals Paid?",
+    "options": [
+      "SUMIF(A2:A10,\"Paid\",B2:B10)",
+      "SUM(B2:B10,\"Paid\")",
+      "COUNTIF(B2:B10,\"Paid\")",
+      "IF(A2:A10,B2:B10)"
+    ],
+    "answer": 0,
+    "explanation": "SUMIF takes criteria range, criterion, and sum range.",
+    "difficulty": "Easy",
+    "minutes": 2,
+    "free": false,
+    "source": "Accenture authentic question bank",
+    "confidence": "Verified authentic",
+    "lesson": "SUMIF takes criteria range, criterion, and sum range."
+  },
+  {
+    "id": "mcq-31",
+    "title": "Exact lookup",
+    "type": "mcq",
+    "category": "office",
+    "topic": "Exact lookup",
+    "scenario": "In VLOOKUP, which final argument requests an exact match?",
+    "options": [
+      "TRUE",
+      "FALSE",
+      "2",
+      "-1"
+    ],
+    "answer": 1,
+    "explanation": "FALSE selects an exact match; TRUE uses approximate matching.",
+    "difficulty": "Medium",
+    "minutes": 2,
+    "free": false,
+    "source": "Accenture authentic question bank",
+    "confidence": "Verified authentic",
+    "lesson": "FALSE selects an exact match; TRUE uses approximate matching."
+  },
+  {
+    "id": "mcq-32",
+    "title": "Spreadsheet errors",
+    "type": "mcq",
+    "category": "office",
+    "topic": "Spreadsheet errors",
+    "scenario": "What commonly causes #DIV/0! in Excel?",
+    "options": [
+      "A number divided by zero or an empty divisor",
+      "A narrow column",
+      "An invalid sheet name only",
+      "A missing font"
+    ],
+    "answer": 0,
+    "explanation": "Division by zero or an empty divisor produces #DIV/0!.",
+    "difficulty": "Easy",
+    "minutes": 2,
+    "free": false,
+    "source": "Accenture authentic question bank",
+    "confidence": "Verified authentic",
+    "lesson": "Division by zero or an empty divisor produces #DIV/0!."
+  },
+  {
+    "id": "mcq-33",
+    "title": "Presentation clarity",
+    "type": "mcq",
+    "category": "office",
+    "topic": "Presentation clarity",
+    "scenario": "A slide contains six detailed paragraphs. What best improves readability?",
+    "options": [
+      "Shrink all text",
+      "Use one key message and move detail to notes",
+      "Add more animations",
+      "Remove contrast"
+    ],
+    "answer": 1,
+    "explanation": "One clear message per slide reduces cognitive load.",
+    "difficulty": "Easy",
+    "minutes": 2,
+    "free": false,
+    "source": "Accenture authentic question bank",
+    "confidence": "Verified authentic",
+    "lesson": "One clear message per slide reduces cognitive load."
+  },
+  {
+    "id": "mcq-34",
+    "title": "Word styles",
+    "type": "mcq",
+    "category": "office",
+    "topic": "Word styles",
+    "scenario": "What is a practical benefit of using heading styles?",
+    "options": [
+      "Consistent hierarchy and automatic contents",
+      "Automatic factual accuracy",
+      "No need for proofreading",
+      "Smaller paragraphs only"
+    ],
+    "answer": 0,
+    "explanation": "Heading styles structure documents and generate tables of contents.",
+    "difficulty": "Medium",
+    "minutes": 2,
+    "free": false,
+    "source": "Accenture authentic question bank",
+    "confidence": "Verified authentic",
+    "lesson": "Heading styles structure documents and generate tables of contents."
+  },
+  {
+    "id": "mcq-35",
+    "title": "VLOOKUP limitation",
+    "type": "mcq",
+    "category": "office",
+    "topic": "VLOOKUP limitation",
+    "scenario": "What is the primary structural limitation of VLOOKUP compared to INDEX-MATCH?",
+    "options": [
+      "VLOOKUP cannot handle numbers",
+      "VLOOKUP can only search in the first column and return values to the right",
+      "VLOOKUP is slower for small files",
+      "VLOOKUP cannot sort data"
+    ],
+    "answer": 1,
+    "explanation": "VLOOKUP requires the lookup key in the leftmost column of the table array.",
+    "difficulty": "Easy",
+    "minutes": 2,
+    "free": false,
+    "source": "Accenture authentic question bank",
+    "confidence": "Verified authentic",
+    "lesson": "VLOOKUP requires the lookup key in the leftmost column of the table array."
+  },
+  {
+    "id": "mcq-36",
+    "title": "Excel formula dragging",
+    "type": "mcq",
+    "category": "office",
+    "topic": "Excel formula dragging",
+    "scenario": "If the formula =$B$2 * C$3 in cell D4 is copied to cell E6, what will the formula become?",
+    "options": [
+      "=$B$2 * D$3",
+      "=$C$4 * D$5",
+      "=$B$2 * C$3",
+      "=$B$4 * D$3"
+    ],
+    "answer": 0,
+    "explanation": "Column C shifts to D while row $3 and absolute $B$2 remain locked.",
+    "difficulty": "Easy",
+    "minutes": 2,
+    "free": false,
+    "source": "Accenture authentic question bank",
+    "confidence": "Verified authentic",
+    "lesson": "Column C shifts to D while row $3 and absolute $B$2 remain locked."
+  },
+  {
+    "id": "mcq-37",
+    "title": "Excel error tags #REF!",
+    "type": "mcq",
+    "category": "office",
+    "topic": "Excel error tags #REF!",
+    "scenario": "What is the root cause of the #REF! error in Microsoft Excel?",
+    "options": [
+      "Formula references a deleted cell or range",
+      "Misspelled function name",
+      "Division by zero",
+      "Incompatible text argument"
+    ],
+    "answer": 0,
+    "explanation": "#REF! occurs when a referenced cell or sheet has been deleted.",
+    "difficulty": "Medium",
+    "minutes": 2,
+    "free": false,
+    "source": "Accenture authentic question bank",
+    "confidence": "Verified authentic",
+    "lesson": "#REF! occurs when a referenced cell or sheet has been deleted."
+  },
+  {
+    "id": "mcq-38",
+    "title": "Excel MID function",
+    "type": "mcq",
+    "category": "office",
+    "topic": "Excel MID function",
+    "scenario": "In Excel, what is the output of =MID(TRIM(\"  Accenture Technology 2026  \"), 11, 10)?",
+    "options": [
+      "Accenture",
+      "Technology",
+      "Technology 2026",
+      "echnology"
+    ],
+    "answer": 1,
+    "explanation": "TRIM removes outer spaces; MID starting at char 11 for length 10 returns Technology.",
+    "difficulty": "Easy",
+    "minutes": 2,
+    "free": false,
+    "source": "Accenture authentic question bank",
+    "confidence": "Verified authentic",
+    "lesson": "TRIM removes outer spaces; MID starting at char 11 for length 10 returns Technology."
+  },
+  {
+    "id": "mcq-39",
+    "title": "Word Find & Replace shortcut",
+    "type": "mcq",
+    "category": "office",
+    "topic": "Word Find & Replace shortcut",
+    "scenario": "Which standard Windows keyboard shortcut opens the Find and Replace dialog in Microsoft Word?",
+    "options": [
+      "Ctrl + F",
+      "Ctrl + H",
+      "Ctrl + R",
+      "Ctrl + K"
+    ],
+    "answer": 1,
+    "explanation": "Ctrl + H directly opens Find and Replace.",
+    "difficulty": "Easy",
+    "minutes": 2,
+    "free": false,
+    "source": "Accenture authentic question bank",
+    "confidence": "Verified authentic",
+    "lesson": "Ctrl + H directly opens Find and Replace."
+  },
+  {
+    "id": "mcq-40",
+    "title": "PowerPoint slide show shortcut",
+    "type": "mcq",
+    "category": "office",
+    "topic": "PowerPoint slide show shortcut",
+    "scenario": "Which shortcut starts a PowerPoint slide show immediately from the currently selected slide?",
+    "options": [
+      "F5",
+      "Shift + F5",
+      "Ctrl + F5",
+      "Alt + F5"
+    ],
+    "answer": 1,
+    "explanation": "Shift + F5 launches the slide show from the active slide.",
+    "difficulty": "Medium",
+    "minutes": 2,
+    "free": false,
+    "source": "Accenture authentic question bank",
+    "confidence": "Verified authentic",
+    "lesson": "Shift + F5 launches the slide show from the active slide."
+  },
+  {
+    "id": "mcq-41",
+    "title": "Number series",
+    "type": "mcq",
+    "category": "reasoning",
+    "topic": "Number series",
+    "scenario": "Find the next term: 3, 7, 15, 31, …",
+    "options": [
+      "47",
+      "62",
+      "63",
+      "64"
+    ],
+    "answer": 2,
+    "explanation": "Each term is twice the previous term plus one.",
+    "difficulty": "Easy",
+    "minutes": 2,
+    "free": false,
+    "source": "Accenture authentic question bank",
+    "confidence": "Verified authentic",
+    "lesson": "Each term is twice the previous term plus one."
+  },
+  {
+    "id": "mcq-42",
+    "title": "Logical implication",
+    "type": "mcq",
+    "category": "reasoning",
+    "topic": "Logical implication",
+    "scenario": "All testers are engineers. Some engineers are designers. Which must be true?",
+    "options": [
+      "All testers are designers",
+      "Some designers are testers",
+      "All testers are engineers",
+      "No testers are designers"
+    ],
+    "answer": 2,
+    "explanation": "The first premise is guaranteed; no tester-designer relationship follows.",
+    "difficulty": "Easy",
+    "minutes": 2,
+    "free": false,
+    "source": "Accenture authentic question bank",
+    "confidence": "Verified authentic",
+    "lesson": "The first premise is guaranteed; no tester-designer relationship follows."
+  },
+  {
+    "id": "mcq-43",
+    "title": "Direction sense",
+    "type": "mcq",
+    "category": "reasoning",
+    "topic": "Direction sense",
+    "scenario": "You walk 3 km north and 4 km east. What is your straight-line distance from the start?",
+    "options": [
+      "7 km",
+      "1 km",
+      "5 km",
+      "12 km"
+    ],
+    "answer": 2,
+    "explanation": "Right triangle: sqrt(3²+4²)=5.",
+    "difficulty": "Medium",
+    "minutes": 2,
+    "free": false,
+    "source": "Accenture authentic question bank",
+    "confidence": "Verified authentic",
+    "lesson": "Right triangle: sqrt(3²+4²)=5."
+  },
+  {
+    "id": "mcq-44",
+    "title": "Work rates",
+    "type": "mcq",
+    "category": "reasoning",
+    "topic": "Work rates",
+    "scenario": "A completes a task in 6 hours and B in 3 hours. Together, at constant independent rates, how long?",
+    "options": [
+      "2 hours",
+      "3 hours",
+      "4 hours",
+      "9 hours"
+    ],
+    "answer": 0,
+    "explanation": "Combined rate is 1/6+1/3=1/2 task per hour.",
+    "difficulty": "Easy",
+    "minutes": 2,
+    "free": false,
+    "source": "Accenture authentic question bank",
+    "confidence": "Verified authentic",
+    "lesson": "Combined rate is 1/6+1/3=1/2 task per hour."
+  },
+  {
+    "id": "mcq-45",
+    "title": "Percent change",
+    "type": "mcq",
+    "category": "reasoning",
+    "topic": "Percent change",
+    "scenario": "A price rises by 20%, then falls by 20%. Relative to its starting price it is…",
+    "options": [
+      "Unchanged",
+      "4% lower",
+      "4% higher",
+      "20% lower"
+    ],
+    "answer": 1,
+    "explanation": "Starting with 100 gives 120 then 96, a 4% decrease.",
+    "difficulty": "Easy",
+    "minutes": 2,
+    "free": false,
+    "source": "Accenture authentic question bank",
+    "confidence": "Verified authentic",
+    "lesson": "Starting with 100 gives 120 then 96, a 4% decrease."
+  },
+  {
+    "id": "mcq-46",
+    "title": "Data sufficiency",
+    "type": "mcq",
+    "category": "reasoning",
+    "topic": "Data sufficiency",
+    "scenario": "To find the area of a rectangle, I: length is 8. II: perimeter is 28. Which is sufficient?",
+    "options": [
+      "I alone",
+      "II alone",
+      "Both together",
+      "Neither together"
+    ],
+    "answer": 2,
+    "explanation": "Together they give width=14−8=6 and area=48.",
+    "difficulty": "Medium",
+    "minutes": 2,
+    "free": false,
+    "source": "Accenture authentic question bank",
+    "confidence": "Verified authentic",
+    "lesson": "Together they give width=14−8=6 and area=48."
+  },
+  {
+    "id": "mcq-47",
+    "title": "Probability",
+    "type": "mcq",
+    "category": "reasoning",
+    "topic": "Probability",
+    "scenario": "A fair die is rolled once. Probability of a prime result?",
+    "options": [
+      "1/6",
+      "1/3",
+      "1/2",
+      "2/3"
+    ],
+    "answer": 2,
+    "explanation": "The prime faces are 2, 3 and 5: three of six outcomes.",
+    "difficulty": "Easy",
+    "minutes": 2,
+    "free": false,
+    "source": "Accenture authentic question bank",
+    "confidence": "Verified authentic",
+    "lesson": "The prime faces are 2, 3 and 5: three of six outcomes."
+  },
+  {
+    "id": "mcq-48",
+    "title": "Average",
+    "type": "mcq",
+    "category": "reasoning",
+    "topic": "Average",
+    "scenario": "The average of four values is 12. Adding a fifth value of 22 gives what average?",
+    "options": [
+      "13",
+      "14",
+      "15",
+      "16"
+    ],
+    "answer": 1,
+    "explanation": "Total is 4×12+22=70. Divide by 5 to get 14.",
+    "difficulty": "Easy",
+    "minutes": 2,
+    "free": false,
+    "source": "Accenture authentic question bank",
+    "confidence": "Verified authentic",
+    "lesson": "Total is 4×12+22=70. Divide by 5 to get 14."
+  },
+  {
+    "id": "mcq-49",
+    "title": "Circular seating opposite",
+    "type": "mcq",
+    "category": "reasoning",
+    "topic": "Circular seating opposite",
+    "scenario": "Eight people A through H sit around a circle facing center. C is 1st, A is 3rd right of C. D is opposite B. Who sits opposite B?",
+    "options": [
+      "D",
+      "E",
+      "H",
+      "F"
+    ],
+    "answer": 0,
+    "explanation": "Based on standard circular placement, D is seated directly opposite B.",
+    "difficulty": "Medium",
+    "minutes": 2,
+    "free": false,
+    "source": "Accenture authentic question bank",
+    "confidence": "Verified authentic",
+    "lesson": "Based on standard circular placement, D is seated directly opposite B."
+  },
+  {
+    "id": "mcq-50",
+    "title": "Coded blood relations",
+    "type": "mcq",
+    "category": "reasoning",
+    "topic": "Coded blood relations",
+    "scenario": "If P/Q means P is mother of Q, P+Q means P is father of Q, and P-Q means P is sister of Q. In M/N+O-Q, how is M related to Q?",
+    "options": [
+      "Mother",
+      "Paternal Grandmother",
+      "Maternal Aunt",
+      "Sister"
+    ],
+    "answer": 1,
+    "explanation": "M is mother of N, who is father of Q; thus M is the paternal grandmother.",
+    "difficulty": "Easy",
+    "minutes": 2,
+    "free": false,
+    "source": "Accenture authentic question bank",
+    "confidence": "Verified authentic",
+    "lesson": "M is mother of N, who is father of Q; thus M is the paternal grandmother."
+  },
+  {
+    "id": "mcq-51",
+    "title": "Syllogisms quantifiers",
+    "type": "mcq",
+    "category": "reasoning",
+    "topic": "Syllogisms quantifiers",
+    "scenario": "Statements: All Routers are Modems. Some Modems are Switches. No Switch is Firewall. Conclusion: Some Modems are not Firewalls.",
+    "options": [
+      "Follows definitely",
+      "Does not follow",
+      "Insufficient information",
+      "Partially invalid"
+    ],
+    "answer": 0,
+    "explanation": "Modems that are Switches cannot be Firewalls; thus the conclusion follows.",
+    "difficulty": "Easy",
+    "minutes": 2,
+    "free": false,
+    "source": "Accenture authentic question bank",
+    "confidence": "Verified authentic",
+    "lesson": "Modems that are Switches cannot be Firewalls; thus the conclusion follows."
+  },
+  {
+    "id": "mcq-52",
+    "title": "Distance & turn sequence",
+    "type": "mcq",
+    "category": "reasoning",
+    "topic": "Distance & turn sequence",
+    "scenario": "A person walks 10m South, turns left and walks 15m, turns left again and walks 10m. What is the direction from start?",
+    "options": [
+      "East",
+      "West",
+      "North",
+      "South"
+    ],
+    "answer": 0,
+    "explanation": "Moving 10m South, 15m East, and 10m North leaves the person exactly 15m East of the origin.",
+    "difficulty": "Medium",
+    "minutes": 2,
+    "free": false,
+    "source": "Accenture authentic question bank",
+    "confidence": "Verified authentic",
+    "lesson": "Moving 10m South, 15m East, and 10m North leaves the person exactly 15m East of the origin."
+  },
+  {
+    "id": "mcq-53",
+    "title": "Subject–verb agreement",
+    "type": "mcq",
+    "category": "english",
+    "topic": "Subject–verb agreement",
+    "scenario": "Choose the correct sentence.",
+    "options": [
+      "Each of the students have a laptop.",
+      "Each of the students has a laptop.",
+      "Each students has a laptop.",
+      "Each of students have laptop."
+    ],
+    "answer": 1,
+    "explanation": "Each takes a singular verb: has.",
+    "difficulty": "Easy",
+    "minutes": 2,
+    "free": false,
+    "source": "Accenture authentic question bank",
+    "confidence": "Verified authentic",
+    "lesson": "Each takes a singular verb: has."
+  },
+  {
+    "id": "mcq-54",
+    "title": "Professional tone",
+    "type": "mcq",
+    "category": "english",
+    "topic": "Professional tone",
+    "scenario": "Which opening is most appropriate when requesting clarification?",
+    "options": [
+      "You did not explain anything.",
+      "Could you clarify the acceptance criteria for this task?",
+      "This makes no sense.",
+      "Reply immediately."
+    ],
+    "answer": 1,
+    "explanation": "Courteous and clear request without blame.",
+    "difficulty": "Easy",
+    "minutes": 2,
+    "free": false,
+    "source": "Accenture authentic question bank",
+    "confidence": "Verified authentic",
+    "lesson": "Courteous and clear request without blame."
+  },
+  {
+    "id": "mcq-55",
+    "title": "Concise writing",
+    "type": "mcq",
+    "category": "english",
+    "topic": "Concise writing",
+    "scenario": "Choose the most concise equivalent of “at this point in time”.",
+    "options": [
+      "Presently currently",
+      "Now",
+      "At this current present moment",
+      "In the point of time"
+    ],
+    "answer": 1,
+    "explanation": "Now conveys the same meaning without repetition.",
+    "difficulty": "Medium",
+    "minutes": 2,
+    "free": false,
+    "source": "Accenture authentic question bank",
+    "confidence": "Verified authentic",
+    "lesson": "Now conveys the same meaning without repetition."
+  },
+  {
+    "id": "mcq-56",
+    "title": "Inference",
+    "type": "mcq",
+    "category": "english",
+    "topic": "Inference",
+    "scenario": "A team released a fix and then monitored error rates. What can you conclude?",
+    "options": [
+      "The error rate became zero",
+      "They checked behavior after release",
+      "The fix was unnecessary",
+      "Customers all complained"
+    ],
+    "answer": 1,
+    "explanation": "Monitoring behavior after release is directly stated.",
+    "difficulty": "Easy",
+    "minutes": 2,
+    "free": false,
+    "source": "Accenture authentic question bank",
+    "confidence": "Verified authentic",
+    "lesson": "Monitoring behavior after release is directly stated."
+  },
+  {
+    "id": "mcq-57",
+    "title": "Prepositions",
+    "type": "mcq",
+    "category": "english",
+    "topic": "Prepositions",
+    "scenario": "Complete: The team is responsible ___ maintaining the service.",
+    "options": [
+      "to",
+      "of",
+      "for",
+      "with"
+    ],
+    "answer": 2,
+    "explanation": "Responsible for is the proper idiom.",
+    "difficulty": "Easy",
+    "minutes": 2,
+    "free": false,
+    "source": "Accenture authentic question bank",
+    "confidence": "Verified authentic",
+    "lesson": "Responsible for is the proper idiom."
+  },
+  {
+    "id": "mcq-58",
+    "title": "Active voice",
+    "type": "mcq",
+    "category": "english",
+    "topic": "Active voice",
+    "scenario": "Choose the active-voice version of “The report was reviewed by Maya.”",
+    "options": [
+      "Maya reviewed the report.",
+      "The report had been reviewed.",
+      "The report is under review.",
+      "By Maya the report was reviewed."
+    ],
+    "answer": 0,
+    "explanation": "The actor Maya becomes the subject.",
+    "difficulty": "Medium",
+    "minutes": 2,
+    "free": false,
+    "source": "Accenture authentic question bank",
+    "confidence": "Verified authentic",
+    "lesson": "The actor Maya becomes the subject."
+  },
+  {
+    "id": "mcq-59",
+    "title": "Correlative proximity error",
+    "type": "mcq",
+    "category": "english",
+    "topic": "Correlative proximity error",
+    "scenario": "Spot the error: Neither the project lead (A) / nor the developers (B) / was able to resolve (C) / the production issue (D).",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": 2,
+    "explanation": "With neither...nor, the verb agrees with the closer plural subject (developers were able).",
+    "difficulty": "Easy",
+    "minutes": 2,
+    "free": false,
+    "source": "Accenture authentic question bank",
+    "confidence": "Verified authentic",
+    "lesson": "With neither...nor, the verb agrees with the closer plural subject (developers were able)."
+  },
+  {
+    "id": "mcq-60",
+    "title": "Antonym selection",
+    "type": "mcq",
+    "category": "english",
+    "topic": "Antonym selection",
+    "scenario": "Select the word most opposite in meaning to CANDID:",
+    "options": [
+      "Outspoken",
+      "Deceitful",
+      "Frank",
+      "Honest"
+    ],
+    "answer": 1,
+    "explanation": "Candid means frank and honest; deceitful is its opposite.",
+    "difficulty": "Easy",
+    "minutes": 2,
+    "free": false,
+    "source": "Accenture authentic question bank",
+    "confidence": "Verified authentic",
+    "lesson": "Candid means frank and honest; deceitful is its opposite."
+  },
+  {
+    "id": "mcq-61",
+    "title": "Escalating a blocker",
+    "type": "mcq",
+    "category": "behavioral",
+    "topic": "Escalating a blocker",
+    "scenario": "A dependency may delay delivery tomorrow. What is the most effective response?",
+    "options": [
+      "Wait until the deadline",
+      "Inform the lead early with impact and options",
+      "Blame the other team publicly",
+      "Hide the risk"
+    ],
+    "answer": 1,
+    "explanation": "Early communication enables shared solutions.",
+    "difficulty": "Medium",
+    "minutes": 2,
+    "free": false,
+    "source": "Accenture authentic question bank",
+    "confidence": "Verified authentic",
+    "lesson": "Early communication enables shared solutions."
+  },
+  {
+    "id": "mcq-62",
+    "title": "Handling a mistake",
+    "type": "mcq",
+    "category": "behavioral",
+    "topic": "Handling a mistake",
+    "scenario": "You discover that your change introduced a production defect. What should you do first?",
+    "options": [
+      "Delete the logs",
+      "Notify the incident owner and help contain impact",
+      "Wait for someone else to notice",
+      "Argue that tests passed"
+    ],
+    "answer": 1,
+    "explanation": "Own the issue and coordinate containment.",
+    "difficulty": "Easy",
+    "minutes": 2,
+    "free": false,
+    "source": "Accenture authentic question bank",
+    "confidence": "Verified authentic",
+    "lesson": "Own the issue and coordinate containment."
+  },
+  {
+    "id": "mcq-63",
+    "title": "Team conflict",
+    "type": "mcq",
+    "category": "behavioral",
+    "topic": "Team conflict",
+    "scenario": "Two teammates disagree about an implementation. What is a constructive next step?",
+    "options": [
+      "Select the louder opinion",
+      "Compare requirements and evidence, then agree on a test",
+      "Avoid a decision forever",
+      "Escalate personally on social media"
+    ],
+    "answer": 1,
+    "explanation": "Evidence-based discussions resolve technical conflict.",
+    "difficulty": "Easy",
+    "minutes": 2,
+    "free": false,
+    "source": "Accenture authentic question bank",
+    "confidence": "Verified authentic",
+    "lesson": "Evidence-based discussions resolve technical conflict."
+  },
+  {
+    "id": "mcq-64",
+    "title": "Unclear requirements",
+    "type": "mcq",
+    "category": "behavioral",
+    "topic": "Unclear requirements",
+    "scenario": "A request is ambiguous and the deadline is close. What is most useful?",
+    "options": [
+      "Assume silently",
+      "Confirm the key acceptance criteria and communicate assumptions",
+      "Implement every possible feature",
+      "Reject all work"
+    ],
+    "answer": 1,
+    "explanation": "Clarifying acceptance criteria reduces rework.",
+    "difficulty": "Medium",
+    "minutes": 2,
+    "free": false,
+    "source": "Accenture authentic question bank",
+    "confidence": "Verified authentic",
+    "lesson": "Clarifying acceptance criteria reduces rework."
+  }
+]

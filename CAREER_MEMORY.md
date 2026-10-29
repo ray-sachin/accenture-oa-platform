@@ -90,3 +90,27 @@ Directory: `references/screens/`
 - **Frontend Archetypes:** Chatbot (`#cfe2ff`, bot response), Product Search Filter (`#search-input`, `filterProducts()`, 'nana' query), Employee Task Manager (table row DOM generation, `completeTask()`, `deleteTask()`), Password Form Validator (`passwordformValidation()`, 8-char rule), Star Rating (`#ffd700` gold).
 - **DSA Coding:** Text Encryption Grid (Java/Python split editor with 16:47 timer), Pairwise Difference, Next Palindromic Square Difference.
 - **SQL Querying:** Plans & Subscriptions schema cards and live query editor.
+
+---
+
+## 6. Infrastructure, Domain & Deployment Ledger (October 2026)
+
+- **Hosting & CDN**: Cloudflare Pages (`campusready`).
+  - Production Branch: `master`
+  - Direct Edge URL: `https://campusready.pages.dev`
+  - Account ID: `9f2b1b7b410e2fd6115134694244d392`
+  - Wrangler config: `wrangler.toml` targeting `public/`
+- **Transactional Mailer**: Brevo v3 HTTP API client implemented in `server/email.js`.
+  - Account Email: `raysachin1809@gmail.com`
+  - Outgoing Sender: `CampusReady Support <support@campusready.live>`
+  - DNS Verification Records: TXT `brevo-code:50b5a78b92f3e5fb578d7475ec652278`, dual DKIM CNAMEs (`b1._domainkey` / `b2._domainkey`), DMARC TXT, and SPF TXT.
+- **Inbound Support Email**: Cloudflare Email Routing forwarding `support@campusready.live` (or chosen domain) directly to `raysachin1809@gmail.com`.
+- **Domain Status via GitHub Student Developer Pack**:
+  - Name.com GitHub Student Pack Benefit: Limited to 1 free domain per customer. The associated account previously redeemed its 1 free domain. Staged checkout for `campusready.live` reflects a 93% discount ($4.11 + $0.20 ICANN fee = ₹411.18 total), requiring a payment method if completed.
+  - Namecheap (`nc.me`): Returns "It appears you already registered a domain with .me. We only allow students to register one domain per TLD."
+  - Platform is fully accessible and functional on `https://campusready.pages.dev`.
+- **Payment Gateway**: Razorpay integration ready in `server/payments.js`.
+  - Setup Status: KYC verification in progress. Razorpay requires entering mobile number linked to PAN/Aadhaar for OTP before Test Key generation.
+- **Accenture Interface Fidelity**:
+  - Full redesign matching authentic Accenture/Mettl OA camera leaks: `#0b1a30` navy header, 5-state palette matrix, 2-column MCQ card layout, full-bleed diagonal anti-cheating watermark, CodeLysis split view, and simulated AI proctoring PIP box.
+  - Automated tests: 19/19 passing (`npm test`).

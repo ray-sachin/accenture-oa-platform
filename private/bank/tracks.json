@@ -1,0 +1,1553 @@
+[
+  {
+    "days": 10,
+    "name": "The focused sprint",
+    "daily": "3–4 hours / day",
+    "schedule": [
+      {
+        "title": "Build your baseline",
+        "focus": "Arrays · diagnostic · assessment setup",
+        "ids": [
+          "parity",
+          "second-largest",
+          "rat-count-house",
+          "mcq-1",
+          "mcq-3",
+          "mcq-15",
+          "mcq-29",
+          "mcq-41",
+          "mcq-53"
+        ],
+        "learn": "Review input/output, zero-based indexing, parity and boundary cases. Test empty arrays and edge cases.",
+        "tasks": [
+          "Take the free diagnostic and record weak topics.",
+          "Solve parity and explain your loop invariant.",
+          "Solve rat-count-house simulation."
+        ],
+        "lesson": {
+          "title": "A reliable first program",
+          "example": "Input: 6\n2 5 4 7 8 9\n\nPython:\nvalues = [2, 5, 4, 7, 8, 9]\ncount = 0\nfor index, value in enumerate(values):\n    if index % 2 == value % 2:\n        count += 1\nprint(count)  # 6",
+          "explanation": "An index describes a position, not a value. Enumerate supplies both. The counter means: how many matching positions have been seen so far. Before the loop it is zero; each iteration changes it only when the condition holds. This gives a simple correctness argument. For submitted problems, replace the demonstration array with input parsing and print only the answer.",
+          "pitfall": "Do not assume values are positive or use one-based positions when a prompt specifies zero-based indices.",
+          "checkpoint": "Can you explain what the counter represents after the first three iterations? Test a one-element array and an array containing negative odd values."
+        },
+        "day": 1,
+        "phase": "Learn + practise + review"
+      },
+      {
+        "title": "Master strings & bitwise operations",
+        "focus": "Strings · bitwise logic · validation",
+        "ids": [
+          "compression",
+          "matching-words",
+          "two-sum",
+          "binary-string-ops",
+          "password-checker",
+          "move-hyphens",
+          "mcq-2",
+          "mcq-9",
+          "mcq-13",
+          "mcq-54"
+        ],
+        "learn": "Practice bitwise operations (AND, OR, XOR) and in-place string manipulation.",
+        "tasks": [
+          "Trace binary string operations step by step.",
+          "Implement password validity criteria.",
+          "Practice string run compression."
+        ],
+        "lesson": {
+          "title": "Scan once, keep the right state",
+          "example": "String: abbcccde\nRuns: a | bb | ccc | d | e\nResult: a##de\n\nTwo-sum example:\nvalues = [2, 7, 11], target = 9\nAt 2: complement is 7; remember 2 → index 0.\nAt 7: complement is 2; it is already in the map.\nAnswer: indices 0 and 1.",
+          "explanation": "For run compression, one pointer marks the start of a run and another moves to its end. Every character belongs to exactly one run, so the total work is linear. For two-sum, the hash map describes values already visited. Looking up the complement before inserting the current value prevents using one index twice. A string builder or list of fragments avoids repeated expensive concatenation.",
+          "pitfall": "A global character count loses order and cannot distinguish separated runs. A set alone loses indices when the output requires positions.",
+          "checkpoint": "Explain the difference between a substring, a subsequence and a run. What should compression do to ababa?"
+        },
+        "day": 2,
+        "phase": "Learn + practise + review"
+      },
+      {
+        "title": "Think in states & algorithms",
+        "focus": "Dynamic programming · windows · stacks",
+        "ids": [
+          "house-robber",
+          "window-sum",
+          "brackets",
+          "product-smallest-pair",
+          "large-small-sum",
+          "superior-elements",
+          "mcq-4",
+          "mcq-8",
+          "mcq-11"
+        ],
+        "learn": "Define states clearly before writing recurrences. Maintain running maximums for superior elements.",
+        "tasks": [
+          "Trace house-robber DP table.",
+          "Implement superior elements leader scan.",
+          "Solve large-small-sum position sorting."
+        ],
+        "lesson": {
+          "title": "Use a state you can explain",
+          "example": "Houses: [2, 7, 9, 3, 1]\nBest after each prefix: 2, 7, 11, 11, 12\n\nbest(i) = max(best(i-1), best(i-2) + money[i])\n\nFixed window: [2, 1, 5, 1], k = 3\nFirst sum: 8\nNext sum: 8 - 2 + 1 = 7",
+          "explanation": "The house-robber choice is exhaustive: either skip the current house, or take it and exclude its immediate neighbour. Only the previous two best totals are needed, so extra memory can stay constant. A fixed sliding window reuses the previous sum. Bracket matching uses a stack because the most recent opening bracket must be closed first.",
+          "pitfall": "Do not initialize a maximum sum to zero when every valid sum may be negative. Do not overwrite a DP value before using its previous value.",
+          "checkpoint": "Why does a greedy rule that always picks the next largest house fail on [2, 1, 1, 2]? Trace the two-state recurrence."
+        },
+        "day": 3,
+        "phase": "Learn + practise + review"
+      },
+      {
+        "title": "Number theory & mathematical checks",
+        "focus": "Primes · factorization · sequences",
+        "ids": [
+          "prime-powers",
+          "prime-neighbours",
+          "automorphic-number",
+          "subarray-sum",
+          "pairwise-difference",
+          "mcq-10",
+          "mcq-14",
+          "mcq-43"
+        ],
+        "learn": "Trial division, square properties, and sliding window target matches.",
+        "tasks": [
+          "Test automorphic check on 25 and 76.",
+          "Implement sliding window for target subarray sum.",
+          "Review prime neighbours primality checks."
+        ],
+        "lesson": {
+          "title": "Think in rows before groups",
+          "example": "SELECT p.player_id, COUNT(r.id) AS paid_count\nFROM player p\nLEFT JOIN registration r\n  ON p.player_id = r.player_id\n AND r.payment_status = 'Paid'\nGROUP BY p.player_id\nORDER BY p.player_id;",
+          "explanation": "The driving table is player because every player must appear. LEFT JOIN keeps a player with no paid registration, producing a row with null right-side values. COUNT(r.id) counts actual registrations and ignores that null. Moving the payment predicate into WHERE would remove zero-match players. Use HAVING when the condition is about a group total, such as at least three registrations.",
+          "pitfall": "COUNT(*) counts the null-extended row, so it can report one instead of zero after a LEFT JOIN. Grouping only by a name can merge different people.",
+          "checkpoint": "Write a query for players with no registrations. Explain why WHERE r.id IS NULL is useful after a LEFT JOIN."
+        },
+        "day": 4,
+        "phase": "Learn + practise + review"
+      },
+      {
+        "title": "Make SQL predictable",
+        "focus": "JOIN · GROUP BY · HAVING · Subqueries",
+        "ids": [
+          "sports-sql",
+          "no-registration",
+          "sport-popularity",
+          "all-player-count",
+          "pending-registrations",
+          "distinct-sport-count"
+        ],
+        "learn": "Filter before aggregation. Group by primary keys. Use HAVING for aggregated conditions.",
+        "tasks": [
+          "Execute all six SQL exercises on fixture tables.",
+          "Compare INNER JOIN vs LEFT JOIN for missing registrations.",
+          "Write distinct count aggregations."
+        ],
+        "lesson": {
+          "title": "Connect structure, presentation and behavior",
+          "example": "HTML:\n<button id=\"play\">Play</button>\n<p id=\"status\">Ready</p>\n\nJavaScript:\nconst button = document.getElementById('play');\nbutton.addEventListener('click', () => {\n  document.getElementById('status').textContent = 'Playing';\n});",
+          "explanation": "HTML supplies semantic elements and stable selectors, CSS describes presentation, and JavaScript handles changes over time. Read the existing markup before writing a selector. Keep the state change separate from the event binding: attach listeners once, then update the relevant DOM. textContent displays user-entered text without interpreting it as HTML.",
+          "pitfall": "An ID mismatch makes getElementById return null. Adding a new event listener on every render can make one click fire several times.",
+          "checkpoint": "Test your widget with repeated clicks, an empty input and its boundary state. Can it be operated with the keyboard?"
+        },
+        "day": 5,
+        "phase": "Learn + practise + review"
+      },
+      {
+        "title": "Build interactive web interfaces",
+        "focus": "DOM manipulation · event handling · styles",
+        "ids": [
+          "q1",
+          "q2",
+          "q3",
+          "q7",
+          "q10"
+        ],
+        "learn": "Preserve required IDs. Attach event listeners cleanly and update state before re-rendering.",
+        "tasks": [
+          "Complete iPod interface styling.",
+          "Build Employee Task Manager with status changes.",
+          "Implement USD to INR currency converter."
+        ],
+        "lesson": {
+          "title": "Model the component state",
+          "example": "Carousel with 3 slides:\nnext index = (current + 1) % 3\nprevious index = (current - 1 + 3) % 3\n\nGeneral circular normalization:\nindex = ((requested % total) + total) % total\n\nCart state:\n{ productId: 12, unitPrice: 80, quantity: 3 }\nline total = 80 × 3 = 240",
+          "explanation": "A carousel needs one current index, then derives which slide and indicator are active. A cart needs distinct item identifiers and quantities; derive totals from state rather than repeatedly adding to the displayed text. For a chat widget, trim input, skip empty messages, append safe text, clear the field and scroll after the new message exists.",
+          "pitfall": "String concatenation can turn 80 + 80 into 8080 when values came from input fields. Negative modulo differs across languages.",
+          "checkpoint": "Write a checklist for first/last navigation, repeated cart additions, independent products, and blank messages. Run the checks after every change."
+        },
+        "day": 6,
+        "phase": "Learn + practise + review"
+      },
+      {
+        "title": "Complex frontend workflows",
+        "focus": "Cart · chatbot · carousel · password validator",
+        "ids": [
+          "q4",
+          "q5",
+          "q6",
+          "q8",
+          "q9"
+        ],
+        "learn": "Manage multi-field validation, todo filtering without DOM removal, and real-time feedback.",
+        "tasks": [
+          "Complete password validator with strength indicators.",
+          "Build Interactive Todo List with active filters.",
+          "Test chatbot message routing."
+        ],
+        "lesson": {
+          "title": "Make a compact fundamentals sheet",
+          "example": "Binary: 5 = 101, 3 = 011, 5 XOR 3 = 110 = 6\nAbsolute spreadsheet reference: $A$1\nTCP: ordered, reliable byte delivery\nDNS: names → resource records\nIaaS: infrastructure; PaaS: managed platform; SaaS: finished application\nAtomicity: all transaction changes commit, or none do",
+          "explanation": "For pseudocode, track one variable table after each statement and state the language assumptions explicitly. For core CS, explain the purpose and trade-off of each mechanism: an index speeds some reads but adds write cost; threads share an address space but not their stacks; TLS secures transport but does not certify a business. For spreadsheets, distinguish relative references, exact lookup and conditional aggregation.",
+          "pitfall": "Do not apply language-specific increment or signed-shift rules to ambiguous pseudocode without checking the prompt. Memorized acronyms are less useful than one concrete example.",
+          "checkpoint": "Explain WHERE versus HAVING, TCP versus UDP, and PaaS versus SaaS without looking at notes. Then revisit the questions you missed."
+        },
+        "day": 7,
+        "phase": "Learn + practise + review"
+      },
+      {
+        "title": "Strengthen technical fundamentals",
+        "focus": "Pseudocode · cloud · networks · Office",
+        "ids": [
+          "mcq-1",
+          "mcq-2",
+          "mcq-3",
+          "mcq-4",
+          "mcq-5",
+          "mcq-6",
+          "mcq-7",
+          "mcq-8",
+          "mcq-9",
+          "mcq-10",
+          "mcq-11",
+          "mcq-12",
+          "mcq-13",
+          "mcq-14",
+          "mcq-15"
+        ],
+        "learn": "Review OSI layers, port allocations, cloud service models, and Excel VLOOKUP vs INDEX-MATCH.",
+        "tasks": [
+          "Practice 15 timed technical MCQs.",
+          "Review TCP SYN flood mechanism.",
+          "Trace nested loops with conditional increments."
+        ],
+        "lesson": {
+          "title": "Separate facts from assumptions",
+          "example": "All testers are engineers.\nSome engineers are designers.\n\nGuaranteed: all testers are engineers.\nNot guaranteed: any tester is a designer.\n\nSTAR outline:\nSituation → Task → Action you took → Result and lesson",
+          "explanation": "For reasoning, ask whether a conclusion must follow, not whether it could be true. Use small diagrams or counterexamples when permitted by the real assessment. In communication, answer the question first, then support it with a short example. Workplace judgement practice should encourage ownership, collaboration and evidence, not teach candidates to pretend to have a particular personality.",
+          "pitfall": "A percentage increase and the same percentage decrease do not cancel: 100 → 120 → 96. In a project story, distinguish your contribution from the team's overall work.",
+          "checkpoint": "Record a one-minute project explanation and listen for clarity and repetition. Write a 100–150-word email with a specific request, neutral evidence and a polite next step."
+        },
+        "day": 8,
+        "phase": "Learn + practise + review"
+      },
+      {
+        "title": "Reason clearly, communicate well",
+        "focus": "Reasoning · English · workplace judgement",
+        "ids": [
+          "mcq-41",
+          "mcq-42",
+          "mcq-43",
+          "mcq-44",
+          "mcq-45",
+          "mcq-46",
+          "mcq-47",
+          "mcq-48",
+          "mcq-49",
+          "mcq-50",
+          "mcq-51",
+          "mcq-52",
+          "mcq-53",
+          "mcq-54",
+          "mcq-55"
+        ],
+        "learn": "Resolve circular seating step by step. Verify proximity rules in subject-verb agreement.",
+        "tasks": [
+          "Solve 8-person circular seating arrangement.",
+          "Review correlative conjunction error spotting.",
+          "Draft clear blocker escalation message."
+        ],
+        "lesson": {
+          "title": "Rehearse a decision process",
+          "example": "45-minute coding rehearsal:\n0–5 min: read both prompts and inspect examples\n5–22 min: complete one reliable solution\n22–38 min: work on the second problem\n38–45 min: edge cases, output format, final submission\n\nAdjust this plan to the actual question difficulty.",
+          "explanation": "A rehearsal tests pacing and recovery as well as knowledge. Before coding, identify the output contract and a plausible complexity target. A wrong answer is a useful clue: compare expected and actual output, reduce the failing example, and decide whether the issue is parsing, algorithm, state or formatting. Keep a short error log rather than merely counting attempts.",
+          "pitfall": "Passing a sample does not prove correctness. Avoid changing several unrelated lines at once when debugging, and do not spend the entire round on one difficult idea.",
+          "checkpoint": "Review one failed case and explain the fix without looking at the final code. Repeat the same pattern on a different input."
+        },
+        "day": 9,
+        "phase": "Learn + practise + review"
+      },
+      {
+        "title": "Rehearse the complete round",
+        "focus": "Timed coding · SQL · frontend · MCQs",
+        "ids": [
+          "prime-powers",
+          "rat-count-house",
+          "sports-sql",
+          "pending-registrations",
+          "q7",
+          "q8",
+          "mcq-9",
+          "mcq-23"
+        ],
+        "learn": "Simulate full 90-minute testing condition. Plan time allocations across sections.",
+        "tasks": [
+          "Take a timed multi-domain mock round.",
+          "Review edge-case failures.",
+          "Verify complete exam checklist."
+        ],
+        "lesson": {
+          "title": "Turn review into a calm final rehearsal",
+          "example": "Exam-day check:\n□ Official invitation and correct test link\n□ Permitted ID and candidate details\n□ Allowed language and environment requirements\n□ Charger, connection, browser and system test\n□ Time zone and reporting time\n□ Quiet practice/review window and sufficient rest",
+          "explanation": "Use the last day for retrieval and confidence in familiar skills. Re-solve a small set of previously missed problems without notes, explain the mistakes, then stop adding large new topics. Your actual invitation takes precedence over remembered campus reports. Interview preparation can cover problem solving, project architecture, CS fundamentals and teamwork without assuming exactly four panels.",
+          "pitfall": "Do not mistake completing a checklist for a guaranteed outcome. Do not use this preparation site's AI tools or notes during a real assessment unless its rules explicitly permit them.",
+          "checkpoint": "Can you outline your approach to an array problem, a grouped SQL query and a DOM event task? If not, choose one focused revision session rather than a new full syllabus."
+        },
+        "day": 10,
+        "phase": "Learn + practise + review"
+      }
+    ]
+  },
+  {
+    "days": 20,
+    "name": "Build your rhythm",
+    "daily": "90–120 min / day",
+    "schedule": [
+      {
+        "title": "Build your baseline · Learn",
+        "focus": "Arrays · diagnostic · assessment setup",
+        "ids": [
+          "parity",
+          "second-largest",
+          "rat-count-house",
+          "mcq-1"
+        ],
+        "learn": "Review input/output, zero-based indexing, parity and boundary cases. Test empty arrays and edge cases.",
+        "tasks": [
+          "Take the free diagnostic and record weak topics.",
+          "Read the worked example and trace it on paper or mentally.",
+          "Attempt the linked exercises and note one question you still have."
+        ],
+        "lesson": {
+          "title": "A reliable first program",
+          "example": "Input: 6\n2 5 4 7 8 9\n\nPython:\nvalues = [2, 5, 4, 7, 8, 9]\ncount = 0\nfor index, value in enumerate(values):\n    if index % 2 == value % 2:\n        count += 1\nprint(count)  # 6",
+          "explanation": "An index describes a position, not a value. Enumerate supplies both. The counter means: how many matching positions have been seen so far. Before the loop it is zero; each iteration changes it only when the condition holds. This gives a simple correctness argument. For submitted problems, replace the demonstration array with input parsing and print only the answer.",
+          "pitfall": "Do not assume values are positive or use one-based positions when a prompt specifies zero-based indices.",
+          "checkpoint": "Can you explain what the counter represents after the first three iterations? Test a one-element array and an array containing negative odd values."
+        },
+        "day": 1,
+        "phase": "Learn & apply"
+      },
+      {
+        "title": "Build your baseline · Practise",
+        "focus": "Arrays · diagnostic · assessment setup",
+        "ids": [
+          "mcq-3",
+          "mcq-15",
+          "mcq-29",
+          "mcq-41",
+          "mcq-53"
+        ],
+        "learn": "Review input/output, zero-based indexing, parity and boundary cases. Test empty arrays and edge cases.",
+        "tasks": [
+          "Attempt the linked exercises without copying a reference.",
+          "Solve parity and explain your loop invariant.",
+          "Write down the cause of each failed test and retest the fix."
+        ],
+        "lesson": {
+          "title": "A reliable first program",
+          "example": "Input: 6\n2 5 4 7 8 9\n\nPython:\nvalues = [2, 5, 4, 7, 8, 9]\ncount = 0\nfor index, value in enumerate(values):\n    if index % 2 == value % 2:\n        count += 1\nprint(count)  # 6",
+          "explanation": "An index describes a position, not a value. Enumerate supplies both. The counter means: how many matching positions have been seen so far. Before the loop it is zero; each iteration changes it only when the condition holds. This gives a simple correctness argument. For submitted problems, replace the demonstration array with input parsing and print only the answer.",
+          "pitfall": "Do not assume values are positive or use one-based positions when a prompt specifies zero-based indices.",
+          "checkpoint": "Can you explain what the counter represents after the first three iterations? Test a one-element array and an array containing negative odd values."
+        },
+        "day": 2,
+        "phase": "Timed practice & review"
+      },
+      {
+        "title": "Master strings & bitwise operations · Learn",
+        "focus": "Strings · bitwise logic · validation",
+        "ids": [
+          "compression",
+          "matching-words",
+          "two-sum",
+          "binary-string-ops",
+          "password-checker"
+        ],
+        "learn": "Practice bitwise operations (AND, OR, XOR) and in-place string manipulation.",
+        "tasks": [
+          "Trace binary string operations step by step.",
+          "Read the worked example and trace it on paper or mentally.",
+          "Attempt the linked exercises and note one question you still have."
+        ],
+        "lesson": {
+          "title": "Scan once, keep the right state",
+          "example": "String: abbcccde\nRuns: a | bb | ccc | d | e\nResult: a##de\n\nTwo-sum example:\nvalues = [2, 7, 11], target = 9\nAt 2: complement is 7; remember 2 → index 0.\nAt 7: complement is 2; it is already in the map.\nAnswer: indices 0 and 1.",
+          "explanation": "For run compression, one pointer marks the start of a run and another moves to its end. Every character belongs to exactly one run, so the total work is linear. For two-sum, the hash map describes values already visited. Looking up the complement before inserting the current value prevents using one index twice. A string builder or list of fragments avoids repeated expensive concatenation.",
+          "pitfall": "A global character count loses order and cannot distinguish separated runs. A set alone loses indices when the output requires positions.",
+          "checkpoint": "Explain the difference between a substring, a subsequence and a run. What should compression do to ababa?"
+        },
+        "day": 3,
+        "phase": "Learn & apply"
+      },
+      {
+        "title": "Master strings & bitwise operations · Practise",
+        "focus": "Strings · bitwise logic · validation",
+        "ids": [
+          "move-hyphens",
+          "mcq-2",
+          "mcq-9",
+          "mcq-13",
+          "mcq-54"
+        ],
+        "learn": "Practice bitwise operations (AND, OR, XOR) and in-place string manipulation.",
+        "tasks": [
+          "Attempt the linked exercises without copying a reference.",
+          "Implement password validity criteria.",
+          "Write down the cause of each failed test and retest the fix."
+        ],
+        "lesson": {
+          "title": "Scan once, keep the right state",
+          "example": "String: abbcccde\nRuns: a | bb | ccc | d | e\nResult: a##de\n\nTwo-sum example:\nvalues = [2, 7, 11], target = 9\nAt 2: complement is 7; remember 2 → index 0.\nAt 7: complement is 2; it is already in the map.\nAnswer: indices 0 and 1.",
+          "explanation": "For run compression, one pointer marks the start of a run and another moves to its end. Every character belongs to exactly one run, so the total work is linear. For two-sum, the hash map describes values already visited. Looking up the complement before inserting the current value prevents using one index twice. A string builder or list of fragments avoids repeated expensive concatenation.",
+          "pitfall": "A global character count loses order and cannot distinguish separated runs. A set alone loses indices when the output requires positions.",
+          "checkpoint": "Explain the difference between a substring, a subsequence and a run. What should compression do to ababa?"
+        },
+        "day": 4,
+        "phase": "Timed practice & review"
+      },
+      {
+        "title": "Think in states & algorithms · Learn",
+        "focus": "Dynamic programming · windows · stacks",
+        "ids": [
+          "house-robber",
+          "window-sum",
+          "brackets",
+          "product-smallest-pair"
+        ],
+        "learn": "Define states clearly before writing recurrences. Maintain running maximums for superior elements.",
+        "tasks": [
+          "Trace house-robber DP table.",
+          "Read the worked example and trace it on paper or mentally.",
+          "Attempt the linked exercises and note one question you still have."
+        ],
+        "lesson": {
+          "title": "Use a state you can explain",
+          "example": "Houses: [2, 7, 9, 3, 1]\nBest after each prefix: 2, 7, 11, 11, 12\n\nbest(i) = max(best(i-1), best(i-2) + money[i])\n\nFixed window: [2, 1, 5, 1], k = 3\nFirst sum: 8\nNext sum: 8 - 2 + 1 = 7",
+          "explanation": "The house-robber choice is exhaustive: either skip the current house, or take it and exclude its immediate neighbour. Only the previous two best totals are needed, so extra memory can stay constant. A fixed sliding window reuses the previous sum. Bracket matching uses a stack because the most recent opening bracket must be closed first.",
+          "pitfall": "Do not initialize a maximum sum to zero when every valid sum may be negative. Do not overwrite a DP value before using its previous value.",
+          "checkpoint": "Why does a greedy rule that always picks the next largest house fail on [2, 1, 1, 2]? Trace the two-state recurrence."
+        },
+        "day": 5,
+        "phase": "Learn & apply"
+      },
+      {
+        "title": "Think in states & algorithms · Practise",
+        "focus": "Dynamic programming · windows · stacks",
+        "ids": [
+          "large-small-sum",
+          "superior-elements",
+          "mcq-4",
+          "mcq-8",
+          "mcq-11"
+        ],
+        "learn": "Define states clearly before writing recurrences. Maintain running maximums for superior elements.",
+        "tasks": [
+          "Attempt the linked exercises without copying a reference.",
+          "Implement superior elements leader scan.",
+          "Write down the cause of each failed test and retest the fix."
+        ],
+        "lesson": {
+          "title": "Use a state you can explain",
+          "example": "Houses: [2, 7, 9, 3, 1]\nBest after each prefix: 2, 7, 11, 11, 12\n\nbest(i) = max(best(i-1), best(i-2) + money[i])\n\nFixed window: [2, 1, 5, 1], k = 3\nFirst sum: 8\nNext sum: 8 - 2 + 1 = 7",
+          "explanation": "The house-robber choice is exhaustive: either skip the current house, or take it and exclude its immediate neighbour. Only the previous two best totals are needed, so extra memory can stay constant. A fixed sliding window reuses the previous sum. Bracket matching uses a stack because the most recent opening bracket must be closed first.",
+          "pitfall": "Do not initialize a maximum sum to zero when every valid sum may be negative. Do not overwrite a DP value before using its previous value.",
+          "checkpoint": "Why does a greedy rule that always picks the next largest house fail on [2, 1, 1, 2]? Trace the two-state recurrence."
+        },
+        "day": 6,
+        "phase": "Timed practice & review"
+      },
+      {
+        "title": "Number theory & mathematical checks · Learn",
+        "focus": "Primes · factorization · sequences",
+        "ids": [
+          "prime-powers",
+          "prime-neighbours",
+          "automorphic-number",
+          "subarray-sum"
+        ],
+        "learn": "Trial division, square properties, and sliding window target matches.",
+        "tasks": [
+          "Test automorphic check on 25 and 76.",
+          "Read the worked example and trace it on paper or mentally.",
+          "Attempt the linked exercises and note one question you still have."
+        ],
+        "lesson": {
+          "title": "Think in rows before groups",
+          "example": "SELECT p.player_id, COUNT(r.id) AS paid_count\nFROM player p\nLEFT JOIN registration r\n  ON p.player_id = r.player_id\n AND r.payment_status = 'Paid'\nGROUP BY p.player_id\nORDER BY p.player_id;",
+          "explanation": "The driving table is player because every player must appear. LEFT JOIN keeps a player with no paid registration, producing a row with null right-side values. COUNT(r.id) counts actual registrations and ignores that null. Moving the payment predicate into WHERE would remove zero-match players. Use HAVING when the condition is about a group total, such as at least three registrations.",
+          "pitfall": "COUNT(*) counts the null-extended row, so it can report one instead of zero after a LEFT JOIN. Grouping only by a name can merge different people.",
+          "checkpoint": "Write a query for players with no registrations. Explain why WHERE r.id IS NULL is useful after a LEFT JOIN."
+        },
+        "day": 7,
+        "phase": "Learn & apply"
+      },
+      {
+        "title": "Number theory & mathematical checks · Practise",
+        "focus": "Primes · factorization · sequences",
+        "ids": [
+          "pairwise-difference",
+          "mcq-10",
+          "mcq-14",
+          "mcq-43"
+        ],
+        "learn": "Trial division, square properties, and sliding window target matches.",
+        "tasks": [
+          "Attempt the linked exercises without copying a reference.",
+          "Implement sliding window for target subarray sum.",
+          "Write down the cause of each failed test and retest the fix."
+        ],
+        "lesson": {
+          "title": "Think in rows before groups",
+          "example": "SELECT p.player_id, COUNT(r.id) AS paid_count\nFROM player p\nLEFT JOIN registration r\n  ON p.player_id = r.player_id\n AND r.payment_status = 'Paid'\nGROUP BY p.player_id\nORDER BY p.player_id;",
+          "explanation": "The driving table is player because every player must appear. LEFT JOIN keeps a player with no paid registration, producing a row with null right-side values. COUNT(r.id) counts actual registrations and ignores that null. Moving the payment predicate into WHERE would remove zero-match players. Use HAVING when the condition is about a group total, such as at least three registrations.",
+          "pitfall": "COUNT(*) counts the null-extended row, so it can report one instead of zero after a LEFT JOIN. Grouping only by a name can merge different people.",
+          "checkpoint": "Write a query for players with no registrations. Explain why WHERE r.id IS NULL is useful after a LEFT JOIN."
+        },
+        "day": 8,
+        "phase": "Timed practice & review"
+      },
+      {
+        "title": "Make SQL predictable · Learn",
+        "focus": "JOIN · GROUP BY · HAVING · Subqueries",
+        "ids": [
+          "sports-sql",
+          "no-registration",
+          "sport-popularity"
+        ],
+        "learn": "Filter before aggregation. Group by primary keys. Use HAVING for aggregated conditions.",
+        "tasks": [
+          "Execute all six SQL exercises on fixture tables.",
+          "Read the worked example and trace it on paper or mentally.",
+          "Attempt the linked exercises and note one question you still have."
+        ],
+        "lesson": {
+          "title": "Connect structure, presentation and behavior",
+          "example": "HTML:\n<button id=\"play\">Play</button>\n<p id=\"status\">Ready</p>\n\nJavaScript:\nconst button = document.getElementById('play');\nbutton.addEventListener('click', () => {\n  document.getElementById('status').textContent = 'Playing';\n});",
+          "explanation": "HTML supplies semantic elements and stable selectors, CSS describes presentation, and JavaScript handles changes over time. Read the existing markup before writing a selector. Keep the state change separate from the event binding: attach listeners once, then update the relevant DOM. textContent displays user-entered text without interpreting it as HTML.",
+          "pitfall": "An ID mismatch makes getElementById return null. Adding a new event listener on every render can make one click fire several times.",
+          "checkpoint": "Test your widget with repeated clicks, an empty input and its boundary state. Can it be operated with the keyboard?"
+        },
+        "day": 9,
+        "phase": "Learn & apply"
+      },
+      {
+        "title": "Make SQL predictable · Practise",
+        "focus": "JOIN · GROUP BY · HAVING · Subqueries",
+        "ids": [
+          "all-player-count",
+          "pending-registrations",
+          "distinct-sport-count"
+        ],
+        "learn": "Filter before aggregation. Group by primary keys. Use HAVING for aggregated conditions.",
+        "tasks": [
+          "Attempt the linked exercises without copying a reference.",
+          "Compare INNER JOIN vs LEFT JOIN for missing registrations.",
+          "Write down the cause of each failed test and retest the fix."
+        ],
+        "lesson": {
+          "title": "Connect structure, presentation and behavior",
+          "example": "HTML:\n<button id=\"play\">Play</button>\n<p id=\"status\">Ready</p>\n\nJavaScript:\nconst button = document.getElementById('play');\nbutton.addEventListener('click', () => {\n  document.getElementById('status').textContent = 'Playing';\n});",
+          "explanation": "HTML supplies semantic elements and stable selectors, CSS describes presentation, and JavaScript handles changes over time. Read the existing markup before writing a selector. Keep the state change separate from the event binding: attach listeners once, then update the relevant DOM. textContent displays user-entered text without interpreting it as HTML.",
+          "pitfall": "An ID mismatch makes getElementById return null. Adding a new event listener on every render can make one click fire several times.",
+          "checkpoint": "Test your widget with repeated clicks, an empty input and its boundary state. Can it be operated with the keyboard?"
+        },
+        "day": 10,
+        "phase": "Timed practice & review"
+      },
+      {
+        "title": "Build interactive web interfaces · Learn",
+        "focus": "DOM manipulation · event handling · styles",
+        "ids": [
+          "q1",
+          "q2"
+        ],
+        "learn": "Preserve required IDs. Attach event listeners cleanly and update state before re-rendering.",
+        "tasks": [
+          "Complete iPod interface styling.",
+          "Read the worked example and trace it on paper or mentally.",
+          "Attempt the linked exercises and note one question you still have."
+        ],
+        "lesson": {
+          "title": "Model the component state",
+          "example": "Carousel with 3 slides:\nnext index = (current + 1) % 3\nprevious index = (current - 1 + 3) % 3\n\nGeneral circular normalization:\nindex = ((requested % total) + total) % total\n\nCart state:\n{ productId: 12, unitPrice: 80, quantity: 3 }\nline total = 80 × 3 = 240",
+          "explanation": "A carousel needs one current index, then derives which slide and indicator are active. A cart needs distinct item identifiers and quantities; derive totals from state rather than repeatedly adding to the displayed text. For a chat widget, trim input, skip empty messages, append safe text, clear the field and scroll after the new message exists.",
+          "pitfall": "String concatenation can turn 80 + 80 into 8080 when values came from input fields. Negative modulo differs across languages.",
+          "checkpoint": "Write a checklist for first/last navigation, repeated cart additions, independent products, and blank messages. Run the checks after every change."
+        },
+        "day": 11,
+        "phase": "Learn & apply"
+      },
+      {
+        "title": "Build interactive web interfaces · Practise",
+        "focus": "DOM manipulation · event handling · styles",
+        "ids": [
+          "q3",
+          "q7",
+          "q10"
+        ],
+        "learn": "Preserve required IDs. Attach event listeners cleanly and update state before re-rendering.",
+        "tasks": [
+          "Attempt the linked exercises without copying a reference.",
+          "Build Employee Task Manager with status changes.",
+          "Write down the cause of each failed test and retest the fix."
+        ],
+        "lesson": {
+          "title": "Model the component state",
+          "example": "Carousel with 3 slides:\nnext index = (current + 1) % 3\nprevious index = (current - 1 + 3) % 3\n\nGeneral circular normalization:\nindex = ((requested % total) + total) % total\n\nCart state:\n{ productId: 12, unitPrice: 80, quantity: 3 }\nline total = 80 × 3 = 240",
+          "explanation": "A carousel needs one current index, then derives which slide and indicator are active. A cart needs distinct item identifiers and quantities; derive totals from state rather than repeatedly adding to the displayed text. For a chat widget, trim input, skip empty messages, append safe text, clear the field and scroll after the new message exists.",
+          "pitfall": "String concatenation can turn 80 + 80 into 8080 when values came from input fields. Negative modulo differs across languages.",
+          "checkpoint": "Write a checklist for first/last navigation, repeated cart additions, independent products, and blank messages. Run the checks after every change."
+        },
+        "day": 12,
+        "phase": "Timed practice & review"
+      },
+      {
+        "title": "Complex frontend workflows · Learn",
+        "focus": "Cart · chatbot · carousel · password validator",
+        "ids": [
+          "q4",
+          "q5"
+        ],
+        "learn": "Manage multi-field validation, todo filtering without DOM removal, and real-time feedback.",
+        "tasks": [
+          "Complete password validator with strength indicators.",
+          "Read the worked example and trace it on paper or mentally.",
+          "Attempt the linked exercises and note one question you still have."
+        ],
+        "lesson": {
+          "title": "Make a compact fundamentals sheet",
+          "example": "Binary: 5 = 101, 3 = 011, 5 XOR 3 = 110 = 6\nAbsolute spreadsheet reference: $A$1\nTCP: ordered, reliable byte delivery\nDNS: names → resource records\nIaaS: infrastructure; PaaS: managed platform; SaaS: finished application\nAtomicity: all transaction changes commit, or none do",
+          "explanation": "For pseudocode, track one variable table after each statement and state the language assumptions explicitly. For core CS, explain the purpose and trade-off of each mechanism: an index speeds some reads but adds write cost; threads share an address space but not their stacks; TLS secures transport but does not certify a business. For spreadsheets, distinguish relative references, exact lookup and conditional aggregation.",
+          "pitfall": "Do not apply language-specific increment or signed-shift rules to ambiguous pseudocode without checking the prompt. Memorized acronyms are less useful than one concrete example.",
+          "checkpoint": "Explain WHERE versus HAVING, TCP versus UDP, and PaaS versus SaaS without looking at notes. Then revisit the questions you missed."
+        },
+        "day": 13,
+        "phase": "Learn & apply"
+      },
+      {
+        "title": "Complex frontend workflows · Practise",
+        "focus": "Cart · chatbot · carousel · password validator",
+        "ids": [
+          "q6",
+          "q8",
+          "q9"
+        ],
+        "learn": "Manage multi-field validation, todo filtering without DOM removal, and real-time feedback.",
+        "tasks": [
+          "Attempt the linked exercises without copying a reference.",
+          "Build Interactive Todo List with active filters.",
+          "Write down the cause of each failed test and retest the fix."
+        ],
+        "lesson": {
+          "title": "Make a compact fundamentals sheet",
+          "example": "Binary: 5 = 101, 3 = 011, 5 XOR 3 = 110 = 6\nAbsolute spreadsheet reference: $A$1\nTCP: ordered, reliable byte delivery\nDNS: names → resource records\nIaaS: infrastructure; PaaS: managed platform; SaaS: finished application\nAtomicity: all transaction changes commit, or none do",
+          "explanation": "For pseudocode, track one variable table after each statement and state the language assumptions explicitly. For core CS, explain the purpose and trade-off of each mechanism: an index speeds some reads but adds write cost; threads share an address space but not their stacks; TLS secures transport but does not certify a business. For spreadsheets, distinguish relative references, exact lookup and conditional aggregation.",
+          "pitfall": "Do not apply language-specific increment or signed-shift rules to ambiguous pseudocode without checking the prompt. Memorized acronyms are less useful than one concrete example.",
+          "checkpoint": "Explain WHERE versus HAVING, TCP versus UDP, and PaaS versus SaaS without looking at notes. Then revisit the questions you missed."
+        },
+        "day": 14,
+        "phase": "Timed practice & review"
+      },
+      {
+        "title": "Strengthen technical fundamentals · Learn",
+        "focus": "Pseudocode · cloud · networks · Office",
+        "ids": [
+          "mcq-1",
+          "mcq-2",
+          "mcq-3",
+          "mcq-4",
+          "mcq-5",
+          "mcq-6",
+          "mcq-7"
+        ],
+        "learn": "Review OSI layers, port allocations, cloud service models, and Excel VLOOKUP vs INDEX-MATCH.",
+        "tasks": [
+          "Practice 15 timed technical MCQs.",
+          "Read the worked example and trace it on paper or mentally.",
+          "Attempt the linked exercises and note one question you still have."
+        ],
+        "lesson": {
+          "title": "Separate facts from assumptions",
+          "example": "All testers are engineers.\nSome engineers are designers.\n\nGuaranteed: all testers are engineers.\nNot guaranteed: any tester is a designer.\n\nSTAR outline:\nSituation → Task → Action you took → Result and lesson",
+          "explanation": "For reasoning, ask whether a conclusion must follow, not whether it could be true. Use small diagrams or counterexamples when permitted by the real assessment. In communication, answer the question first, then support it with a short example. Workplace judgement practice should encourage ownership, collaboration and evidence, not teach candidates to pretend to have a particular personality.",
+          "pitfall": "A percentage increase and the same percentage decrease do not cancel: 100 → 120 → 96. In a project story, distinguish your contribution from the team's overall work.",
+          "checkpoint": "Record a one-minute project explanation and listen for clarity and repetition. Write a 100–150-word email with a specific request, neutral evidence and a polite next step."
+        },
+        "day": 15,
+        "phase": "Learn & apply"
+      },
+      {
+        "title": "Strengthen technical fundamentals · Practise",
+        "focus": "Pseudocode · cloud · networks · Office",
+        "ids": [
+          "mcq-8",
+          "mcq-9",
+          "mcq-10",
+          "mcq-11",
+          "mcq-12",
+          "mcq-13",
+          "mcq-14",
+          "mcq-15"
+        ],
+        "learn": "Review OSI layers, port allocations, cloud service models, and Excel VLOOKUP vs INDEX-MATCH.",
+        "tasks": [
+          "Attempt the linked exercises without copying a reference.",
+          "Review TCP SYN flood mechanism.",
+          "Write down the cause of each failed test and retest the fix."
+        ],
+        "lesson": {
+          "title": "Separate facts from assumptions",
+          "example": "All testers are engineers.\nSome engineers are designers.\n\nGuaranteed: all testers are engineers.\nNot guaranteed: any tester is a designer.\n\nSTAR outline:\nSituation → Task → Action you took → Result and lesson",
+          "explanation": "For reasoning, ask whether a conclusion must follow, not whether it could be true. Use small diagrams or counterexamples when permitted by the real assessment. In communication, answer the question first, then support it with a short example. Workplace judgement practice should encourage ownership, collaboration and evidence, not teach candidates to pretend to have a particular personality.",
+          "pitfall": "A percentage increase and the same percentage decrease do not cancel: 100 → 120 → 96. In a project story, distinguish your contribution from the team's overall work.",
+          "checkpoint": "Record a one-minute project explanation and listen for clarity and repetition. Write a 100–150-word email with a specific request, neutral evidence and a polite next step."
+        },
+        "day": 16,
+        "phase": "Timed practice & review"
+      },
+      {
+        "title": "Reason clearly, communicate well · Learn",
+        "focus": "Reasoning · English · workplace judgement",
+        "ids": [
+          "mcq-41",
+          "mcq-42",
+          "mcq-43",
+          "mcq-44",
+          "mcq-45",
+          "mcq-46",
+          "mcq-47"
+        ],
+        "learn": "Resolve circular seating step by step. Verify proximity rules in subject-verb agreement.",
+        "tasks": [
+          "Solve 8-person circular seating arrangement.",
+          "Read the worked example and trace it on paper or mentally.",
+          "Attempt the linked exercises and note one question you still have."
+        ],
+        "lesson": {
+          "title": "Rehearse a decision process",
+          "example": "45-minute coding rehearsal:\n0–5 min: read both prompts and inspect examples\n5–22 min: complete one reliable solution\n22–38 min: work on the second problem\n38–45 min: edge cases, output format, final submission\n\nAdjust this plan to the actual question difficulty.",
+          "explanation": "A rehearsal tests pacing and recovery as well as knowledge. Before coding, identify the output contract and a plausible complexity target. A wrong answer is a useful clue: compare expected and actual output, reduce the failing example, and decide whether the issue is parsing, algorithm, state or formatting. Keep a short error log rather than merely counting attempts.",
+          "pitfall": "Passing a sample does not prove correctness. Avoid changing several unrelated lines at once when debugging, and do not spend the entire round on one difficult idea.",
+          "checkpoint": "Review one failed case and explain the fix without looking at the final code. Repeat the same pattern on a different input."
+        },
+        "day": 17,
+        "phase": "Learn & apply"
+      },
+      {
+        "title": "Reason clearly, communicate well · Practise",
+        "focus": "Reasoning · English · workplace judgement",
+        "ids": [
+          "mcq-48",
+          "mcq-49",
+          "mcq-50",
+          "mcq-51",
+          "mcq-52",
+          "mcq-53",
+          "mcq-54",
+          "mcq-55"
+        ],
+        "learn": "Resolve circular seating step by step. Verify proximity rules in subject-verb agreement.",
+        "tasks": [
+          "Attempt the linked exercises without copying a reference.",
+          "Review correlative conjunction error spotting.",
+          "Write down the cause of each failed test and retest the fix."
+        ],
+        "lesson": {
+          "title": "Rehearse a decision process",
+          "example": "45-minute coding rehearsal:\n0–5 min: read both prompts and inspect examples\n5–22 min: complete one reliable solution\n22–38 min: work on the second problem\n38–45 min: edge cases, output format, final submission\n\nAdjust this plan to the actual question difficulty.",
+          "explanation": "A rehearsal tests pacing and recovery as well as knowledge. Before coding, identify the output contract and a plausible complexity target. A wrong answer is a useful clue: compare expected and actual output, reduce the failing example, and decide whether the issue is parsing, algorithm, state or formatting. Keep a short error log rather than merely counting attempts.",
+          "pitfall": "Passing a sample does not prove correctness. Avoid changing several unrelated lines at once when debugging, and do not spend the entire round on one difficult idea.",
+          "checkpoint": "Review one failed case and explain the fix without looking at the final code. Repeat the same pattern on a different input."
+        },
+        "day": 18,
+        "phase": "Timed practice & review"
+      },
+      {
+        "title": "Rehearse the complete round · Learn",
+        "focus": "Timed coding · SQL · frontend · MCQs",
+        "ids": [
+          "prime-powers",
+          "rat-count-house",
+          "sports-sql",
+          "pending-registrations"
+        ],
+        "learn": "Simulate full 90-minute testing condition. Plan time allocations across sections.",
+        "tasks": [
+          "Take a timed multi-domain mock round.",
+          "Read the worked example and trace it on paper or mentally.",
+          "Attempt the linked exercises and note one question you still have."
+        ],
+        "lesson": {
+          "title": "Turn review into a calm final rehearsal",
+          "example": "Exam-day check:\n□ Official invitation and correct test link\n□ Permitted ID and candidate details\n□ Allowed language and environment requirements\n□ Charger, connection, browser and system test\n□ Time zone and reporting time\n□ Quiet practice/review window and sufficient rest",
+          "explanation": "Use the last day for retrieval and confidence in familiar skills. Re-solve a small set of previously missed problems without notes, explain the mistakes, then stop adding large new topics. Your actual invitation takes precedence over remembered campus reports. Interview preparation can cover problem solving, project architecture, CS fundamentals and teamwork without assuming exactly four panels.",
+          "pitfall": "Do not mistake completing a checklist for a guaranteed outcome. Do not use this preparation site's AI tools or notes during a real assessment unless its rules explicitly permit them.",
+          "checkpoint": "Can you outline your approach to an array problem, a grouped SQL query and a DOM event task? If not, choose one focused revision session rather than a new full syllabus."
+        },
+        "day": 19,
+        "phase": "Learn & apply"
+      },
+      {
+        "title": "Rehearse the complete round · Practise",
+        "focus": "Timed coding · SQL · frontend · MCQs",
+        "ids": [
+          "q7",
+          "q8",
+          "mcq-9",
+          "mcq-23"
+        ],
+        "learn": "Simulate full 90-minute testing condition. Plan time allocations across sections.",
+        "tasks": [
+          "Attempt the linked exercises without copying a reference.",
+          "Review edge-case failures.",
+          "Write down the cause of each failed test and retest the fix."
+        ],
+        "lesson": {
+          "title": "Turn review into a calm final rehearsal",
+          "example": "Exam-day check:\n□ Official invitation and correct test link\n□ Permitted ID and candidate details\n□ Allowed language and environment requirements\n□ Charger, connection, browser and system test\n□ Time zone and reporting time\n□ Quiet practice/review window and sufficient rest",
+          "explanation": "Use the last day for retrieval and confidence in familiar skills. Re-solve a small set of previously missed problems without notes, explain the mistakes, then stop adding large new topics. Your actual invitation takes precedence over remembered campus reports. Interview preparation can cover problem solving, project architecture, CS fundamentals and teamwork without assuming exactly four panels.",
+          "pitfall": "Do not mistake completing a checklist for a guaranteed outcome. Do not use this preparation site's AI tools or notes during a real assessment unless its rules explicitly permit them.",
+          "checkpoint": "Can you outline your approach to an array problem, a grouped SQL query and a DOM event task? If not, choose one focused revision session rather than a new full syllabus."
+        },
+        "day": 20,
+        "phase": "Timed practice & review"
+      }
+    ]
+  },
+  {
+    "days": 30,
+    "name": "Start from the foundations",
+    "daily": "60–90 min / day",
+    "schedule": [
+      {
+        "title": "Build your baseline · Learn",
+        "focus": "Arrays · diagnostic · assessment setup",
+        "ids": [
+          "parity",
+          "second-largest",
+          "rat-count-house"
+        ],
+        "learn": "Review input/output, zero-based indexing, parity and boundary cases. Test empty arrays and edge cases.",
+        "tasks": [
+          "Take the free diagnostic and record weak topics.",
+          "Read the worked example and trace it on paper or mentally.",
+          "Attempt the linked exercises and note one question you still have."
+        ],
+        "lesson": {
+          "title": "A reliable first program",
+          "example": "Input: 6\n2 5 4 7 8 9\n\nPython:\nvalues = [2, 5, 4, 7, 8, 9]\ncount = 0\nfor index, value in enumerate(values):\n    if index % 2 == value % 2:\n        count += 1\nprint(count)  # 6",
+          "explanation": "An index describes a position, not a value. Enumerate supplies both. The counter means: how many matching positions have been seen so far. Before the loop it is zero; each iteration changes it only when the condition holds. This gives a simple correctness argument. For submitted problems, replace the demonstration array with input parsing and print only the answer.",
+          "pitfall": "Do not assume values are positive or use one-based positions when a prompt specifies zero-based indices.",
+          "checkpoint": "Can you explain what the counter represents after the first three iterations? Test a one-element array and an array containing negative odd values."
+        },
+        "day": 1,
+        "phase": "Learn the foundations"
+      },
+      {
+        "title": "Build your baseline · Practise",
+        "focus": "Arrays · diagnostic · assessment setup",
+        "ids": [
+          "mcq-1",
+          "mcq-3",
+          "mcq-15"
+        ],
+        "learn": "Review input/output, zero-based indexing, parity and boundary cases. Test empty arrays and edge cases.",
+        "tasks": [
+          "Attempt the linked exercises without copying a reference.",
+          "Solve parity and explain your loop invariant.",
+          "Write down the cause of each failed test and retest the fix."
+        ],
+        "lesson": {
+          "title": "A reliable first program",
+          "example": "Input: 6\n2 5 4 7 8 9\n\nPython:\nvalues = [2, 5, 4, 7, 8, 9]\ncount = 0\nfor index, value in enumerate(values):\n    if index % 2 == value % 2:\n        count += 1\nprint(count)  # 6",
+          "explanation": "An index describes a position, not a value. Enumerate supplies both. The counter means: how many matching positions have been seen so far. Before the loop it is zero; each iteration changes it only when the condition holds. This gives a simple correctness argument. For submitted problems, replace the demonstration array with input parsing and print only the answer.",
+          "pitfall": "Do not assume values are positive or use one-based positions when a prompt specifies zero-based indices.",
+          "checkpoint": "Can you explain what the counter represents after the first three iterations? Test a one-element array and an array containing negative odd values."
+        },
+        "day": 2,
+        "phase": "Apply in the workspace"
+      },
+      {
+        "title": "Build your baseline · Review",
+        "focus": "Arrays · diagnostic · assessment setup",
+        "ids": [
+          "mcq-29",
+          "mcq-41",
+          "mcq-53"
+        ],
+        "learn": "Review input/output, zero-based indexing, parity and boundary cases. Test empty arrays and edge cases.",
+        "tasks": [
+          "Solve rat-count-house simulation.",
+          "Re-solve one earlier exercise without notes.",
+          "Explain your approach and its trade-offs in a short spoken summary."
+        ],
+        "lesson": {
+          "title": "A reliable first program",
+          "example": "Input: 6\n2 5 4 7 8 9\n\nPython:\nvalues = [2, 5, 4, 7, 8, 9]\ncount = 0\nfor index, value in enumerate(values):\n    if index % 2 == value % 2:\n        count += 1\nprint(count)  # 6",
+          "explanation": "An index describes a position, not a value. Enumerate supplies both. The counter means: how many matching positions have been seen so far. Before the loop it is zero; each iteration changes it only when the condition holds. This gives a simple correctness argument. For submitted problems, replace the demonstration array with input parsing and print only the answer.",
+          "pitfall": "Do not assume values are positive or use one-based positions when a prompt specifies zero-based indices.",
+          "checkpoint": "Can you explain what the counter represents after the first three iterations? Test a one-element array and an array containing negative odd values."
+        },
+        "day": 3,
+        "phase": "Review & retrieve"
+      },
+      {
+        "title": "Master strings & bitwise operations · Learn",
+        "focus": "Strings · bitwise logic · validation",
+        "ids": [
+          "compression",
+          "matching-words",
+          "two-sum"
+        ],
+        "learn": "Practice bitwise operations (AND, OR, XOR) and in-place string manipulation.",
+        "tasks": [
+          "Trace binary string operations step by step.",
+          "Read the worked example and trace it on paper or mentally.",
+          "Attempt the linked exercises and note one question you still have."
+        ],
+        "lesson": {
+          "title": "Scan once, keep the right state",
+          "example": "String: abbcccde\nRuns: a | bb | ccc | d | e\nResult: a##de\n\nTwo-sum example:\nvalues = [2, 7, 11], target = 9\nAt 2: complement is 7; remember 2 → index 0.\nAt 7: complement is 2; it is already in the map.\nAnswer: indices 0 and 1.",
+          "explanation": "For run compression, one pointer marks the start of a run and another moves to its end. Every character belongs to exactly one run, so the total work is linear. For two-sum, the hash map describes values already visited. Looking up the complement before inserting the current value prevents using one index twice. A string builder or list of fragments avoids repeated expensive concatenation.",
+          "pitfall": "A global character count loses order and cannot distinguish separated runs. A set alone loses indices when the output requires positions.",
+          "checkpoint": "Explain the difference between a substring, a subsequence and a run. What should compression do to ababa?"
+        },
+        "day": 4,
+        "phase": "Learn the foundations"
+      },
+      {
+        "title": "Master strings & bitwise operations · Practise",
+        "focus": "Strings · bitwise logic · validation",
+        "ids": [
+          "binary-string-ops",
+          "password-checker",
+          "move-hyphens"
+        ],
+        "learn": "Practice bitwise operations (AND, OR, XOR) and in-place string manipulation.",
+        "tasks": [
+          "Attempt the linked exercises without copying a reference.",
+          "Implement password validity criteria.",
+          "Write down the cause of each failed test and retest the fix."
+        ],
+        "lesson": {
+          "title": "Scan once, keep the right state",
+          "example": "String: abbcccde\nRuns: a | bb | ccc | d | e\nResult: a##de\n\nTwo-sum example:\nvalues = [2, 7, 11], target = 9\nAt 2: complement is 7; remember 2 → index 0.\nAt 7: complement is 2; it is already in the map.\nAnswer: indices 0 and 1.",
+          "explanation": "For run compression, one pointer marks the start of a run and another moves to its end. Every character belongs to exactly one run, so the total work is linear. For two-sum, the hash map describes values already visited. Looking up the complement before inserting the current value prevents using one index twice. A string builder or list of fragments avoids repeated expensive concatenation.",
+          "pitfall": "A global character count loses order and cannot distinguish separated runs. A set alone loses indices when the output requires positions.",
+          "checkpoint": "Explain the difference between a substring, a subsequence and a run. What should compression do to ababa?"
+        },
+        "day": 5,
+        "phase": "Apply in the workspace"
+      },
+      {
+        "title": "Master strings & bitwise operations · Review",
+        "focus": "Strings · bitwise logic · validation",
+        "ids": [
+          "mcq-2",
+          "mcq-9",
+          "mcq-13",
+          "mcq-54"
+        ],
+        "learn": "Practice bitwise operations (AND, OR, XOR) and in-place string manipulation.",
+        "tasks": [
+          "Practice string run compression.",
+          "Re-solve one earlier exercise without notes.",
+          "Explain your approach and its trade-offs in a short spoken summary."
+        ],
+        "lesson": {
+          "title": "Scan once, keep the right state",
+          "example": "String: abbcccde\nRuns: a | bb | ccc | d | e\nResult: a##de\n\nTwo-sum example:\nvalues = [2, 7, 11], target = 9\nAt 2: complement is 7; remember 2 → index 0.\nAt 7: complement is 2; it is already in the map.\nAnswer: indices 0 and 1.",
+          "explanation": "For run compression, one pointer marks the start of a run and another moves to its end. Every character belongs to exactly one run, so the total work is linear. For two-sum, the hash map describes values already visited. Looking up the complement before inserting the current value prevents using one index twice. A string builder or list of fragments avoids repeated expensive concatenation.",
+          "pitfall": "A global character count loses order and cannot distinguish separated runs. A set alone loses indices when the output requires positions.",
+          "checkpoint": "Explain the difference between a substring, a subsequence and a run. What should compression do to ababa?"
+        },
+        "day": 6,
+        "phase": "Review & retrieve"
+      },
+      {
+        "title": "Think in states & algorithms · Learn",
+        "focus": "Dynamic programming · windows · stacks",
+        "ids": [
+          "house-robber",
+          "window-sum",
+          "brackets"
+        ],
+        "learn": "Define states clearly before writing recurrences. Maintain running maximums for superior elements.",
+        "tasks": [
+          "Trace house-robber DP table.",
+          "Read the worked example and trace it on paper or mentally.",
+          "Attempt the linked exercises and note one question you still have."
+        ],
+        "lesson": {
+          "title": "Use a state you can explain",
+          "example": "Houses: [2, 7, 9, 3, 1]\nBest after each prefix: 2, 7, 11, 11, 12\n\nbest(i) = max(best(i-1), best(i-2) + money[i])\n\nFixed window: [2, 1, 5, 1], k = 3\nFirst sum: 8\nNext sum: 8 - 2 + 1 = 7",
+          "explanation": "The house-robber choice is exhaustive: either skip the current house, or take it and exclude its immediate neighbour. Only the previous two best totals are needed, so extra memory can stay constant. A fixed sliding window reuses the previous sum. Bracket matching uses a stack because the most recent opening bracket must be closed first.",
+          "pitfall": "Do not initialize a maximum sum to zero when every valid sum may be negative. Do not overwrite a DP value before using its previous value.",
+          "checkpoint": "Why does a greedy rule that always picks the next largest house fail on [2, 1, 1, 2]? Trace the two-state recurrence."
+        },
+        "day": 7,
+        "phase": "Learn the foundations"
+      },
+      {
+        "title": "Think in states & algorithms · Practise",
+        "focus": "Dynamic programming · windows · stacks",
+        "ids": [
+          "product-smallest-pair",
+          "large-small-sum",
+          "superior-elements"
+        ],
+        "learn": "Define states clearly before writing recurrences. Maintain running maximums for superior elements.",
+        "tasks": [
+          "Attempt the linked exercises without copying a reference.",
+          "Implement superior elements leader scan.",
+          "Write down the cause of each failed test and retest the fix."
+        ],
+        "lesson": {
+          "title": "Use a state you can explain",
+          "example": "Houses: [2, 7, 9, 3, 1]\nBest after each prefix: 2, 7, 11, 11, 12\n\nbest(i) = max(best(i-1), best(i-2) + money[i])\n\nFixed window: [2, 1, 5, 1], k = 3\nFirst sum: 8\nNext sum: 8 - 2 + 1 = 7",
+          "explanation": "The house-robber choice is exhaustive: either skip the current house, or take it and exclude its immediate neighbour. Only the previous two best totals are needed, so extra memory can stay constant. A fixed sliding window reuses the previous sum. Bracket matching uses a stack because the most recent opening bracket must be closed first.",
+          "pitfall": "Do not initialize a maximum sum to zero when every valid sum may be negative. Do not overwrite a DP value before using its previous value.",
+          "checkpoint": "Why does a greedy rule that always picks the next largest house fail on [2, 1, 1, 2]? Trace the two-state recurrence."
+        },
+        "day": 8,
+        "phase": "Apply in the workspace"
+      },
+      {
+        "title": "Think in states & algorithms · Review",
+        "focus": "Dynamic programming · windows · stacks",
+        "ids": [
+          "mcq-4",
+          "mcq-8",
+          "mcq-11"
+        ],
+        "learn": "Define states clearly before writing recurrences. Maintain running maximums for superior elements.",
+        "tasks": [
+          "Solve large-small-sum position sorting.",
+          "Re-solve one earlier exercise without notes.",
+          "Explain your approach and its trade-offs in a short spoken summary."
+        ],
+        "lesson": {
+          "title": "Use a state you can explain",
+          "example": "Houses: [2, 7, 9, 3, 1]\nBest after each prefix: 2, 7, 11, 11, 12\n\nbest(i) = max(best(i-1), best(i-2) + money[i])\n\nFixed window: [2, 1, 5, 1], k = 3\nFirst sum: 8\nNext sum: 8 - 2 + 1 = 7",
+          "explanation": "The house-robber choice is exhaustive: either skip the current house, or take it and exclude its immediate neighbour. Only the previous two best totals are needed, so extra memory can stay constant. A fixed sliding window reuses the previous sum. Bracket matching uses a stack because the most recent opening bracket must be closed first.",
+          "pitfall": "Do not initialize a maximum sum to zero when every valid sum may be negative. Do not overwrite a DP value before using its previous value.",
+          "checkpoint": "Why does a greedy rule that always picks the next largest house fail on [2, 1, 1, 2]? Trace the two-state recurrence."
+        },
+        "day": 9,
+        "phase": "Review & retrieve"
+      },
+      {
+        "title": "Number theory & mathematical checks · Learn",
+        "focus": "Primes · factorization · sequences",
+        "ids": [
+          "prime-powers",
+          "prime-neighbours"
+        ],
+        "learn": "Trial division, square properties, and sliding window target matches.",
+        "tasks": [
+          "Test automorphic check on 25 and 76.",
+          "Read the worked example and trace it on paper or mentally.",
+          "Attempt the linked exercises and note one question you still have."
+        ],
+        "lesson": {
+          "title": "Think in rows before groups",
+          "example": "SELECT p.player_id, COUNT(r.id) AS paid_count\nFROM player p\nLEFT JOIN registration r\n  ON p.player_id = r.player_id\n AND r.payment_status = 'Paid'\nGROUP BY p.player_id\nORDER BY p.player_id;",
+          "explanation": "The driving table is player because every player must appear. LEFT JOIN keeps a player with no paid registration, producing a row with null right-side values. COUNT(r.id) counts actual registrations and ignores that null. Moving the payment predicate into WHERE would remove zero-match players. Use HAVING when the condition is about a group total, such as at least three registrations.",
+          "pitfall": "COUNT(*) counts the null-extended row, so it can report one instead of zero after a LEFT JOIN. Grouping only by a name can merge different people.",
+          "checkpoint": "Write a query for players with no registrations. Explain why WHERE r.id IS NULL is useful after a LEFT JOIN."
+        },
+        "day": 10,
+        "phase": "Learn the foundations"
+      },
+      {
+        "title": "Number theory & mathematical checks · Practise",
+        "focus": "Primes · factorization · sequences",
+        "ids": [
+          "automorphic-number",
+          "subarray-sum",
+          "pairwise-difference"
+        ],
+        "learn": "Trial division, square properties, and sliding window target matches.",
+        "tasks": [
+          "Attempt the linked exercises without copying a reference.",
+          "Implement sliding window for target subarray sum.",
+          "Write down the cause of each failed test and retest the fix."
+        ],
+        "lesson": {
+          "title": "Think in rows before groups",
+          "example": "SELECT p.player_id, COUNT(r.id) AS paid_count\nFROM player p\nLEFT JOIN registration r\n  ON p.player_id = r.player_id\n AND r.payment_status = 'Paid'\nGROUP BY p.player_id\nORDER BY p.player_id;",
+          "explanation": "The driving table is player because every player must appear. LEFT JOIN keeps a player with no paid registration, producing a row with null right-side values. COUNT(r.id) counts actual registrations and ignores that null. Moving the payment predicate into WHERE would remove zero-match players. Use HAVING when the condition is about a group total, such as at least three registrations.",
+          "pitfall": "COUNT(*) counts the null-extended row, so it can report one instead of zero after a LEFT JOIN. Grouping only by a name can merge different people.",
+          "checkpoint": "Write a query for players with no registrations. Explain why WHERE r.id IS NULL is useful after a LEFT JOIN."
+        },
+        "day": 11,
+        "phase": "Apply in the workspace"
+      },
+      {
+        "title": "Number theory & mathematical checks · Review",
+        "focus": "Primes · factorization · sequences",
+        "ids": [
+          "mcq-10",
+          "mcq-14",
+          "mcq-43"
+        ],
+        "learn": "Trial division, square properties, and sliding window target matches.",
+        "tasks": [
+          "Review prime neighbours primality checks.",
+          "Re-solve one earlier exercise without notes.",
+          "Explain your approach and its trade-offs in a short spoken summary."
+        ],
+        "lesson": {
+          "title": "Think in rows before groups",
+          "example": "SELECT p.player_id, COUNT(r.id) AS paid_count\nFROM player p\nLEFT JOIN registration r\n  ON p.player_id = r.player_id\n AND r.payment_status = 'Paid'\nGROUP BY p.player_id\nORDER BY p.player_id;",
+          "explanation": "The driving table is player because every player must appear. LEFT JOIN keeps a player with no paid registration, producing a row with null right-side values. COUNT(r.id) counts actual registrations and ignores that null. Moving the payment predicate into WHERE would remove zero-match players. Use HAVING when the condition is about a group total, such as at least three registrations.",
+          "pitfall": "COUNT(*) counts the null-extended row, so it can report one instead of zero after a LEFT JOIN. Grouping only by a name can merge different people.",
+          "checkpoint": "Write a query for players with no registrations. Explain why WHERE r.id IS NULL is useful after a LEFT JOIN."
+        },
+        "day": 12,
+        "phase": "Review & retrieve"
+      },
+      {
+        "title": "Make SQL predictable · Learn",
+        "focus": "JOIN · GROUP BY · HAVING · Subqueries",
+        "ids": [
+          "sports-sql",
+          "no-registration"
+        ],
+        "learn": "Filter before aggregation. Group by primary keys. Use HAVING for aggregated conditions.",
+        "tasks": [
+          "Execute all six SQL exercises on fixture tables.",
+          "Read the worked example and trace it on paper or mentally.",
+          "Attempt the linked exercises and note one question you still have."
+        ],
+        "lesson": {
+          "title": "Connect structure, presentation and behavior",
+          "example": "HTML:\n<button id=\"play\">Play</button>\n<p id=\"status\">Ready</p>\n\nJavaScript:\nconst button = document.getElementById('play');\nbutton.addEventListener('click', () => {\n  document.getElementById('status').textContent = 'Playing';\n});",
+          "explanation": "HTML supplies semantic elements and stable selectors, CSS describes presentation, and JavaScript handles changes over time. Read the existing markup before writing a selector. Keep the state change separate from the event binding: attach listeners once, then update the relevant DOM. textContent displays user-entered text without interpreting it as HTML.",
+          "pitfall": "An ID mismatch makes getElementById return null. Adding a new event listener on every render can make one click fire several times.",
+          "checkpoint": "Test your widget with repeated clicks, an empty input and its boundary state. Can it be operated with the keyboard?"
+        },
+        "day": 13,
+        "phase": "Learn the foundations"
+      },
+      {
+        "title": "Make SQL predictable · Practise",
+        "focus": "JOIN · GROUP BY · HAVING · Subqueries",
+        "ids": [
+          "sport-popularity",
+          "all-player-count"
+        ],
+        "learn": "Filter before aggregation. Group by primary keys. Use HAVING for aggregated conditions.",
+        "tasks": [
+          "Attempt the linked exercises without copying a reference.",
+          "Compare INNER JOIN vs LEFT JOIN for missing registrations.",
+          "Write down the cause of each failed test and retest the fix."
+        ],
+        "lesson": {
+          "title": "Connect structure, presentation and behavior",
+          "example": "HTML:\n<button id=\"play\">Play</button>\n<p id=\"status\">Ready</p>\n\nJavaScript:\nconst button = document.getElementById('play');\nbutton.addEventListener('click', () => {\n  document.getElementById('status').textContent = 'Playing';\n});",
+          "explanation": "HTML supplies semantic elements and stable selectors, CSS describes presentation, and JavaScript handles changes over time. Read the existing markup before writing a selector. Keep the state change separate from the event binding: attach listeners once, then update the relevant DOM. textContent displays user-entered text without interpreting it as HTML.",
+          "pitfall": "An ID mismatch makes getElementById return null. Adding a new event listener on every render can make one click fire several times.",
+          "checkpoint": "Test your widget with repeated clicks, an empty input and its boundary state. Can it be operated with the keyboard?"
+        },
+        "day": 14,
+        "phase": "Apply in the workspace"
+      },
+      {
+        "title": "Make SQL predictable · Review",
+        "focus": "JOIN · GROUP BY · HAVING · Subqueries",
+        "ids": [
+          "pending-registrations",
+          "distinct-sport-count"
+        ],
+        "learn": "Filter before aggregation. Group by primary keys. Use HAVING for aggregated conditions.",
+        "tasks": [
+          "Write distinct count aggregations.",
+          "Re-solve one earlier exercise without notes.",
+          "Explain your approach and its trade-offs in a short spoken summary."
+        ],
+        "lesson": {
+          "title": "Connect structure, presentation and behavior",
+          "example": "HTML:\n<button id=\"play\">Play</button>\n<p id=\"status\">Ready</p>\n\nJavaScript:\nconst button = document.getElementById('play');\nbutton.addEventListener('click', () => {\n  document.getElementById('status').textContent = 'Playing';\n});",
+          "explanation": "HTML supplies semantic elements and stable selectors, CSS describes presentation, and JavaScript handles changes over time. Read the existing markup before writing a selector. Keep the state change separate from the event binding: attach listeners once, then update the relevant DOM. textContent displays user-entered text without interpreting it as HTML.",
+          "pitfall": "An ID mismatch makes getElementById return null. Adding a new event listener on every render can make one click fire several times.",
+          "checkpoint": "Test your widget with repeated clicks, an empty input and its boundary state. Can it be operated with the keyboard?"
+        },
+        "day": 15,
+        "phase": "Review & retrieve"
+      },
+      {
+        "title": "Build interactive web interfaces · Learn",
+        "focus": "DOM manipulation · event handling · styles",
+        "ids": [
+          "q1"
+        ],
+        "learn": "Preserve required IDs. Attach event listeners cleanly and update state before re-rendering.",
+        "tasks": [
+          "Complete iPod interface styling.",
+          "Read the worked example and trace it on paper or mentally.",
+          "Attempt the linked exercises and note one question you still have."
+        ],
+        "lesson": {
+          "title": "Model the component state",
+          "example": "Carousel with 3 slides:\nnext index = (current + 1) % 3\nprevious index = (current - 1 + 3) % 3\n\nGeneral circular normalization:\nindex = ((requested % total) + total) % total\n\nCart state:\n{ productId: 12, unitPrice: 80, quantity: 3 }\nline total = 80 × 3 = 240",
+          "explanation": "A carousel needs one current index, then derives which slide and indicator are active. A cart needs distinct item identifiers and quantities; derive totals from state rather than repeatedly adding to the displayed text. For a chat widget, trim input, skip empty messages, append safe text, clear the field and scroll after the new message exists.",
+          "pitfall": "String concatenation can turn 80 + 80 into 8080 when values came from input fields. Negative modulo differs across languages.",
+          "checkpoint": "Write a checklist for first/last navigation, repeated cart additions, independent products, and blank messages. Run the checks after every change."
+        },
+        "day": 16,
+        "phase": "Learn the foundations"
+      },
+      {
+        "title": "Build interactive web interfaces · Practise",
+        "focus": "DOM manipulation · event handling · styles",
+        "ids": [
+          "q2",
+          "q3"
+        ],
+        "learn": "Preserve required IDs. Attach event listeners cleanly and update state before re-rendering.",
+        "tasks": [
+          "Attempt the linked exercises without copying a reference.",
+          "Build Employee Task Manager with status changes.",
+          "Write down the cause of each failed test and retest the fix."
+        ],
+        "lesson": {
+          "title": "Model the component state",
+          "example": "Carousel with 3 slides:\nnext index = (current + 1) % 3\nprevious index = (current - 1 + 3) % 3\n\nGeneral circular normalization:\nindex = ((requested % total) + total) % total\n\nCart state:\n{ productId: 12, unitPrice: 80, quantity: 3 }\nline total = 80 × 3 = 240",
+          "explanation": "A carousel needs one current index, then derives which slide and indicator are active. A cart needs distinct item identifiers and quantities; derive totals from state rather than repeatedly adding to the displayed text. For a chat widget, trim input, skip empty messages, append safe text, clear the field and scroll after the new message exists.",
+          "pitfall": "String concatenation can turn 80 + 80 into 8080 when values came from input fields. Negative modulo differs across languages.",
+          "checkpoint": "Write a checklist for first/last navigation, repeated cart additions, independent products, and blank messages. Run the checks after every change."
+        },
+        "day": 17,
+        "phase": "Apply in the workspace"
+      },
+      {
+        "title": "Build interactive web interfaces · Review",
+        "focus": "DOM manipulation · event handling · styles",
+        "ids": [
+          "q7",
+          "q10"
+        ],
+        "learn": "Preserve required IDs. Attach event listeners cleanly and update state before re-rendering.",
+        "tasks": [
+          "Implement USD to INR currency converter.",
+          "Re-solve one earlier exercise without notes.",
+          "Explain your approach and its trade-offs in a short spoken summary."
+        ],
+        "lesson": {
+          "title": "Model the component state",
+          "example": "Carousel with 3 slides:\nnext index = (current + 1) % 3\nprevious index = (current - 1 + 3) % 3\n\nGeneral circular normalization:\nindex = ((requested % total) + total) % total\n\nCart state:\n{ productId: 12, unitPrice: 80, quantity: 3 }\nline total = 80 × 3 = 240",
+          "explanation": "A carousel needs one current index, then derives which slide and indicator are active. A cart needs distinct item identifiers and quantities; derive totals from state rather than repeatedly adding to the displayed text. For a chat widget, trim input, skip empty messages, append safe text, clear the field and scroll after the new message exists.",
+          "pitfall": "String concatenation can turn 80 + 80 into 8080 when values came from input fields. Negative modulo differs across languages.",
+          "checkpoint": "Write a checklist for first/last navigation, repeated cart additions, independent products, and blank messages. Run the checks after every change."
+        },
+        "day": 18,
+        "phase": "Review & retrieve"
+      },
+      {
+        "title": "Complex frontend workflows · Learn",
+        "focus": "Cart · chatbot · carousel · password validator",
+        "ids": [
+          "q4"
+        ],
+        "learn": "Manage multi-field validation, todo filtering without DOM removal, and real-time feedback.",
+        "tasks": [
+          "Complete password validator with strength indicators.",
+          "Read the worked example and trace it on paper or mentally.",
+          "Attempt the linked exercises and note one question you still have."
+        ],
+        "lesson": {
+          "title": "Make a compact fundamentals sheet",
+          "example": "Binary: 5 = 101, 3 = 011, 5 XOR 3 = 110 = 6\nAbsolute spreadsheet reference: $A$1\nTCP: ordered, reliable byte delivery\nDNS: names → resource records\nIaaS: infrastructure; PaaS: managed platform; SaaS: finished application\nAtomicity: all transaction changes commit, or none do",
+          "explanation": "For pseudocode, track one variable table after each statement and state the language assumptions explicitly. For core CS, explain the purpose and trade-off of each mechanism: an index speeds some reads but adds write cost; threads share an address space but not their stacks; TLS secures transport but does not certify a business. For spreadsheets, distinguish relative references, exact lookup and conditional aggregation.",
+          "pitfall": "Do not apply language-specific increment or signed-shift rules to ambiguous pseudocode without checking the prompt. Memorized acronyms are less useful than one concrete example.",
+          "checkpoint": "Explain WHERE versus HAVING, TCP versus UDP, and PaaS versus SaaS without looking at notes. Then revisit the questions you missed."
+        },
+        "day": 19,
+        "phase": "Learn the foundations"
+      },
+      {
+        "title": "Complex frontend workflows · Practise",
+        "focus": "Cart · chatbot · carousel · password validator",
+        "ids": [
+          "q5",
+          "q6"
+        ],
+        "learn": "Manage multi-field validation, todo filtering without DOM removal, and real-time feedback.",
+        "tasks": [
+          "Attempt the linked exercises without copying a reference.",
+          "Build Interactive Todo List with active filters.",
+          "Write down the cause of each failed test and retest the fix."
+        ],
+        "lesson": {
+          "title": "Make a compact fundamentals sheet",
+          "example": "Binary: 5 = 101, 3 = 011, 5 XOR 3 = 110 = 6\nAbsolute spreadsheet reference: $A$1\nTCP: ordered, reliable byte delivery\nDNS: names → resource records\nIaaS: infrastructure; PaaS: managed platform; SaaS: finished application\nAtomicity: all transaction changes commit, or none do",
+          "explanation": "For pseudocode, track one variable table after each statement and state the language assumptions explicitly. For core CS, explain the purpose and trade-off of each mechanism: an index speeds some reads but adds write cost; threads share an address space but not their stacks; TLS secures transport but does not certify a business. For spreadsheets, distinguish relative references, exact lookup and conditional aggregation.",
+          "pitfall": "Do not apply language-specific increment or signed-shift rules to ambiguous pseudocode without checking the prompt. Memorized acronyms are less useful than one concrete example.",
+          "checkpoint": "Explain WHERE versus HAVING, TCP versus UDP, and PaaS versus SaaS without looking at notes. Then revisit the questions you missed."
+        },
+        "day": 20,
+        "phase": "Apply in the workspace"
+      },
+      {
+        "title": "Complex frontend workflows · Review",
+        "focus": "Cart · chatbot · carousel · password validator",
+        "ids": [
+          "q8",
+          "q9"
+        ],
+        "learn": "Manage multi-field validation, todo filtering without DOM removal, and real-time feedback.",
+        "tasks": [
+          "Test chatbot message routing.",
+          "Re-solve one earlier exercise without notes.",
+          "Explain your approach and its trade-offs in a short spoken summary."
+        ],
+        "lesson": {
+          "title": "Make a compact fundamentals sheet",
+          "example": "Binary: 5 = 101, 3 = 011, 5 XOR 3 = 110 = 6\nAbsolute spreadsheet reference: $A$1\nTCP: ordered, reliable byte delivery\nDNS: names → resource records\nIaaS: infrastructure; PaaS: managed platform; SaaS: finished application\nAtomicity: all transaction changes commit, or none do",
+          "explanation": "For pseudocode, track one variable table after each statement and state the language assumptions explicitly. For core CS, explain the purpose and trade-off of each mechanism: an index speeds some reads but adds write cost; threads share an address space but not their stacks; TLS secures transport but does not certify a business. For spreadsheets, distinguish relative references, exact lookup and conditional aggregation.",
+          "pitfall": "Do not apply language-specific increment or signed-shift rules to ambiguous pseudocode without checking the prompt. Memorized acronyms are less useful than one concrete example.",
+          "checkpoint": "Explain WHERE versus HAVING, TCP versus UDP, and PaaS versus SaaS without looking at notes. Then revisit the questions you missed."
+        },
+        "day": 21,
+        "phase": "Review & retrieve"
+      },
+      {
+        "title": "Strengthen technical fundamentals · Learn",
+        "focus": "Pseudocode · cloud · networks · Office",
+        "ids": [
+          "mcq-1",
+          "mcq-2",
+          "mcq-3",
+          "mcq-4",
+          "mcq-5"
+        ],
+        "learn": "Review OSI layers, port allocations, cloud service models, and Excel VLOOKUP vs INDEX-MATCH.",
+        "tasks": [
+          "Practice 15 timed technical MCQs.",
+          "Read the worked example and trace it on paper or mentally.",
+          "Attempt the linked exercises and note one question you still have."
+        ],
+        "lesson": {
+          "title": "Separate facts from assumptions",
+          "example": "All testers are engineers.\nSome engineers are designers.\n\nGuaranteed: all testers are engineers.\nNot guaranteed: any tester is a designer.\n\nSTAR outline:\nSituation → Task → Action you took → Result and lesson",
+          "explanation": "For reasoning, ask whether a conclusion must follow, not whether it could be true. Use small diagrams or counterexamples when permitted by the real assessment. In communication, answer the question first, then support it with a short example. Workplace judgement practice should encourage ownership, collaboration and evidence, not teach candidates to pretend to have a particular personality.",
+          "pitfall": "A percentage increase and the same percentage decrease do not cancel: 100 → 120 → 96. In a project story, distinguish your contribution from the team's overall work.",
+          "checkpoint": "Record a one-minute project explanation and listen for clarity and repetition. Write a 100–150-word email with a specific request, neutral evidence and a polite next step."
+        },
+        "day": 22,
+        "phase": "Learn the foundations"
+      },
+      {
+        "title": "Strengthen technical fundamentals · Practise",
+        "focus": "Pseudocode · cloud · networks · Office",
+        "ids": [
+          "mcq-6",
+          "mcq-7",
+          "mcq-8",
+          "mcq-9",
+          "mcq-10"
+        ],
+        "learn": "Review OSI layers, port allocations, cloud service models, and Excel VLOOKUP vs INDEX-MATCH.",
+        "tasks": [
+          "Attempt the linked exercises without copying a reference.",
+          "Review TCP SYN flood mechanism.",
+          "Write down the cause of each failed test and retest the fix."
+        ],
+        "lesson": {
+          "title": "Separate facts from assumptions",
+          "example": "All testers are engineers.\nSome engineers are designers.\n\nGuaranteed: all testers are engineers.\nNot guaranteed: any tester is a designer.\n\nSTAR outline:\nSituation → Task → Action you took → Result and lesson",
+          "explanation": "For reasoning, ask whether a conclusion must follow, not whether it could be true. Use small diagrams or counterexamples when permitted by the real assessment. In communication, answer the question first, then support it with a short example. Workplace judgement practice should encourage ownership, collaboration and evidence, not teach candidates to pretend to have a particular personality.",
+          "pitfall": "A percentage increase and the same percentage decrease do not cancel: 100 → 120 → 96. In a project story, distinguish your contribution from the team's overall work.",
+          "checkpoint": "Record a one-minute project explanation and listen for clarity and repetition. Write a 100–150-word email with a specific request, neutral evidence and a polite next step."
+        },
+        "day": 23,
+        "phase": "Apply in the workspace"
+      },
+      {
+        "title": "Strengthen technical fundamentals · Review",
+        "focus": "Pseudocode · cloud · networks · Office",
+        "ids": [
+          "mcq-11",
+          "mcq-12",
+          "mcq-13",
+          "mcq-14",
+          "mcq-15"
+        ],
+        "learn": "Review OSI layers, port allocations, cloud service models, and Excel VLOOKUP vs INDEX-MATCH.",
+        "tasks": [
+          "Trace nested loops with conditional increments.",
+          "Re-solve one earlier exercise without notes.",
+          "Explain your approach and its trade-offs in a short spoken summary."
+        ],
+        "lesson": {
+          "title": "Separate facts from assumptions",
+          "example": "All testers are engineers.\nSome engineers are designers.\n\nGuaranteed: all testers are engineers.\nNot guaranteed: any tester is a designer.\n\nSTAR outline:\nSituation → Task → Action you took → Result and lesson",
+          "explanation": "For reasoning, ask whether a conclusion must follow, not whether it could be true. Use small diagrams or counterexamples when permitted by the real assessment. In communication, answer the question first, then support it with a short example. Workplace judgement practice should encourage ownership, collaboration and evidence, not teach candidates to pretend to have a particular personality.",
+          "pitfall": "A percentage increase and the same percentage decrease do not cancel: 100 → 120 → 96. In a project story, distinguish your contribution from the team's overall work.",
+          "checkpoint": "Record a one-minute project explanation and listen for clarity and repetition. Write a 100–150-word email with a specific request, neutral evidence and a polite next step."
+        },
+        "day": 24,
+        "phase": "Review & retrieve"
+      },
+      {
+        "title": "Reason clearly, communicate well · Learn",
+        "focus": "Reasoning · English · workplace judgement",
+        "ids": [
+          "mcq-41",
+          "mcq-42",
+          "mcq-43",
+          "mcq-44",
+          "mcq-45"
+        ],
+        "learn": "Resolve circular seating step by step. Verify proximity rules in subject-verb agreement.",
+        "tasks": [
+          "Solve 8-person circular seating arrangement.",
+          "Read the worked example and trace it on paper or mentally.",
+          "Attempt the linked exercises and note one question you still have."
+        ],
+        "lesson": {
+          "title": "Rehearse a decision process",
+          "example": "45-minute coding rehearsal:\n0–5 min: read both prompts and inspect examples\n5–22 min: complete one reliable solution\n22–38 min: work on the second problem\n38–45 min: edge cases, output format, final submission\n\nAdjust this plan to the actual question difficulty.",
+          "explanation": "A rehearsal tests pacing and recovery as well as knowledge. Before coding, identify the output contract and a plausible complexity target. A wrong answer is a useful clue: compare expected and actual output, reduce the failing example, and decide whether the issue is parsing, algorithm, state or formatting. Keep a short error log rather than merely counting attempts.",
+          "pitfall": "Passing a sample does not prove correctness. Avoid changing several unrelated lines at once when debugging, and do not spend the entire round on one difficult idea.",
+          "checkpoint": "Review one failed case and explain the fix without looking at the final code. Repeat the same pattern on a different input."
+        },
+        "day": 25,
+        "phase": "Learn the foundations"
+      },
+      {
+        "title": "Reason clearly, communicate well · Practise",
+        "focus": "Reasoning · English · workplace judgement",
+        "ids": [
+          "mcq-46",
+          "mcq-47",
+          "mcq-48",
+          "mcq-49",
+          "mcq-50"
+        ],
+        "learn": "Resolve circular seating step by step. Verify proximity rules in subject-verb agreement.",
+        "tasks": [
+          "Attempt the linked exercises without copying a reference.",
+          "Review correlative conjunction error spotting.",
+          "Write down the cause of each failed test and retest the fix."
+        ],
+        "lesson": {
+          "title": "Rehearse a decision process",
+          "example": "45-minute coding rehearsal:\n0–5 min: read both prompts and inspect examples\n5–22 min: complete one reliable solution\n22–38 min: work on the second problem\n38–45 min: edge cases, output format, final submission\n\nAdjust this plan to the actual question difficulty.",
+          "explanation": "A rehearsal tests pacing and recovery as well as knowledge. Before coding, identify the output contract and a plausible complexity target. A wrong answer is a useful clue: compare expected and actual output, reduce the failing example, and decide whether the issue is parsing, algorithm, state or formatting. Keep a short error log rather than merely counting attempts.",
+          "pitfall": "Passing a sample does not prove correctness. Avoid changing several unrelated lines at once when debugging, and do not spend the entire round on one difficult idea.",
+          "checkpoint": "Review one failed case and explain the fix without looking at the final code. Repeat the same pattern on a different input."
+        },
+        "day": 26,
+        "phase": "Apply in the workspace"
+      },
+      {
+        "title": "Reason clearly, communicate well · Review",
+        "focus": "Reasoning · English · workplace judgement",
+        "ids": [
+          "mcq-51",
+          "mcq-52",
+          "mcq-53",
+          "mcq-54",
+          "mcq-55"
+        ],
+        "learn": "Resolve circular seating step by step. Verify proximity rules in subject-verb agreement.",
+        "tasks": [
+          "Draft clear blocker escalation message.",
+          "Re-solve one earlier exercise without notes.",
+          "Explain your approach and its trade-offs in a short spoken summary."
+        ],
+        "lesson": {
+          "title": "Rehearse a decision process",
+          "example": "45-minute coding rehearsal:\n0–5 min: read both prompts and inspect examples\n5–22 min: complete one reliable solution\n22–38 min: work on the second problem\n38–45 min: edge cases, output format, final submission\n\nAdjust this plan to the actual question difficulty.",
+          "explanation": "A rehearsal tests pacing and recovery as well as knowledge. Before coding, identify the output contract and a plausible complexity target. A wrong answer is a useful clue: compare expected and actual output, reduce the failing example, and decide whether the issue is parsing, algorithm, state or formatting. Keep a short error log rather than merely counting attempts.",
+          "pitfall": "Passing a sample does not prove correctness. Avoid changing several unrelated lines at once when debugging, and do not spend the entire round on one difficult idea.",
+          "checkpoint": "Review one failed case and explain the fix without looking at the final code. Repeat the same pattern on a different input."
+        },
+        "day": 27,
+        "phase": "Review & retrieve"
+      },
+      {
+        "title": "Rehearse the complete round · Learn",
+        "focus": "Timed coding · SQL · frontend · MCQs",
+        "ids": [
+          "prime-powers",
+          "rat-count-house"
+        ],
+        "learn": "Simulate full 90-minute testing condition. Plan time allocations across sections.",
+        "tasks": [
+          "Take a timed multi-domain mock round.",
+          "Read the worked example and trace it on paper or mentally.",
+          "Attempt the linked exercises and note one question you still have."
+        ],
+        "lesson": {
+          "title": "Turn review into a calm final rehearsal",
+          "example": "Exam-day check:\n□ Official invitation and correct test link\n□ Permitted ID and candidate details\n□ Allowed language and environment requirements\n□ Charger, connection, browser and system test\n□ Time zone and reporting time\n□ Quiet practice/review window and sufficient rest",
+          "explanation": "Use the last day for retrieval and confidence in familiar skills. Re-solve a small set of previously missed problems without notes, explain the mistakes, then stop adding large new topics. Your actual invitation takes precedence over remembered campus reports. Interview preparation can cover problem solving, project architecture, CS fundamentals and teamwork without assuming exactly four panels.",
+          "pitfall": "Do not mistake completing a checklist for a guaranteed outcome. Do not use this preparation site's AI tools or notes during a real assessment unless its rules explicitly permit them.",
+          "checkpoint": "Can you outline your approach to an array problem, a grouped SQL query and a DOM event task? If not, choose one focused revision session rather than a new full syllabus."
+        },
+        "day": 28,
+        "phase": "Learn the foundations"
+      },
+      {
+        "title": "Rehearse the complete round · Practise",
+        "focus": "Timed coding · SQL · frontend · MCQs",
+        "ids": [
+          "sports-sql",
+          "pending-registrations",
+          "q7"
+        ],
+        "learn": "Simulate full 90-minute testing condition. Plan time allocations across sections.",
+        "tasks": [
+          "Attempt the linked exercises without copying a reference.",
+          "Review edge-case failures.",
+          "Write down the cause of each failed test and retest the fix."
+        ],
+        "lesson": {
+          "title": "Turn review into a calm final rehearsal",
+          "example": "Exam-day check:\n□ Official invitation and correct test link\n□ Permitted ID and candidate details\n□ Allowed language and environment requirements\n□ Charger, connection, browser and system test\n□ Time zone and reporting time\n□ Quiet practice/review window and sufficient rest",
+          "explanation": "Use the last day for retrieval and confidence in familiar skills. Re-solve a small set of previously missed problems without notes, explain the mistakes, then stop adding large new topics. Your actual invitation takes precedence over remembered campus reports. Interview preparation can cover problem solving, project architecture, CS fundamentals and teamwork without assuming exactly four panels.",
+          "pitfall": "Do not mistake completing a checklist for a guaranteed outcome. Do not use this preparation site's AI tools or notes during a real assessment unless its rules explicitly permit them.",
+          "checkpoint": "Can you outline your approach to an array problem, a grouped SQL query and a DOM event task? If not, choose one focused revision session rather than a new full syllabus."
+        },
+        "day": 29,
+        "phase": "Apply in the workspace"
+      },
+      {
+        "title": "Rehearse the complete round · Review",
+        "focus": "Timed coding · SQL · frontend · MCQs",
+        "ids": [
+          "q8",
+          "mcq-9",
+          "mcq-23"
+        ],
+        "learn": "Simulate full 90-minute testing condition. Plan time allocations across sections.",
+        "tasks": [
+          "Verify complete exam checklist.",
+          "Re-solve one earlier exercise without notes.",
+          "Explain your approach and its trade-offs in a short spoken summary."
+        ],
+        "lesson": {
+          "title": "Turn review into a calm final rehearsal",
+          "example": "Exam-day check:\n□ Official invitation and correct test link\n□ Permitted ID and candidate details\n□ Allowed language and environment requirements\n□ Charger, connection, browser and system test\n□ Time zone and reporting time\n□ Quiet practice/review window and sufficient rest",
+          "explanation": "Use the last day for retrieval and confidence in familiar skills. Re-solve a small set of previously missed problems without notes, explain the mistakes, then stop adding large new topics. Your actual invitation takes precedence over remembered campus reports. Interview preparation can cover problem solving, project architecture, CS fundamentals and teamwork without assuming exactly four panels.",
+          "pitfall": "Do not mistake completing a checklist for a guaranteed outcome. Do not use this preparation site's AI tools or notes during a real assessment unless its rules explicitly permit them.",
+          "checkpoint": "Can you outline your approach to an array problem, a grouped SQL query and a DOM event task? If not, choose one focused revision session rather than a new full syllabus."
+        },
+        "day": 30,
+        "phase": "Review & retrieve"
+      }
+    ]
+  }
+]

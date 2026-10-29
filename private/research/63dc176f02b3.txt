@@ -1,0 +1,174 @@
+[Page 1]
+                          ACCENTURE PAPER ON 10th DECEMBER 
+   direction for q. 1-3
+choose the option which will correctly fill the blank.
+1. she has great love and affection _________  her grandmother.
+    a). for        b). from    c). with    d) to                         Ans...  a
+2. but there is more ________ Argentina's red wines than Malbec only.
+    a. in    b. to    c. from    d. at                                      Ans...  b
+3. opapue glass is the kind of material____ ___ which you cannot see.
+    a. into    b. through    c. from    d. between                Ans...  b
+choose the word nearest in meaning
+4. 25 paise coins are fast becoming.. obsolete.
+    a. smaller    b. older    c. rare         d. outdated                 Ans...  d
+5. the omly evidance was a pice of crumpled paper lying in a cornor.
+    a. torn    b. burnt    c. wrinkled    d. dirty                            Ans...  c
+6. his plans started going awry the moment he began his journy to nagaland.
+    a. well    b. smoothly    c. wrong    d. slowly                       Ans...  c
+fill in blank with article.
+7. the brahmputra rises in the himaliya in _______ Tibet.
+    a. a    b. an    c. the    d. no article need                          Ans...  d
+8. it is suspect that _______ colleague committed the murder.
+    a. a    b. an    c. the    d. no article need                           Ans...  a
+9. ________ ice-pick was used for the murder.
+    a. a    b  an.     c. the    d. no article need                           Ans...  b
+10. it was no dout ________ stupidity to admit her into our gang
+    a. a    b. an    c. the    d. no article need.                         Ans...  a
+
+[Page 2]
+Directions for Questions 11-15:
+Read the passage and answer the questions that follow on the basis of the information provided in the 
+passage.
+Microprocessor is an electronic computer Central Processing Unit (CPU) made from miniaturized 
+transistors and other circuit elements on a single semiconductor Integrated Circuit (IC). Before the 
+advent of microprocessors, electronic CPUs were made from individual small-scale  Integrated Circuits 
+containing the equivalent of only a few transistors. By integrating the processor onto one  or a very few 
+large-scale Integrated Circuit packages (containing the equivalent of thousands or millions of discrete 
+transistors) , the cost of processor power was greatly reduced.
+The evolution of microprocessors has been known to follow Moore's Law when it comes to  steadily 
+increasing performance over the years. This law suggests that the complexity of an Integrated Circuit 
+with respect to minimum component cost will double in about 18 months.  From humble beginnings as 
+the drivers for calculators, the continued increase in power has led to the dominance of microprocessors 
+over every other form of computer; every system
+ from the largest mainframes to the smallest handheld computers now uses a microprocessor  at their 
+core. .As with many advances in technology, the microprocessor was an idea wbose  time had come. 
+Three projects arguably delivered a complete microprocessor at about the same time: Intel's 4004, 
+Texas Instruments' TMS1000, and Garrett AiResearch's Central Air Data
+Computer. . A computer-on- a-chip is a variation of a microprocessor,
+which combines the microprocessor core (CPU), some memory, and I/O (input/output) lines,  all on one 
+chip. The proper meaning of microcomputer is a computer using a (number of)  microprocessor( s) as 
+its CPU(s), while the concept of the patent is somewhat more similar to a micro controller.
+11) Which of the following descriptions would NOT fit a microprocessor?
+    A) Electronic computer
+    B) Central Processing Unit
+    C) Memory disk
+    D) A single integrated chip circuit.                          Ans...  c
+12) Select the TRUE statement from the following.
+    A) 11icroprocessors and computers on a chip are variations of each other.
+    B) Integration of processing power on chips has made processing power cheaper.
+    C) Before microprocessors, CPUs were not made from individual small scale ICs.
+    D) A microprocessor circuit only has transistors in it.                      Ans...  c
+13) Which of the following was NOT the first to develop a microprocessor?
+
+[Page 3]
+    A) Microsoft
+    B) Intel
+    C) Texas Instruments
+    D) Garret                            Ans...  a
+14) According to the passage, which of these is NOT a use of microprocessors?
+    A) Drivers for calculators
+    B) Core for large mainframes
+    C) Advanced mobile phones
+    D) Used for small handheld computers                      Ans...  c
+15) "A number of microprocessors at its CPU" is an apt description of a:
+    A) Micro-controller
+    B) Micro-computer
+    C) Micro-processor
+    D) Micro-transistor                     Ans...  b
+section 2 analytical.. .......
+ out of the 727 members of a club, 600 decide in favour of cricket while 173 decide in favour of cricket 
+and hockey. each member gives his opinion about at least one of the two games.
+21. how many of them decide in favour of hockey?
+    a. 250    b. 300    c. 560    d. 600                          Ans...  b
+22. how maney of them decide in favour of only hockey?
+    a. 127    b. 280    c. 326    d. 494                            Ans...  a
+During a games slow held in a school, 40 students play game 1,  67 plays game 2,  46 played game 3,  8 
+students played game 1 & 3 games.  26 students played game  1 & 2.  28 students played game 2 & 3.  
+2 students played all the three games.
+
+[Page 4]
+23. how maney students played game 1 but not game 2 &3 ?
+    a. 3    b. 8    c. 15    d. 23                                        Ans...  b
+24.  how maney students played game 3 but not game 1 &2 ?
+    a. 12    b. 16    c. 32    d. 46                                    Ans...  a
+25.  how maney students played game 2 but not game 1 &3 ?
+    a. 2    b. 7    c. 15    d. 37                                        Ans...  c
+bhamsingh and sukhalal contested the assembly election. bhimsingh won the election by 2000 votes, 
+securing 55% of the total votes. 10% of the total voters did not votes.
+26. how maney votes were cast in favour of bhimsing?
+    a. 2000    b.2750    c. 4250    d. 5500                   Ans...  d
+27. how maney votes were cast in favour of the defeated condidates?
+    a. 2000    b. 2250    c. 3500    d. 4000                  Ans...  c
+direction for q. 28 to 32.......... .......
+    1. if the q. can be answer with help of statment I alone
+    2.if the q. can be answer with help of statment II alone
+    3. if the q. can be answer with help of statment I & II
+    4. none of these
+28. is  x/2 >  y/3 ?
+    I.  3x < 2y
+    II. 4x > 3y
+        a. 1    b. 2    c. 3    d. 4                        Ans...  b
+29. the tax payers are required to pay their taxes before a particular day in a year. the tax authority 
+remind the tax payer to do the need ful within ten days by advertising in the newspapers. can the day by 
+which the tax payers should pay the taxes be determined?
+    I.  the advertisement was published on 24th februrary.
+    II. the year is not a leap year.
+        a. 1    b. 2    c. 3    d. 4                     Ans...  c
+30. is Z odd?
+    I.  y + 3Z is odd.
+    II. 2y + 7z is odd.
+        a. 1    b. 2    c. 3    d. 4                   Ans...  b
+31. how maney hours does it take for a train journey from delhi to allahabad ?
+    I. it takes 10 hour from delhi to lucknow.
+    II. it takes 6 hour from lucknow to allahabad.
+        a. 1    b. 2    c. 3    d. 4                                Ans...  c
+32. a shopkeeper sells some mangoes on monday. what is the % profit?
+
+[Page 5]
+    I. the cost price =  2/3 of the sale price.
+    II. selling price of 100 mangoes = Rs. 240
+        a. 1    b. 2    c. 3    d. 4                                 Ans...  b
+direction for q. 33 to 37.
+    0 is represented to  *
+    1 is represented to  $
+33. 601 can be represented as....
+    a. $**$$**$$$    b. $*$$$$$*$$    c. $**$*$$**$    d. $*$$$*$*$$                   Ans...  c
+34. the value of [lcm (18, 20, 36) / 90] can be represented as
+    a. $*    b. $$    c. $$*    d. $$$$                                    Ans...  a
+35. 454 can represented as......
+    a. $*$$$***$    b. $$*$$$$**     c. $$$***$$*    d. $*$*$***$                Ans...  c
+36. ($$*$*) pow $*  can be.......
+    a. 450    b. 550    c. 650    d. 676                              Ans...  d
+37. the value of [ average(64, 74, 104) * 3]  can be...
+    a. $$$$**$*    b. $****$$*    c. $***$*$*    d. $$**$*$$                 Ans...  a
+38. pointed to a man , soraj said, " he is the brother of my uncle's daugther". how is the man related to 
+saroj?
+    a. son    b. cousin    c. nephew    d. uncle                      Ans...  b
+39. sita and mona are narain's wives and bindu is mona's step-daughter. how is sita related to bindu?
+    a. sister    b. mother-in-law    c. mother    d. none               Ans...  c
+40. if south-east is called east,  north-west`is called west and s0 on, what will north be called ?
+    a. east    b. north-west   c. north-east    d. north                    Ans...  c
+direction for q. 41 to 45.
+    A. all three are same.
+    B. only 1 & 2 same.
+    C. only 1 & 3 same.
+    d. none
+41.   GGGGMMMGG       GGGGMMMGGG      GGGGMGMGGG
+    A. A    B. B    C. C    D. D                             Ans...  b
+42 7765.878762342    7765.878762342       7765.878762342
+ 
+
+[Page 6]
+    A. A    B. B    C. C    D. D                              Ans...  a
+43. 5364.1980886       5364.1980786     5364.1979886
+    A. A    B. B    C. C    D. D                             Ans...  d
+44.  papanicolaou         papanicolaoi         papanicolaou
+    A. A    B. B    C. C    D. D                             Ans...  b
+45. skeptic should      skeptick should      sckeptic should
+    A. A    B. B    C. C    D. D                           Ans...  d
+46. if A. addition    s. subtraction   M. multiplication   D. division
+    V . equale to   W. greater than  X. less than
+    a. 6 S 7 A 2 M 3 W 0 D 7
+    B. 6 A 7 S 2 M 3 W 0 A 7
+    C. 6 S 7 M 2 S 3 W 0 M 7
+    D. 6 M 7 S 2 A 3 X 0 D 7                          Ans... a

@@ -1,4 +1,6 @@
-# UI & UX Design System Specification
+# Historical UI & UX proposal
+
+> **Source history, not current verification.** The implemented interface uses CampusReady's independent identity and familiar assessment conventions. It does not claim an authenticated pixel-perfect Accenture clone, live proctoring, guaranteed syllabus match or fabricated speech scores. Current scope and verification are in README.md and docs/VERIFICATION.md. The price is ₹499.
 ## Accenture Online Assessment (OA) Portal Simulator
 
 **Platform Target:** High-Fidelity Replication of Mercer Mettl / HirePro / Wheebox / Aon CoCubes Enterprise Assessment Engines  

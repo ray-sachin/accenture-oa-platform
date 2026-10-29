@@ -1,4 +1,6 @@
-# Master Syllabus & Question Bank Catalog
+# Historical syllabus and campus-question notes
+
+> **Evidence and implementation note:** the original wording below is preserved for traceability, not endorsed as a verified current paper or scoring guarantee. The reviewed runnable bank now has 60 exercises in private/bank/questions.json, and corrected SQL/DSA reference implementations. Use docs/RESEARCH_AUDIT.md for contradictions and README.md for current scope. The reported ₹60,000 stipend requires a current official campus notice.
 ## Accenture Advanced Technology Engineer (ATE) / AEH Internship (₹60,000/Mo + PPO)
 
 **Target Batch:** 2027 Pass-out Batch  

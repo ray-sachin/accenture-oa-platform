@@ -1,0 +1,585 @@
+[Page 1]
+500+ Free Mock Test visit: www.MyPlacementPrep.com 
+ 
+ 
+Join Telegram Channel: https://t.me/MyPlacementprepApp 
+Join Telegram Group: https://t.me/myPlacementPrep 
+ 
+ 
+www.MyPlacementPrep.com 
+ 
+Pro Material Series 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Join Telegram Channel for more updates: 
+https://t.me/MyPlacementprepApp 
+ 
+Visit 
+www.MyPlacementPrep.com
+ .  
+India’s No1 website for Placement Materials and Free mock test Series 
+
+[Page 2]
+500+ Free Mock Test visit: www.MyPlacementPrep.com 
+ 
+ 
+Join Telegram Channel: https://t.me/MyPlacementprepApp 
+Join Telegram Group: https://t.me/myPlacementPrep 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Which of the following statements is false?  
+a)Pointers are designed for storing memory addresses b)Arrays are passed by value to functions 
+c)Both of the above are false  
+Answer: Both of the above are false  
+Which of the following statements is true regarding static variables?  
+a) Which of the following statements is true regarding static variables? b) Only local variables can be 
+defined as static variables  
+c) Scope and life of global variables is limited to the function to which they are declared  
+Answer: Both local and global variables can be defined as static variables  
+------stores a log of changes made to db,which are then written to _,which are then written to  
+_,which is used if db recovery is necc. a) db buffer share pool 
+b) program global area,shared pool c) system global area,large pool  
+d) redo log buffer,online redo log  
+Download question papers from www.myplacementprep.comQuestion Paper is a fastest growing educational portal in India, 
+providing educational content for CBSE, state boards and various entrance/competitive exams. QuestionPaper.in provides platform 
+to students, teachers and parents to interact with other users and share their knowledge and experience. We have largest collection 
+of past and model question papers. Most of these question papers are contributed from our users.  
+----means allowing objects of difference types to be considered as examples of a higher level set :  
+ans: Generalization  
+The primary characteristic of key field is that it must be unique  
+
+[Page 3]
+500+ Free Mock Test visit: www.MyPlacementPrep.com 
+ 
+ 
+Join Telegram Channel: https://t.me/MyPlacementprepApp 
+Join Telegram Group: https://t.me/myPlacementPrep 
+ 
+ 
+Manager-------------- --emp managed by ans:one of many recursive relationship  
+If a member initialiser is not provided for a member object of a class .The object - is called  
+a) static fn 
+b) non static fn 
+c) default constructor d) none  
+class constest 
+{ 
+private: 
+const int i; public: constest():i(10) }  
+Inheritance  
+Download question papers from www.myplacementprep.comQuestion Paper is a fastest growing educational portal in India, 
+providing educational content for CBSE, state boards and various entrance/competitive exams. QuestionPaper.in provides platform 
+to students, teachers and parents to interact with other users and share their knowledge and experience. We have largest collection 
+of past and model question papers. Most of these question papers are contributed from our users.  
+b) abstract base class 
+c) specifies a way to to define a const member data d) none  
+Implement polymorphism when by object belonging to different class can respond to the same message  
+in diff ways. 
+a) late binding 
+b)dynamic binding 
+c) dynamically created object d) virtual fun  
+Member function---------- and ----------- set and reset the format state of flags. a) set,reset 
+b) set,get 
+c) set, unset  
+d) set ,unsetf  
+#include<iostream.h> struct abc 
+{ 
+int i;  
+abc(int j) { i=j;}  
+Download question papers from www.myplacementprep.comQuestion Paper is a fastest growing educational portal in India, 
+providing educational content for CBSE, state boards and various entrance/competitive exams. QuestionPaper.in provides platform 
+to students, teachers and parents to interact with other users and share their knowledge and experience. We have largest collection 
+of past and model question papers. Most of these question papers are contributed from our users.  
+public: 
+void display() { cout<<i;} }  
+void main() { 
+abc ob(10); ob.disp();  
+
+[Page 4]
+500+ Free Mock Test visit: www.MyPlacementPrep.com 
+ 
+ 
+Join Telegram Channel: https://t.me/MyPlacementprepApp 
+Join Telegram Group: https://t.me/myPlacementPrep 
+ 
+ 
+} 
+a)10 
+b) error : constructor is not accessible c) abc: i not accessible 
+d)none  
+# include<iostream.h> class sample 
+{ 
+public :  
+sample(int **pp) { 
+p=pp;} 
+int **p;  
+int **sample:: *ptr=&sample ::p;  
+Download question papers from www.myplacementprep.comQuestion Paper is a fastest growing educational portal in India, 
+providing educational content for CBSE, state boards and various entrance/competitive exams. QuestionPaper.in provides platform 
+to students, teachers and parents to interact with other users and share their knowledge and experience. We have largest collection 
+of past and model question papers. Most of these question papers are contributed from our users.  
+In a file A...Z characters are written.if we open the file using fopen and lseek(fp,-10,2); 
+c=getc(fp); 
+printf("%c",c);  
+what will be the output.? 
+Ans . Y.(please verify Here last parameter is the integer value to seel_end  
+Same question with lseek(fp,10,0); c=getc(fp); printf("%c",c);  
+ans. 11th character will be printed "K" verify.  
+Theory question about far pointers.  
+Hint: Far pointers are 4 bytes in size and local pointers are 2 bytes in size. important: i saw in  
+a previous question paper of accenture which is in the chetana database, some lady wrote that size  
+of an integer in C is 2 bytes and for C++ it is 4 bytes. This is absurd.The size of types is  
+Download question papers from www.myplacementprep.comQuestion Paper is a fastest growing educational portal in India, 
+providing educational content for CBSE, state boards and various entrance/competitive exams. QuestionPaper.in provides platform 
+to students, teachers and parents to interact with other users and share their knowledge and experience. We have largest collection 
+of past and model question papers. Most of these question papers are contributed from our users.  
+entirely dependent on the compiler used.for DOS Turbo C sizeof int is 2 and float is 4 bytes for  
+windows borland C,C++ size of int is 4 bytes for linux gcc, size of int is 2 bytes. All these  
+depends on the Operating system.Please keep this in mind.  
+Now some questions about extern variables.  
+
+[Page 5]
+500+ Free Mock Test visit: www.MyPlacementPrep.com 
+ 
+ 
+Join Telegram Channel: https://t.me/MyPlacementprepApp 
+Join Telegram Group: https://t.me/myPlacementPrep 
+ 
+ 
+#include<stdio.h> 
+main() 
+{ 
+char str[]={"hell"}; 
+int i; 
+for(i=0;i<5;i++) printf("%c%c%c%c\n",str[i],i[str],*(str+i),*(i+str)); getch();  
+} ans. hhhh eeee llll 
+llll  
+Download question papers from www.myplacementprep.comQuestion Paper is a fastest growing educational portal in India, 
+providing educational content for CBSE, state boards and various entrance/competitive exams. QuestionPaper.in provides platform 
+to students, teachers and parents to interact with other users and share their knowledge and experience. We have largest collection 
+of past and model question papers. Most of these question papers are contributed from our users.  
+note that str[i] and i[str] are the same.in the question paper, the original word is "hello".  
+Which of the following is not defined in string.h strtod,memchr,strspn,strchr ans . strtod.(defined in 
+STDLIB.H) it is used to convert a string to double.  
+Questions on macros with arguments .same pattern given in TEST UR C SKILLS eg.#define SQUARE(x) x*x 
+main() 
+{  
+.......  
+y=SQUARE(2+3);  
+printf("%d",y);  
+}  
+ans. when the macro expands we get 2+3*2+3 = 2+6+3 =11.11 is the correct answer not 25.  
+Remember an inline function does type checking and so it is better than a macro a question on this.  
+Some memory is allocated using memalloc and then realloc is called. and now to write the size of  
+the variable.better learn memalloc and realloc. what it does and syntax.  
+1. data model is  
+Download question papers from www.myplacementprep.comQuestion Paper is a fastest growing educational portal in India, 
+providing educational content for CBSE, state boards and various entrance/competitive exams. QuestionPaper.in provides platform 
+to students, teachers and parents to interact with other users and share their knowledge and experience. We have largest collection 
+of past and model question papers. Most of these question papers are contributed from our users.  
+a) Entity b) Constriants c) Entity relationship d) All the above ans:- c  
+2. Choise the correct one select emp.name ,emp.age from emp1,emp2 where emp.sno = 456;  
+a) cluster b) non-cluster c) index d) none of these  
+
+[Page 6]
+500+ Free Mock Test visit: www.MyPlacementPrep.com 
+ 
+ 
+Join Telegram Channel: https://t.me/MyPlacementprepApp 
+Join Telegram Group: https://t.me/myPlacementPrep 
+ 
+ 
+3. What is index? 
+a) atrendum selectio of colum ans) a  
+4. Match the following  
+1. 1-  one to one a) manager to employ  
+2. 2-  one to many b) employ to employ  
+3. 3-  many to one c) unique object  
+4. 4-  many to many d) employ to manager  
+a) 1-a ,2-b ,3-c,4-d b) 1-c,2-d,3-a,4-b c) 1-c,2-a,3-d,4-b d) 1-d,2-b,3-a,4-c ans) c  
+5. 
+1 max 222 2 allen 333 3 rony 444  
+Select first.name from first where first.age = (select first.age from first where first.sno = 3);  
+Download question papers from www.myplacementprep.comQuestion Paper is a fastest growing educational portal in India, 
+providing educational content for CBSE, state boards and various entrance/competitive exams. QuestionPaper.in provides platform 
+to students, teachers and parents to interact with other users and share their knowledge and experience. We have largest collection 
+of past and model question papers. Most of these question papers are contributed from our users.  
+a) max b) allen c) rony d) noneof these  
+6. THERE were 3 question on same type of queries(u should be good in foreign key relationship and  
+relationship with in a single table).  
+7. One question was based on INDEX  
+8. Also one more mapping relationship given based upon the figure.  
+REASONING  
+9. Questions based upon equality of number’s ...means three no’s given ...... a) if all equal 
+b) if 1,2 same 
+c) if 2,3 same  
+d) none.....  
+10. Questions based upon equality of symbols ...means if + means * and * means / and – means + and +  
+means – 
+then mean of 28*40/4+2-6  
+Download question papers from www.myplacementprep.comQuestion Paper is a fastest growing educational portal in India, 
+providing educational content for CBSE, state boards and various entrance/competitive exams. QuestionPaper.in provides platform 
+to students, teachers and parents to interact with other users and share their knowledge and experience. We have largest collection 
+of past and model question papers. Most of these question papers are contributed from our users.  
+11. Question upon set theory means if 100 r selecting in maths and 90 in physics 120 in chemistry &  
+
+[Page 7]
+500+ Free Mock Test visit: www.MyPlacementPrep.com 
+ 
+ 
+Join Telegram Channel: https://t.me/MyPlacementprepApp 
+Join Telegram Group: https://t.me/myPlacementPrep 
+ 
+ 
+22 in phy& maths both ,33 in maths & chemisty both 44 in ches & phy...11 in all then  
+1. How many only in maths....... 2. Only in physics... 
+3. Only in chemistry....... 
+4. How many in atleast 2......  
+C-Test  
+12. Question on pointers  
+13. On file handling...  
+14. On functions....  
+15. Structures and unions  
+16. From bitwise  
+C++  
+17. Inheritance  
+Download question papers from www.myplacementprep.comQuestion Paper is a fastest growing educational portal in India, 
+providing educational content for CBSE, state boards and various entrance/competitive exams. QuestionPaper.in provides platform 
+to students, teachers and parents to interact with other users and share their knowledge and experience. We have largest collection 
+of past and model question papers. Most of these question papers are contributed from our users.  
+18. Scope of protected  
+19. Static member function  
+20. File handling  
+21. Copy constructor  
+1. pointer to structure.  
+2. static variable and difference b/w(const char *p,char const *p,const char* const p).  
+3. pass by value & reference.  
+4. string library functions(syntax).  
+5. Write a program to compare two strings without using the strcmp() function.  
+6. Write a program to concatenate two strings.  
+7. Write a program to interchange 2 variables without using the third one.  
+
+[Page 8]
+500+ Free Mock Test visit: www.MyPlacementPrep.com 
+ 
+ 
+Join Telegram Channel: https://t.me/MyPlacementprepApp 
+Join Telegram Group: https://t.me/myPlacementPrep 
+ 
+ 
+8. Write programs for String Reversal & Palindrome check . 
+Download question papers from www.myplacementprep.comQuestion Paper is a fastest growing educational portal in India, 
+providing educational content for CBSE, state boards and various entrance/competitive exams. QuestionPaper.in provides platform 
+to students, teachers and parents to interact with other users and share their knowledge and experience. We have largest collection 
+of past and model question papers. Most of these question papers are contributed from our users.  
+9. Write a program to find the Factorial of a number.  
+10. Write a program to generate the Fibinocci Series.  
+11. Searching and sorting alogorithms with complexities.  
+1.Study the Following Points: 
+a.One Cannot Take the address of a Bit Field 
+b.bit fields cannot be arrayed 
+c.Bit-Fields are machine Dependant 
+d.Bit-fields cannot be declared as static 
+Which of the Following Statements are true w.r.t Bit-Fields A)a,b&c B)Only a & b C)Only c D)All  
+2.What is the function of ceil(X) defined in math.h do? 
+A)It returns the value rounded down to the next lower integer B)it returns the value rounded up to the 
+next higher integer C)the Next Higher Value 
+D)the next lower value  
+3.When do you say that a digraph is acyclic 
+A)if and only if its first search does not have back arcs 
+B)a digraph is acyclic if and only if its first search does not have back vertices  
+Download question papers from www.myplacementprep.comQuestion Paper is a fastest growing educational portal in India, 
+providing educational content for CBSE, state boards and various entrance/competitive exams. QuestionPaper.in provides platform 
+to students, teachers and parents to interact with other users and share their knowledge and experience. We have largest collection 
+of past and model question papers. Most of these question papers are contributed from our users.  
+C)if and only if its first search does not have same dfnumber D)None of these  
+4.A function ‘q’ that accepts a pointer to a character as argument and returns a pointer to an  
+array of integer can be declared as: A)int (*q(char*)) [] 
+B)int *q(char*) [] 
+C)int(*q)(char*) []  
+D)None of the Above  
+5.What kind of sorting is this:  
+SORT (k,n)  
+1.[Loop on I Index]  
+repeat thru step2 for i=1,2,........n-1  
+2.[For each pass,get small value]  
+
+[Page 9]
+500+ Free Mock Test visit: www.MyPlacementPrep.com 
+ 
+ 
+Join Telegram Channel: https://t.me/MyPlacementprepApp 
+Join Telegram Group: https://t.me/myPlacementPrep 
+ 
+ 
+min=i;  
+repeat for j=i+1 to N do  
+{  
+if K[j]  
+min=j;  
+}  
+temp=K[i];K[i]=K[min];K[min]=temp;  
+Download question papers from www.myplacementprep.comQuestion Paper is a fastest growing educational portal in India, 
+providing educational content for CBSE, state boards and various entrance/competitive exams. QuestionPaper.in provides platform 
+to students, teachers and parents to interact with other users and share their knowledge and experience. We have largest collection 
+of past and model question papers. Most of these question papers are contributed from our users.  
+3.[Sorted Values will be returned]  
+A)Bubble Sort B)Quick Sort C)Selection Sort D)Merge Sort  
+6.Which of the Following is not defined in string.h? A)strspn() 
+B)strerror() 
+C)memchr()  
+D)strod()  
+7.Identify the correct argument for the function call fflush() in ANSI C: A)stdout 
+B)stdin 
+C)stderr  
+D)All the above  
+8.Which of the Following will define a type NODE that is a node in a Linked list? A)struct node 
+{NODE*next;int x;};type def struct node NODE; 
+B)typedef struct NODE {struct NODE *next;int x;}; 
+C)typedef struct NODE {NODE *next;int x;};  
+Download question papers from www.myplacementprep.comQuestion Paper is a fastest growing educational portal in India, 
+providing educational content for CBSE, state boards and various entrance/competitive exams. QuestionPaper.in provides platform 
+to students, teachers and parents to interact with other users and share their knowledge and experience. We have largest collection 
+of past and model question papers. Most of these question papers are contributed from our users.  
+D)typedef struct {NODE *next;int x;}NODE;  
+9.Which of these statements are false w.r.t File Functions? i)fputs() ii)fdopen() iii)fgetpos() iv)ferror()  
+A)ii B)i,ii C)iii D)iv  
+
+[Page 10]
+500+ Free Mock Test visit: www.MyPlacementPrep.com 
+ 
+ 
+Join Telegram Channel: https://t.me/MyPlacementprepApp 
+Join Telegram Group: https://t.me/myPlacementPrep 
+ 
+ 
+10.Study the code: void show() 
+main() 
+{  
+show(); 
+} 
+void show (char *s) { 
+printf("%sn",s); 
+}  
+What will happen if it is compiled & run on an ANSI C Compiler? A)It will compile & nothing will be 
+printed when it is executed B)it will compile but not link 
+C)the compiler will generate an error  
+D)the compiler will generate a warning  
+Download question papers from www.myplacementprep.comQuestion Paper is a fastest growing educational portal in India, 
+providing educational content for CBSE, state boards and various entrance/competitive exams. QuestionPaper.in provides platform 
+to students, teachers and parents to interact with other users and share their knowledge and experience. We have largest collection 
+of past and model question papers. Most of these question papers are contributed from our users.  
+11.Look at the Code: #include 
+void main() 
+{  
+char s1[]="abcd"; char s2[10]; 
+char s3[]="efgh"; int i;  
+clrscr(); i=strcmp(strcat(s3,ctrcpy(s2,s1))strcat(s3,"abcd")); printf("%d",i); 
+}  
+What will be the output? 
+A)No output B) A Non Integer C)0 D) Garbage  
+12.Look at the Code: main() 
+{ 
+int a[]={1,2,3},i; for(i=0;i<3;i++)  
+{ printf("%d",*a); a++;  
+Download question papers from www.myplacementprep.comQuestion Paper is a fastest growing educational portal in India, 
+providing educational content for CBSE, state boards and various entrance/competitive exams. QuestionPaper.in provides platform 
+to students, teachers and parents to interact with other users and share their knowledge and experience. We have largest collection 
+of past and model question papers. Most of these question papers are contributed from our users.  
+} }  
+Which Statement is/are True w.r.t the above code? I.Executes Successfully & Prints the contents of the 
+array II.Gives the Error:Lvalue Required 
+III.The address of the array should not be changed IV.None of the Above.  
+A)Only I B)Only II C)II & III D)IV  
+
+[Page 11]
+500+ Free Mock Test visit: www.MyPlacementPrep.com 
+ 
+ 
+Join Telegram Channel: https://t.me/MyPlacementprepApp 
+Join Telegram Group: https://t.me/myPlacementPrep 
+ 
+ 
+13.what is the output? 
+#define fun(a,b,t) (g ##t=(a),(a)=(b),(b)=g##t) float gfloat; 
+main() 
+{ 
+float a=1.12,b=3.14; 
+fun (a,b,float); 
+printf("na=%4.2f,b=%4.2f",a,b); 
+}  
+A)Error in Defining Macro B)a=1.12,b=3.14 C)a=3.14,b=1.12  
+Download question papers from www.myplacementprep.comQuestion Paper is a fastest growing educational portal in India, 
+providing educational content for CBSE, state boards and various entrance/competitive exams. QuestionPaper.in provides platform 
+to students, teachers and parents to interact with other users and share their knowledge and experience. We have largest collection 
+of past and model question papers. Most of these question papers are contributed from our users.  
+D)None of teh Above  
+14.study the code: #include 
+void main() 
+{  
+const int a=100; 
+int *p; 
+p=&a; 
+(*p)++; printf("a=%dn(*p)=%dn",a,*p); }  
+What is printed?  
+A)100,101 B)100,100 C)101,101 D)None of the above  
+15.Which of the following are valid “include” formats? A)#include and #include[file.h] 
+B)#include (file.h) and #include 
+C)#include [file.h] and #include “file.h”  
+D)#include and #include “file.h”  
+What are difference between Juniper and checkpoint firewall? and Can you explain me about the  
+Download question papers from www.myplacementprep.comQuestion Paper is a fastest growing educational portal in India, 
+providing educational content for CBSE, state boards and various entrance/competitive exams. QuestionPaper.in provides platform 
+to students, teachers and parents to interact with other users and share their knowledge and experience. We have largest collection 
+of past and model question papers. Most of these question papers are contributed from our users.  
+difference between checkpoint and Cisco pix firewall ?  
+when a servlet sends request for first time it uses the follwing methods a)init b)doget()  
+c)dopost() d)service  
+System.out.println(101/14) what is the output? a)6 b)14 c)7.14 d)0  
+
+[Page 12]
+500+ Free Mock Test visit: www.MyPlacementPrep.com 
+ 
+ 
+Join Telegram Channel: https://t.me/MyPlacementprepApp 
+Join Telegram Group: https://t.me/myPlacementPrep 
+ 
+ 
+what is the Yield() method used in threads?  
+how to create samba server in fedora linux 9 ?  
+how to write test cases for "Browse" button.  
+The interviewer asked me when u recorded one application.object repository properties are saved  
+with .tsr extention. in qtp expert view wherever mouse is there that snapshot displayed in active  
+screen but some recored script lines are not displyed in actives screen y?  
+is it possible to submitt more than one job in job card in jcl? and if yes than is it necessary to  
+have the jobs same name?  
+Download question papers from www.myplacementprep.comQuestion Paper is a fastest growing educational portal in India, 
+providing educational content for CBSE, state boards and various entrance/competitive exams. QuestionPaper.in provides platform 
+to students, teachers and parents to interact with other users and share their knowledge and experience. We have largest collection 
+of past and model question papers. Most of these question papers are contributed from our users.  
+What is the performance testing approach ?  
+What is the importance of ordinance ?  
+unexpectedly in analysis when i generated the report think time is added to response time.how to  
+remove the thinktime from the report?  
+How to Increment the value of the empid E001 for each and every employee by using the programe?  
+What is Agile methodology?  
+What is Inheritance, Multiple Inheritance, Shared and Repeatable Inheritance?  
+Tell something about state management in asp.net?  
+What is Stateless ASP or ASP.Net?  
+What are the difference between ASP and ASP.Net?  
+Download question papers from www.myplacementprep.comQuestion Paper is a fastest growing educational portal in India, 
+providing educational content for CBSE, state boards and various entrance/competitive exams. QuestionPaper.in provides platform 
+to students, teachers and parents to interact with other users and share their knowledge and experience. We have largest collection 
+of past and model question papers. Most of these question papers are contributed from our users.  
+ 
+ 
+ 
+ 
+
+[Page 13]
+500+ Free Mock Test visit: www.MyPlacementPrep.com 
+ 
+ 
+Join Telegram Channel: https://t.me/MyPlacementprepApp 
+Join Telegram Group: https://t.me/myPlacementPrep 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+www.MyPlacementPrep.com 
+ 
+Free Mock Test and Video 
+Tutorial 
+
+[Page 14]
+500+ Free Mock Test visit: www.MyPlacementPrep.com 
+ 
+ 
+Join Telegram Channel: https://t.me/MyPlacementprepApp 
+Join Telegram Group: https://t.me/myPlacementPrep 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Visit 
+www.MyPlacementPrep.com
+ .  
+India’s No1 website Placement and Mock Test series 

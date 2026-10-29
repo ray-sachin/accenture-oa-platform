@@ -1,0 +1,180 @@
+[Page 1]
+500+ Free Mock Test visit: www.MyPlacementPrep.com 
+ 
+ 
+Join Telegram Channel: https://t.me/MyPlacementprepApp 
+Join Telegram Group: https://t.me/myPlacementPrep 
+ 
+ 
+www.MyPlacementPrep.com 
+ 
+Pro Material Series 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Join Telegram Channel for more updates: 
+https://t.me/MyPlacementprepApp 
+ 
+Visit 
+www.MyPlacementPrep.com
+ .  
+India’s No1 website for Placement Materials and Free mock test Series 
+
+[Page 2]
+500+ Free Mock Test visit: www.MyPlacementPrep.com 
+ 
+ 
+Join Telegram Channel: https://t.me/MyPlacementprepApp 
+Join Telegram Group: https://t.me/myPlacementPrep 
+ 
+ 
+Accenture Technical Placement Paper 2011 
+Are the expressions arr and &arr same for an array of integers?  
+Does mentioning the array name gives the base address in all the contexts?  
+Explain one method to process an entire string as one unit?  
+What is the similarity between a Structure, Union and enumeration?  
+Can a Structure contain a Pointer to itself?  
+How can we check whether the contents of two structure variables are same or not?  
+How are Structure passing and returning implemented by the complier?  
+How can we read/write Structures from/to data files?  
+What is the difference between an enumeration and a set of pre-processor # defines?  
+what do the 'c' and 'v' in argc and argv stand for?  
+Are the variables argc and argv are local to main?  
+What is the maximum combined length of command line arguments including the space 
+between adjacent arguments?  
+If we want that any wildcard characters in the command line arguments should be 
+appropriately expanded, are we required to make any special provision? If yes, which?  
+Does there exist any way to make the command line arguments available to other functions 
+without passing them as arguments to the function?  
+What are bit fields? What is the use of bit fields in a Structure declaration?  
+To which numbering system can the binary number 1101100100111100 be easily converted 
+to?  
+Which bit wise operator is suitable for checking whether a particular bit is on or off?  
+Which bit wise operator is suitable for turning off a particular bit in a number?  
+Which bit wise operator is suitable for putting on a particular bit in a number?  
+Which bit wise operator is suitable for checking whether a particular bit is on or off?  
+which one is equivalent to multiplying by 2:Left shifting a number by 1 or Left shifting an 
+unsigned int or char by 1?  
+Write a program to compare two strings without using the strcmp() function.  
+Write a program to concatenate two strings.  
+Write a program to interchange 2 variables without using the third one.  
+Write programs for String Reversal & Palindrome check  
+Write a program to find the Factorial of a number  
+Write a program to generate the Fibinocci Series  
+Write a program which employs Recursion  
+Write a program which uses Command Line Arguments  
+Write a program which uses functions like strcmp(), strcpy()? etc  
+What are the advantages of using typedef in a program?  
+How would you dynamically allocate a one-dimensional and two-dimensional array of 
+integers? 
+ 
+ 
+ 
+ 
+
+[Page 3]
+500+ Free Mock Test visit: www.MyPlacementPrep.com 
+ 
+ 
+Join Telegram Channel: https://t.me/MyPlacementprepApp 
+Join Telegram Group: https://t.me/myPlacementPrep 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+[Page 4]
+500+ Free Mock Test visit: www.MyPlacementPrep.com 
+ 
+ 
+Join Telegram Channel: https://t.me/MyPlacementprepApp 
+Join Telegram Group: https://t.me/myPlacementPrep 
+ 
+ 
+www.MyPlacementPrep.com 
+ 
+Free Mock Test and Video 
+Tutorial 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Visit 
+www.MyPlacementPrep.com
+ .  
+India’s No1 website Placement and Mock Test series 

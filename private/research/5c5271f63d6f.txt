@@ -1,0 +1,317 @@
+[Page 1]
+500+ Free Mock Test visit: www.MyPlacementPrep.com 
+ 
+ 
+Join Telegram Channel: https://t.me/MyPlacementprepApp 
+Join Telegram Group: https://t.me/myPlacementPrep 
+ 
+ 
+www.MyPlacementPrep.com 
+ 
+Pro Material Series 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Join Telegram Channel for more updates: 
+https://t.me/MyPlacementprepApp 
+ 
+Visit 
+www.MyPlacementPrep.com
+ .  
+India’s No1 website for Placement Materials and Free mock test Series 
+
+[Page 2]
+500+ Free Mock Test visit: www.MyPlacementPrep.com 
+ 
+ 
+Join Telegram Channel: https://t.me/MyPlacementprepApp 
+Join Telegram Group: https://t.me/myPlacementPrep 
+ 
+ 
+ 
+ACCENTURE PAPER  
+Date: 29-08-2004 
+Pattern of test: Written (non tech + tech).  
+1. I sow her -__ airport At , on , in , across  
+2. Masi specialises __ plesent ,well balanced wines into, about ,in, with  
+3. By the time I arrived __ the pub she all ready left in, on , at, into  
+4. erbiage 
+the act of doing something  
+the use many words witout nessecity a vegitable 
+non of the above  
+5. frutful means justify  
+futile efficient productive  
+6. aestheically means tastlessly  
+artistically hazardously colurfully  
+7. ___panda & white tiger are in denger species ? a ,an ,the ,none  
+8. __ doctor who you met yesterday was my father ? a, an, the, none  
+9. __ university of its status does’nt eevn need to advertise ? a, an, the , none of the 
+article reqiuered  
+10.45students , 12 in debate only ,22 in singing only how many in both ? 9 ,11 ,25 ,45 11.10 
+play cabaddi,20 play kho kho only ,5 both how many in total ? 35,28 ,40,can’t say 12.100 
+spoke english, 40 speek french ,20 both at least one? 110,100,140,120 
+13.200 total 125 like piza 115 berger both? 15,40,72,80  
+14.10 friends meet for movie 20 for picnic and 5 for games 4 for m& pic 2 for m&g 0 for 
+p&g 2 for all hoe many are students? 11,16,25,35  
+15.A poll poniting towards east by accident started to point towards south. A man was 
+travelling thing west what is the actual dir ?N,S,E ,W  
+16.Sagar was riding bike towards north,turned left road 1 km turnes towrds left &road 2km 
+found himself 1km west of starting how far did he road north? 1,2,3,5  
+17.600 to be seated.10benches are less.so 2 more persons are required to be seated in each 
+bench.so how many benches. 
+
+[Page 3]
+500+ Free Mock Test visit: www.MyPlacementPrep.com 
+ 
+ 
+Join Telegram Channel: https://t.me/MyPlacementprepApp 
+Join Telegram Group: https://t.me/myPlacementPrep 
+ 
+ 
+209 
+36  
+44 60  
+18.Selling a ac gains 25% on SP.what %gain on CP. 15  
+25 33.33 47.5  
+19.Students from different universities. A speaks hindi and bengali. 
+B hindi and english. 
+C english and bengali.  
+D tamil and hindi E bengali and tamil  
+20.Interpretor between C and D A only  
+B only 
+E only A,B and E  
+21.Can't speak without interpretor B&E  
+A&B A&C B&E  
+22.5 children were born on the same day but on different years in b/w 1999 - 2003 . Abhya is 
+younger than dinesh and frahan vaskar is naughtiest of all. girish is older than dinesh and 
+farhan. If Abhay is born in 2002, then in which year farhan is born : 
+1999-2002  
+2000- 2001 1999, 2000, 2001 2003  
+23.Order in which childrens are born ? B,D,G,F,A  
+G,D,B,F,A G,A,B,D,F F,B,D,A,G  
+24.* = +, / = *, + =- , - = / 2/9*11+10- 8 A) 20.8  
+B) 27.8 C) 27.8 D) 25.8  
+25.*= -, /=+,+=/,-=* 12/20*4+80-4=31.8 20*4/4+80-4=-8.2 12*4/20+12-4=-12 4*12/4+80-
+4=-8  
+26.------stores a log of changes made to db,which are then written to _,which are then written 
+to _,which is used if db recovery is necc. 
+
+[Page 4]
+500+ Free Mock Test visit: www.MyPlacementPrep.com 
+ 
+ 
+Join Telegram Channel: https://t.me/MyPlacementprepApp 
+Join Telegram Group: https://t.me/myPlacementPrep 
+ 
+ 
+a) db buffer share pool 
+b) program global area,shared pool  
+c) system global area,large pool d) redo log buffer,online redo log  
+27.----means allowing objects of difference types to be considered as examples of a higher 
+level set :  
+ans: Generalization 
+28.The primary characteristic of key field is that it must be unique 29.Manager-------------- --
+emp managed by ans:one of many recursive relationship  
+30.If a member initialiser is not provided for a member object of a class .The object - is 
+called a) static fn  
+b) non static fn 
+c) default constructor d) none  
+31.class constest {  
+private: const int i;  
+public: constest():i(10)  
+}  
+32.Inheritance 
+b) abstract base class 
+c) specifies a way to to define a const member data d) none  
+33.Iimplement polymorphism when by object belonging to different class can respond to the 
+same message in diff ways.  
+a) late binding 
+b)dynamic binding 
+c) dynamically created object d) virtual fun  
+34.Member function---------- and ----------- set and reset the format state of flags. a) set,reset  
+b) set,get  
+c) set, unset d) set ,unsetf  
+35.#include<iostream.h> struct abc  
+
+[Page 5]
+500+ Free Mock Test visit: www.MyPlacementPrep.com 
+ 
+ 
+Join Telegram Channel: https://t.me/MyPlacementprepApp 
+Join Telegram Group: https://t.me/myPlacementPrep 
+ 
+ 
+{ 
+int i;  
+abc(int j) { i=j;}  
+public: 
+void display()  
+{ cout<<i;} }  
+void main() {  
+abc ob(10);  
+ob.disp(); }  
+a)10 
+b) error : constructor is not accessible c) abc: i not accessible 
+d)none  
+36.# include<iostream.h> class sample  
+{ 
+public : sample(int **pp)  
+{ p=pp;}  
+int **p; 
+int **sample:: *ptr=&sample ::p;  
+37. In a file A...Z characters are written.if we open the file using fopen and lseek(fp,-10,2); 
+c=getc(fp); 
+printf("%c",c);  
+what will be the output.? 
+Ans . Y.(please verify Here last parameter is the integer value to seel_end  
+38.Same question with lseek(fp,10,0); c=getc(fp); printf("%c",c);  
+ans. 11th character will be printed "K" verify. 39.Theory question about far pointers.  
+Hint: Far pointers are 4 bytes in size and local pointers are 2 bytes in size. important: i saw in 
+a previous question paper of accenture which is in the chetana database, some lady wrote that 
+size of an integer in C is 2 bytes and for C++ it is 4 bytes. This is absurd.The size of types is 
+entirely  
+
+[Page 6]
+500+ Free Mock Test visit: www.MyPlacementPrep.com 
+ 
+ 
+Join Telegram Channel: https://t.me/MyPlacementprepApp 
+Join Telegram Group: https://t.me/myPlacementPrep 
+ 
+ 
+dependent on the compiler used.for DOS Turbo C sizeof int is 2 and float is 4 bytes for 
+windows borland C,C++ size of int is 4 bytes for linux gcc, size of int is 2 bytes. All these 
+depends on the Operating system.Please keep this in mind.  
+40.Now some questions about extern variables.  
+41.#include<stdio.h> main()  
+{ 
+char str[]={"hell"}; 
+int i; 
+for(i=0;i<5;i++) printf("%c%c%c%c\n",str[i],i[str],*(str+i),*(i+str)); getch();  
+} 
+ans. hhhh eeee llll llll  
+note that str[i] and i[str] are the same.in the question paper, the original word is "hello".  
+42.Which of the following is not defined in string.h strtod,memchr,strspn,strchr ans . 
+strtod.(defined in STDLIB.H) it is used to convert a string to double.  
+43.Questions on macros with arguments .same pattern given in TEST UR C SKILLS 
+eg.#define SQUARE(x) x*x  
+main() {  
+.......  
+y=SQUARE(2+3);  
+printf("%d",y); }  
+ans. when the macro expands we get 2+3*2+3 = 2+6+3 =11.11 is the correct answer not 25.  
+44.Remember an inline function does type checking and so it is better than a macro a 
+question on this.  
+45.Some memory is allocated using memalloc and then realloc is called. and now to write the 
+size of the variable.better learn memalloc and realloc. what it does and syntax.  
+ 
+ 
+ 
+ 
+ 
+
+[Page 7]
+500+ Free Mock Test visit: www.MyPlacementPrep.com 
+ 
+ 
+Join Telegram Channel: https://t.me/MyPlacementprepApp 
+Join Telegram Group: https://t.me/myPlacementPrep 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+www.MyPlacementPrep.com 
+
+[Page 8]
+500+ Free Mock Test visit: www.MyPlacementPrep.com 
+ 
+ 
+Join Telegram Channel: https://t.me/MyPlacementprepApp 
+Join Telegram Group: https://t.me/myPlacementPrep 
+ 
+ 
+ 
+Free Mock Test and Video 
+Tutorial 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Visit 
+www.MyPlacementPrep.com
+ .  
+India’s No1 website Placement and Mock Test series 

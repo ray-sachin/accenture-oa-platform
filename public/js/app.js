@@ -1,779 +1,132 @@
-/**
- * Main Application Controller for Accenture OA Simulator
- * Coordinates Questions, State, Timers, Anti-Cheat, and Sandboxed Evaluation
- */
-
-(function initAccentureApp() {
-  // Global State
-  const state = {
-    questions: [],
-    currentQuestionIndex: 0,
-    oaTimeRemaining: 20 * 60, // 20 minutes in seconds
-    solutionTimers: {},       // { [qId]: { remainingSeconds: 1200, isUnlocked: false } }
-    revisitMap: {},           // { [qId]: boolean }
-    solvedMap: {},            // { [qId]: boolean }
-    violationsCount: 0,
-    activeTab: 'problem',     // 'problem' | 'solution'
-    activeEditorTab: 'html',  // 'html' | 'css' | 'js' | 'preview' | 'tests'
-  };
-
-  // DOM Elements
-  const dom = {
-    questionNav: document.getElementById('question-nav'),
-    revisitCheckbox: document.getElementById('revisit-checkbox'),
-    oaTimerDisplay: document.getElementById('oa-timer-display'),
-    oaTimerBox: document.getElementById('oa-timer-box'),
-    categoryBadge: document.getElementById('category-badge'),
-
-    // Left Pane
-    problemTitle: document.getElementById('problem-title'),
-    difficultyBadge: document.getElementById('difficulty-badge'),
-    problemDay: document.getElementById('problem-day'),
-    problemTimeLimit: document.getElementById('problem-time-limit'),
-    problemScenario: document.getElementById('problem-scenario'),
-    problemObjectives: document.getElementById('problem-objectives'),
-    problemConstraints: document.getElementById('problem-constraints'),
-
-    // Left Tabs
-    paneTabs: document.querySelectorAll('.pane-tab'),
-    problemView: document.getElementById('problem-view'),
-    solutionView: document.getElementById('solution-view'),
-    solutionTabIcon: document.getElementById('solution-tab-icon'),
-    solutionStatusPill: document.getElementById('solution-status-pill'),
-    solutionLockedCard: document.getElementById('solution-locked-card'),
-    solutionUnlockedCard: document.getElementById('solution-unlocked-card'),
-    solutionCountdown: document.getElementById('solution-countdown'),
-    solutionProgressFill: document.getElementById('solution-progress-fill'),
-    solutionExplanation: document.getElementById('solution-explanation'),
-    solutionCodeHtml: document.getElementById('solution-code-html'),
-    solutionCodeCss: document.getElementById('solution-code-css'),
-    solutionCodeJs: document.getElementById('solution-code-js'),
-    btnEmergencyUnlock: document.getElementById('btn-emergency-unlock'),
-    btnLoadSolution: document.getElementById('btn-load-solution'),
-
-    // Editor & Tabs
-    editorTabs: document.querySelectorAll('.editor-tab'),
-    workspaces: {
-      code: document.getElementById('workspace-code'),
-      preview: document.getElementById('workspace-preview'),
-      tests: document.getElementById('workspace-tests')
-    },
-    previewIframe: document.getElementById('preview-iframe'),
-    btnRefreshPreview: document.getElementById('btn-refresh-preview'),
-    btnResetCode: document.getElementById('btn-reset-code'),
-
-    // Action buttons & Footer
-    btnRunCode: document.getElementById('btn-run-code'),
-    btnSubmitTests: document.getElementById('btn-submit-tests'),
-    btnPrevQuestion: document.getElementById('btn-prev-question'),
-    btnNextQuestion: document.getElementById('btn-next-question'),
-    testSummaryPill: document.getElementById('test-summary-pill'),
-    violationCount: document.getElementById('violation-count'),
-    antiCheatToast: document.getElementById('anti-cheat-toast'),
-    toastMessage: document.getElementById('toast-message'),
-
-    // Test Console Elements
-    statTotalTests: document.getElementById('stat-total-tests'),
-    statPassedTests: document.getElementById('stat-passed-tests'),
-    statFailedTests: document.getElementById('stat-failed-tests'),
-    statScorePercent: document.getElementById('stat-score-percent'),
-    testResultsList: document.getElementById('test-results-list'),
-
-    // Resizer
-    paneResizer: document.getElementById('pane-resizer'),
-    leftPane: document.getElementById('left-pane')
-  };
-
-  let editorManager = null;
-  let oaInterval = null;
-  let solutionInterval = null;
-  let toastTimeout = null;
-
-  // -------------------------------------------------------------------------
-  // Initialization
-  // -------------------------------------------------------------------------
-  async function init() {
-    // Clear any corrupted empty code entries in localStorage from earlier bug
-    for (let i = localStorage.length - 1; i >= 0; i--) {
-      const key = localStorage.key(i);
-      if (key && key.startsWith('accenture_code_')) {
-        const val = localStorage.getItem(key);
-        if (!val || val.trim().length === 0) {
-          localStorage.removeItem(key);
-        }
-      }
-    }
-
-    initEditor();
-    initSplitPaneResizer();
-    initGlobalTimers();
-    initCandidateTracking();
-    await loadQuestions();
-    setupEventListeners();
-  }
-
-  function initEditor() {
-    editorManager = new window.CodeEditorManager({
-      onAntiCheatViolation: handleAntiCheatViolation,
-      onCodeChange: () => {
-        // Clear old test results pill status on fresh edit
-        dom.testSummaryPill.textContent = 'Modified';
-        dom.testSummaryPill.style.backgroundColor = '#3f3f46';
-      }
-    });
-  }
-
-  // -------------------------------------------------------------------------
-  // Load Questions & Setup Navigation
-  // -------------------------------------------------------------------------
-  async function loadQuestions() {
-    try {
-      const response = await fetch('/api/questions');
-      const data = await response.json();
-      state.questions = data.questions || [];
-      renderQuestionPills();
-      loadQuestionByIndex(0);
-    } catch (err) {
-      console.error('Failed to load questions from server, falling back to static:', err);
-      try {
-        const fallback = await fetch('data/questions.json');
-        const data = await fallback.json();
-        state.questions = data.questions || [];
-        renderQuestionPills();
-        loadQuestionByIndex(0);
-      } catch (e) {
-        alert('Could not load questions. Ensure the local server is running.');
-      }
-    }
-  }
-
-  function renderQuestionPills() {
-    dom.questionNav.innerHTML = '';
-    state.questions.forEach((q, idx) => {
-      const pill = document.createElement('button');
-      pill.className = `q-pill ${idx === state.currentQuestionIndex ? 'active' : ''}`;
-      pill.id = `pill-${q.id}`;
-      
-      const categoryIcon = q.category === 'dsa' ? '⚡ ' : q.category === 'sql' ? '🗄️ ' : '';
-      const dayLabel = q.day ? q.day.replace('Day ', 'D') : `Q${idx + 1}`;
-      pill.textContent = `${categoryIcon}${dayLabel}`;
-      pill.title = `${q.day || 'Question ' + (idx + 1)}: ${q.title}`;
-
-      pill.addEventListener('click', () => loadQuestionByIndex(idx));
-      dom.questionNav.appendChild(pill);
-    });
-  }
-
-  // -------------------------------------------------------------------------
-  // Load Specific Question
-  // -------------------------------------------------------------------------
-  function loadQuestionByIndex(index) {
-    if (index < 0 || index >= state.questions.length) return;
-
-    state.currentQuestionIndex = index;
-    const q = state.questions[index];
-
-    // Update Question Nav Pills
-    document.querySelectorAll('.q-pill').forEach((pill, idx) => {
-      pill.classList.toggle('active', idx === index);
-      pill.classList.toggle('revisit', !!state.revisitMap[state.questions[idx].id]);
-      pill.classList.toggle('solved', !!state.solvedMap[state.questions[idx].id]);
-    });
-
-    // Header Meta
-    dom.categoryBadge.textContent = q.category === 'dsa' ? 'Algorithms (DSA)' : q.category === 'sql' ? 'SQL Query' : 'Frontend Web';
-    dom.revisitCheckbox.checked = !!state.revisitMap[q.id];
-
-    // Left Pane Content
-    dom.problemTitle.textContent = `Question ${index + 1}: ${q.title}`;
-    dom.difficultyBadge.textContent = q.difficulty || 'Medium';
-    dom.problemDay.textContent = q.day || `Question ${index + 1}`;
-    dom.problemTimeLimit.textContent = `${q.timeLimit || 20} Mins`;
-    dom.problemScenario.textContent = q.scenario || '';
-
-    // Objectives list
-    dom.problemObjectives.innerHTML = '';
-    (q.objectives || []).forEach(obj => {
-      const li = document.createElement('li');
-      li.textContent = obj;
-      dom.problemObjectives.appendChild(li);
-    });
-
-    // Constraints list
-    dom.problemConstraints.innerHTML = '';
-    (q.constraints || []).forEach(c => {
-      const li = document.createElement('li');
-      li.textContent = c;
-      dom.problemConstraints.appendChild(li);
-    });
-
-    // Editor setup
-    editorManager.loadQuestion(q);
-
-    // Reset Test Summary Pill
-    dom.testSummaryPill.textContent = '0/' + (q.tests ? q.tests.length : 0);
-    dom.testSummaryPill.style.backgroundColor = '#3f3f46';
-
-    // Solution Tab setup
-    setupSolutionForQuestion(q);
-
-    // Switch default editor view to code
-    switchEditorTab('html');
-  }
-
-  // -------------------------------------------------------------------------
-  // 20-Minute Locked Solution Logic
-  // -------------------------------------------------------------------------
-  function setupSolutionForQuestion(q) {
-    const qId = q.id;
-    const TOTAL_LOCK_SECONDS = 20 * 60; // 20 minutes = 1200 seconds
-
-    if (!state.solutionTimers[qId]) {
-      const isAlreadyUnlocked = localStorage.getItem(`accenture_solution_unlocked_${qId}`) === 'true';
-      const savedRemaining = localStorage.getItem(`accenture_solution_remaining_${qId}`);
-
-      state.solutionTimers[qId] = {
-        remainingSeconds: savedRemaining !== null ? parseInt(savedRemaining, 10) : TOTAL_LOCK_SECONDS,
-        isUnlocked: isAlreadyUnlocked
-      };
-    }
-
-    renderSolutionState(q);
-  }
-
-  function renderSolutionState(q) {
-    const qId = q.id;
-    const timerState = state.solutionTimers[qId];
-
-    if (timerState.isUnlocked || timerState.remainingSeconds <= 0) {
-      // Unlocked
-      dom.solutionTabIcon.textContent = '💡';
-      dom.solutionStatusPill.textContent = 'Unlocked';
-      dom.solutionStatusPill.className = 'solution-status-pill unlocked';
-      dom.solutionLockedCard.style.display = 'none';
-      dom.solutionUnlockedCard.style.display = 'block';
-
-      // Fill in solution data
-      if (q.solution) {
-        dom.solutionExplanation.innerHTML = formatMarkdown(q.solution.explanation || '');
-        dom.solutionCodeHtml.textContent = q.solution.html || '';
-        dom.solutionCodeCss.textContent = q.solution.css || '';
-        dom.solutionCodeJs.textContent = q.solution.js || '';
-      }
-    } else {
-      // Locked
-      dom.solutionTabIcon.textContent = '🔒';
-      dom.solutionStatusPill.textContent = 'Locked';
-      dom.solutionStatusPill.className = 'solution-status-pill';
-      dom.solutionLockedCard.style.display = 'flex';
-      dom.solutionUnlockedCard.style.display = 'none';
-
-      updateSolutionCountdownDisplay(timerState.remainingSeconds);
-    }
-  }
-
-  function updateSolutionCountdownDisplay(seconds) {
-    const TOTAL = 20 * 60;
-    const mins = Math.floor(seconds / 60);
-    const secs = seconds % 60;
-    dom.solutionCountdown.textContent = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
-
-    const percent = Math.min(100, Math.max(0, Math.round(((TOTAL - seconds) / TOTAL) * 100)));
-    dom.solutionProgressFill.style.width = `${percent}%`;
-  }
-
-  function unlockCurrentSolution() {
-    const q = state.questions[state.currentQuestionIndex];
-    if (!q) return;
-
-    state.solutionTimers[q.id].isUnlocked = true;
-    state.solutionTimers[q.id].remainingSeconds = 0;
-    localStorage.setItem(`accenture_solution_unlocked_${q.id}`, 'true');
-    localStorage.setItem(`accenture_solution_remaining_${q.id}`, '0');
-
-    renderSolutionState(q);
-  }
-
-  // -------------------------------------------------------------------------
-  // Global Assessment & Solution Tick Timers
-  // -------------------------------------------------------------------------
-  function initGlobalTimers() {
-    // 20-Min Overall Assessment Timer
-    const savedOa = localStorage.getItem('accenture_oa_timer');
-    if (savedOa !== null) {
-      const parsed = parseInt(savedOa, 10);
-      if (parsed > 20 * 60 || isNaN(parsed) || parsed <= 0) {
-        state.oaTimeRemaining = 20 * 60;
-      } else {
-        state.oaTimeRemaining = parsed;
-      }
-    } else {
-      state.oaTimeRemaining = 20 * 60;
-    }
-
-    oaInterval = setInterval(() => {
-      if (state.oaTimeRemaining > 0) {
-        state.oaTimeRemaining--;
-        localStorage.setItem('accenture_oa_timer', state.oaTimeRemaining);
-        renderOaTimer();
-      }
-    }, 1000);
-
-    renderOaTimer();
-
-    // Per-question 20-min solution ticker
-    solutionInterval = setInterval(() => {
-      const q = state.questions[state.currentQuestionIndex];
-      if (!q) return;
-
-      const timer = state.solutionTimers[q.id];
-      if (timer && !timer.isUnlocked && timer.remainingSeconds > 0) {
-        timer.remainingSeconds--;
-        localStorage.setItem(`accenture_solution_remaining_${q.id}`, timer.remainingSeconds);
-
-        if (dom.solutionView.classList.contains('active')) {
-          updateSolutionCountdownDisplay(timer.remainingSeconds);
-        }
-
-        if (timer.remainingSeconds <= 0) {
-          unlockCurrentSolution();
-        }
-      }
-    }, 1000);
-  }
-
-  function renderOaTimer() {
-    const mins = Math.floor(state.oaTimeRemaining / 60);
-    const secs = state.oaTimeRemaining % 60;
-    dom.oaTimerDisplay.textContent = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
-
-    if (state.oaTimeRemaining <= 5 * 60) {
-      dom.oaTimerBox.classList.add('timer-warning');
-    } else {
-      dom.oaTimerBox.classList.remove('timer-warning');
-    }
-  }
-
-  // -------------------------------------------------------------------------
-  // Anti-Cheat & Proctoring Simulation
-  // -------------------------------------------------------------------------
-  function handleAntiCheatViolation(actionName) {
-    state.violationsCount++;
-    dom.violationCount.style.display = 'inline-block';
-    dom.violationCount.textContent = `⚠️ ${state.violationsCount} Violation${state.violationsCount > 1 ? 's' : ''}`;
-
-    dom.toastMessage.textContent = `${actionName} is strictly prohibited in the Accenture Online Assessment environment.`;
-    dom.antiCheatToast.classList.add('show');
-
-    clearTimeout(toastTimeout);
-    toastTimeout = setTimeout(() => {
-      dom.antiCheatToast.classList.remove('show');
-    }, 3200);
-  }
-
-  // -------------------------------------------------------------------------
-  // Editor Tabs & Workspaces
-  // -------------------------------------------------------------------------
-  function switchEditorTab(targetTab) {
-    state.activeEditorTab = targetTab;
-
-    dom.editorTabs.forEach(tab => {
-      tab.classList.toggle('active', tab.getAttribute('data-editor') === targetTab);
-    });
-
-    if (['html', 'css', 'js'].includes(targetTab)) {
-      dom.workspaces.code.classList.add('active');
-      dom.workspaces.preview.classList.remove('active');
-      dom.workspaces.tests.classList.remove('active');
-      editorManager.switchLanguage(targetTab);
-    } else if (targetTab === 'preview') {
-      dom.workspaces.code.classList.remove('active');
-      dom.workspaces.preview.classList.add('active');
-      dom.workspaces.tests.classList.remove('active');
-      refreshPreview();
-    } else if (targetTab === 'tests') {
-      dom.workspaces.code.classList.remove('active');
-      dom.workspaces.preview.classList.remove('active');
-      dom.workspaces.tests.classList.add('active');
-    }
-  }
-
-  function refreshPreview() {
-    const bundle = editorManager.getCurrentBundle();
-    window.assessmentRunner.renderPreview(dom.previewIframe, bundle.html, bundle.css, bundle.js);
-  }
-
-  // -------------------------------------------------------------------------
-  // Test Execution & Submission
-  // -------------------------------------------------------------------------
-  async function submitAndRunTests() {
-    const q = state.questions[state.currentQuestionIndex];
-    if (!q) return;
-
-    // Switch to Test Console tab immediately
-    switchEditorTab('tests');
-
-    dom.testResultsList.innerHTML = `
-      <div style="text-align:center; padding:30px; color:#a1a1aa;">
-        <span style="font-size:24px; display:block; margin-bottom:8px;">⚙️</span>
-        Executing automated assertion tests in sandboxed iframe...
-      </div>
-    `;
-
-    const bundle = editorManager.getCurrentBundle();
-    const result = await window.assessmentRunner.runTestSuite(dom.previewIframe, q, bundle.html, bundle.css, bundle.js);
-
-    // Update Stats
-    dom.statTotalTests.textContent = result.total;
-    dom.statPassedTests.textContent = result.passed;
-    dom.statFailedTests.textContent = result.failed;
-    dom.statScorePercent.textContent = `${result.scorePercent}%`;
-
-    dom.testSummaryPill.textContent = `${result.passed}/${result.total}`;
-    dom.testSummaryPill.style.backgroundColor = result.passed === result.total ? '#15803d' : '#b91c1c';
-
-    // Mark question solved if 100% passed
-    if (result.passed === result.total && result.total > 0) {
-      state.solvedMap[q.id] = true;
-      localStorage.setItem(`accenture_solved_${q.id}`, 'true');
-      const pill = document.getElementById(`pill-${q.id}`);
-      if (pill) pill.classList.add('solved');
-    }
-
-    // Render detailed test cards
-    dom.testResultsList.innerHTML = '';
-    result.results.forEach((test, idx) => {
-      const card = document.createElement('div');
-      card.className = `test-card ${test.passed ? 'passed' : 'failed'}`;
-      card.innerHTML = `
-        <div class="test-card-top">
-          <span class="test-name">Test ${idx + 1}: ${test.name}</span>
-          <span class="test-badge ${test.passed ? 'pass' : 'fail'}">${test.passed ? 'PASS' : 'FAIL'}</span>
-        </div>
-        <div class="test-desc">${test.description}</div>
-        ${test.error ? `<div class="test-error-msg"><strong>Error:</strong> ${test.error}</div>` : ''}
-      `;
-      dom.testResultsList.appendChild(card);
-    });
-  }
-
-  // -------------------------------------------------------------------------
-  // Event Listeners
-  // -------------------------------------------------------------------------
-  function setupEventListeners() {
-    // Left pane tab switching
-    dom.paneTabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        const target = tab.getAttribute('data-tab');
-        dom.paneTabs.forEach(t => t.classList.toggle('active', t === tab));
-        dom.problemView.classList.toggle('active', target === 'problem');
-        dom.solutionView.classList.toggle('active', target === 'solution');
-
-        if (target === 'solution') {
-          const q = state.questions[state.currentQuestionIndex];
-          if (q) renderSolutionState(q);
-        }
-      });
-    });
-
-    // Right editor tab switching
-    dom.editorTabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        switchEditorTab(tab.getAttribute('data-editor'));
-      });
-    });
-
-    // Run Code & Submit Buttons
-    dom.btnRunCode.addEventListener('click', () => {
-      switchEditorTab('preview');
-    });
-
-    dom.btnSubmitTests.addEventListener('click', submitAndRunTests);
-    dom.btnRefreshPreview.addEventListener('click', refreshPreview);
-
-    // Reset code button
-    dom.btnResetCode.addEventListener('click', () => {
-      if (confirm('Are you sure you want to reset your code to the starter boilerplate?')) {
-        const q = state.questions[state.currentQuestionIndex];
-        editorManager.resetToStarter(q);
-      }
-    });
-
-    // Navigation buttons
-    dom.btnPrevQuestion.addEventListener('click', () => {
-      if (state.currentQuestionIndex > 0) {
-        loadQuestionByIndex(state.currentQuestionIndex - 1);
-      }
-    });
-
-    dom.btnNextQuestion.addEventListener('click', () => {
-      if (state.currentQuestionIndex < state.questions.length - 1) {
-        loadQuestionByIndex(state.currentQuestionIndex + 1);
-      }
-    });
-
-    // Revisit Checkbox
-    dom.revisitCheckbox.addEventListener('change', (e) => {
-      const q = state.questions[state.currentQuestionIndex];
-      if (!q) return;
-      state.revisitMap[q.id] = e.target.checked;
-      localStorage.setItem(`accenture_revisit_${q.id}`, e.target.checked ? 'true' : 'false');
-      const pill = document.getElementById(`pill-${q.id}`);
-      if (pill) pill.classList.toggle('revisit', e.target.checked);
-    });
-
-    // Emergency unlock button
-    dom.btnEmergencyUnlock.addEventListener('click', () => {
-      if (confirm('Unlock solution immediately? (Recommended only after trying actively for 20 minutes)')) {
-        unlockCurrentSolution();
-      }
-    });
-
-    // Load solution into editor
-    dom.btnLoadSolution.addEventListener('click', () => {
-      const q = state.questions[state.currentQuestionIndex];
-      if (confirm('Replace your current code with the verified solution?')) {
-        editorManager.applySolution(q);
-        switchEditorTab('html');
-      }
-    });
-  }
-
-  // -------------------------------------------------------------------------
-  // Resizable Split Pane Handle
-  // -------------------------------------------------------------------------
-  function initSplitPaneResizer() {
-    let isDragging = false;
-
-    dom.paneResizer.addEventListener('mousedown', (e) => {
-      isDragging = true;
-      dom.paneResizer.classList.add('resizing');
-      document.body.style.cursor = 'col-resize';
-      document.body.style.userSelect = 'none';
-    });
-
-    document.addEventListener('mousemove', (e) => {
-      if (!isDragging) return;
-      const containerWidth = document.querySelector('.main-layout').offsetWidth;
-      const newWidth = Math.max(300, Math.min(e.clientX, containerWidth - 360));
-      dom.leftPane.style.width = `${newWidth}px`;
-    });
-
-    document.addEventListener('mouseup', () => {
-      if (isDragging) {
-        isDragging = false;
-        dom.paneResizer.classList.remove('resizing');
-        document.body.style.cursor = '';
-        document.body.style.userSelect = '';
-      }
-    });
-  }
-
-  // Simple Markdown helper
-  function formatMarkdown(text) {
-    return text
-      .replace(/^### (.*$)/gim, '<h4 style="margin:8px 0 4px; color:#1e293b;">$1</h4>')
-      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-      .replace(/\*(.*?)\*/g, '<em>$1</em>')
-      .replace(/`([^`]+)`/g, '<code style="background:#e2e8f0; padding:1px 4px; border-radius:3px;">$1</code>')
-      .replace(/\n/g, '<br/>');
-  }
-
-  // -------------------------------------------------------------------------
-  // Candidate Login & Device Telemetry Tracking
-  // -------------------------------------------------------------------------
-  function getDeviceTelemetry() {
-    let deviceId = localStorage.getItem('accenture_device_id');
-    if (!deviceId) {
-      deviceId = 'acc-' + Math.random().toString(36).substring(2, 10) + '-' + Date.now().toString(36);
-      localStorage.setItem('accenture_device_id', deviceId);
-    }
-
-    const ua = navigator.userAgent || '';
-    let os = 'Unknown OS';
-    if (/Windows NT 10.0/i.test(ua)) os = 'Windows 10/11';
-    else if (/Windows/i.test(ua)) os = 'Windows';
-    else if (/Macintosh|Mac OS X/i.test(ua)) os = 'macOS';
-    else if (/Android/i.test(ua)) os = 'Android';
-    else if (/iPhone|iPad|iPod/i.test(ua)) os = 'iOS';
-    else if (/Linux/i.test(ua)) os = 'Linux';
-    else if (/CrOS/i.test(ua)) os = 'ChromeOS';
-
-    let browser = 'Unknown Browser';
-    if (/Edg\//i.test(ua)) browser = 'Microsoft Edge';
-    else if (/Chrome\//i.test(ua)) browser = 'Chrome';
-    else if (/Firefox\//i.test(ua)) browser = 'Firefox';
-    else if (/Safari\//i.test(ua) && !/Chrome/i.test(ua)) browser = 'Safari';
-    else if (/OPR\//i.test(ua) || /Opera/i.test(ua)) browser = 'Opera';
-
-    const touchPoints = (typeof navigator.maxTouchPoints === 'number') ? navigator.maxTouchPoints : 0;
-    const deviceType = (touchPoints > 0)
-      ? (touchPoints >= 5 ? 'Mobile / Tablet' : 'Touchscreen Laptop')
-      : 'Desktop / Laptop';
-
-    const language = navigator.language || 'en';
-    let timezone = 'Asia/Kolkata';
-    try {
-      timezone = Intl.DateTimeFormat().resolvedOptions().timeZone || 'Asia/Kolkata';
-    } catch (e) {}
-
-    const cores = (navigator.hardwareConcurrency != null) ? `${navigator.hardwareConcurrency} Cores` : 'Unknown';
-    const memory = (navigator.deviceMemory != null) ? `${navigator.deviceMemory} GB` : 'Unknown';
-    const screenRes = `${window.screen.width}x${window.screen.height} (${window.devicePixelRatio || 1}x)`;
-
-    return {
-      deviceId,
-      os,
-      browser,
-      screen: screenRes,
-      cores,
-      memory,
-      touchPoints,
-      deviceType,
-      language,
-      timezone,
-      userAgent: ua
-    };
-  }
-
-  function initCandidateTracking() {
-    const loginModal = document.getElementById('login-modal');
-    const loginForm = document.getElementById('login-form');
-    const inputName = document.getElementById('input-candidate-name');
-    const inputEmail = document.getElementById('input-candidate-email');
-    const previewDeviceId = document.getElementById('preview-device-id');
-    const previewOsBrowser = document.getElementById('preview-os-browser');
-    const previewHardware = document.getElementById('preview-hardware');
-    const previewTimezone = document.getElementById('preview-timezone');
-    const candidatePill = document.getElementById('candidate-pill');
-    const candidateNameDisplay = document.getElementById('candidate-name-display');
-
-    const adminModal = document.getElementById('admin-modal');
-    const btnOpenLogs = document.getElementById('btn-open-logs');
-    const btnCloseAdmin = document.getElementById('btn-close-admin');
-    const adminLogsTbody = document.getElementById('admin-logs-tbody');
-
-    const telemetry = getDeviceTelemetry();
-
-    if (previewDeviceId) previewDeviceId.textContent = telemetry.deviceId;
-    if (previewOsBrowser) previewOsBrowser.textContent = `${telemetry.os} • ${telemetry.browser} (${telemetry.deviceType})`;
-    if (previewHardware) previewHardware.textContent = `${telemetry.cores} | RAM: ${telemetry.memory} | Screen: ${telemetry.screen}`;
-    if (previewTimezone) previewTimezone.textContent = `${telemetry.timezone} [${telemetry.language}]`;
-
-    const savedName = localStorage.getItem('accenture_candidate_name');
-    const savedEmail = localStorage.getItem('accenture_candidate_email');
-
-    if (savedName) {
-      if (candidateNameDisplay) candidateNameDisplay.textContent = savedName;
-      if (inputName) inputName.value = savedName;
-      if (inputEmail && savedEmail) inputEmail.value = savedEmail;
-    } else {
-      if (loginModal) loginModal.style.display = 'flex';
-    }
-
-    if (candidatePill) {
-      candidatePill.addEventListener('click', () => {
-        if (loginModal) loginModal.style.display = 'flex';
-      });
-    }
-
-    if (loginForm) {
-      loginForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const name = (inputName.value || '').trim();
-        const email = (inputEmail.value || '').trim();
-        if (!name) return;
-
-        localStorage.setItem('accenture_candidate_name', name);
-        localStorage.setItem('accenture_candidate_email', email);
-
-        if (candidateNameDisplay) candidateNameDisplay.textContent = name;
-        if (loginModal) loginModal.style.display = 'none';
-
-        try {
-          await fetch('/api/login', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              name,
-              email,
-              ...telemetry
-            })
-          });
-        } catch (err) {
-          console.warn('Could not post candidate telemetry to server:', err);
-        }
-      });
-    }
-
-    // Admin Logs Modal Logic
-    async function loadAdminLogs() {
-      if (!adminLogsTbody) return;
-      adminLogsTbody.innerHTML = '<tr><td colspan="11" style="text-align:center; padding:16px;">Loading logs...</td></tr>';
-      try {
-        const res = await fetch('/api/logs');
-        const logs = await res.json();
-        if (!logs || logs.length === 0) {
-          adminLogsTbody.innerHTML = '<tr><td colspan="11" style="text-align:center; padding:16px; color:#a1a1aa;">No candidates logged yet.</td></tr>';
-          return;
-        }
-
-        adminLogsTbody.innerHTML = logs.slice().reverse().map(item => {
-          const isTouch = (item.touchPoints > 0) || (item.deviceType && item.deviceType.toLowerCase().includes('mobile'));
-          const typeBadgeColor = isTouch ? 'background:#fef3c7; color:#92400e;' : 'background:#f1f5f9; color:#475569;';
-          return `
-          <tr>
-            <td style="white-space:nowrap; font-size:11px; color:#a1a1aa;">${item.timestamp || '-'}</td>
-            <td><strong>${escapeHtml(item.name || '-')}</strong></td>
-            <td>${escapeHtml(item.email || '-')}</td>
-            <td><code style="font-size:11px; background:#27272a; padding:2px 6px; border-radius:4px;">${escapeHtml(item.deviceId || '-')}</code></td>
-            <td><span style="font-size:11px; font-weight:600; padding:2px 8px; border-radius:12px; ${typeBadgeColor}">${escapeHtml(item.deviceType || 'Desktop')}</span></td>
-            <td>${escapeHtml(item.os || '-')} • ${escapeHtml(item.browser || '-')}</td>
-            <td style="font-size:11px;">${escapeHtml(item.screen || '-')}</td>
-            <td style="font-size:11px;">${escapeHtml(item.cores || '-')} / ${escapeHtml(item.memory || '-')}</td>
-            <td style="text-align:center; font-size:11px;">${item.touchPoints !== undefined ? item.touchPoints : 0} pts</td>
-            <td style="font-size:11px;">${escapeHtml(item.timezone || '-')}<br><small style="color:#64748b;">${escapeHtml(item.language || '-')}</small></td>
-            <td><span style="background:#0284c7; color:#fff; padding:2px 6px; border-radius:4px; font-size:11px;">${escapeHtml(item.ip || '-')}</span></td>
-          </tr>
-        `;
-        }).join('');
-      } catch (err) {
-        adminLogsTbody.innerHTML = `<tr><td colspan="11" style="text-align:center; color:#f87171; padding:16px;">Failed to fetch logs: ${err.message}</td></tr>`;
-      }
-    }
-
-    function escapeHtml(str) {
-      if (!str) return '';
-      return String(str)
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&#39;');
-    }
-
-    if (btnOpenLogs) {
-      btnOpenLogs.addEventListener('click', () => {
-        if (adminModal) adminModal.style.display = 'flex';
-        loadAdminLogs();
-      });
-    }
-
-    if (btnCloseAdmin) {
-      btnCloseAdmin.addEventListener('click', () => {
-        if (adminModal) adminModal.style.display = 'none';
-      });
-    }
-
-    if (adminModal) {
-      adminModal.addEventListener('click', (e) => {
-        if (e.target === adminModal) {
-          adminModal.style.display = 'none';
-        }
-      });
-    }
-  }
-
-  // Boot
-  document.addEventListener('DOMContentLoaded', init);
-})();
+import {icon} from './icons.js';
+import {mountWorkspace} from './ide.js';
+import {mountAdmin} from './admin.js';
+export const escapeHTML=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const e=escapeHTML;
+const $=s=>document.querySelector(s);
+const app=$('#app'),modal=$('#modal');
+let data,selectedTrack=10,selectedDay=1,category='all',search='',difficulty='all',sourceSearch='',routeCleanup;
+let studyView="learn";
+let chatHistory=[],toastTimeout,recorder,recordTimer,stream,audioUrl,emailTimer,emailRemaining=600;
+const categoryNames={all:'All questions',dsa:'DSA & coding',sql:'SQL',web:'Frontend',pseudocode:'Pseudocode',technical:'Core CS',office:'MS Office',reasoning:'Reasoning',english:'English',behavioral:'Behavioural'};
+const routes=[['dashboard','grid','Overview'],['roadmap','route','My study plan'],['bank','code','Practice bank'],['mocks','clock','Mock assessments'],['communication','mic','Communication'],['library','book','Resource library'],['mentor','spark','AI mentor']];
+const sourceLinks=[['Accenture · Hiring journey','https://www.accenture.com/in-en/careers/explore-careers/area-of-interest/journey-to-accenture'],['Mercer | Mettl · Frontend assessment capabilities','https://mettl.com/test/front-end-web-developer-basic/'],['Aon · Preparing for an online assessment','https://www.aon.com/en/capabilities/talent-and-rewards/prepare-for-your-online-assessment']];
+export function toast(message){clearTimeout(toastTimeout);$('#toast').textContent=message;$('#toast').classList.add('visible');toastTimeout=setTimeout(()=>$('#toast').classList.remove('visible'),5500);}
+export async function api(url,body){const response=await fetch(url,{method:body===undefined?'GET':'POST',headers:body===undefined?{}:{'Content-Type':'application/json','X-CSRF-Token':data?.csrf||''},body:body===undefined?undefined:JSON.stringify(body)});const result=await response.json();if(!response.ok)throw Object.assign(new Error(result.error||'Request failed'),{status:response.status,...result});return result;}
+export function showModal(content,wide=false){modal.className=wide?'wide':'';modal.innerHTML=`<button class="icon-button modal-close" data-action="close-modal" aria-label="Close dialog">${icon('close')}</button>${content}`;if(!modal.open)modal.showModal();}
+function errorMessage(error){return error.cooldownUntil?`${error.message}\nTry again after ${new Date(error.cooldownUntil).toLocaleString('en-IN',{dateStyle:'medium',timeStyle:'short'})}. A trusted operator can reset the device restriction if you lost access.`:error.message;}
+function handleError(error){if(error.status===402)showPass();else if(error.status===401)showAuth();else toast(errorMessage(error));}
+async function refresh(){data=await api('/api/bootstrap');selectedTrack=data.user?.track||selectedTrack;}
+const track=()=>data.tracks.find(t=>t.days===selectedTrack);
+const completed=()=>data.completedDays.filter(d=>d.track===selectedTrack);
+const dayNow=()=>Math.min(selectedTrack,completed().length+1);
+const badge=(label,color='')=>`<span class="badge ${color}">${e(label)}</span>`;
+const titleCase=s=>s.charAt(0).toUpperCase()+s.slice(1);
+const qIcon=q=>q.type==='web'?'globe':q.type==='sql'?'database':q.type==='mcq'?'file':'code';
+function paid(action){if(!data.user){showAuth('register',()=>paid(action));return false;}if(!data.user.premium){showPass();return false;}action();return true;}
+function signed(action){if(!data.user){showAuth('register',action);return;}action();}
+const button=(label,action,extra='',cls='btn-primary')=>`<button class="btn ${cls}" data-action="${action}" ${extra}>${label}</button>`;
+
+function shell(content,page='dashboard'){
+ const current=page==='admin'?'Admin dashboard':routes.find(r=>r[0]===page)?.[2]||'My account';const user=data.user;
+ app.innerHTML=`<div class="app-shell"><aside class="sidebar" aria-label="Main navigation"><a class="brand" href="#dashboard"><img src="/favicon.svg" alt=""/><span>Campus<span class="brand-ready">Ready</span></span></a><div class="brand-note">YOUR NEXT CHAPTER</div><div class="nav-label">YOUR WORKSPACE</div><nav class="nav">${routes.slice(0,5).map(([id,ico,name])=>`<a href="#${id}" class="${page===id?'active':''}" ${page===id?'aria-current="page"':''}>${icon(ico)}${name}${id==='bank'?'<span class="nav-tag">60</span>':''}</a>`).join('')}</nav><div class="nav-label">A LITTLE EXTRA SUPPORT</div><nav class="nav">${routes.slice(5).map(([id,ico,name])=>`<a href="#${id}" class="${page===id?'active':''}">${icon(ico)}${name}${id==='mentor'?'<span class="nav-tag">GEMINI</span>':''}</a>`).join('')}</nav>${user?.isAdmin?`<div class="nav-label">PLATFORM MANAGEMENT</div><nav class="nav"><a href="#admin" class="${page==='admin'?'active':''}">${icon('shield')}Admin dashboard</a></nav>`:''}<div class="sidebar-bottom">${user?.premium?`<div class="upgrade-card"><div class="spark-box">${icon('check')}</div><h3>Your complete pass is active</h3><p>Every track. Every practice module.<br>One focused workspace.</p><a href="#account" class="text-link">Manage your account ${icon('arrow')}</a></div>`:`<div class="upgrade-card"><div class="spark-box">${icon('spark')}</div><h3>A little investment. A big next step.</h3><p>By invitation. Unlock every feature for ₹499, once.</p>${button(`Get the complete pass ${icon('arrow')}`,'pass')}</div>`}<button class="profile-button" data-action="${user?'account':'auth'}"><span class="avatar">${user?e(user.name.slice(0,2).toUpperCase()):icon('user')}</span><span><strong>${e(user?.name||'Your workspace')}</strong><small>${user?(user.premium?'Complete pass member':'Free preparation account'):'Sign in to save your progress'}</small></span>${icon('chevron')}</button></div></aside><div class="body-shell"><header class="topbar"><div class="breadcrumbs"><button class="icon-button mobile-menu" data-action="menu" aria-label="Toggle navigation">${icon('menu')}</button><span class="muted">Workspace</span>${icon('chevron')}<strong>${current}</strong></div><div class="topbar-actions"><span class="cohort"><i></i>Internship preparation · 2027</span><button class="icon-button" data-action="guide" aria-label="Preparation guide">${icon('help')}</button><button class="avatar icon-button" data-action="${user?'account':'auth'}" aria-label="${user?'My account':'Sign in'}">${user?e(user.name.slice(0,2).toUpperCase()):icon('user')}</button></div></header><main class="page" id="main">${content}<footer class="page-footer"><p>Independent preparation for Accenture opportunities. Not affiliated with Accenture.</p><p><a href="#" data-action="guide">How it works</a> &nbsp;·&nbsp; <a href="#" data-action="privacy">Privacy & fair use</a></p></footer></main></div></div>`;
+}
+function heading(title,subtitle,action=''){return `<div class="page-heading"><div><h1>${title}</h1><p>${subtitle}</p></div>${action}</div>`;}
+function trackCards(){return `<div class="track-grid">${data.tracks.map(t=>`<button class="track-card ${selectedTrack===t.days?'selected':''}" data-action="track" data-days="${t.days}" aria-pressed="${selectedTrack===t.days}">${t.days===10?'<span class="track-recommend">ASSESSMENT SOON?</span>':''}<span class="track-icon">${icon(t.days===10?'bolt':t.days===20?'route':'book')}</span><span><strong>${t.days}-day ${t.days===10?'sprint':t.days===20?'balanced':'foundation'}</strong><small>${e(t.daily)}</small></span><span class="radio"></span></button>`).join('')}</div>`;}
+function dashboard(){
+ const current=track().schedule[dayNow()-1];const pct=Math.round(completed().length/selectedTrack*100);const solved=data.progress.filter(p=>p.status==='solved').length;
+ const focused=current.ids.map(id=>data.questions.find(q=>q.id===id)).filter(Boolean).slice(0,3);
+ const name=data.user?`, ${e(data.user.name.split(' ')[0])}`:'';
+ shell(`${heading(`Make room for your next chapter${name}.`,'A clear plan. Deliberate practice. One step closer to assessment day.',`<div class="date-label">${icon('calendar')}${new Date().toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'})}</div>`)}<section class="hero"><div class="hero-content"><div class="eyebrow">ACCENTURE INTERNSHIP PREPARATION</div><h2>Your ambition.<br>A <span>${selectedTrack}-day</span> plan to back it.</h2><p>Turn “where do I start?” into a daily routine. Build your skills across coding, SQL, frontend, and everything in between.</p><div class="hero-actions">${button(`${data.activeAttempt?'Resume practice':'Start your preparation'} ${icon('arrow')}`,data.activeAttempt?'resume':'start-day')}<span class="muted">${icon('check')}Built around your campus research</span></div></div><div class="hero-art" aria-hidden="true"><div class="hero-orbit"></div><div class="hero-chevron">›</div><div class="floating-chip one">${icon('code')}Think. Code. Improve.</div><div class="floating-chip two">${icon('check')}One day at a time</div><div class="floating-chip three">${icon('database')}DSA + SQL + Frontend</div></div></section><div class="section-heading"><h2>Find your pace</h2><span class="muted" style="font-size:10px">Same destination. Your timeline.</span></div>${trackCards()}<div class="dashboard-grid"><section class="panel"><div class="panel-head"><div><h2>Your focus for today</h2><div class="subline">${e(current.title)} · ${e(current.phase)}</div></div>${badge(`DAY ${dayNow()} OF ${selectedTrack}`,'purple')}</div>${focused.map((q,i)=>`<a href="#" class="focus-row" data-action="practice" data-id="${q.id}"><span class="focus-number">0${i+1}</span><span class="focus-content"><strong>${e(q.title)}</strong><p>${e(categoryNames[q.category])}<span>·</span>${q.minutes} min</p></span>${badge(q.difficulty,q.difficulty==='Easy'?'green':'amber')}${icon('chevron')}</a>`).join('')}<div class="panel-foot"><span>${icon('clock')} A little progress today goes a long way.</span><a class="text-link" href="#roadmap">View your plan ${icon('arrow')}</a></div></section><div class="right-stack"><section class="ide-feature"><div class="feature-icon">${icon('terminal')}</div><h3>Meet your coding workspace.</h3><p>Real problems. A focused editor. Room to test, learn, and try again.</p><button class="btn" data-action="practice" data-id="parity">Open practice IDE ${icon('arrow')}</button></section><section class="panel progress-card"><div class="progress-ring" style="--progress:${pct}%"><strong>${pct}%</strong></div><div><h3>Your journey, taking shape</h3><p>${completed().length} of ${selectedTrack} study days completed<br>${solved?`${solved} verified practice solutions`:'Your first step counts. Start today.'}</p></div></section></div></div><div class="metric-grid">${[['code','60','Curated practice questions'],['book',data.library.length,'Indexed source documents'],['check',solved,'Verified questions solved'],['route','3','Study tracks, your choice']].map(([ico,value,label])=>`<div class="metric"><span class="metric-icon">${icon(ico)}</span><div><strong>${value}</strong><p>${label}</p></div></div>`).join('')}</div><aside class="insight-banner">${icon('book')}<div><strong>Research-led. Reality-checked.</strong><p>Your campus notes and archived papers, organised with source dates and confidence. Always follow your own assessment invitation.</p></div><a class="text-link" href="#library">Explore the intel ${icon('arrow')}</a></aside>`);
+}
+function roadmap(){
+ const navScroll=$('.study-days')?.scrollTop||0;
+ const t=track(),day=t.schedule[selectedDay-1]||t.schedule[0],done=completed().some(d=>d.day===day.day),count=completed().length,percent=Math.round(count/t.days*100);
+ const questions=day.ids.map(id=>data.questions.find(q=>q.id===id)).filter(Boolean),next=t.schedule.find(d=>!completed().some(x=>x.day===d.day));
+ const learn=`<section class="lesson-section"><div class="lesson-label">01 / UNDERSTAND</div><h3>The idea behind the exercise</h3><p>${e(day.learn)}</p></section>${day.lesson?`<section class="lesson-section"><div class="lesson-label">02 / WALK THROUGH AN EXAMPLE</div><h3>${e(day.lesson.title)}</h3><div class="lesson-example"><div class="example-title">${icon('code')} Worked example <span>Trace it before you run it</span></div><pre>${e(day.lesson.example)}</pre></div><p>${e(day.lesson.explanation)}</p><aside class="lesson-caution">${icon('help')}<div><strong>Watch out for this</strong><p>${e(day.lesson.pitfall)}</p></div></aside></section>`:''}`;
+ const practice=`<section class="lesson-section"><div class="lesson-label">APPLY WHAT YOU LEARNED</div><h3>Your practice set</h3><p>Try each exercise yourself, then use the results to understand what needs work.</p><div class="study-exercises">${questions.map((q,i)=>{const solved=data.progress.some(p=>p.question_id===q.id&&p.status==='solved');return `<button class="study-exercise" data-action="practice" data-id="${q.id}"><span class="exercise-symbol">${icon(solved?'check':qIcon(q))}</span><span><strong>${e(q.title)}</strong><small>${e(categoryNames[q.category])} · ${q.minutes} min · ${e(q.difficulty)}</small></span><span class="exercise-state">${solved?'Solved':q.free||data.user?.premium?'Practise':'Unlock'} ${icon(q.free||data.user?.premium?'arrow':'lock')}</span></button>`;}).join('')}</div></section>`;
+ const review=`<section class="lesson-section"><div class="lesson-label">MAKE IT STICK</div><h3>Can you explain it in your own words?</h3><div class="review-prompt">${icon('help')}<p>${e(day.lesson?.checkpoint||'Explain your approach and revisit any failed cases.')}</p></div><h3>Your session checklist</h3><ul class="study-checklist">${day.tasks.map((task,i)=>`<li><span>${String(i+1).padStart(2,'0')}</span>${e(task)}</li>`).join('')}</ul><p class="study-note">Before marking the day complete, revisit your mistakes and identify one thing you can now do without notes.</p></section>`;
+ shell(`<div class="study-page"><div class="study-heading"><div><div class="lesson-label">YOUR PREPARATION ROADMAP</div><h1>Small steps. Real progress.</h1><p>A clear focus for every day, at a pace that works for you.</p></div><span class="study-access">${icon('check')} ${data.user?.premium?'All 3 tracks unlocked':'All 3 tracks included with ₹499'}</span></div><div class="study-overview"><div><span class="lesson-label">YOUR MOMENTUM</span><h2>${count?`${count} day${count===1?'':'s'} down. Keep going.`:'Your first step starts here.'}</h2><p>${count===t.days?'You’ve completed this schedule. Revisit a topic or try a mock.':`Next up: ${e(next?.title||day.title)}`}</p></div><div class="study-meter"><div><strong>${percent}%</strong><span>${count} of ${t.days} days completed</span></div><progress value="${count}" max="${t.days}" aria-label="Study days completed"></progress><small>Study completion · self-reported</small></div></div><div class="study-pace-heading"><h2>Choose your pace</h2><span>${data.user?'Switch anytime. Your progress stays saved for each track.':'Switch anytime. Sign in to save progress for each track.'}</span></div>${trackCards()}<div class="study-layout"><aside class="study-navigation panel"><div class="study-nav-heading"><h2>Your ${t.days}-day roadmap</h2><span>${e(t.daily)}</span></div><label class="study-day-select">Jump to a day<select id="study-day-select" class="select" aria-label="Jump to a day">${t.schedule.map(d=>`<option value="${d.day}" ${d.day===day.day?'selected':''}>Day ${d.day} · ${e(d.title)}</option>`).join('')}</select></label><nav class="study-days" aria-label="Study days">${t.schedule.map(d=>{const complete=completed().some(x=>x.day===d.day);return `<button class="study-day ${d.day===day.day?'selected':''} ${complete?'done':''}" data-action="day" data-day="${d.day}" ${d.day===day.day?'aria-current="step"':''}><span class="study-day-number">${complete?icon('check'):String(d.day).padStart(2,'0')}</span><span><strong>${e(d.title)}</strong><small>${complete?'Completed':e(d.focus)}</small></span>${icon('chevron')}</button>`;}).join('')}</nav><div class="study-nav-footer">${icon('shield')} One pass. Every pace. Your choice.</div></aside><article class="panel study-lesson"><header class="study-lesson-header"><div class="button-row">${badge(`DAY ${String(day.day).padStart(2,'0')} OF ${t.days}`,'purple')}${done?badge('Completed','green'):badge('In your study plan')}</div><h2>${e(day.title)}</h2><p>${e(day.focus)}</p><div class="lesson-meta"><span>${icon('clock')}${e(t.daily)}</span><span>${icon('code')}${questions.length} exercises</span><span>${icon('book')}${e(day.phase)}</span></div></header><div class="study-tabs" aria-label="Lesson views">${[['learn','book','Learn'],['practice','code','Practise'],['review','check','Review']].map(([view,ico,label])=>`<button data-action="study-view" data-view="${view}" aria-pressed="${studyView===view}" class="${studyView===view?'active':''}">${icon(ico)}${label}${view==='practice'?`<span>${questions.length}</span>`:''}</button>`).join('')}</div><div class="study-lesson-body">${studyView==='learn'?learn:studyView==='practice'?practice:review}</div><footer class="study-lesson-footer"><div><strong>${done?'This day is complete.':'Ready for the next step?'}</strong><span>${studyView==='review'?'Completing a day does not replace verified exercise scores.':'Learn the idea, apply it, then check your understanding.'}</span></div>${studyView==='review'?button(done?icon('check')+' Day completed':'Mark day complete','complete-day',`data-day="${day.day}" ${done?'disabled':''}`,'btn-primary'):button((studyView==='learn'?'Continue to practice':'Review this session')+' '+icon('arrow'),'study-view',`data-view="${studyView==='learn'?'practice':'review'}"`,'btn-primary')}</footer><div class="study-day-controls">${button('← Previous day','day',`data-day="${Math.max(1,day.day-1)}" ${day.day===1?'disabled':''}`,'btn-sm')}<span>Day ${day.day} / ${t.days}</span>${button('Next day →','day',`data-day="${Math.min(t.days,day.day+1)}" ${day.day===t.days?'disabled':''}`,'btn-sm')}</div></article></div><p class="study-disclaimer">Build readiness at your own pace. Follow your assessment invitation for the final format; completing a schedule does not guarantee selection.</p></div>`,'roadmap');
+ if($('.study-days'))$('.study-days').scrollTop=navScroll;
+ $('#study-day-select').onchange=event=>{selectedDay=Number(event.target.value);studyView='learn';roadmap();focusStudyLesson();};
+}
+function focusStudyLesson(){const title=$('.study-lesson-header h2');if(title){title.tabIndex=-1;title.focus({preventScroll:true});title.scrollIntoView({block:'start'});}}
+function bankRows(){const list=data.questions.filter(q=>(category==='all'||q.category===category)&&(difficulty==='all'||q.difficulty===difficulty)&&`${q.title} ${q.topic}`.toLowerCase().includes(search.toLowerCase()));return list.length?`<table class="question-table"><thead><tr><th>Problem</th><th class="hide-small">Domain</th><th class="hide-medium">Difficulty</th><th class="hide-small">Time</th><th>Practice</th></tr></thead><tbody>${list.map(q=>{const status=data.progress.find(p=>p.question_id===q.id);return `<tr><td><div class="question-title"><span class="question-icon">${icon(status?.status==='solved'?'check':qIcon(q))}</span><span><strong>${e(q.title)}</strong><small>${e(q.topic)} ${status?`· ${status.status==='solved'?'Solved':'Review needed'}`:''}</small></span></div></td><td class="muted hide-small">${e(categoryNames[q.category])}</td><td class="hide-medium">${badge(q.difficulty,`difficulty-${q.difficulty.toLowerCase()}`)}</td><td class="muted hide-small">${q.minutes} min</td><td><button class="btn btn-sm ${q.free||data.user?.premium?'':'muted'}" data-action="practice" data-id="${q.id}">${q.free||data.user?.premium?'Practise':icon('lock')+' Unlock'}</button></td></tr>`;}).join('')}</tbody></table>`:`<div class="empty-state">${icon('search')}<h3>No questions found</h3><p>Try a different topic, search, or difficulty.</p></div>`;}
+function bank(){shell(`${heading('Practice with purpose.','60 curated exercises. Clear objectives. A place to turn mistakes into progress.',button('Free diagnostic '+icon('arrow'),'mock','data-mode="diagnostic"',''))}<div class="toolbar"><label class="search-field">${icon('search')}<input id="question-search" type="search" value="${e(search)}" placeholder="Find a problem, concept, or skill…" aria-label="Search practice questions"></label><select class="select" id="difficulty-filter" aria-label="Difficulty"><option value="all">All difficulties</option><option ${difficulty==='Easy'?'selected':''}>Easy</option><option ${difficulty==='Medium'?'selected':''}>Medium</option></select></div><div class="chips">${Object.entries(categoryNames).map(([id,label])=>`<button class="chip ${category===id?'active':''}" data-action="category" data-category="${id}" aria-pressed="${category===id}">${label}</button>`).join('')}</div><div class="panel" id="question-results">${bankRows()}</div><div class="notice">These are practice reconstructions and original topic-aligned exercises, not a verified future assessment paper. The six frontend tasks preserve your existing repository scenarios; SQL tasks run against real fixture tables.</div>`,'bank');}
+function mocks(){shell(`${heading('Accenture assessment rehearsal.','Advanced Technology Engineer · 2027 batch')}<section class="assessment-hero"><div><span class="assessment-kicker">CAMPUS ASSESSMENT CENTRE</span><h2>Walk in knowing the environment.</h2><p>One focused rehearsal across technical knowledge, coding, behavioural judgement and cognitive ability.</p><div class="button-row">${button('Enter assessment lobby '+icon('arrow'),'campus-lobby','','btn-primary')}<span>Included in your complete pass · all study paces</span></div></div><div class="assessment-facts"><strong>04</strong><span>on-campus areas</span><hr><b>43 tasks · 100 minutes</b><small>Practice configuration, not official timing</small></div></section><div class="assessment-route">${[['01','Technical','Pseudocode · CS · Office'],['02','Coding','DSA · SQL · frontend'],['03','Behavioural','Workplace judgement'],['04','Cognitive','Reasoning · English']].map(([n,t,d])=>`<div><span>${n}</span><h3>${t}</h3><p>${d}</p></div>`).join('')}</div><div class="notice"><strong>What your campus notice confirms:</strong> Technical + Coding & Behavioral + Cognitive on campus, followed by Communication & Interviews virtually. The notice does not specify durations, counts, vendor screens or section order. This rehearsal uses an explicit practice sequence; it does not predict the official questions.</div><div class="section-heading"><h2>Prepare for the virtual stages</h2></div><div class="grid-3"><section class="panel mock-card"><h3>Communication</h3><p>Speaking prompts, recording for self-review and a timed professional email.</p><a class="btn" href="#communication">Open communication practice →</a></section><section class="panel mock-card"><h3>Interview preparation</h3><p>Explain your project, defend a technical choice and describe a challenge using STAR.</p>${button('Open interview guide','interview-guide','','')}</section><section class="panel mock-card"><h3>Campus notification</h3><p>Read the supplied assessment overview and distinguish confirmed details from practice assumptions.</p>${button('Read notice','source','data-id="assessment-notification"','')}</section></div><div class="section-heading"><h2>Targeted practice sessions</h2><span class="muted">Every format included · ₹499 once</span></div><div class="grid-3">${[['diagnostic','Baseline diagnostic','4 questions · 10 minutes'],['coding','Coding practice','2 problems · 45 minutes'],['mixed','Three-domain practice','DSA + SQL + frontend · 60 minutes'],['technical','Fundamentals circuit','40 MCQs · 40 minutes']].map(([mode,title,desc])=>`<section class="panel mock-card"><h3>${title}</h3><p>${desc} · practice preset</p>${button('Start session '+icon('arrow'),'mock',`data-mode="${mode}"`,'')}</section>`).join('')}</div><div class="section-heading"><h2>Your recent assessments</h2></div><section class="panel" id="history-panel"><div class="loading-line">${data.user?'Loading your attempts…':'Sign in to keep your assessment history.'}</div></section>`,'mocks');if(data.user)loadHistory();}
+function campusLobby(){showModal(`<span class="assessment-kicker">CANDIDATE INSTRUCTIONS</span><h2 class="modal-heading" id="modal-title">Before you begin.</h2><p class="modal-subtitle">Accenture ATE campus rehearsal · independent practice</p><div class="lobby-summary"><div><strong>100 min</strong><span>shared practice timer</span></div><div><strong>43 tasks</strong><span>40 MCQs + 3 coding tasks</span></div><div><strong>4 areas</strong><span>switch sections freely</span></div></div><ol class="lobby-rules"><li>The server timer continues if you leave or reload. Only one attempt can be active.</li><li>Answers and code save to your account. Use the navigator to revisit questions and mark MCQs for review.</li><li>Run samples before submitting coding tasks. MCQs and SQL/DSA use server grading; frontend feedback is advisory.</li><li>AI assistance and reference solutions are unavailable during the rehearsal.</li><li>Finish only when ready. Submission closes the attempt; unanswered MCQs receive no credit.</li></ol><div class="notice ${data.integrations.compiler?'':'amber'}">${data.integrations.compiler?'Remote coding service configured. Actual language availability depends on the connected runner.':'DSA execution is unavailable until the owner configures Judge0. SQL, frontend, MCQs and code saving work. You may rehearse, but DSA results will be incomplete.'}</div><label class="lobby-check"><input type="checkbox" id="assessment-consent"> I understand these are practice timings and I am ready to begin.</label><div class="button-row"><button class="btn" id="lobby-fullscreen">Enter fullscreen</button><button class="btn btn-primary" id="begin-campus" disabled>Begin rehearsal →</button></div><p class="form-note" id="fullscreen-status">Use a desktop browser, stable connection and a quiet workspace. This simulator does not claim webcam proctoring or device certification.</p>`,true);$('#assessment-consent').onchange=event=>{$('#begin-campus').disabled=!event.target.checked;};$('#lobby-fullscreen').onclick=async()=>{try{await document.documentElement.requestFullscreen();$('#fullscreen-status').textContent='Fullscreen enabled. You can leave fullscreen with Escape.';}catch{$('#fullscreen-status').textContent='Fullscreen unavailable. You can still use the rehearsal.';}};$('#begin-campus').onclick=()=>{modal.close();start('campus');};}
+function interviewGuide(){showModal(`<h2 id="modal-title" class="modal-heading">Practise the conversation.</h2><p class="modal-subtitle">Virtual interview preparation · practice prompts, not an official interview script</p><ol class="lobby-rules"><li><strong>Introduce yourself · 90 seconds.</strong> Connect your degree, one project and the work you want to learn.</li><li><strong>Explain a project · 3 minutes.</strong> Cover the problem, your contribution, architecture, testing and one trade-off.</li><li><strong>Technical follow-up · 5 minutes.</strong> Explain a failed test, query optimization or a data-structure choice. Give a concrete example.</li><li><strong>Behavioural example · 2 minutes.</strong> Describe a disagreement or missed deadline with Situation, Task, Action and Result.</li><li><strong>Review.</strong> Check accuracy, clarity, ownership of your contribution and whether you answered the question.</li></ol><a class="btn btn-primary" href="#communication" data-action="close-modal">Practise speaking →</a>`);}
+async function loadHistory(){try{const {attempts}=await api('/api/history');if(!$('#history-panel'))return;$('#history-panel').innerHTML=attempts.length?`<table class="history-table"><thead><tr><th>Session</th><th>Started</th><th>Status</th><th>MCQ score</th></tr></thead><tbody>${attempts.map(a=>`<tr><td><a class="purple" href="#workspace/${a.id}">${e(titleCase(a.mode))}</a></td><td>${new Date(a.started_at).toLocaleDateString('en-IN')}</td><td>${badge(a.status,a.status==='submitted'?'green':'purple')}</td><td>${a.total?`${a.score} / ${a.total}`:'—'}</td></tr>`).join('')}</tbody></table>`:'<div class="empty-state"><h3>Your first rehearsal starts here.</h3><p>Finished and in-progress sessions will appear here.</p></div>';}catch(error){handleError(error);}}
+function libraryCards(){const list=data.library.filter(item=>`${item.title} ${item.summary} ${item.topics?.join(' ')}`.toLowerCase().includes(sourceSearch.toLowerCase()));return list.map(item=>`<article class="panel source-card"><span class="source-icon">${icon(item.evidence==='project-notes'?'book':'file')}</span><div><h3>${e(item.title)}</h3>${badge(item.era,item.evidence==='project-notes'?'purple':'amber')}<p>${e(item.summary)}</p><button class="text-link" data-action="source" data-id="${e(item.id)}">Read source & context ${icon('arrow')}</button></div></article>`).join('')||'<div class="empty-state">No matching documents.</div>';}
+function library(){shell(`${heading('The research, with the context.','Your campus notification, 33 archive documents and 7 original planning documents, indexed in one place.')}<div class="notice"><strong>Know what the evidence says.</strong> The archive includes historical papers from 2004–2019 and documents with no date. Some answer keys contain errors. Your more recent campus notes are labelled project notes; they do not independently verify the current assessment.</div><div class="panel" style="padding:21px"><h3>Start with primary references</h3><div class="source-links">${sourceLinks.map(([label,url])=>`<a href="${url}" target="_blank" rel="noopener noreferrer">${label} ↗</a>`).join('')}</div><p class="muted" style="font-size:10px">Reviewed 29 October 2026. Public platform examples guide the layout; your campus invitation determines the actual assessment experience.</p></div><div class="toolbar"><label class="search-field">${icon('search')}<input type="search" id="source-search" placeholder="Search documents, topics, or insights…" value="${e(sourceSearch)}" aria-label="Search sources"></label>${badge(`${data.library.length} SOURCES`)}</div><div class="library-grid" id="source-results">${libraryCards()}</div>`,'library');}
+function mentor(){shell(`${heading('A thinking partner, when you need one.','Ask for an explanation, a small hint, or feedback on your approach.')}<div class="mentor-layout"><section class="panel chat-panel"><div class="panel-head"><h3>${icon('spark')} &nbsp; Your AI mentor</h3>${badge(data.integrations.gemini?'Gemini connected':'Connection pending',data.integrations.gemini?'green':'amber')}</div><div class="chat-messages" id="chat-messages">${chatHistory.length?chatHistory.map(m=>`<div class="chat-message ${m.role==='user'?'user':''}">${e(m.text)}</div>`).join(''):`<div class="chat-welcome"><div class="mentor-mark">${icon('spark')}</div><h2>Let's make it click.</h2><p>Stuck on a concept? Start with what you understand. We’ll work through the next step together.</p><div class="suggestion-grid">${['Explain sliding windows with a small example','Help me understand WHERE vs HAVING','Give me a hint for the house robber problem','How should I review a failed mock?'].map(text=>`<button class="suggestion" data-action="suggestion" data-text="${e(text)}">${text} ${icon('arrow')}</button>`).join('')}</div></div>`}</div><form class="chat-form" id="chat-form"><textarea id="chat-input" aria-label="Message to AI mentor" placeholder="What are you working through?" maxlength="3000" required></textarea><button class="btn btn-primary" type="submit" aria-label="Send message">${icon('send')}</button></form></section><aside class="panel mentor-aside"><h3>Learn a little deeper.</h3><p>Your mentor is most useful when you share your reasoning, not just the question.</p><ul><li>Ask for a hint before a solution</li><li>Test a counterexample</li><li>Compare two approaches</li><li>Explain it in your own words</li></ul><hr><p>AI responses can be wrong. Verify code with test cases and keep the official assessment rules in mind.</p><span class="badge purple">Included in the ₹499 pass</span></aside></div>`,'mentor');}
+async function sendChat(message){if(!data.user||!data.user.premium){paid(()=>sendChat(message));return;}const history=chatHistory.slice();chatHistory.push({role:'user',text:message});mentor();const container=$('#chat-messages');const thinking=document.createElement('div');thinking.className='chat-message';thinking.textContent='Thinking through it…';container.append(thinking);container.scrollTop=container.scrollHeight;$('#chat-form button').disabled=true;try{const result=await api('/api/tutor',{message,history});chatHistory.push({role:'model',text:result.answer});if(location.hash==='#mentor')mentor();}catch(error){chatHistory.push({role:'model',text:errorMessage(error)});if(location.hash==='#mentor')mentor();}$('#chat-messages')?.scrollTo(0,$('#chat-messages').scrollHeight);}
+const speakingPrompts=[['Reading aloud','Read with a steady pace and clear sentence endings.','The engineering team reviewed the requirements, tested the application, and delivered the update on schedule.'],['Sentence repetition','Listen once, hide the text, then repeat the sentence.','Clear communication helps a team resolve problems before they affect a deadline.'],['Short answer','Answer directly in one or two complete sentences.','Why is it useful to test an application before releasing it to users?'],['Sentence building','Arrange the words into a natural sentence and say it aloud.','the team / after testing / released / the update'],['Story retelling','Read the story, then retell its problem, action and outcome in your own words.','A team noticed that a report was missing several records. They paused distribution, checked the import logs, and found a date filter error. After correcting it, they verified the totals and shared the report with an explanation.'],['Open speaking','Speak for 60 seconds using a clear beginning, example and conclusion.','Describe a time you learned a new skill to help a team finish a project.']];
+let promptIndex=0;
+function communication(){const p=speakingPrompts[promptIndex];shell(`${heading('Let your thinking come through.','Practise speaking clearly and writing with purpose. No invented proficiency scores.')}<div class="comm-grid"><section class="panel comm-card">${badge('SPEAKING PRACTICE','purple')}<h2 style="margin-top:15px">Say it with clarity.</h2><p>Choose a practice mode, listen if helpful, and record a response you can review yourself.</p><select id="speaking-mode" class="select" aria-label="Speaking exercise">${speakingPrompts.map((p,i)=>`<option value="${i}" ${i===promptIndex?'selected':''}>${p[0]}</option>`).join('')}</select><div class="speech-prompt" id="speech-prompt">${e(p[2])}</div><p>${e(p[1])}</p><div class="button-row">${button(icon('headphones')+' Listen','listen','','')}${button(icon('mic')+' Record response','record')}${button('Hide / show prompt','hide-prompt','','btn-ghost')}</div><div id="recording-status" class="recording" role="status"></div><div id="audio-container"></div><p class="form-note">Recording needs microphone permission. Audio stays in this browser and is discarded when you leave. Listening voices depend on your device.</p></section><section class="panel comm-card">${badge('WRITING PRACTICE','purple')}<h2 style="margin-top:15px">A professional email, in 10 minutes.</h2><p>Your performance review rating was lower than expected despite meeting your deliverables. Write a respectful email requesting clarification and a short review meeting. Aim for 100–150 words.</p><div class="button-row"><span class="timer" id="email-time">10:00</span>${button('Start writing timer','email-timer','','btn-sm')}</div><textarea id="email-draft" class="email-draft" placeholder="Subject: Request for a review discussion\n\nDear…" aria-label="Email practice draft" maxlength="5000"></textarea><div class="word-count"><span id="word-count">0 words</span><span>Target: 100–150 words</span></div><hr><h3 style="font-size:12px">Your review checklist</h3><ul class="task-list"><li>${icon('check')}Specific subject and clear request</li><li>${icon('check')}Evidence, without an accusatory tone</li><li>${icon('check')}A concrete next step and polite close</li></ul>${button(icon('spark')+' Ask for writing feedback','email-feedback','','')}</section></div>`,'communication');}
+function stopMedia(){clearTimeout(recordTimer);clearInterval(emailTimer);emailTimer=null;if(recorder?.state==='recording')recorder.stop();stream?.getTracks().forEach(t=>t.stop());stream=null;if(audioUrl)URL.revokeObjectURL(audioUrl);audioUrl=null;window.speechSynthesis?.cancel();}
+async function record(){if(recorder?.state==='recording'){recorder.stop();return;}if(!paid(()=>{}))return;if(!navigator.mediaDevices||!window.MediaRecorder){toast('Audio recording is not supported in this browser. Use a current browser on HTTPS or localhost.');return;}try{stream=await navigator.mediaDevices.getUserMedia({audio:true});recorder=new MediaRecorder(stream);const chunks=[];recorder.ondataavailable=event=>{if(event.data.size)chunks.push(event.data);};recorder.onstop=()=>{clearTimeout(recordTimer);stream?.getTracks().forEach(t=>t.stop());if(!$('#audio-container'))return;if(audioUrl)URL.revokeObjectURL(audioUrl);audioUrl=URL.createObjectURL(new Blob(chunks,{type:recorder.mimeType}));const audio=document.createElement('audio');audio.controls=true;audio.className='audio-playback';audio.src=audioUrl;$('#audio-container').replaceChildren(audio);$('#recording-status').textContent='Recording ready. Listen for clarity, structure, and unnecessary pauses.';$('[data-action="record"]').innerHTML=icon('mic')+' Record again';};recorder.start();$('[data-action="record"]').textContent='Stop recording';$('#recording-status').textContent='● Recording… stops automatically after 60 seconds.';recordTimer=setTimeout(()=>recorder.state==='recording'&&recorder.stop(),60000);}catch{toast('Microphone access was not granted. You can still practise aloud without recording.');}}
+function account(){const u=data.user;if(!u){shell(`${heading('Your preparation, saved.','Create a free account to keep your practice sessions and track your progress.')}<section class="panel empty-state">${icon('user')}<h3>A workspace of your own.</h3><p>Start with a free diagnostic, two coding exercises, and the public curriculum.</p>${button('Create your account','auth')}</section>`,'account');return;}shell(`${heading('Your account. Your workspace.','Manage your study pace and understand how access works.')}<div class="account-grid"><section class="panel account-card"><h3>Profile & preparation</h3>${u.isAdmin?'<a class="btn" href="#admin">Open admin dashboard →</a>':''}<div class="account-row"><span>Name</span><strong>${e(u.name)}</strong></div><div class="account-row"><span>Email</span><strong>${e(u.email)}</strong></div><div class="account-row"><span>Selected study pace</span><strong>${u.track} days · change anytime</strong></div><div class="account-row"><span>Included study tracks</span><strong>${u.premium?'10, 20 and 30 days · all unlocked':'All three included with the ₹499 pass'}</strong></div><p class="form-note">Your study pace is a schedule preference, not a subscription tier. One ₹499 payment unlocks every track and mock.</p><a class="text-link" href="#roadmap">Change your study pace →</a><div class="account-row"><span>Access</span><strong>${u.premium?'Complete pass · all features unlocked':'Free account'}</strong></div><div class="button-row" style="margin-top:20px">${u.premium?'':button('Unlock everything · ₹499','pass')}${button(icon('logout')+' Sign out','logout','','')}</div></section><section class="panel account-card"><h3>${icon('shield')} &nbsp; One account, one active browser</h3><p>Only one browser session is active at a time. Signing in with the correct password from another browser while a session is active starts a 6-hour cooldown; a later repeat starts a 12-hour cooldown.</p><p>Sessions expire after 12 hours. Sign out on your current browser before switching devices. Clearing cookies can make this browser appear new.</p><div class="notice">A cooldown is temporary, not a permanent ban. If you lose a device, contact the platform operator for a verified account recovery. Browser controls cannot prove who is physically using a device.</div></section></div>`,'account');}
+
+function showAuth(mode='register',after){const register=mode==='register';showModal(`<div class="mock-icon">${icon('user')}</div><h2 class="modal-heading" id="modal-title">${register?'Your next step starts here.':'Welcome back.'}</h2><p class="modal-subtitle">${register?'Create a free account. Build your baseline before you unlock the complete pass.':'Sign in to pick up your preparation.'}</p><form id="auth-form">${register?'<label class="field">Your name<input name="name" autocomplete="name" required minlength="2" maxlength="80" placeholder="How should we call you?"></label>':''}<label class="field">Email address<input name="email" type="email" autocomplete="email" required maxlength="254" placeholder="you@college.edu"></label><label class="field">Password<input name="password" type="password" autocomplete="${register?'new-password':'current-password'}" required minlength="12" maxlength="128" placeholder="At least 12 characters"></label><p class="form-note">One active browser at a time. A concurrent login from another browser triggers a temporary 6-hour cooldown (12 hours on a later repeat). Sign out before switching.</p><div class="form-error" id="auth-error" role="alert"></div><button type="submit" class="btn btn-primary form-full">${register?'Create free account':'Sign in'} ${icon('arrow')}</button></form><div class="auth-switch">${register?'Already have an account?':'New to CampusReady?'} <button class="text-link" id="auth-switch">${register?'Sign in':'Create an account'}</button></div>${!register?'<p class="form-note">Forgot your password? Contact the platform operator for verified recovery. There is no automatic email reset configured.</p>':''}`);$('#auth-switch').onclick=()=>showAuth(register?'login':'register',after);$('#auth-form').onsubmit=async event=>{event.preventDefault();const form=event.currentTarget,submit=form.querySelector('[type=submit]');submit.disabled=true;try{await api(`/api/auth/${mode}`,Object.fromEntries(new FormData(form)));await refresh();modal.close();await renderRoute();if(after)after();}catch(error){$('#auth-error').textContent=errorMessage(error);}finally{submit.disabled=false;}};}
+function showPass(){
+ if(data.user?.premium){toast('Your complete pass is already active.');return;}
+ const eligible=data.invitation?.eligible;
+ showModal(`<div class="mock-icon">${icon('lock')}</div>${badge('PREPARATION, BY INVITATION','purple')}<h2 class="modal-heading" id="modal-title">Your invitation.<br>Your next chapter.</h2><p class="modal-subtitle">A focused community, with one complete preparation pass.</p><div class="invite-steps"><span class="${eligible?'done':'active'}">1 · Redeem code</span><span>2 · Pay ₹499</span><span>3 · All access</span></div><div class="price">₹499 <small>once · all 10, 20 & 30-day tracks</small></div><ul class="price-features">${['60 curated exercises and the complete learning library','All timed mocks, the IDE and saved progress','Gemini mentor and communication practice'].map(t=>`<li>${icon('check')}${t}</li>`).join('')}</ul>${!data.user?`<div class="notice">You need a secret invitation code from the platform owner before you can purchase. You can still create an account and try free practice.</div>${button('Create account & redeem code '+icon('arrow'),'checkout','','btn-primary form-full')}`:eligible?`<div class="invite-verified">${icon('check')}<div><strong>Invitation accepted</strong><span>Complete checkout by ${e(new Date(data.invitation.expiresAt).toLocaleString('en-IN',{dateStyle:'medium',timeStyle:'short'}))}.</span></div></div>${button('Continue to secure checkout '+icon('arrow'),'checkout','','btn-primary form-full')}`:`<form id="redeem-form"><label class="field">Secret invitation code<input name="code" type="password" required minlength="16" maxlength="80" autocomplete="off" spellcheck="false" placeholder="Enter the code shared with you"></label><p class="form-error" id="redeem-error" role="alert"></p><button class="btn btn-primary form-full" type="submit">Redeem code ${icon('arrow')}</button><p class="form-note">No code yet? Request an invitation from the platform owner. Redeeming a code enables checkout; it does not unlock paid features.</p></form>`}<p class="pass-note">One payment · No recurring subscription · One active browser</p>${!data.integrations.payments?'<div class="checkout-status">Payment setup is pending. No payments can be taken until Razorpay is connected.</div>':''}<div id="payment-error" class="form-error" role="alert"></div>`);
+ const form=$('#redeem-form');if(form)form.onsubmit=async event=>{event.preventDefault();const btn=form.querySelector('button');btn.disabled=true;try{await api('/api/invitations/redeem',{code:new FormData(form).get('code')});form.reset();await refresh();showPass();}catch(error){const node=$('#redeem-error');if(node)node.textContent=errorMessage(error);}finally{btn.disabled=false;}};
+}
+async function checkout(){if(!data.user){showAuth('register',showPass);return;}if(data.user.premium){modal.close();toast('Your complete pass is already active.');return;}if(!data.invitation?.eligible){showPass();return;}const btn=$('[data-action="checkout"]');btn.disabled=true;try{const order=await api('/api/payments/order',{});if(!window.Razorpay)await new Promise((resolve,reject)=>{const script=document.createElement('script');script.src='https://checkout.razorpay.com/v1/checkout.js';script.onload=resolve;script.onerror=()=>reject(new Error('Could not load secure checkout. Please retry.'));document.head.append(script);});const checkout=new window.Razorpay({key:order.keyId,amount:order.amount,currency:order.currency,order_id:order.orderId,name:'CampusReady',description:'Complete preparation pass',prefill:{name:data.user.name,email:data.user.email},theme:{color:'#7544df'},handler:async response=>{try{await api('/api/payments/verify',response);await refresh();modal.close();await renderRoute();toast('Your payment is verified. Your complete pass is active.');}catch(error){showModal(`<h2 id="modal-title">Payment verification pending</h2><p class="form-note">${e(errorMessage(error))} A captured payment can also be reconciled by the signed webhook. Refresh your account before trying to pay again.</p>`);}}});modal.close();checkout.open();}catch(error){if(error.code==='INVITATION_REQUIRED'){await refresh();showPass();}const node=$('#payment-error');if(node)node.textContent=errorMessage(error);}finally{btn.disabled=false;}}
+function guide(){showModal(`<div class="mock-icon">${icon('route')}</div><h2 class="modal-heading" id="modal-title">Start small. Practise deliberately.</h2><p class="modal-subtitle">A preparation workflow, from your first day to your final rehearsal.</p><ol class="task-list" style="list-style:decimal;padding-left:20px;display:block;line-height:2.1"><li style="display:list-item">Read your official campus invitation and select a 10, 20 or 30-day track.</li><li style="display:list-item">Create an account and take the free diagnostic. Note the topics you miss.</li><li style="display:list-item">Open each day's guide, then practise in the IDE or question workspace.</li><li style="display:list-item">Run sample cases, inspect failures, and submit for server-side DSA or SQL checks.</li><li style="display:list-item">After 20 minutes in a practice session, use the solution to review your approach.</li><li style="display:list-item">Use timed mocks for pacing, then review errors before your final rehearsal.</li></ol><div class="notice">Frontend preview checks are advisory, and source papers can contain incorrect answers. A completed plan is a record of effort, not a selection guarantee.</div>`);}
+function privacy(){showModal(`<h2 class="modal-heading" id="modal-title">Privacy & fair use</h2><p class="modal-subtitle">Your preparation account has a few clear boundaries.</p><p class="form-note">Authorised administrators can view account, payment, invitation and activity records to operate the platform. We store your name, email, password hash, session/device token hashes, practice submissions, progress, payment references and limited security events. Credentials and private records are not served as website assets.</p><p class="form-note">One active browser is permitted. Concurrent authenticated logins can start a temporary cooldown. We do not collect a hardware fingerprint or claim to identify a physical person.</p><p class="form-note">Gemini receives the messages you submit and limited question context. DSA code and inputs go to the configured isolated code runner. Do not submit passwords, private credentials or confidential information.</p><p class="form-note">Microphone recordings stay in your browser. Browser focus events are training signals, not proof of cheating. Contact the operator for access recovery, deletion, or payment support before launch.</p><div class="notice">Any content delivered to your browser can be copied or photographed. Server controls protect private records, hidden tests and payment access; they cannot make the visible interface impossible to copy.</div>`);}
+async function start(mode,questionId){signed(async()=>{const q=data.questions.find(q=>q.id===questionId);if((mode!=='practice'&&mode!=='diagnostic'||q&&!q.free)&&!data.user.premium){showPass();return;}try{const result=await api('/api/attempts',{mode,questionId});if(result.resumed)toast('Resuming your active session. Finish it before starting another.');location.hash=`workspace/${result.id}`;}catch(error){handleError(error);}});}
+
+async function renderRoute(){
+ routeCleanup?.();routeCleanup=null;stopMedia();window.scrollTo(0,0);const [page='dashboard',id]=location.hash.slice(1).split('/');
+ if(page==='workspace'&&id){if(!data.user){dashboard();showAuth('login',()=>renderRoute());return;}app.innerHTML='<div class="initial-load"><p>Opening your practice session…</p></div>';try{routeCleanup=await mountWorkspace({id,app,api,icon,e,toast,showModal,handleError,onExit:async()=>{await refresh();location.hash='dashboard';}});}catch(error){dashboard();handleError(error);}return;}
+ if(page==='admin'){if(!data.user){account();showAuth('login',()=>renderRoute());return;}if(!data.user.isAdmin){shell(`${heading('Administrator access required.','This area is reserved for the platform owner.')}<a class="btn" href="#dashboard">Back to your workspace</a>`,'admin');return;}routeCleanup=mountAdmin({api,e,icon,shell,heading,badge,showModal,toast});return;}
+ ({dashboard,roadmap,bank,mocks,library,mentor,communication,account}[page]||dashboard)();
+}
+document.addEventListener('click',async event=>{
+ const target=event.target.closest('[data-action]');if(!target)return;event.preventDefault();const action=target.dataset.action;
+ try{
+ if(action==='close-modal')modal.close();
+ else if(action==='skip'){const main=$('#main');main?.setAttribute('tabindex','-1');main?.focus();}
+ else if(action==='menu'){const sidebar=$('.sidebar');sidebar.classList.toggle('open');sidebar.inert=!sidebar.classList.contains('open');}
+ else if(action==='auth')showAuth();
+ else if(action==='account')location.hash='account';
+ else if(action==='pass')showPass();
+ else if(action==='checkout')await checkout();
+ else if(action==='guide')guide();
+ else if(action==='privacy')privacy();
+ else if(action==='track'){selectedTrack=Number(target.dataset.days);selectedDay=1;studyView='learn';if(data.user)await api('/api/profile',{track:selectedTrack});await renderRoute();}
+ else if(action==='day'){selectedDay=Number(target.dataset.day);studyView='learn';roadmap();focusStudyLesson();}
+ else if(action==='study-view'){studyView=target.dataset.view;roadmap();const active=$('.study-tabs button.active');active?.focus({preventScroll:true});active?.scrollIntoView({block:'start'});}
+ else if(action==='start-day'){selectedDay=dayNow();location.hash='roadmap';}
+ else if(action==='complete-day')paid(async()=>{try{await api('/api/study/complete',{track:selectedTrack,day:Number(target.dataset.day)});await refresh();roadmap();toast('Day completed. Keep building on your progress.');}catch(error){handleError(error);}});
+ else if(action==='category'){category=target.dataset.category;bank();}
+ else if(action==='practice')await start('practice',target.dataset.id);
+ else if(action==='campus-lobby')campusLobby();
+ else if(action==='interview-guide')paid(interviewGuide);
+ else if(action==='mock')await start(target.dataset.mode);
+ else if(action==='resume'){if(data.activeAttempt)location.hash=`workspace/${data.activeAttempt.id}`;}
+ else if(action==='source')paid(async()=>{try{const item=await api(`/api/library/${encodeURIComponent(target.dataset.id)}`);showModal(`<h2 class="modal-heading" id="modal-title">${e(item.title)}</h2>${badge(item.era,'amber')}<p class="form-note">${e(item.originalName)}</p><div class="notice">${e(item.summary)} Reference material may include outdated claims or erroneous answer keys. Edited extracts are labelled.</div><pre class="source-text">${e(item.text)}</pre>`,true);}catch(error){handleError(error);}});
+ else if(action==='suggestion'){const text=target.dataset.text;$('#chat-input').value=text;$('#chat-input').focus();}
+ else if(action==='logout'){await api('/api/auth/logout',{});chatHistory=[];await refresh();await renderRoute();toast('Signed out. You can now use another browser.');}
+ else if(action==='listen'){if(!paid(()=>{}))return;if(!window.speechSynthesis){toast('Speech playback is unavailable in this browser.');return;}speechSynthesis.cancel();const utterance=new SpeechSynthesisUtterance(speakingPrompts[promptIndex][2]);utterance.lang='en-IN';utterance.rate=.9;speechSynthesis.speak(utterance);}
+ else if(action==='record')await record();
+ else if(action==='hide-prompt')$('#speech-prompt').style.visibility=$('#speech-prompt').style.visibility==='hidden'?'visible':'hidden';
+ else if(action==='email-timer'){if(!paid(()=>{}))return;clearInterval(emailTimer);emailRemaining=600;const until=Date.now()+600000;target.disabled=true;emailTimer=setInterval(()=>{emailRemaining=Math.max(0,Math.ceil((until-Date.now())/1000));if(!$('#email-time'))return clearInterval(emailTimer);$('#email-time').textContent=`${String(Math.floor(emailRemaining/60)).padStart(2,'0')}:${String(emailRemaining%60).padStart(2,'0')}`;if(!emailRemaining){clearInterval(emailTimer);target.disabled=false;toast('Writing time is up. Review your draft against the checklist.');}},1000);}
+ else if(action==='email-feedback'){const draft=$('#email-draft').value.trim();if(draft.length<30){toast('Write a draft first, then ask for feedback.');return;}paid(()=>{location.hash='mentor';setTimeout(()=>sendChat(`Review this practice email for clarity, tone, structure and a 100–150 word target. Do not invent an official assessment score.\n\n${draft}`),80);});}
+ }catch(error){handleError(error);}
+});
+document.addEventListener('input',event=>{if(event.target.id==='question-search'){search=event.target.value;$('#question-results').innerHTML=bankRows();}if(event.target.id==='source-search'){sourceSearch=event.target.value;$('#source-results').innerHTML=libraryCards();}if(event.target.id==='email-draft'){const count=event.target.value.trim().split(/\s+/).filter(Boolean).length;$('#word-count').textContent=`${count} words ${count>=100&&count<=150?'· Within target':''}`;}});
+document.addEventListener('change',event=>{if(event.target.id==='difficulty-filter'){difficulty=event.target.value;$('#question-results').innerHTML=bankRows();}if(event.target.id==='speaking-mode'){promptIndex=Number(event.target.value);stopMedia();communication();}});
+document.addEventListener('submit',event=>{if(event.target.id==='chat-form'){event.preventDefault();const message=$('#chat-input').value.trim();if(message)sendChat(message);}});
+modal.addEventListener('click',event=>{if(event.target===modal){const r=modal.getBoundingClientRect();if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)modal.close();}});
+window.addEventListener('hashchange',()=>renderRoute().catch(handleError));
+window.addEventListener('pagehide',stopMedia);
+const navigationObserver=new MutationObserver(()=>{const sidebar=$('.sidebar');if(sidebar)sidebar.inert=window.innerWidth<=800&&!sidebar.classList.contains('open');});
+navigationObserver.observe(app,{childList:true});
+window.addEventListener('resize',()=>{const sidebar=$('.sidebar');if(sidebar)sidebar.inert=window.innerWidth<=800&&!sidebar.classList.contains('open');});
+document.addEventListener('keydown',event=>{if(event.key==='Escape'){const sidebar=$('.sidebar');if(sidebar&&window.innerWidth<=800){sidebar.classList.remove('open');sidebar.inert=true;}}});
+try{await refresh();await renderRoute();}catch(error){app.innerHTML=`<div class="initial-load"><h1>Let’s reconnect.</h1><p>${e(errorMessage(error))}</p><button class="btn btn-primary" id="retry">Reload workspace</button></div>`;$('#retry').onclick=()=>location.reload();}
