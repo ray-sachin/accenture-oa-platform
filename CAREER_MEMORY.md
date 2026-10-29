@@ -80,3 +80,13 @@ Directory: `references/screens/`
 - **Category 4 (19–22):** Gamified Cognitive Puzzles (Flow Direction, Crunch Speed Math, Seek Memory Maze, Switch Shape Deductive Rule).
 - **Category 5 (23–28):** Versant Virtual Communication (Parts A–E: Reading, Repeating, Q&A, Sentence Builds, Story Retell) & Mettl SpeechX Live Waveform Recording.
 - **Category 6 (29–32):** Assessment Summary Table Modal, End Test Warning Dialog, Section Timeout Alert, Post-Submission Feedback Screen.
+
+---
+
+## 5. Real Exam Camera Leaks & Verified Question Archetypes (30 Captured Assets)
+Directory: `references/screens/`
+- **Candidate Mobile Photos:** `real_snap_01_chatbot_webdev.png`, `real_snap_02_star_rating_webdev.jpg`, `real_snap_03_ipod_interface_webdev.png`.
+- **Live Exam Camera Leaks:** `real_exam_camera_leak_networking_mcq_ieee.png` (Candidate ID 44953587 with live webcam feed, Q81 IEEE), `real_exam_camera_leak_cloud_security_mcq.png` (Q81 Community Cloud & Q82 Pay-per-use).
+- **Frontend Archetypes:** Chatbot (`#cfe2ff`, bot response), Product Search Filter (`#search-input`, `filterProducts()`, 'nana' query), Employee Task Manager (table row DOM generation, `completeTask()`, `deleteTask()`), Password Form Validator (`passwordformValidation()`, 8-char rule), Star Rating (`#ffd700` gold).
+- **DSA Coding:** Text Encryption Grid (Java/Python split editor with 16:47 timer), Pairwise Difference, Next Palindromic Square Difference.
+- **SQL Querying:** Plans & Subscriptions schema cards and live query editor.
