@@ -1,4 +1,6 @@
-# Project Memory & Ground Truth Ledger: Accenture ATE Internship (₹60K/Mo)
+# Historical campus-research ledger: Accenture ATE internship
+
+> **Confidence correction, 29 October 2026:** these are owner-supplied project notes. No current official campus notice or retrievable source links were attached to establish the universal format, stipend, eligibility, cutoffs or PPO claims below. Preserve them as research leads and verify the actual invitation. See docs/RESEARCH_AUDIT.md and docs/REFERENCES.md. Current platform price: ₹499.
 
 Last Updated: October 28, 2026
 Target Drive: **Accenture Advanced Technology Engineer (ATE) Summer Internship Drive (2026-27 for 2027 Batch)**
@@ -67,3 +69,14 @@ From live campus debriefs (SVNIT 2026, IIT BHU 2026, NIT Kurukshetra):
 - Target User: 3rd-year engineering students (2027 batch) sitting for Accenture's ₹60k/month on-campus internship drive.
 - Pricing: ₹500 one-time unlock for the **Accenture ATE Internship Mastery Pass**.
 - ROI: Prepares students to crack the ₹1,20,000 summer stipend and pre-secure their career with a PPO.
+
+---
+
+## 4. Visual Reference Catalog (32 Screens Pulled & Cataloged)
+Directory: `references/screens/`
+- **Category 1 (01–06):** Candidate System Check, Hardware Verification, Webcam Face Capture, ID Card Scan, Proctoring Consent.
+- **Category 2 (07–11):** Cognitive & Technical MCQ Interface, Question Palette 5-State Legend, Section Tabs, Floating Calculator, Instructions Overlay.
+- **Category 3 (12–18):** Tri-Domain IDE (CodeLysis Monaco, DSA Encryption Grid, SQL DB Schema & Table Runner, Frontend HTML/CSS/JS Live Sandboxed Iframe).
+- **Category 4 (19–22):** Gamified Cognitive Puzzles (Flow Direction, Crunch Speed Math, Seek Memory Maze, Switch Shape Deductive Rule).
+- **Category 5 (23–28):** Versant Virtual Communication (Parts A–E: Reading, Repeating, Q&A, Sentence Builds, Story Retell) & Mettl SpeechX Live Waveform Recording.
+- **Category 6 (29–32):** Assessment Summary Table Modal, End Test Warning Dialog, Section Timeout Alert, Post-Submission Feedback Screen.
